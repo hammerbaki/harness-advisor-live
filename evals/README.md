@@ -16,12 +16,12 @@ Each scenario should record:
 - final answer
 - validator results
 
-## Frozen Scenarios
+## Fixed Validation Scenarios
 
-`scenarios/` contains paper-oriented evaluation scenario definitions. These are
-not generated trace outputs; they are the frozen questions, expected claim IDs,
-trace expectations, and answer-level signals used to evaluate whether a target
-group is ready to become a paper/demo slice.
+`scenarios/` contains fixed validation scenario definitions for the five-group
+public reference slice. These are not generated trace outputs; they are the
+frozen questions, expected claim IDs, trace expectations, and answer-level
+signals used to evaluate whether each group preserves the configured contracts.
 
 Run:
 
@@ -45,9 +45,10 @@ paraphrase-only answer, a clear judgment axis, prioritized monitoring points,
 no buy/sell/target-price recommendation language, and no excessive reuse of
 one generic table of contents when the question intent changes.
 
-The first frozen scenario set is `hanwha.reference-slice.json`. Samsung, SK,
-Hyundai Motor, and LG should receive equivalent files only after their source
-manifests and source-backed claim sets exist.
+The current public baseline includes scenario files for Samsung, SK, Hyundai
+Motor, LG, and Hanwha. The additional `sk.financial-seed.json` file is retained
+as an earlier seed artifact and is not part of the 30-scenario baseline reported
+in the paper.
 
 ## Result Summaries
 
