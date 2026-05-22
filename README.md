@@ -13,19 +13,19 @@ The result is a reusable harness pattern for turning public corporate data into 
 - Fault-injection and latency artifacts that show whether the validators detect induced contract violations and whether orchestration changes preserve the same answer contract.
 - A mobile briefing interface that exposes source links and follow-up questions to readers while keeping internal trace details out of the customer-facing answer.
 
-## Repository Layout
+## Agent Harness Structure
 
 ```text
-configs/          Group, company, source, and onboarding configuration
-evals/            Fixed scenarios, validation results, latency dashboards, and rubrics
-prompts/          Short policy prompts used at the composition boundary
-public/           Static UI assets used by the reference interface
-raw/manifests/    Public-source manifests, extracted metadata, and claim artifacts
-scripts/          Source processing, validation, evaluation, and audit scripts
-server/           Local server and fixture-compatible API interface
-src/              React/Vite mobile briefing interface and harness logic
-tests/            Test entry points and notes
-wiki/             Maintained group and company context pages
+configs/          Control map for groups, companies, identifiers, source policy, and onboarding
+raw/manifests/    Source authority layer: manifests, evidence records, source-backed claims
+wiki/             Maintained context layer used by the composer, not the source of truth
+prompts/          Short policy prompts at the replaceable LLM composition boundary
+server/           Runtime assembly layer for source collection, traces, links, and answers
+src/              Reader-facing mobile product surface for briefings, links, and follow-ups
+evals/            Contract validation layer: scenarios, results, fault injection, latency dashboards
+scripts/          Harness operations for ingestion, claim promotion, validation, and release checks
+tests/            Notes and entry points for deterministic behavior checks
+public/           Static assets used by the reader-facing interface
 ```
 
 ## What Is Included

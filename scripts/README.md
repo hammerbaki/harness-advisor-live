@@ -1,5 +1,9 @@
 # Scripts
 
+This folder is the harness operations layer. Scripts turn public sources into
+manifests, extraction reports, source-backed claims, validation results, and
+release checks so that the agent can be replayed instead of manually recreated.
+
 This directory contains source-processing, validation, evaluation, and local runtime scripts for the reference implementation.
 
 Common commands:

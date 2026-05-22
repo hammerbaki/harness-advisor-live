@@ -1,5 +1,9 @@
 # Server
 
+This folder is the runtime assembly layer. The server resolves the selected
+group, collects source packages, assembles source-backed answers, returns source
+links and follow-ups, and records the process trace used for inspection.
+
 This folder contains the fixture-compatible advisor API used by the mobile demo.
 
 Endpoints:

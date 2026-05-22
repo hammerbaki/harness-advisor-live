@@ -1,7 +1,12 @@
 # Configs
 
-This folder stores group-level configuration that should remain separate from
-prompt text and UI code.
+This folder is the agent control map. It defines which corporate groups,
+companies, identifiers, source namespaces, and onboarding rules the harness can
+recognize before any answer is assembled.
+
+Configuration should remain separate from prompt text and UI code. The point is
+to make entity scope and source policy explicit rather than hiding them inside a
+long system prompt.
 
 `groups.json` is the current research schema for five Korean business groups.
 Samsung is the neutral default UI target. Hanwha is the deepest reference slice,
@@ -31,7 +36,8 @@ Config rules:
 - group-specific behavior belongs here or in `wiki/`, not in hard-coded
   prompt instructions;
 - `displayOrder` controls investor-facing target order and should follow the
-  selected-target ranking policy documented in `docs/13_group_company_template.md`;
+  selected-target ranking policy documented in
+  `configs/first-slice-selection-policy.json`;
 - public identifiers such as DART corp codes, KRX tickers, and Yahoo tickers
   must be traceable;
 - every profile should declare whether it is a reference slice or

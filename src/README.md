@@ -1,5 +1,10 @@
 # Source Code
 
+This folder is the reader-facing product surface. It shows the selected
+corporate group, briefing cards, submitted questions, source links, follow-up
+questions, and answer sections while keeping internal trace details out of the
+customer-facing view.
+
 This folder contains the current research demo implementation.
 
 The first screen intentionally prioritizes the original mobile PoC experience:

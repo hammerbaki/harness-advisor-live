@@ -1,5 +1,9 @@
 # Raw Sources
 
+This folder is the source authority layer. It records public-source manifests,
+evidence metadata, extraction reports, and promoted source-backed claims that
+the runtime is allowed to use.
+
 Raw sources are immutable public-source inputs. Do not rewrite files in this
 folder during wiki compilation.
 
@@ -52,8 +56,7 @@ Add a policy-based document-level retention rationale before claim promotion:
 npm run rationale:hanwha
 ```
 
-This writes `raw/manifests/hanwha.selection-rationale.json` and the readable
-audit note `docs/19_hanwha_source_selection_rationale.md`. The rationale must
+This writes `raw/manifests/hanwha.selection-rationale.json`. The rationale must
 reference the common rules in `configs/source-selection-policy.json`, so the
 same approach can be reused for Samsung, SK, Hyundai Motor, LG, and future
 groups.
@@ -65,10 +68,9 @@ run:
 npm run backfill:hanwha
 ```
 
-This writes `raw/manifests/hanwha.official-backfill-plan.json` and
-`docs/21_hanwha_official_backfill_plan.md`. It downloads nothing by default.
-Use `HANWHA_BACKFILL_DOWNLOAD=1 npm run backfill:hanwha` only after reviewing
-the plan.
+This writes `raw/manifests/hanwha.official-backfill-plan.json`. It downloads
+nothing by default. Use `HANWHA_BACKFILL_DOWNLOAD=1 npm run backfill:hanwha`
+only after reviewing the plan.
 
 After inventorying, official issuer PDFs can be extraction-tested with:
 
@@ -97,13 +99,12 @@ Promote only reviewed, atomic claims into runtime-eligible seed knowledge:
 npm run promote:hanwha
 ```
 
-This writes `raw/manifests/hanwha.source-backed-claims.json` and the readable
-audit note `docs/23_hanwha_source_backed_claims.md`. The promoted set is a
-small seed layer; it does not certify every old RAG claim.
+This writes `raw/manifests/hanwha.source-backed-claims.json`. The promoted set
+is a small seed layer; it does not certify every old RAG claim.
 
 Each selected target has a `raw/manifests/<group>.json` stub. These manifests
 are the source-of-truth checklist for the LLM wiki and must be populated before
-any group is marked paper-ready.
+any group is marked runtime-ready.
 
 Samsung now has an additional expansion seed:
 
@@ -187,7 +188,6 @@ being collected:
 raw/manifests/samsung.document-url-intake.json
 raw/manifests/samsung.dart-filing-extraction-report.json
 raw/manifests/samsung.narrative-claim-queue.json
-docs/42_samsung_url_and_narrative_claim_readiness.md
 ```
 
 Fill `publicDocumentUrl` in the URL intake manifest as exact file-level URLs

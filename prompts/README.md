@@ -1,5 +1,9 @@
 # Prompts
 
+This folder contains the small policy prompts used at the replaceable language
+model composition boundary. Prompts guide tone and evidence policy, but they do
+not own company facts, source eligibility, routing, or validation.
+
 Prompts in this project should be concise policy blocks.
 
 Do not place long RAG content, company knowledge, or brittle formatting logic in
