@@ -1,0 +1,272 @@
+{
+  "schemaVersion": "prompt-control-plane-audit.v0.1",
+  "createdAt": "2026-05-02",
+  "purpose": "Classify what remains in prompts, what has moved to code, what belongs in wiki/manifests, and what must be deleted or archived before commercialization.",
+  "principle": "Prompt as policy, code as control plane, raw sources as truth, LLM Wiki as bounded synthesis.",
+  "deletionStandard": {
+    "strictness": "high",
+    "rule": "A PoC feature can be removed from runtime only when the audit records why it worked in the demo, why it becomes unsafe or unscalable in commercial operation, and what replaces it.",
+    "requiredFieldsForDelete": [
+      "pocWorkedBecause",
+      "commercialRemovalBasis",
+      "replacement",
+      "evidence"
+    ],
+    "removalBasisCategories": [
+      "role_conflict",
+      "private_or_internal_assumption",
+      "source_trace_gap",
+      "determinism_gap",
+      "multi_group_scalability_gap",
+      "legal_or_rights_risk",
+      "user_experience_noise",
+      "runtime_observability_gap"
+    ]
+  },
+  "runtimePromptBudget": {
+    "maxBundleWords": 220,
+    "currentBundleWords": 103,
+    "promptFiles": [
+      "prompts/advisor-role.md",
+      "prompts/evidence-policy.md",
+      "prompts/output-style.md"
+    ]
+  },
+  "entries": [
+    {
+      "id": "prompt-keep-001-role-policy",
+      "category": "prompt_keep",
+      "source": "prompts/advisor-role.md",
+      "decision": "keep_short_policy_prompt",
+      "rationale": "Role framing is qualitative and should remain short. It states public-data investor-advisor positioning without company facts.",
+      "owner": "prompt"
+    },
+    {
+      "id": "prompt-keep-002-evidence-boundary",
+      "category": "prompt_keep",
+      "source": "prompts/evidence-policy.md",
+      "decision": "keep_short_policy_prompt",
+      "rationale": "The LLM needs a concise boundary telling it to use only bounded context. The runtime enforces actual routing and trace behavior.",
+      "owner": "prompt"
+    },
+    {
+      "id": "prompt-keep-003-output-tone",
+      "category": "prompt_keep",
+      "source": "prompts/output-style.md",
+      "decision": "keep_short_policy_prompt",
+      "rationale": "Natural-language tone is appropriate for a prompt as long as formatting and evidence control remain in code.",
+      "owner": "prompt"
+    },
+    {
+      "id": "code-001-group-routing",
+      "category": "code_owned",
+      "source": "configs/groups.json",
+      "implementation": [
+        "server/index.mjs",
+        "src/briefingTemplate.ts",
+        "src/questionTemplates.ts"
+      ],
+      "decision": "code_control",
+      "rationale": "Group/company identifiers, display order, representative companies, and ticker routing must be deterministic and reusable across Samsung, SK, Hyundai Motor, LG, and Hanwha.",
+      "owner": "code"
+    },
+    {
+      "id": "code-002-tool-routing-and-status",
+      "category": "code_owned",
+      "source": "server/index.mjs",
+      "implementation": [
+        "fetchDartDisclosures",
+        "fetchKrxMarket",
+        "searchNews",
+        "traced",
+        "buildTraceEnvelope"
+      ],
+      "decision": "code_control",
+      "rationale": "DART/KRX/news/wiki routing, fixture/fallback/live labels, and trace envelopes must not depend on LLM interpretation.",
+      "owner": "code"
+    },
+    {
+      "id": "code-003-answer-structure",
+      "category": "code_owned",
+      "source": "server/index.mjs",
+      "implementation": [
+        "composeDeterministicInvestorAnswer",
+        "formatAnswerSection",
+        "finalizeAdvisorAnswer"
+      ],
+      "decision": "code_control",
+      "rationale": "Mobile answer sections, source limitation language, and development-text separation are repeatable product behavior and should be validated by auto-eval.",
+      "owner": "code"
+    },
+    {
+      "id": "code-004-followups",
+      "category": "code_owned",
+      "source": "server/index.mjs",
+      "implementation": [
+        "buildFollowUps"
+      ],
+      "decision": "code_control",
+      "rationale": "The original prompt forced related questions through XML-like tags. Commercial UI should receive structured followUps from the API.",
+      "owner": "code"
+    },
+    {
+      "id": "code-005-autoeval",
+      "category": "code_owned",
+      "source": "evals/rubrics/advisor.answer-quality.v0.1.json",
+      "implementation": [
+        "scripts/evaluate-advisor-scenarios.mjs",
+        "evals/scenarios/hanwha.reference-slice.json"
+      ],
+      "decision": "code_control",
+      "rationale": "Answer quality, trace coverage, development leak checks, and original PoC regression guards are testable acceptance criteria, not prompt wishes.",
+      "owner": "code"
+    },
+    {
+      "id": "wiki-001-company-facts",
+      "category": "wiki_or_manifest_owned",
+      "source": [
+        "raw/manifests/hanwha.source-backed-claims.json",
+        "wiki/groups/hanwha/"
+      ],
+      "decision": "move_facts_to_sources_and_wiki",
+      "rationale": "Company facts must carry source provenance, extraction status, claim eligibility, and staleness notes. They must not live in system prompts.",
+      "owner": "raw/wiki"
+    },
+    {
+      "id": "delete-001-internal-executive-persona",
+      "category": "delete_or_archive",
+      "source": "../HanWha-Advisor-main/lib/prompts/src/system-prompt.v0.1.md",
+      "decision": "delete_from_runtime_archive_for_methodology",
+      "pocWorkedBecause": "The demo audience was Hanwha-related executives and the assistant role was tuned for a strategic staff presentation.",
+      "commercialRemovalBasis": [
+        "role_conflict",
+        "private_or_internal_assumption",
+        "multi_group_scalability_gap"
+      ],
+      "rationale": "The commercial and paper product is a public-data investor advisor. An internal executive-staff persona creates wrong assumptions about access, confidentiality, and target user.",
+      "replacement": "prompts/advisor-role.md plus group-neutral investor UI positioning.",
+      "evidence": [
+        "docs/00_research_plan.md",
+        "PROJECT_CONTEXT.md"
+      ],
+      "owner": "archive"
+    },
+    {
+      "id": "delete-002-active-entity-global",
+      "category": "delete_or_archive",
+      "source": "../HanWha-Advisor-main/lib/prompts/src/system-prompt.v0.1.md",
+      "decision": "delete_from_runtime_replace_with_group_profile",
+      "pocWorkedBecause": "A single ACTIVE_ENTITY variable was enough for a Hanwha-only stage demo.",
+      "commercialRemovalBasis": [
+        "determinism_gap",
+        "multi_group_scalability_gap",
+        "runtime_observability_gap"
+      ],
+      "rationale": "A global entity switch is brittle when the product supports five groups and multiple representative companies. Selection must be typed config and traceable runtime state.",
+      "replacement": "configs/groups.json, groupId in request body, representativeCompanyId in trace envelope.",
+      "evidence": [
+        "configs/groups.json",
+        "src/types.ts",
+        "server/index.mjs"
+      ],
+      "owner": "code"
+    },
+    {
+      "id": "delete-003-inline-rag-knowledge",
+      "category": "delete_or_archive",
+      "source": "../HanWha-Advisor-main/lib/prompts/src/rag.v0.2.md",
+      "decision": "delete_from_runtime_relink_as_claim_candidates",
+      "pocWorkedBecause": "Inline markdown RAG gave the demo rich answers quickly without building a provenance pipeline.",
+      "commercialRemovalBasis": [
+        "source_trace_gap",
+        "legal_or_rights_risk",
+        "determinism_gap"
+      ],
+      "rationale": "A commercial finance answer cannot treat unlinked prose as truth. Every runtime claim needs manifest ID, source URL, extraction status, and eligibility rule.",
+      "replacement": "raw/manifests/hanwha.claim-candidates.json, raw/manifests/hanwha.source-backed-claims.json, wiki/groups/hanwha/.",
+      "evidence": [
+        "docs/17_hanwha_knowledge_diagnostic.md",
+        "docs/23_hanwha_source_backed_claims.md",
+        "raw/manifests/hanwha.source-backed-claims.json"
+      ],
+      "owner": "raw/wiki"
+    },
+    {
+      "id": "delete-004-hard-output-related-questions-prompt",
+      "category": "delete_or_archive",
+      "source": "../HanWha-Advisor-main/lib/prompts/src/system-prompt.v0.1.md",
+      "decision": "delete_from_runtime_replace_with_structured_api",
+      "pocWorkedBecause": "The XML-like related_questions tag helped recover follow-up chips from free-form LLM output during the demo.",
+      "commercialRemovalBasis": [
+        "determinism_gap",
+        "user_experience_noise",
+        "runtime_observability_gap"
+      ],
+      "rationale": "Follow-ups are part of the API contract. The UI should not parse hidden XML-like tags from natural language answers.",
+      "replacement": "response.followUps generated by buildFollowUps and checked by advisor auto-eval.",
+      "evidence": [
+        "server/index.mjs",
+        "scripts/evaluate-advisor-scenarios.mjs",
+        "evals/rubrics/advisor.answer-quality.v0.1.json"
+      ],
+      "owner": "code"
+    },
+    {
+      "id": "delete-005-prompt-tier-and-formatting-rules",
+      "category": "delete_or_archive",
+      "source": "../HanWha-Advisor-main/lib/prompts/src/system-prompt.v0.1.md",
+      "decision": "delete_from_runtime_replace_with_validators",
+      "pocWorkedBecause": "Long prompt sections compensated for absent output validators and helped the LLM remember card-specific formats.",
+      "commercialRemovalBasis": [
+        "determinism_gap",
+        "multi_group_scalability_gap",
+        "user_experience_noise"
+      ],
+      "rationale": "Length caps, section headers, mobile answer structure, and leak prevention should be deterministic code plus auto-eval criteria.",
+      "replacement": "composeDeterministicInvestorAnswer, finalizeAdvisorAnswer, advisor-answer-quality rubric.",
+      "evidence": [
+        "server/index.mjs",
+        "evals/rubrics/advisor.answer-quality.v0.1.json"
+      ],
+      "owner": "code"
+    },
+    {
+      "id": "delete-006-voice-first-demo-assumptions",
+      "category": "delete_or_archive",
+      "source": "../HanWha-Advisor-main/attached_assets/08_음성_모바일_구현_스펙_1776678307955.md",
+      "decision": "remove_as_default_keep_optional_presentation_mode",
+      "pocWorkedBecause": "Voice output was important for auditorium demonstration and executive presentation impact.",
+      "commercialRemovalBasis": [
+        "user_experience_noise",
+        "legal_or_rights_risk",
+        "runtime_observability_gap"
+      ],
+      "rationale": "Commercial users are likely to read and verify source-backed text more often than listen. TTS adds cost, privacy, and provider dependency, so it should be optional.",
+      "replacement": "Text-first UI with optional briefing/listen control and TTS leak checks before reactivation.",
+      "evidence": [
+        "docs/12_commercial_design_review.md",
+        "docs/27_original_poc_enrichment_audit.md"
+      ],
+      "owner": "product"
+    },
+    {
+      "id": "delete-007-raw-development-attachments",
+      "category": "delete_or_archive",
+      "source": "../HanWha-Advisor-main/attached_assets/",
+      "decision": "archive_only_not_runtime_input",
+      "pocWorkedBecause": "Attached development notes captured fast Replit iteration and were useful for debugging the live demo.",
+      "commercialRemovalBasis": [
+        "source_trace_gap",
+        "runtime_observability_gap",
+        "legal_or_rights_risk"
+      ],
+      "rationale": "Development notes are not source-of-truth product knowledge and may contain obsolete instructions, private context, or conflicting fixes.",
+      "replacement": "docs/, raw/manifests/, evals/, and wiki/ as curated project memory.",
+      "evidence": [
+        "docs/04_poc_reuse_map.md",
+        "docs/06_poc_inventory.md"
+      ],
+      "owner": "archive"
+    }
+  ]
+}

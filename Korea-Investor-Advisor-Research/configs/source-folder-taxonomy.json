@@ -1,0 +1,178 @@
+{
+  "schemaVersion": "source-folder-taxonomy.v0.1",
+  "purpose": "Canonical folder abstraction for repeatable Knowledge Base source intake. Raw folders may keep source-specific names, but inventories and indexes should normalize them into these categories.",
+  "canonicalCategories": [
+    {
+      "id": "earnings",
+      "label": "Earnings and quarterly performance material",
+      "aliases": [
+        "earnings",
+        "earnings_material",
+        "earnings_materials",
+        "earnings_release",
+        "earnings_releases",
+        "earnings_presentation",
+        "earnings_presentations",
+        "실적",
+        "실적발표",
+        "경영실적",
+        "IR_materials",
+        "ir_materials"
+      ],
+      "runtimeUse": "Near-term performance context, margin trend, and business momentum claims."
+    },
+    {
+      "id": "annual_reports",
+      "label": "Annual and business reports",
+      "aliases": [
+        "annual_reports",
+        "annual_report",
+        "business_reports",
+        "business_report",
+        "periodic_reports",
+        "Periodic_Reports",
+        "사업보고서",
+        "영업보고서"
+      ],
+      "runtimeUse": "Audited operating facts, segment structure, and official annual baseline claims."
+    },
+    {
+      "id": "quarterly_reports",
+      "label": "Quarterly and semiannual reports",
+      "aliases": [
+        "quarterly_reports",
+        "quarterly_report",
+        "review_reports",
+        "review_report",
+        "semiannual_report",
+        "semiannual_reports",
+        "half_year_report",
+        "분기보고서",
+        "반기보고서",
+        "검토보고서"
+      ],
+      "runtimeUse": "In-period official reporting, review evidence, and update checks."
+    },
+    {
+      "id": "audit_reports",
+      "label": "Audit reports",
+      "aliases": [
+        "audit_reports",
+        "audit_report",
+        "감사보고서",
+        "연결감사보고서"
+      ],
+      "runtimeUse": "Audited financial-statement evidence and accounting-basis checks."
+    },
+    {
+      "id": "investor_presentations",
+      "label": "Investor presentations and strategy decks",
+      "aliases": [
+        "investor_presentations",
+        "investor_presentation",
+        "presentation",
+        "presentations",
+        "event_materials",
+        "ir_material",
+        "IR_Materials",
+        "strategy_presentation",
+        "미래비전",
+        "설명자료"
+      ],
+      "runtimeUse": "Management narrative, business pipeline, strategy, and capital-allocation context."
+    },
+    {
+      "id": "value_up",
+      "label": "Value-up and shareholder-return material",
+      "aliases": [
+        "value_up",
+        "value_up_plan",
+        "value_up_plans",
+        "shareholder_return",
+        "shareholder_returns",
+        "capital_actions",
+        "기업가치제고",
+        "주주환원",
+        "배당",
+        "자사주",
+        "유상증자"
+      ],
+      "runtimeUse": "Capital allocation, value-up, shareholder return, dividend, and buyback claims."
+    },
+    {
+      "id": "governance",
+      "label": "Governance material",
+      "aliases": [
+        "governance",
+        "Governance",
+        "governance_document",
+        "governance_documents",
+        "지배구조",
+        "정관",
+        "주주총회"
+      ],
+      "runtimeUse": "Governance, ownership, board, and meeting-agenda context."
+    },
+    {
+      "id": "sustainability",
+      "label": "Sustainability and ESG material",
+      "aliases": [
+        "sustainability",
+        "sustainability_report",
+        "sustainability_reports",
+        "esg",
+        "ESG",
+        "지속가능"
+      ],
+      "runtimeUse": "ESG and sustainability context only when explicitly asked or source-backed."
+    },
+    {
+      "id": "metadata",
+      "label": "Source ledgers and collection metadata",
+      "aliases": [
+        "_index",
+        "README.md",
+        "source_index.md",
+        "document_urls.md",
+        "document_urls_additional.md",
+        "ir_urls_verified.md",
+        "additional_companies.md",
+        "문서 단위 URL 목록",
+        "다운로드 결과",
+        "종합 정리"
+      ],
+      "runtimeUse": "Control metadata only. Do not promote directly as runtime evidence."
+    },
+    {
+      "id": "archive_or_legacy",
+      "label": "Legacy or date-based source package folders",
+      "aliases": [
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025",
+        "2026",
+        "Unknown_Year",
+        "_official_backfill"
+      ],
+      "runtimeUse": "Preserve provenance; normalize file-level document types through inventory."
+    },
+    {
+      "id": "misc",
+      "label": "Unclassified source material",
+      "aliases": [
+        "misc",
+        "unknown"
+      ],
+      "runtimeUse": "Manual review required before extraction or claim promotion."
+    }
+  ],
+  "rules": [
+    "Do not flatten raw files only for visual neatness.",
+    "Prefer company folders under each group source package.",
+    "Normalize folder names into canonical categories in manifests and indexes.",
+    "Treat README, source provenance ledgers, URL ledgers, and _index files as metadata, not source evidence.",
+    "A file can remain in a legacy folder if sourceId, companyId, documentType, sourceUrl, and selectionReason are resolved by the ledger."
+  ]
+}

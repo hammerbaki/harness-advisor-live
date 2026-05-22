@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "advisor-eval-scenarios.v0.1",
+  "scenarioSetId": "sk-reference-slice-v0.1",
+  "groupId": "sk",
+  "stage": "second-transfer-template-freeze",
+  "createdAt": "2026-05-03",
+  "purpose": "Freeze the first SK reference-slice questions after official document-level narrative claims are promoted. This tests whether the Hanwha/Samsung harness can route SK affiliates, select DART financial and official IR narrative claims, and produce investor-facing answers without adding a visible company selector.",
+  "paperUse": {
+    "allowedClaim": "SK demonstrates a second transfer slice using the common source inventory, extraction report, narrative claim queue, source-backed claim manifest, wiki namespace, and evaluation scenario schemas.",
+    "notAllowedClaim": "These scenarios do not prove full SK coverage, full five-group coverage, live news coverage, or commercial investment-advisory readiness.",
+    "expansionNote": "Hyundai Motor and LG should receive equivalent scenario files only after their identifier manifests, source inventories, extraction reports, source-backed claims, and affiliate-routing checks are created."
+  },
+  "runtimeAssumptions": {
+    "presentationMode": "text",
+    "currentExpectedRuntimeMode": "mixed",
+    "allowedRuntimeModesAfterLiveApi": ["mixed", "fallback", "live"],
+    "expectedTraceSteps": [
+      "dart.disclosures",
+      "krx.market",
+      "news.search",
+      "wiki.context",
+      "claims.sourceBacked",
+      "llm.compose"
+    ],
+    "requiredTraceFields": [
+      "schemaVersion",
+      "runId",
+      "generatedAt",
+      "runtimeMode",
+      "groupId",
+      "representativeCompanyId",
+      "questionHash",
+      "promptPolicyHash",
+      "promptPolicyVersion",
+      "llmMode",
+      "llmOutputContractVersion",
+      "llmOutputContractStatus",
+      "statusCounts",
+      "reproducibility"
+    ],
+    "answerPolicy": [
+      "Answer must be investor-facing Korean prose, not development-status prose.",
+      "Answer must not expose raw source-backed claim IDs.",
+      "Answer must disclose when latest news or market data is not connected live.",
+      "When an SK affiliate is named, representativeCompanyId must route to that affiliate.",
+      "Named-affiliate questions must not pull unrelated SK affiliate claims just to fill the maximum claim count.",
+      "Forward-looking management statements must be framed as plans or stated direction, not as guaranteed outcomes."
+    ],
+    "claimMatchPolicy": "expectedClaimIds are minimum required source-backed claims. Additional selected claims are allowed only when they are affiliate-scoped and relevant."
+  },
+  "scenarios": [
+    {
+      "id": "sk-frozen-001-hynix-ai-memory-shareholder",
+      "title": "SK Hynix AI memory and shareholder-return plan",
+      "question": "SK하이닉스 AI 메모리 전략과 주주환원 계획을 공식 자료 기준으로 요약해줘",
+      "intent": "Check whether SK Hynix questions route to SK Hynix and select value-up narrative claims plus financial baseline claims.",
+      "expectedRepresentativeCompanyId": "sk-hynix",
+      "expectedClaimIds": [
+        "sk-sbc-001",
+        "sk-sbc-006",
+        "sk-sbc-011",
+        "sk-sbc-012",
+        "sk-sbc-023"
+      ],
+      "requiredAnswerSignals": [
+        "SK하이닉스",
+        "AI",
+        "주주환원",
+        "OpenDART"
+      ],
+      "paperTableBucket": "sk_affiliate_routing_hynix_ai_memory"
+    },
+    {
+      "id": "sk-frozen-002-innovation-electrification-battery",
+      "title": "SK Innovation electrification and battery restructuring",
+      "question": "SK이노베이션의 Electrification 전략과 배터리 포트폴리오 재편을 공식 자료 기준으로 정리해줘",
+      "intent": "Check whether SK Innovation questions route to SK Innovation and select official earnings narrative claims plus DART financial claims.",
+      "expectedRepresentativeCompanyId": "sk-innovation",
+      "expectedClaimIds": [
+        "sk-sbc-002",
+        "sk-sbc-007",
+        "sk-sbc-013",
+        "sk-sbc-014",
+        "sk-sbc-024"
+      ],
+      "requiredAnswerSignals": [
+        "SK이노베이션",
+        "Electrification",
+        "배터리",
+        "OpenDART"
+      ],
+      "paperTableBucket": "sk_affiliate_routing_innovation_energy_battery"
+    },
+    {
+      "id": "sk-frozen-003-inc-portfolio-value-up",
+      "title": "SK Inc. portfolio and shareholder-return value-up plan",
+      "question": "SK주식회사 포트폴리오와 주주환원 계획을 기업가치 제고 관점에서 요약해줘",
+      "intent": "Check whether SK Inc. questions route to the listed holding company and select value-up narrative claims plus financial claims.",
+      "expectedRepresentativeCompanyId": "sk-inc",
+      "expectedClaimIds": [
+        "sk-sbc-003",
+        "sk-sbc-008",
+        "sk-sbc-015",
+        "sk-sbc-016",
+        "sk-sbc-025"
+      ],
+      "requiredAnswerSignals": [
+        "SK",
+        "포트폴리오",
+        "주주환원",
+        "OpenDART"
+      ],
+      "paperTableBucket": "sk_affiliate_routing_holding_company_value_up"
+    },
+    {
+      "id": "sk-frozen-004-telecom-ai-data-center",
+      "title": "SK Telecom AI data-center and telecom AI transformation",
+      "question": "SK텔레콤 AI 데이터센터 성장과 통신 AI 전환 계획을 공식 자료 기준으로 요약해줘",
+      "intent": "Check whether SK Telecom questions route to SK Telecom and select press-release narrative claims plus DART financial claims.",
+      "expectedRepresentativeCompanyId": "sk-telecom",
+      "expectedClaimIds": [
+        "sk-sbc-004",
+        "sk-sbc-009",
+        "sk-sbc-017",
+        "sk-sbc-018",
+        "sk-sbc-026"
+      ],
+      "requiredAnswerSignals": [
+        "SK텔레콤",
+        "AI 데이터센터",
+        "통신",
+        "OpenDART"
+      ],
+      "paperTableBucket": "sk_affiliate_routing_telecom_ai_dc"
+    },
+    {
+      "id": "sk-frozen-005-square-nav-shareholder-return",
+      "title": "SK Square NAV, value-up, and shareholder-return execution",
+      "question": "SK스퀘어 2025 NAV 할인율, 재무지표, 주주환원 실행, 포트폴리오 집중도를 공식 자료 기준으로 요약해줘",
+      "intent": "Check whether SK Square questions route to SK Square and select value-up, portfolio NAV, shareholder-return, and official portfolio-update financial claims.",
+      "expectedRepresentativeCompanyId": "sk-square",
+      "expectedClaimIds": [
+        "sk-sbc-019",
+        "sk-sbc-020",
+        "sk-sbc-021",
+        "sk-sbc-022",
+        "sk-sbc-027"
+      ],
+      "requiredAnswerSignals": [
+        "SK스퀘어",
+        "NAV",
+        "주주환원",
+        "SK하이닉스"
+      ],
+      "paperTableBucket": "sk_affiliate_routing_square_nav_value_up"
+    },
+    {
+      "id": "sk-frozen-006-hynix-innovation-comparison",
+      "title": "SK Hynix and SK Innovation financial comparison",
+      "question": "SK하이닉스와 SK이노베이션의 2024년 매출액과 영업이익 흐름을 비교해줘",
+      "intent": "Check whether a cross-affiliate SK comparison preserves explicit company mentions, selects source-backed financial claims, and keeps the answer within promoted evidence.",
+      "expectedRepresentativeCompanyId": "sk-hynix",
+      "expectedClaimIds": [
+        "sk-sbc-023",
+        "sk-sbc-001",
+        "sk-sbc-002",
+        "sk-sbc-006",
+        "sk-sbc-007"
+      ],
+      "requiredAnswerSignals": [
+        "SK하이닉스",
+        "SK이노베이션",
+        "2024년",
+        "매출액",
+        "영업이익",
+        "OpenDART"
+      ],
+      "paperTableBucket": "sk_cross_affiliate_financial_comparison"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+.DS_Store
+
+# Environment and credentials
+.env
+.env.*
+**/.env
+**/.env.*
+!**/.env.example
+
+# Node / Vite outputs
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+
+# Local raw-source staging and heavyweight data
+Knowledge Base/
+HanWha-Advisor-main/
+ir_download/
+raw/extracted/
+Korea-Investor-Advisor-Research/raw/extracted/
+Korea-Investor-Advisor-Research/exports/
+
+# Runtime traces that may contain local-only diagnostics
+Korea-Investor-Advisor-Research/evals/traces/*.json
+
+# LaTeX build products
+arxiv-paper/*.aux
+arxiv-paper/*.log
+arxiv-paper/*.out
+arxiv-paper/*.fls
+arxiv-paper/*.fdb_latexmk
+arxiv-paper/*.synctex.gz
+arxiv-paper/*.blg
+arxiv-paper/*.toc
+arxiv-paper/source_to_claim_pipeline.pdf
+
+# Keep source figures and the compiled paper PDF, but ignore scratch figure renders.
+arxiv-paper/figures/_*
+arxiv-paper/figures/debug_*

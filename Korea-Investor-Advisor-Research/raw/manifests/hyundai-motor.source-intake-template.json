@@ -1,0 +1,204 @@
+{
+  "schemaVersion": "source-intake-template.v0.1",
+  "groupId": "hyundai-motor",
+  "generatedAt": "2026-05-03T00:00:00.000+09:00",
+  "status": "financial-seed-source-ready-second-wave-intake-prepared",
+  "purpose": "Prepare Hyundai Motor Group document intake so collected sources can be mapped into the common source-to-claim harness without ad hoc folder interpretation.",
+  "localKnowledgeRootExpected": "../Knowledge Base/hyundai_knowledge",
+  "ledgerExpected": "../Knowledge Base/hyundai_knowledge/document_urls.md",
+  "firstSliceCompanies": [
+    {
+      "companyId": "hyundai-motor",
+      "koreanName": "현대차",
+      "krxCode": "005380",
+      "dartCode": "00164742",
+      "folderName": "hyundai_motor"
+    },
+    {
+      "companyId": "kia",
+      "koreanName": "기아",
+      "krxCode": "000270",
+      "dartCode": "00106641",
+      "folderName": "kia"
+    },
+    {
+      "companyId": "hyundai-mobis",
+      "koreanName": "현대모비스",
+      "krxCode": "012330",
+      "dartCode": "00164788",
+      "folderName": "hyundai_mobis"
+    },
+    {
+      "companyId": "hyundai-glovis",
+      "koreanName": "현대글로비스",
+      "krxCode": "086280",
+      "dartCode": "00360595",
+      "folderName": "hyundai_glovis"
+    },
+    {
+      "companyId": "hyundai-rotem",
+      "koreanName": "현대로템",
+      "krxCode": "064350",
+      "dartCode": "00302926",
+      "folderName": "hyundai_rotem"
+    }
+  ],
+  "optionalSecondWaveCompanies": [
+    {
+      "companyId": "hyundai-autoever",
+      "koreanName": "현대오토에버",
+      "krxCode": "307950",
+      "dartCode": "00362441",
+      "folderName": "optional_second_wave/hyundai_autoever",
+      "folderAliases": ["hyundai_autoever", "autoever", "현대오토에버"],
+      "collectionWave": "hyundai-second-wave-2026-05-04"
+    },
+    {
+      "companyId": "hyundai-wia",
+      "koreanName": "현대위아",
+      "krxCode": "011210",
+      "dartCode": "00106623",
+      "folderName": "optional_second_wave/hyundai_wia",
+      "folderAliases": ["hyundai_wia", "wia", "현대위아"],
+      "collectionWave": "hyundai-second-wave-2026-05-04"
+    },
+    {
+      "companyId": "hyundai-eandc",
+      "koreanName": "현대건설",
+      "krxCode": "000720",
+      "dartCode": "00164478",
+      "folderName": "optional_second_wave/hyundai_eandc",
+      "folderAliases": ["hyundai_eandc", "hyundai_construction", "construction", "hdec", "현대건설"],
+      "collectionWave": "hyundai-second-wave-2026-05-04"
+    },
+    {
+      "companyId": "innocean",
+      "koreanName": "이노션",
+      "krxCode": "214320",
+      "dartCode": "00565154",
+      "folderName": "optional_second_wave/innocean",
+      "folderAliases": ["innocean", "이노션"],
+      "collectionWave": "hyundai-second-wave-2026-05-04"
+    },
+    {
+      "companyId": "hyundai-motor-securities",
+      "koreanName": "현대차증권",
+      "krxCode": "001500",
+      "dartCode": "00137997",
+      "folderName": "optional_second_wave/hyundai_motor_securities",
+      "folderAliases": ["hyundai_motor_securities", "hyundai_securities", "hmsec", "현대차증권"],
+      "collectionWave": "hyundai-second-wave-2026-05-04",
+      "accountPolicy": "financial_company_use_explicit_dart_accounts_only"
+    },
+    {
+      "companyId": "hyundai-bng-steel",
+      "koreanName": "현대비앤지스틸",
+      "krxCode": "004560",
+      "dartCode": "00125743",
+      "folderName": "optional_second_wave/hyundai_bng_steel",
+      "folderAliases": ["hyundai_bng_steel", "bng_steel", "현대비앤지스틸"],
+      "collectionWave": "hyundai-second-wave-2026-05-04"
+    },
+    {
+      "companyId": "hyundai-steel",
+      "koreanName": "현대제철",
+      "krxCode": "004020",
+      "dartCode": "00145880",
+      "folderName": "optional_second_wave/hyundai_steel",
+      "folderAliases": ["hyundai_steel", "현대제철"],
+      "collectionWave": "future-optional"
+    }
+  ],
+  "requiredFolderLayout": [
+    "hyundai_knowledge/README.md",
+    "hyundai_knowledge/document_urls.md",
+    "hyundai_knowledge/hyundai_motor/annual_reports/",
+    "hyundai_knowledge/hyundai_motor/earnings/",
+    "hyundai_knowledge/hyundai_motor/investor_presentations/",
+    "hyundai_knowledge/hyundai_motor/value_up/",
+    "hyundai_knowledge/kia/annual_reports/",
+    "hyundai_knowledge/kia/earnings/",
+    "hyundai_knowledge/kia/investor_presentations/",
+    "hyundai_knowledge/kia/value_up/",
+    "hyundai_knowledge/hyundai_mobis/annual_reports/",
+    "hyundai_knowledge/hyundai_mobis/earnings/",
+    "hyundai_knowledge/hyundai_mobis/investor_presentations/",
+    "hyundai_knowledge/hyundai_mobis/value_up/",
+    "hyundai_knowledge/optional_second_wave/hyundai_glovis/",
+    "hyundai_knowledge/optional_second_wave/hyundai_rotem/",
+    "hyundai_knowledge/optional_second_wave/hyundai_autoever/",
+    "hyundai_knowledge/optional_second_wave/hyundai_wia/",
+    "hyundai_knowledge/optional_second_wave/hyundai_eandc/",
+    "hyundai_knowledge/optional_second_wave/innocean/",
+    "hyundai_knowledge/optional_second_wave/hyundai_motor_securities/",
+    "hyundai_knowledge/optional_second_wave/hyundai_bng_steel/"
+  ],
+  "ledgerColumns": [
+    "company",
+    "companyId",
+    "local_file",
+    "source_page_url",
+    "direct_document_url",
+    "dart_receipt_url",
+    "title",
+    "date",
+    "document_type",
+    "request_package",
+    "selection_reason",
+    "rights_level",
+    "note"
+  ],
+  "sourcePackages": [
+    {
+      "id": "PKG-01",
+      "name": "company identity and market identifiers",
+      "required": true,
+      "hyundaiUse": "Confirm DART/KRX/IR routing and aliases for first-slice companies."
+    },
+    {
+      "id": "PKG-02",
+      "name": "financial disclosure baseline",
+      "required": true,
+      "hyundaiUse": "Support DART-backed financial baseline and risk claims."
+    },
+    {
+      "id": "PKG-03",
+      "name": "earnings and investor presentation baseline",
+      "required": true,
+      "hyundaiUse": "Support investor-facing brief cards and narrative source-backed claims."
+    },
+    {
+      "id": "PKG-04",
+      "name": "shareholder value and capital action baseline",
+      "required": true,
+      "hyundaiUse": "Support shareholder return, value-up, dividend, buyback, and capital-allocation claims."
+    },
+    {
+      "id": "PKG-05",
+      "name": "governance and disclosure baseline",
+      "required": false,
+      "hyundaiUse": "Use only when governance or disclosure-control questions enter the frozen scenario."
+    }
+  ],
+  "acceptanceChecklist": [
+    "Each first-slice company has at least one annual or DART business report source.",
+    "Each first-slice company has latest four-quarter earnings or presentation materials where public.",
+    "Each source has a document-level URL, DART receipt URL, or a clear reason why only a source-page URL exists.",
+    "Each source has a one-line selection reason.",
+    "Rights level is public-official or otherwise explicitly labelled.",
+    "Image-only or audio/video sources have transcript, subtitle, report, deck substitute, or OCR-needed note.",
+    "Second-wave companies enter narrative queue first and are not runtime-promoted until claim evidence is reviewed.",
+    "Hyundai Motor Securities uses only explicit DART account labels; do not define financial-company revenue."
+  ],
+  "nextArtifactsAfterIntake": [
+    "raw/manifests/hyundai-motor.local-sources.json",
+    "raw/manifests/hyundai-motor.extraction-report.json",
+    "raw/manifests/hyundai-motor.dart-financial-table.2022-2024.json",
+    "raw/manifests/hyundai-motor.narrative-claim-queue.json",
+    "raw/manifests/hyundai-motor.source-backed-claims.json",
+    "wiki/groups/hyundai-motor/financials.md",
+    "wiki/groups/hyundai-motor/sources.md",
+    "evals/scenarios/hyundai-motor.reference-slice.json"
+  ],
+  "runtimePolicy": "No Hyundai Motor source is runtime-eligible until it is promoted into source-backed claims with companyId, companyScope, evidence locator, and rights-safe source metadata."
+}

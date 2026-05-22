@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "group-onboarding-template.v0.1",
+  "purpose": "Reusable checklist and artifact contract for adding a new business group to the traceable investor-advisor harness.",
+  "defaultFirstSliceSize": "3-5 listed companies",
+  "stageOrder": [
+    "identity_scope",
+    "source_intake_ledger",
+    "local_inventory",
+    "extraction_report",
+    "claim_candidate_queue",
+    "source_backed_claims",
+    "wiki_namespace",
+    "frozen_scenarios",
+    "quality_and_latency_report"
+  ],
+  "requiredArtifacts": {
+    "identity_scope": [
+      "configs/groups.json",
+      "raw/manifests/<group>.identifier-verification.json",
+      "raw/manifests/<group>.json",
+      "wiki/groups/<group>/overview.md"
+    ],
+    "source_intake_ledger": [
+      "raw/manifests/<group>.source-intake-template.json",
+      "../Knowledge Base/<group>_knowledge/document_urls.md"
+    ],
+    "local_inventory": [
+      "raw/manifests/<group>.local-sources.json"
+    ],
+    "extraction_report": [
+      "raw/manifests/<group>.extraction-report.json"
+    ],
+    "claim_candidate_queue": [
+      "raw/manifests/<group>.narrative-claim-queue.json"
+    ],
+    "source_backed_claims": [
+      "raw/manifests/<group>.source-backed-claims.json"
+    ],
+    "wiki_namespace": [
+      "wiki/groups/<group>/overview.md",
+      "wiki/groups/<group>/financials.md",
+      "wiki/groups/<group>/sources.md"
+    ],
+    "frozen_scenarios": [
+      "evals/scenarios/<group>.reference-slice.json",
+      "evals/results/<group>-reference-slice-*.json"
+    ],
+    "quality_and_latency_report": [
+      "evals/dashboard/agent-dog.<group>-*.json"
+    ]
+  },
+  "ledgerColumns": [
+    "company",
+    "companyId",
+    "local_file",
+    "source_page_url",
+    "direct_document_url",
+    "dart_receipt_url",
+    "title",
+    "date",
+    "document_type",
+    "request_package",
+    "selection_reason",
+    "rights_level",
+    "note"
+  ],
+  "promotionGate": {
+    "runtimeClaimRequiredFields": [
+      "claimId",
+      "groupId",
+      "companyId",
+      "companyScope",
+      "claimType",
+      "claimText",
+      "sourceManifestId",
+      "evidence",
+      "period",
+      "verificationState",
+      "runtimeUsePolicy"
+    ],
+    "minimumFirstSliceClaims": 8,
+    "minimumFrozenScenarioQuestions": 3,
+    "blockedIf": [
+      "missing companyId",
+      "missing companyScope",
+      "missing document-level source URL or DART receipt",
+      "missing evidence locator or evidence needle",
+      "rights level is restricted-do-not-ingest",
+      "financial-account label is manually redefined instead of taken from DART/OpenDART",
+      "forward-looking statement lacks a forward-looking label"
+    ]
+  },
+  "statusLabels": {
+    "planned": "configuration shell exists, runtime evidence is not ready",
+    "source-ready": "bounded source-backed claim chain exists",
+    "reference-slice": "primary research or PoC-derived reference slice",
+    "seed-unverified": "identifiers or sources are incomplete",
+    "identifier-verified-source-pending": "identifiers are verified and source package is pending",
+    "bounded-source-backed-reference-slice": "runtime claims and scenarios exist for a bounded slice"
+  },
+  "paperBoundary": "Use this template to describe harness transferability. Do not use it to claim full business-group coverage, investment performance, or customer impact."
+}

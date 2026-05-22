@@ -1,0 +1,375 @@
+{
+  "schemaVersion": "agent-quality-dashboard-seed.v0.1",
+  "productName": "Agent Dog",
+  "generatedAt": "2026-05-05T01:03:15.523Z",
+  "stage": "paper-static-report",
+  "sourceResultPath": "evals/results/hyundai-motor-reference-slice-v0.1.autoeval-baseline.2026-05-03.json",
+  "sourceScenarioSetId": "hyundai-motor-reference-slice-v0.1",
+  "groupId": "hyundai-motor",
+  "rubricId": "advisor-answer-quality-v0.2",
+  "decision": "Use this as a static paper-quality report now; build the interactive operations dashboard during SCI/client-operation phase.",
+  "evaluationBoundary": {
+    "currentPaper": "Report system-level trace/rubric metrics only; do not claim production RAG monitoring or investor usefulness.",
+    "sciStage": "Evaluate operational quality with RAG, trace, finance, freshness, latency, and fallback metrics rather than subjective investment-opinion ratings.",
+    "excludedAsCoreMetrics": [
+      "investor_usefulness_rating",
+      "user_trust_rating",
+      "investment_decision_improvement",
+      "commercial_conversion"
+    ]
+  },
+  "currentPaperKpis": [
+    {
+      "id": "source_grounding_coverage",
+      "label": "Source-backed claim coverage",
+      "score": 1,
+      "status": "pass",
+      "passRate": 1,
+      "sampleCount": 3,
+      "periodDelta": null,
+      "periodDeltaReason": "No previous weekly production period exists in the paper-stage baseline."
+    },
+    {
+      "id": "trace_contract_integrity",
+      "label": "Trace contract integrity",
+      "score": 1,
+      "status": "pass",
+      "passRate": 1,
+      "sampleCount": 3,
+      "periodDelta": null,
+      "periodDeltaReason": "No previous weekly production period exists in the paper-stage baseline."
+    },
+    {
+      "id": "investor_answer_quality",
+      "label": "Investor-facing answer quality",
+      "score": 1,
+      "status": "pass",
+      "passRate": 1,
+      "sampleCount": 3,
+      "periodDelta": null,
+      "periodDeltaReason": "No previous weekly production period exists in the paper-stage baseline.",
+      "composedFrom": [
+        "investor_facing_answer",
+        "briefing_quality",
+        "template_variation"
+      ]
+    },
+    {
+      "id": "customer_ui_safety",
+      "label": "Customer UI safety",
+      "score": 1,
+      "status": "pass",
+      "passRate": 1,
+      "sampleCount": 3,
+      "periodDelta": null,
+      "periodDeltaReason": "No previous weekly production period exists in the paper-stage baseline.",
+      "composedFrom": [
+        "development_leak_absence",
+        "followup_quality",
+        "original_poc_regression_guards"
+      ]
+    },
+    {
+      "id": "latency_budget",
+      "label": "Latency budget",
+      "score": 1,
+      "status": "pass",
+      "passRate": 1,
+      "sampleCount": 3,
+      "periodDelta": null,
+      "periodDeltaReason": "No previous weekly production period exists in the paper-stage baseline."
+    }
+  ],
+  "plannedRagasKpis": [
+    {
+      "id": "faithfulness",
+      "label": "Faithfulness",
+      "definition": "Answer claims are supported by retrieved/source context.",
+      "status": "planned_for_sci_or_live_rag_eval",
+      "score": null,
+      "reason": "Requires stored question, answer, retrieved contexts, and reference/evidence fields from live or evaluation runs."
+    },
+    {
+      "id": "answer_relevance",
+      "label": "Response Relevancy",
+      "definition": "Answer directly addresses the user question.",
+      "status": "planned_for_sci_or_live_rag_eval",
+      "score": null,
+      "reason": "Requires stored question, answer, retrieved contexts, and reference/evidence fields from live or evaluation runs."
+    },
+    {
+      "id": "context_precision",
+      "label": "Context Precision",
+      "definition": "Useful retrieved contexts are ranked ahead of less useful contexts.",
+      "status": "planned_for_sci_or_live_rag_eval",
+      "score": null,
+      "reason": "Requires stored question, answer, retrieved contexts, and reference/evidence fields from live or evaluation runs."
+    },
+    {
+      "id": "context_recall",
+      "label": "Context Recall",
+      "definition": "Retrieved contexts contain the evidence needed to answer.",
+      "status": "planned_for_sci_or_live_rag_eval",
+      "score": null,
+      "reason": "Requires stored question, answer, retrieved contexts, and reference/evidence fields from live or evaluation runs."
+    }
+  ],
+  "financeSpecificKpis": [
+    "source_backed_claim_coverage",
+    "numeric_consistency",
+    "source_freshness_or_staleness",
+    "live_fallback_fixture_local_ratio",
+    "prohibited_investment_recommendation_phrase_absence",
+    "developer_trace_leak_absence",
+    "customer_followup_quality",
+    "latency_and_cost"
+  ],
+  "visualizations": {
+    "paperStage": [
+      "summary_kpi_cards",
+      "scenario_score_table",
+      "required_failure_count",
+      "trace_status_distribution"
+    ],
+    "sciStage": [
+      "weekly_quality_line_chart",
+      "ragas_radar_chart",
+      "pass_warning_fail_donut",
+      "faithfulness_relevance_scatter",
+      "domain_and_group_filterable_log_table"
+    ]
+  },
+  "scenarioRows": [
+    {
+      "scenarioId": "hyundai-frozen-001-motor-financial-trend",
+      "title": "Hyundai Motor revenue and operating-income trend",
+      "groupId": "hyundai-motor",
+      "paperTableBucket": "hyundai_affiliate_routing_motor_financial_grounding",
+      "score": 100,
+      "status": "paper_baseline",
+      "elapsedMs": 1333,
+      "runtimeMode": "mixed",
+      "responseMode": "fixture",
+      "traceFile": "evals/traces/run_b222158f-8bb9-42a9-9b73-4eb075d4ddc1.json",
+      "normalizedChecks": {
+        "expected_claim_coverage": {
+          "score": 1,
+          "passed": true,
+          "required": true
+        },
+        "trace_contract": {
+          "score": 1,
+          "passed": true,
+          "required": true
+        },
+        "investor_facing_answer": {
+          "score": 1,
+          "passed": true,
+          "required": true
+        },
+        "briefing_quality": {
+          "score": 1,
+          "passed": true,
+          "required": true
+        },
+        "development_leak_absence": {
+          "score": 1,
+          "passed": true,
+          "required": true
+        },
+        "source_status_disclosure": {
+          "score": 1,
+          "passed": true,
+          "required": false
+        },
+        "followup_quality": {
+          "score": 1,
+          "passed": true,
+          "required": false
+        },
+        "template_variation": {
+          "score": 1,
+          "passed": true,
+          "required": false
+        },
+        "link_package": {
+          "score": 1,
+          "passed": true,
+          "required": false
+        },
+        "latency_budget": {
+          "score": 1,
+          "passed": true,
+          "required": false
+        },
+        "original_poc_regression_guards": {
+          "score": 1,
+          "passed": true,
+          "required": false
+        }
+      }
+    },
+    {
+      "scenarioId": "hyundai-frozen-002-kia-financial-trend",
+      "title": "Kia revenue and operating-income trend",
+      "groupId": "hyundai-motor",
+      "paperTableBucket": "hyundai_affiliate_routing_kia_financial_grounding",
+      "score": 100,
+      "status": "paper_baseline",
+      "elapsedMs": 85,
+      "runtimeMode": "mixed",
+      "responseMode": "fixture",
+      "traceFile": "evals/traces/run_1929653e-f99b-40e9-8dd3-4c67a537aadc.json",
+      "normalizedChecks": {
+        "expected_claim_coverage": {
+          "score": 1,
+          "passed": true,
+          "required": true
+        },
+        "trace_contract": {
+          "score": 1,
+          "passed": true,
+          "required": true
+        },
+        "investor_facing_answer": {
+          "score": 1,
+          "passed": true,
+          "required": true
+        },
+        "briefing_quality": {
+          "score": 1,
+          "passed": true,
+          "required": true
+        },
+        "development_leak_absence": {
+          "score": 1,
+          "passed": true,
+          "required": true
+        },
+        "source_status_disclosure": {
+          "score": 1,
+          "passed": true,
+          "required": false
+        },
+        "followup_quality": {
+          "score": 1,
+          "passed": true,
+          "required": false
+        },
+        "template_variation": {
+          "score": 1,
+          "passed": true,
+          "required": false
+        },
+        "link_package": {
+          "score": 1,
+          "passed": true,
+          "required": false
+        },
+        "latency_budget": {
+          "score": 1,
+          "passed": true,
+          "required": false
+        },
+        "original_poc_regression_guards": {
+          "score": 1,
+          "passed": true,
+          "required": false
+        }
+      }
+    },
+    {
+      "scenarioId": "hyundai-frozen-003-mobis-financial-trend",
+      "title": "Hyundai Mobis revenue and operating-income trend",
+      "groupId": "hyundai-motor",
+      "paperTableBucket": "hyundai_affiliate_routing_mobis_financial_grounding",
+      "score": 100,
+      "status": "paper_baseline",
+      "elapsedMs": 94,
+      "runtimeMode": "mixed",
+      "responseMode": "fixture",
+      "traceFile": "evals/traces/run_9dacced6-66aa-4da2-a84a-714ce88df5ef.json",
+      "normalizedChecks": {
+        "expected_claim_coverage": {
+          "score": 1,
+          "passed": true,
+          "required": true
+        },
+        "trace_contract": {
+          "score": 1,
+          "passed": true,
+          "required": true
+        },
+        "investor_facing_answer": {
+          "score": 1,
+          "passed": true,
+          "required": true
+        },
+        "briefing_quality": {
+          "score": 1,
+          "passed": true,
+          "required": true
+        },
+        "development_leak_absence": {
+          "score": 1,
+          "passed": true,
+          "required": true
+        },
+        "source_status_disclosure": {
+          "score": 1,
+          "passed": true,
+          "required": false
+        },
+        "followup_quality": {
+          "score": 1,
+          "passed": true,
+          "required": false
+        },
+        "template_variation": {
+          "score": 1,
+          "passed": true,
+          "required": false
+        },
+        "link_package": {
+          "score": 1,
+          "passed": true,
+          "required": false
+        },
+        "latency_budget": {
+          "score": 1,
+          "passed": true,
+          "required": false
+        },
+        "original_poc_regression_guards": {
+          "score": 1,
+          "passed": true,
+          "required": false
+        }
+      }
+    }
+  ],
+  "thresholds": {
+    "pass": 0.8,
+    "warning": 0.6,
+    "paperBaselineScore": 90,
+    "keepCandidateScore": 92
+  },
+  "evidenceSources": [
+    {
+      "label": "Ragas available metrics",
+      "url": "https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/",
+      "use": "Confirms RAG metrics and agent/tool-use metric families."
+    },
+    {
+      "label": "Local advisor auto-eval result",
+      "path": "evals/results/hyundai-motor-reference-slice-v0.1.autoeval-baseline.2026-05-03.json",
+      "use": "Current paper-stage source for trace-backed KPI cards."
+    }
+  ],
+  "nonGoalsForPaperStage": [
+    "Do not claim longitudinal production monitoring before client-operation logs exist.",
+    "Do not report Ragas scores before retrieved contexts, references, questions, and answers are stored in a Ragas-compatible dataset.",
+    "Do not expose developer trace or raw claim IDs in the investor-facing product UI.",
+    "Do not use subjective investor usefulness ratings as paper-stage or core SCI-stage evidence."
+  ]
+}

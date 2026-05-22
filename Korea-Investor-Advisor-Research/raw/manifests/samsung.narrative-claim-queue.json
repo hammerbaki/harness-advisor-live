@@ -1,0 +1,729 @@
+{
+  "schemaVersion": "narrative-claim-queue.v0.1",
+  "groupId": "samsung",
+  "generatedAt": "2026-05-02T14:45:53.651Z",
+  "inputArtifacts": {
+    "claimPlan": "raw/manifests/samsung.claim-candidate-plan.json",
+    "documentUrlIntake": "raw/manifests/samsung.document-url-intake.json",
+    "dartFilingExtraction": "raw/manifests/samsung.dart-filing-extraction-report.json"
+  },
+  "policy": "Narrative claims remain non-runtime until public document URLs and evidence locators are complete. This queue prepares review work but does not promote claims.",
+  "totals": {
+    "records": 6,
+    "readyForHumanClaimReview": 6,
+    "partiallyReadyForHumanClaimReview": 0,
+    "blockedBeforeClaimReview": 0,
+    "urlIntakePendingUserUrls": 1,
+    "urlIntakeReadyForClaimReview": 49,
+    "localPdfSourcesWaitingForUrl": 0,
+    "dartSourcesWaitingForExtraction": 0,
+    "byCompany": {
+      "삼성물산": 1,
+      "삼성바이오로직스": 1,
+      "삼성생명": 1,
+      "삼성전자": 1,
+      "삼성화재": 1,
+      "삼성SDI": 1
+    }
+  },
+  "records": [
+    {
+      "id": "samsung-electronics-memory-hbm-recovery",
+      "groupId": "samsung",
+      "companyId": "samsung-electronics",
+      "koreanName": "삼성전자",
+      "answerUse": "memory/HBM and DS-led operating recovery context",
+      "suggestedWikiTarget": "wiki/groups/samsung/companies/samsung-electronics.md",
+      "verificationState": "narrative_claim_queue_not_runtime_eligible",
+      "queueState": "ready_for_human_claim_review",
+      "candidateClaimFamilies": [
+        "DS/메모리 실적 회복 근거",
+        "HBM 또는 AI 수요 관련 경영진 설명",
+        "실적 수치와 전망성 문구의 분리"
+      ],
+      "localSources": [
+        {
+          "manifestId": "samsung-local-629eb49c47b4",
+          "title": "삼성전자_2026_1Q_실적발표",
+          "documentType": "earnings_presentation",
+          "period": "2026Q1",
+          "sourcePageUrl": "https://www.samsung.com/sec/ir/financial-information/earnings-release/",
+          "publicDocumentUrl": "https://images.samsung.com/kdp/ir/events/2026/2026_1Q_conference_kor.pdf",
+          "urlStatus": "public_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "영업이익"
+          ]
+        },
+        {
+          "manifestId": "samsung-local-455993103995",
+          "title": "삼성전자_2025_4Q_실적발표",
+          "documentType": "earnings_presentation",
+          "period": "2025Q4",
+          "sourcePageUrl": "https://www.samsung.com/sec/ir/financial-information/earnings-release/",
+          "publicDocumentUrl": "https://images.samsung.com/kdp/ir/events/2025/2025_4Q_conference_kor.pdf",
+          "urlStatus": "public_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "영업이익"
+          ]
+        },
+        {
+          "manifestId": "samsung-local-4171272e07da",
+          "title": "삼성전자_2025_3Q_실적발표",
+          "documentType": "earnings_presentation",
+          "period": "2025Q3",
+          "sourcePageUrl": "https://www.samsung.com/sec/ir/financial-information/earnings-release/",
+          "publicDocumentUrl": "https://images.samsung.com/kdp/ir/events/2025/2025_3Q_conference_kor.pdf",
+          "urlStatus": "public_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "영업이익"
+          ]
+        },
+        {
+          "manifestId": "samsung-local-418b375ae3d5",
+          "title": "삼성전자_2025_2Q_실적발표",
+          "documentType": "earnings_presentation",
+          "period": "2025Q2",
+          "sourcePageUrl": "https://www.samsung.com/sec/ir/financial-information/earnings-release/",
+          "publicDocumentUrl": "https://images.samsung.com/kdp/ir/events/2025/2025_2Q_conference_kor.pdf",
+          "urlStatus": "public_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "영업이익"
+          ]
+        },
+        {
+          "manifestId": "samsung-local-640f16bcbfac",
+          "title": "삼성전자_2025_1Q_실적발표",
+          "documentType": "earnings_presentation",
+          "period": "2025Q1",
+          "sourcePageUrl": "https://www.samsung.com/sec/ir/financial-information/earnings-release/",
+          "publicDocumentUrl": "https://images.samsung.com/kdp/ir/events/2025/2025_1Q_conference_kor.pdf",
+          "urlStatus": "public_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "영업이익"
+          ]
+        }
+      ],
+      "dartSources": [],
+      "blockers": [],
+      "promotionRule": "Draft atomic narrative claims only after public document URL, period/reporting basis, extracted text hash, evidence locator, and forward-looking label are available.",
+      "nextAction": "review ready sources and draft atomic candidate claims without runtime promotion"
+    },
+    {
+      "id": "samsung-sdi-battery-ess-profitability",
+      "groupId": "samsung",
+      "companyId": "samsung-sdi",
+      "koreanName": "삼성SDI",
+      "answerUse": "battery/ESS demand, profitability pressure, and recovery variables",
+      "suggestedWikiTarget": "wiki/groups/samsung/companies/samsung-sdi.md",
+      "verificationState": "narrative_claim_queue_not_runtime_eligible",
+      "queueState": "ready_for_human_claim_review",
+      "candidateClaimFamilies": [
+        "배터리/ESS 수요 및 수익성 근거",
+        "분기 실적 둔화 또는 회복 변수",
+        "전망성 문구와 확정 실적의 분리"
+      ],
+      "localSources": [
+        {
+          "manifestId": "samsung-local-3fbe76fb3e6d",
+          "title": "삼성SDI_2026_1Q_실적발표",
+          "documentType": "earnings_presentation",
+          "period": "2026Q1",
+          "sourcePageUrl": "https://www.samsungsdi.co.kr/ir/ir-activity/earning-releases.html",
+          "publicDocumentUrl": "https://www.samsungsdi.co.kr/upload/download/ir/2026.1Q_IR_Final_Kr.pdf",
+          "urlStatus": "public_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "매출",
+            "영업이익"
+          ]
+        },
+        {
+          "manifestId": "samsung-local-b18436fe5fa4",
+          "title": "삼성SDI_2025_4Q_실적발표",
+          "documentType": "earnings_presentation",
+          "period": "2025Q4",
+          "sourcePageUrl": "https://www.samsungsdi.co.kr/ir/ir-activity/earning-releases.html",
+          "publicDocumentUrl": "https://www.samsungsdi.co.kr/upload/download/ir/2025.4Q_IR_Final_Kr.pdf",
+          "urlStatus": "public_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "매출",
+            "영업이익"
+          ]
+        },
+        {
+          "manifestId": "samsung-local-c7e1cc8f0e01",
+          "title": "삼성SDI_2025_3Q_실적발표",
+          "documentType": "earnings_presentation",
+          "period": "2025Q3",
+          "sourcePageUrl": "https://www.samsungsdi.co.kr/ir/ir-activity/earning-releases.html",
+          "publicDocumentUrl": "https://www.samsungsdi.co.kr/upload/download/ir/2025.3Q_IR_Final_Kr.pdf",
+          "urlStatus": "public_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "매출",
+            "영업이익"
+          ]
+        },
+        {
+          "manifestId": "samsung-local-da7ef5ab7d6f",
+          "title": "삼성SDI_2025_2Q_실적발표",
+          "documentType": "earnings_presentation",
+          "period": "2025Q2",
+          "sourcePageUrl": "https://www.samsungsdi.co.kr/ir/ir-activity/earning-releases.html",
+          "publicDocumentUrl": "https://www.samsungsdi.co.kr/upload/download/ir/2025.2Q_IR_Final_Kr.pdf",
+          "urlStatus": "public_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "매출",
+            "영업이익"
+          ]
+        },
+        {
+          "manifestId": "samsung-local-350d8a50c9a2",
+          "title": "삼성SDI_2025_1Q_실적발표",
+          "documentType": "earnings_presentation",
+          "period": "2025Q1",
+          "sourcePageUrl": "https://www.samsungsdi.co.kr/ir/ir-activity/earning-releases.html",
+          "publicDocumentUrl": "https://www.samsungsdi.co.kr/upload/download/ir/2025.1Q_IR_Final_K.pdf",
+          "urlStatus": "public_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "매출",
+            "영업이익"
+          ]
+        }
+      ],
+      "dartSources": [],
+      "blockers": [],
+      "promotionRule": "Draft atomic narrative claims only after public document URL, period/reporting basis, extracted text hash, evidence locator, and forward-looking label are available.",
+      "nextAction": "review ready sources and draft atomic candidate claims without runtime promotion"
+    },
+    {
+      "id": "samsung-ct-portfolio-shareholder-return",
+      "groupId": "samsung",
+      "companyId": "samsung-ct",
+      "koreanName": "삼성물산",
+      "answerUse": "portfolio, segment performance, shareholder letter, and governance context",
+      "suggestedWikiTarget": "wiki/groups/samsung/companies/samsung-ct.md",
+      "verificationState": "narrative_claim_queue_not_runtime_eligible",
+      "queueState": "ready_for_human_claim_review",
+      "candidateClaimFamilies": [
+        "포트폴리오 및 세그먼트 성과 근거",
+        "주주서한 또는 배당/환원 정책 근거",
+        "바이오/건설/상사 등 사업별 수익성 근거"
+      ],
+      "localSources": [
+        {
+          "manifestId": "samsung-local-e0cdd972a5c0",
+          "title": "삼성물산_2026_주주서한",
+          "documentType": "shareholder_letter",
+          "period": "2026",
+          "sourcePageUrl": "https://www.samsungcnt.com/ir/general-meeting.do",
+          "publicDocumentUrl": "https://www.samsungcnt.com/assets/file/2026_Samsung_CnT_Letter_to_Shareholders_ko.pdf",
+          "urlStatus": "public_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "주주",
+            "배당"
+          ]
+        },
+        {
+          "manifestId": "samsung-local-d59eae497f33",
+          "title": "삼성물산_2025_3Q_검토보고서_별도",
+          "documentType": "quarterly_report",
+          "period": "2025Q3",
+          "sourcePageUrl": "https://www.samsungcnt.com/ir/financial-info/audited-report.do",
+          "publicDocumentUrl": "https://www.samsungcnt.com/file/down.do?id=c8abdfa3-f257-4651-a3a3-b410889595d3",
+          "urlStatus": "public_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "매출",
+            "영업이익"
+          ]
+        },
+        {
+          "manifestId": "samsung-local-21b012696b22",
+          "title": "삼성물산_2025_3Q_검토보고서_연결",
+          "documentType": "quarterly_report",
+          "period": "2025Q3",
+          "sourcePageUrl": "https://www.samsungcnt.com/ir/financial-info/audited-report.do",
+          "publicDocumentUrl": "https://www.samsungcnt.com/file/down.do?id=3ee922bf-b482-4383-b889-009f36e664b8",
+          "urlStatus": "public_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "매출",
+            "영업이익"
+          ]
+        },
+        {
+          "manifestId": "samsung-local-5463e5a48de9",
+          "title": "삼성물산_2025_1Q_검토보고서_별도",
+          "documentType": "quarterly_report",
+          "period": "2025Q1",
+          "sourcePageUrl": "https://www.samsungcnt.com/ir/financial-info/audited-report.do",
+          "publicDocumentUrl": "https://www.samsungcnt.com/file/down.do?id=caf6c3d5-6ec3-4a07-9314-57d58118940c",
+          "urlStatus": "public_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "매출",
+            "영업이익"
+          ]
+        },
+        {
+          "manifestId": "samsung-local-b3e357bd9410",
+          "title": "삼성물산_2025_1Q_검토보고서_연결",
+          "documentType": "quarterly_report",
+          "period": "2025Q1",
+          "sourcePageUrl": "https://www.samsungcnt.com/ir/financial-info/audited-report.do",
+          "publicDocumentUrl": "https://www.samsungcnt.com/file/down.do?id=f3d42bf4-9c17-44da-8fca-d52bd02e21a1",
+          "urlStatus": "public_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "매출",
+            "영업이익"
+          ]
+        }
+      ],
+      "dartSources": [],
+      "blockers": [],
+      "promotionRule": "Draft atomic narrative claims only after public document URL, period/reporting basis, extracted text hash, evidence locator, and forward-looking label are available.",
+      "nextAction": "review ready sources and draft atomic candidate claims without runtime promotion"
+    },
+    {
+      "id": "samsung-biologics-capacity-orders-growth",
+      "groupId": "samsung",
+      "companyId": "samsung-biologics",
+      "koreanName": "삼성바이오로직스",
+      "answerUse": "CDMO revenue scale, operating margin, capacity expansion, and order/backlog context",
+      "suggestedWikiTarget": "wiki/groups/samsung/companies/samsung-biologics.md",
+      "verificationState": "narrative_claim_queue_not_runtime_eligible",
+      "queueState": "ready_for_human_claim_review",
+      "candidateClaimFamilies": [
+        "CDMO 매출 규모와 수익성 근거",
+        "수주/공장/생산능력 관련 근거",
+        "가이던스와 확정 실적의 분리"
+      ],
+      "localSources": [
+        {
+          "manifestId": "samsung-local-0c3e655da338",
+          "title": "삼성바이오로직스_2026_1Q_실적발표",
+          "documentType": "earnings_presentation",
+          "period": "2026Q1",
+          "sourcePageUrl": "https://samsungbiologics.com/kr/ir/financial-info/earning-release",
+          "publicDocumentUrl": "https://samsungbiologics.com/common/fileDownload.do?_fdFileName_=796eab053a234b72a78e0d0768b4d198.pdf&_colunmName_=attCnt0&_downloadIdx_=392&_fdFileOriName_=%5B%EC%82%BC%EC%84%B1%EB%B0%94%EC%9D%B4%EC%98%A4%EB%A1%9C%EC%A7%81%EC%8A%A4%5D+2026%EB%85%84+1%EB%B6%84%EA%B8%B0+%EC%8B%A4%EC%A0%81%EB%B0%9C%ED%91%9C.pdf&_fdSubPath_=investors",
+          "urlStatus": "public_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "매출",
+            "영업이익"
+          ]
+        },
+        {
+          "manifestId": "samsung-local-28343e06d363",
+          "title": "삼성바이오로직스_2025_4Q_실적발표",
+          "documentType": "earnings_presentation",
+          "period": "2025Q4",
+          "sourcePageUrl": "https://samsungbiologics.com/kr/ir/financial-info/earning-release",
+          "publicDocumentUrl": "https://samsungbiologics.com/common/fileDownload.do?_fdFileName_=1d54eb77520945c4a3f13e5980817207.pdf&_colunmName_=attCnt0&_downloadIdx_=381&_fdFileOriName_=%5B%EC%82%BC%EC%84%B1%EB%B0%94%EC%9D%B4%EC%98%A4%EB%A1%9C%EC%A7%81%EC%8A%A4%5D+2025%EB%85%84+4%EB%B6%84%EA%B8%B0+%EC%8B%A4%EC%A0%81%EB%B0%9C%ED%91%9C.pdf&_fdSubPath_=investors",
+          "urlStatus": "public_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "매출",
+            "영업이익"
+          ]
+        },
+        {
+          "manifestId": "samsung-local-6c89150bb96c",
+          "title": "삼성바이오로직스_2025_3Q_실적발표",
+          "documentType": "earnings_presentation",
+          "period": "2025Q3",
+          "sourcePageUrl": "https://samsungbiologics.com/kr/ir/financial-info/earning-release",
+          "publicDocumentUrl": "https://samsungbiologics.com/common/fileDownload.do?_fdFileName_=70e82a1cb92940ba893a5873e2a0c13d.pdf&_colunmName_=attCnt0&_downloadIdx_=365&_fdFileOriName_=%5B%EC%82%BC%EC%84%B1%EB%B0%94%EC%9D%B4%EC%98%A4%EB%A1%9C%EC%A7%81%EC%8A%A4%5D+2025%EB%85%84+3%EB%B6%84%EA%B8%B0+%EC%8B%A4%EC%A0%81%EB%B0%9C%ED%91%9C.pdf&_fdSubPath_=investors",
+          "urlStatus": "public_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "매출",
+            "영업이익"
+          ]
+        },
+        {
+          "manifestId": "samsung-local-84df4e57f43d",
+          "title": "삼성바이오로직스_2025_1Q_실적발표",
+          "documentType": "earnings_presentation",
+          "period": "2025Q1",
+          "sourcePageUrl": "https://samsungbiologics.com/kr/ir/financial-info/earning-release",
+          "publicDocumentUrl": "https://samsungbiologics.com/common/fileDownload.do?_fdFileName_=fe38223a3dea474c9f67051afd4b731f.pdf&_colunmName_=attCnt0&_downloadIdx_=354&_fdFileOriName_=%5B%EC%82%BC%EC%84%B1%EB%B0%94%EC%9D%B4%EC%98%A4%EB%A1%9C%EC%A7%81%EC%8A%A4%5D+2025%EB%85%84+1%EB%B6%84%EA%B8%B0+%EC%8B%A4%EC%A0%81%EB%B0%9C%ED%91%9C.pdf&_fdSubPath_=investors",
+          "urlStatus": "public_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "매출",
+            "영업이익"
+          ]
+        },
+        {
+          "manifestId": "samsung-local-089314ebefc9",
+          "title": "삼성바이오로직스_2025_사업보고서",
+          "documentType": "business_report",
+          "period": "2025",
+          "sourcePageUrl": "https://samsungbiologics.com/kr/ir/financial-info/annual-business-report",
+          "publicDocumentUrl": "https://samsungbiologics.com/common/fileDownload.do?_fdFileName_=035f9b96ccb245afa6a7108312062ad6.pdf&_colunmName_=attCnt0&_downloadIdx_=390&_fdFileOriName_=%5B%EC%82%BC%EC%84%B1%EB%B0%94%EC%9D%B4%EC%98%A4%EB%A1%9C%EC%A7%81%EC%8A%A4%5D+2025%EB%85%84+%EC%82%AC%EC%97%85%EB%B3%B4%EA%B3%A0%EC%84%9C.pdf&_fdSubPath_=investors",
+          "urlStatus": "public_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "매출",
+            "영업이익"
+          ]
+        }
+      ],
+      "dartSources": [],
+      "blockers": [],
+      "promotionRule": "Draft atomic narrative claims only after public document URL, period/reporting basis, extracted text hash, evidence locator, and forward-looking label are available.",
+      "nextAction": "review ready sources and draft atomic candidate claims without runtime promotion"
+    },
+    {
+      "id": "samsung-life-capital-shareholder-return",
+      "groupId": "samsung",
+      "companyId": "samsung-life",
+      "koreanName": "삼성생명",
+      "answerUse": "insurance capital strength, profitability, and shareholder-return context",
+      "suggestedWikiTarget": "wiki/groups/samsung/companies/samsung-life.md",
+      "verificationState": "narrative_claim_queue_not_runtime_eligible",
+      "queueState": "ready_for_human_claim_review",
+      "candidateClaimFamilies": [
+        "보험 자본건전성 및 손익 근거",
+        "주주환원 또는 배당정책 근거",
+        "DART filing 본문에서 기간/계정명 확인"
+      ],
+      "localSources": [
+        {
+          "manifestId": "samsung-dart-20260311004614",
+          "title": "삼성생명 사업보고서 (2025.12)",
+          "documentType": "business_report",
+          "period": "2025.12",
+          "sourcePageUrl": "https://dart.fss.or.kr",
+          "publicDocumentUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260311004614",
+          "urlStatus": "dart_viewer_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "자본",
+            "보험",
+            "배당",
+            "주주",
+            "손익"
+          ]
+        },
+        {
+          "manifestId": "samsung-dart-20251114002091",
+          "title": "삼성생명 분기보고서 (2025.09)",
+          "documentType": "quarterly_report",
+          "period": "2025.09",
+          "sourcePageUrl": "https://dart.fss.or.kr",
+          "publicDocumentUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251114002091",
+          "urlStatus": "dart_viewer_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "자본",
+            "보험",
+            "배당",
+            "주주",
+            "손익"
+          ]
+        },
+        {
+          "manifestId": "samsung-dart-20250813000585",
+          "title": "삼성생명 반기보고서 (2025.06)",
+          "documentType": "semiannual_report",
+          "period": "2025.06",
+          "sourcePageUrl": "https://dart.fss.or.kr",
+          "publicDocumentUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250813000585",
+          "urlStatus": "dart_viewer_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "자본",
+            "보험",
+            "배당",
+            "주주",
+            "손익"
+          ]
+        },
+        {
+          "manifestId": "samsung-dart-20250515002067",
+          "title": "삼성생명 분기보고서 (2025.03)",
+          "documentType": "quarterly_report",
+          "period": "2025.03",
+          "sourcePageUrl": "https://dart.fss.or.kr",
+          "publicDocumentUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250515002067",
+          "urlStatus": "dart_viewer_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "자본",
+            "보험",
+            "배당",
+            "주주",
+            "손익"
+          ]
+        },
+        {
+          "manifestId": "samsung-dart-20250312001063",
+          "title": "삼성생명 사업보고서 (2024.12)",
+          "documentType": "business_report",
+          "period": "2024.12",
+          "sourcePageUrl": "https://dart.fss.or.kr",
+          "publicDocumentUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250312001063",
+          "urlStatus": "dart_viewer_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "자본",
+            "보험",
+            "배당",
+            "주주",
+            "손익"
+          ]
+        }
+      ],
+      "dartSources": [
+        {
+          "manifestId": "samsung-dart-20260311004614",
+          "title": "삼성생명 사업보고서 (2025.12)",
+          "documentType": "business_report",
+          "period": "2025.12",
+          "rceptNo": "20260311004614",
+          "publicDocumentUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260311004614",
+          "urlStatus": "dart_viewer_url_supplied",
+          "extractionStatus": "ok",
+          "textCharCount": 1982938,
+          "markdownPath": "raw/extracted/samsung/dart/samsung-dart-20260311004614-삼성생명-사업보고서-2025.12.md"
+        },
+        {
+          "manifestId": "samsung-dart-20251114002091",
+          "title": "삼성생명 분기보고서 (2025.09)",
+          "documentType": "quarterly_report",
+          "period": "2025.09",
+          "rceptNo": "20251114002091",
+          "publicDocumentUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251114002091",
+          "urlStatus": "dart_viewer_url_supplied",
+          "extractionStatus": "ok",
+          "textCharCount": 627884,
+          "markdownPath": "raw/extracted/samsung/dart/samsung-dart-20251114002091-삼성생명-분기보고서-2025.09.md"
+        },
+        {
+          "manifestId": "samsung-dart-20250813000585",
+          "title": "삼성생명 반기보고서 (2025.06)",
+          "documentType": "semiannual_report",
+          "period": "2025.06",
+          "rceptNo": "20250813000585",
+          "publicDocumentUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250813000585",
+          "urlStatus": "dart_viewer_url_supplied",
+          "extractionStatus": "ok",
+          "textCharCount": 919527,
+          "markdownPath": "raw/extracted/samsung/dart/samsung-dart-20250813000585-삼성생명-반기보고서-2025.06.md"
+        },
+        {
+          "manifestId": "samsung-dart-20250515002067",
+          "title": "삼성생명 분기보고서 (2025.03)",
+          "documentType": "quarterly_report",
+          "period": "2025.03",
+          "rceptNo": "20250515002067",
+          "publicDocumentUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250515002067",
+          "urlStatus": "dart_viewer_url_supplied",
+          "extractionStatus": "ok",
+          "textCharCount": 424293,
+          "markdownPath": "raw/extracted/samsung/dart/samsung-dart-20250515002067-삼성생명-분기보고서-2025.03.md"
+        },
+        {
+          "manifestId": "samsung-dart-20250312001063",
+          "title": "삼성생명 사업보고서 (2024.12)",
+          "documentType": "business_report",
+          "period": "2024.12",
+          "rceptNo": "20250312001063",
+          "publicDocumentUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250312001063",
+          "urlStatus": "dart_viewer_url_supplied",
+          "extractionStatus": "ok",
+          "textCharCount": 1436347,
+          "markdownPath": "raw/extracted/samsung/dart/samsung-dart-20250312001063-삼성생명-사업보고서-2024.12.md"
+        }
+      ],
+      "blockers": [],
+      "promotionRule": "Draft atomic narrative claims only after public document URL, period/reporting basis, extracted text hash, evidence locator, and forward-looking label are available.",
+      "nextAction": "review ready sources and draft atomic candidate claims without runtime promotion"
+    },
+    {
+      "id": "samsung-fire-capital-loss-ratio-shareholder-return",
+      "groupId": "samsung",
+      "companyId": "samsung-fire-marine",
+      "koreanName": "삼성화재",
+      "answerUse": "capital, loss ratio, profitability, and shareholder-return context",
+      "suggestedWikiTarget": "wiki/groups/samsung/companies/samsung-fire-marine.md",
+      "verificationState": "narrative_claim_queue_not_runtime_eligible",
+      "queueState": "ready_for_human_claim_review",
+      "candidateClaimFamilies": [
+        "손해율/보험손익/자본 관련 근거",
+        "주주환원 또는 배당정책 근거",
+        "DART filing 본문에서 기간/계정명 확인"
+      ],
+      "localSources": [
+        {
+          "manifestId": "samsung-dart-20260312001399",
+          "title": "삼성화재 사업보고서 (2025.12)",
+          "documentType": "business_report",
+          "period": "2025.12",
+          "sourcePageUrl": "https://dart.fss.or.kr",
+          "publicDocumentUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260312001399",
+          "urlStatus": "dart_viewer_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "자본",
+            "보험",
+            "손해율",
+            "배당",
+            "주주",
+            "손익"
+          ]
+        },
+        {
+          "manifestId": "samsung-dart-20251114002900",
+          "title": "삼성화재 분기보고서 (2025.09)",
+          "documentType": "quarterly_report",
+          "period": "2025.09",
+          "sourcePageUrl": "https://dart.fss.or.kr",
+          "publicDocumentUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251114002900",
+          "urlStatus": "dart_viewer_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "자본",
+            "보험",
+            "손해율",
+            "배당",
+            "주주",
+            "손익"
+          ]
+        },
+        {
+          "manifestId": "samsung-dart-20250814004098",
+          "title": "삼성화재 반기보고서 (2025.06)",
+          "documentType": "semiannual_report",
+          "period": "2025.06",
+          "sourcePageUrl": "https://dart.fss.or.kr",
+          "publicDocumentUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250814004098",
+          "urlStatus": "dart_viewer_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "자본",
+            "보험",
+            "손해율",
+            "배당",
+            "주주",
+            "손익"
+          ]
+        },
+        {
+          "manifestId": "samsung-dart-20250515002709",
+          "title": "삼성화재 분기보고서 (2025.03)",
+          "documentType": "quarterly_report",
+          "period": "2025.03",
+          "sourcePageUrl": "https://dart.fss.or.kr",
+          "publicDocumentUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250515002709",
+          "urlStatus": "dart_viewer_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "자본",
+            "보험",
+            "손해율",
+            "배당",
+            "주주",
+            "손익"
+          ]
+        },
+        {
+          "manifestId": "samsung-dart-20250311001055",
+          "title": "삼성화재 사업보고서 (2024.12)",
+          "documentType": "business_report",
+          "period": "2024.12",
+          "sourcePageUrl": "https://dart.fss.or.kr",
+          "publicDocumentUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250311001055",
+          "urlStatus": "dart_viewer_url_supplied",
+          "promotionReadiness": "ready_for_claim_review",
+          "evidenceTermHits": [
+            "자본",
+            "보험",
+            "손해율",
+            "배당",
+            "주주",
+            "손익"
+          ]
+        }
+      ],
+      "dartSources": [
+        {
+          "manifestId": "samsung-dart-20260312001399",
+          "title": "삼성화재 사업보고서 (2025.12)",
+          "documentType": "business_report",
+          "period": "2025.12",
+          "rceptNo": "20260312001399",
+          "publicDocumentUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260312001399",
+          "urlStatus": "dart_viewer_url_supplied",
+          "extractionStatus": "ok",
+          "textCharCount": 1910942,
+          "markdownPath": "raw/extracted/samsung/dart/samsung-dart-20260312001399-삼성화재-사업보고서-2025.12.md"
+        },
+        {
+          "manifestId": "samsung-dart-20251114002900",
+          "title": "삼성화재 분기보고서 (2025.09)",
+          "documentType": "quarterly_report",
+          "period": "2025.09",
+          "rceptNo": "20251114002900",
+          "publicDocumentUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251114002900",
+          "urlStatus": "dart_viewer_url_supplied",
+          "extractionStatus": "ok",
+          "textCharCount": 608970,
+          "markdownPath": "raw/extracted/samsung/dart/samsung-dart-20251114002900-삼성화재-분기보고서-2025.09.md"
+        },
+        {
+          "manifestId": "samsung-dart-20250814004098",
+          "title": "삼성화재 반기보고서 (2025.06)",
+          "documentType": "semiannual_report",
+          "period": "2025.06",
+          "rceptNo": "20250814004098",
+          "publicDocumentUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250814004098",
+          "urlStatus": "dart_viewer_url_supplied",
+          "extractionStatus": "ok",
+          "textCharCount": 904037,
+          "markdownPath": "raw/extracted/samsung/dart/samsung-dart-20250814004098-삼성화재-반기보고서-2025.06.md"
+        },
+        {
+          "manifestId": "samsung-dart-20250515002709",
+          "title": "삼성화재 분기보고서 (2025.03)",
+          "documentType": "quarterly_report",
+          "period": "2025.03",
+          "rceptNo": "20250515002709",
+          "publicDocumentUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250515002709",
+          "urlStatus": "dart_viewer_url_supplied",
+          "extractionStatus": "ok",
+          "textCharCount": 466349,
+          "markdownPath": "raw/extracted/samsung/dart/samsung-dart-20250515002709-삼성화재-분기보고서-2025.03.md"
+        },
+        {
+          "manifestId": "samsung-dart-20250311001055",
+          "title": "삼성화재 사업보고서 (2024.12)",
+          "documentType": "business_report",
+          "period": "2024.12",
+          "rceptNo": "20250311001055",
+          "publicDocumentUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250311001055",
+          "urlStatus": "dart_viewer_url_supplied",
+          "extractionStatus": "ok",
+          "textCharCount": 1474309,
+          "markdownPath": "raw/extracted/samsung/dart/samsung-dart-20250311001055-삼성화재-사업보고서-2024.12.md"
+        }
+      ],
+      "blockers": [],
+      "promotionRule": "Draft atomic narrative claims only after public document URL, period/reporting basis, extracted text hash, evidence locator, and forward-looking label are available.",
+      "nextAction": "review ready sources and draft atomic candidate claims without runtime promotion"
+    }
+  ]
+}

@@ -1,0 +1,233 @@
+{
+  "schemaVersion": "product-paper-readiness-audit.v0.1",
+  "generatedAt": "2026-05-16T04:35:48.223Z",
+  "purpose": "Separate current product-readiness evidence from arXiv paper readiness, SCI validation readiness, and commercial deployment readiness.",
+  "readiness": {
+    "productStage": "stage-4-live-api-quality-smoke-passed-needs-expert-review",
+    "arxivReady": true,
+    "sciReady": false,
+    "commercialReady": false,
+    "liveAnswerQualityPass": true
+  },
+  "gates": [
+    {
+      "id": "product-template-harness",
+      "status": "pass",
+      "scope": "product",
+      "finding": "The 25-company reference slice has local sources, wiki pages, and source-backed claims for every selected company."
+    },
+    {
+      "id": "runtime-approved-claim-layer",
+      "status": "pass",
+      "scope": "product",
+      "finding": "The user-approved 25-row review layer is runtime-promoted, with five review-approved source-backed claims per group."
+    },
+    {
+      "id": "runtime-evaluation-baseline",
+      "status": "pass",
+      "scope": "product",
+      "finding": "All current group auto-eval baselines pass with zero required failures."
+    },
+    {
+      "id": "live-answer-quality-smoke",
+      "status": "pass",
+      "scope": "product-live",
+      "finding": "Live DART/KRX/Naver answer-quality smoke passed 15/15 samples with 0 warnings and average score 100/100."
+    },
+    {
+      "id": "human-answer-review-packet",
+      "status": "review-pending",
+      "scope": "product-review",
+      "finding": "Human answer-review packet generated with 15 actual customer-facing samples. Human investment-research judgment is pending."
+    },
+    {
+      "id": "group-expansion-cleanup",
+      "status": "nonblocking-gap",
+      "scope": "product-expansion",
+      "finding": "3 group-level expansion cleanup gaps remain outside the first-slice readiness gate."
+    },
+    {
+      "id": "arxiv-method-demo-readiness",
+      "status": "pass",
+      "scope": "paper-arxiv",
+      "finding": "The repository has enough bounded product evidence for an arXiv method/demo paper, provided the paper does not claim commercial readiness."
+    },
+    {
+      "id": "sci-validation-readiness",
+      "status": "future-work",
+      "scope": "paper-sci",
+      "finding": "SCI-level validation still requires a stronger evaluation protocol, longer-run quality dashboard evidence, live API stability analysis, numeric consistency checks, and deployment/compliance boundaries."
+    },
+    {
+      "id": "commercial-v1-readiness",
+      "status": "future-work",
+      "scope": "commercialization",
+      "finding": "Commercial v1 still requires deployment hardening, key/security policy, monitoring, disclaimers, human review of answer policy, and client-operation controls."
+    }
+  ],
+  "firstSlice": {
+    "companies": 25,
+    "openGaps": 0,
+    "readinessCounts": {
+      "runtime-seed-ready": 25
+    }
+  },
+  "claims": {
+    "reviewApprovedPromotion": {
+      "promotedRecords": 25,
+      "byGroup": {
+        "samsung": 5,
+        "sk": 5,
+        "hyundai-motor": 5,
+        "lg": 5,
+        "hanwha": 5
+      }
+    },
+    "currentManifestCounts": {
+      "samsung": {
+        "records": 36,
+        "reviewApprovedRecords": 5,
+        "companies": 15
+      },
+      "sk": {
+        "records": 27,
+        "reviewApprovedRecords": 5,
+        "companies": 5
+      },
+      "hyundai-motor": {
+        "records": 15,
+        "reviewApprovedRecords": 5,
+        "companies": 5
+      },
+      "lg": {
+        "records": 15,
+        "reviewApprovedRecords": 5,
+        "companies": 5
+      },
+      "hanwha": {
+        "records": 20,
+        "reviewApprovedRecords": 5,
+        "companies": 5
+      }
+    }
+  },
+  "evals": [
+    {
+      "file": "evals/results/samsung-reference-slice-v0.1.autoeval-baseline.2026-05-03.json",
+      "groupId": "samsung",
+      "scenarioSetId": "samsung-reference-slice-v0.1",
+      "scenarioCount": 6,
+      "averageScore": 100,
+      "paperBaselineCount": 6,
+      "requiredFailureCount": 0,
+      "baselineStatus": "paper_baseline"
+    },
+    {
+      "file": "evals/results/sk-reference-slice-v0.1.autoeval-baseline.2026-05-03.json",
+      "groupId": "sk",
+      "scenarioSetId": "sk-reference-slice-v0.1",
+      "scenarioCount": 6,
+      "averageScore": 100,
+      "paperBaselineCount": 6,
+      "requiredFailureCount": 0,
+      "baselineStatus": "paper_baseline"
+    },
+    {
+      "file": "evals/results/hyundai-motor-reference-slice-v0.1.autoeval-baseline.2026-05-03.json",
+      "groupId": "hyundai-motor",
+      "scenarioSetId": "hyundai-motor-reference-slice-v0.1",
+      "scenarioCount": 6,
+      "averageScore": 100,
+      "paperBaselineCount": 6,
+      "requiredFailureCount": 0,
+      "baselineStatus": "paper_baseline"
+    },
+    {
+      "file": "evals/results/lg-reference-slice-v0.1.autoeval-baseline.2026-05-05.json",
+      "groupId": "lg",
+      "scenarioSetId": "lg-reference-slice-v0.1",
+      "scenarioCount": 6,
+      "averageScore": 100,
+      "paperBaselineCount": 6,
+      "requiredFailureCount": 0,
+      "baselineStatus": "paper_baseline"
+    },
+    {
+      "file": "evals/results/hanwha-reference-slice-v0.1.autoeval-baseline.2026-05-02.json",
+      "groupId": "hanwha",
+      "scenarioSetId": "hanwha-reference-slice-v0.1",
+      "scenarioCount": 6,
+      "averageScore": 100,
+      "paperBaselineCount": 6,
+      "requiredFailureCount": 0,
+      "baselineStatus": "paper_baseline"
+    }
+  ],
+  "groupExpansionGaps": [
+    {
+      "groupId": "sk",
+      "gaps": [
+        {
+          "severity": "medium",
+          "code": "unmatched-url-records",
+          "message": "Some source provenance records are not matched to local files.",
+          "count": 11
+        }
+      ]
+    },
+    {
+      "groupId": "hyundai-motor",
+      "gaps": [
+        {
+          "severity": "medium",
+          "code": "unmatched-ledger-records",
+          "message": "Some source provenance ledger records are not matched to local files.",
+          "count": 9
+        }
+      ]
+    },
+    {
+      "groupId": "lg",
+      "gaps": [
+        {
+          "severity": "low",
+          "code": "source-page-only",
+          "message": "Some sources have source-page metadata but not direct document-level URLs.",
+          "count": 14
+        }
+      ]
+    }
+  ],
+  "liveAnswerQuality": {
+    "status": "pass",
+    "finding": "Live DART/KRX/Naver answer-quality smoke passed 15/15 samples with 0 warnings and average score 100/100.",
+    "samples": 15,
+    "passSamples": 15,
+    "warningSamples": 0,
+    "blockerSamples": 0,
+    "averageScore": 100,
+    "generatedAt": "2026-05-07T14:47:17.314Z",
+    "docPath": "docs/88_live_answer_quality_audit.md",
+    "manifestPath": "raw/manifests/live-answer-quality-audit.json"
+  },
+  "humanAnswerReview": {
+    "status": "review-pending",
+    "finding": "Human answer-review packet generated with 15 actual customer-facing samples. Human investment-research judgment is pending.",
+    "samples": 15,
+    "averageAnswerLength": 885.2,
+    "averageElapsedMs": 2164.8,
+    "generatedAt": "2026-05-08T21:06:45.812Z",
+    "docPath": "docs/89_human_answer_review_packet.md",
+    "manifestPath": "raw/manifests/human-answer-review-packet.json"
+  },
+  "documentation": {
+    "docsChecked": 93,
+    "activeReadingPathCount": 17
+  },
+  "interpretation": {
+    "currentProductStage": "Stage 4 entry: live API connectivity and live answer-quality smoke checks pass, before expert-policy review and deployment hardening.",
+    "arxivBoundary": "Ready for a bounded method/demo paper if framed as a traceable harness reconstruction and multi-group reference slice, not as commercial investment-advice validation.",
+    "sciBoundary": "Not yet SCI-complete. SCI should use this product as the implementation substrate and add stronger evaluation, monitoring, and failure analysis.",
+    "nextProductStep": "Run human expert review of actual UI answers and then close nonblocking expansion provenance gaps, especially SK unmatched URL records, Hyundai unmatched ledger records, and LG source-page-only records."
+  }
+}

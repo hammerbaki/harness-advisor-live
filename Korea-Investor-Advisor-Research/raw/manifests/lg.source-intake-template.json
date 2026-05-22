@@ -1,0 +1,196 @@
+{
+  "schemaVersion": "source-intake-template.v0.1",
+  "groupId": "lg",
+  "generatedAt": "2026-05-05T12:15:00.000+09:00",
+  "status": "identifier-verified-local-source-package-available",
+  "purpose": "Map the user-supplied LG 9-company IR package into the common source-to-claim harness without letting company-specific download patterns change downstream schemas.",
+  "localKnowledgeRootExpected": "../Knowledge Base/lg_knowledge",
+  "ledgerExpected": "../Knowledge Base/lg_knowledge/document_urls.md",
+  "firstSliceCompanies": [
+    {
+      "companyId": "lg-electronics",
+      "koreanName": "LG전자",
+      "displayName": "LG Electronics",
+      "krxCode": "066570",
+      "dartCode": "00401731",
+      "folderName": "lg_electronics"
+    },
+    {
+      "companyId": "lg-chem",
+      "koreanName": "LG화학",
+      "displayName": "LG Chem",
+      "krxCode": "051910",
+      "dartCode": "00356361",
+      "folderName": "lg_chem"
+    },
+    {
+      "companyId": "lg-energy-solution",
+      "koreanName": "LG에너지솔루션",
+      "displayName": "LG Energy Solution",
+      "krxCode": "373220",
+      "dartCode": "01515323",
+      "folderName": "lg_energy_solution"
+    },
+    {
+      "companyId": "lg-innotek",
+      "koreanName": "LG이노텍",
+      "displayName": "LG Innotek",
+      "krxCode": "011070",
+      "dartCode": "00105961",
+      "folderName": "lg_innotek"
+    },
+    {
+      "companyId": "lg-uplus",
+      "koreanName": "LG유플러스",
+      "displayName": "LG Uplus",
+      "krxCode": "032640",
+      "dartCode": "00231363",
+      "folderName": "lg_uplus"
+    }
+  ],
+  "optionalSecondWaveCompanies": [
+    {
+      "companyId": "lg-hnh",
+      "koreanName": "LG생활건강",
+      "displayName": "LG H&H",
+      "krxCode": "051900",
+      "dartCode": "00356370",
+      "folderName": "lg_hnh",
+      "collectionWave": "local-source-package-present"
+    },
+    {
+      "companyId": "lg-display",
+      "koreanName": "LG디스플레이",
+      "displayName": "LG Display",
+      "krxCode": "034220",
+      "dartCode": "00105873",
+      "folderName": "lg_display",
+      "collectionWave": "local-source-package-present"
+    },
+    {
+      "companyId": "lg-cns",
+      "koreanName": "LG씨엔에스",
+      "displayName": "LG CNS",
+      "krxCode": "064400",
+      "dartCode": "00139834",
+      "folderName": "lg_cns",
+      "collectionWave": "local-source-package-present"
+    },
+    {
+      "companyId": "lg-corp",
+      "koreanName": "LG",
+      "displayName": "LG Corp.",
+      "krxCode": "003550",
+      "dartCode": "00120021",
+      "folderName": "lg_corp",
+      "collectionWave": "local-source-package-present"
+    }
+  ],
+  "requiredFolderLayout": [
+    "lg_knowledge/document_urls.md",
+    "lg_knowledge/ir_urls_verified.md",
+    "lg_knowledge/lg_electronics/earnings/",
+    "lg_knowledge/lg_energy_solution/earnings/",
+    "lg_knowledge/lg_chem/annual_reports/",
+    "lg_knowledge/lg_chem/earnings/",
+    "lg_knowledge/lg_chem/investor_presentations/",
+    "lg_knowledge/lg_chem/value_up/",
+    "lg_knowledge/lg_hnh/earnings/",
+    "lg_knowledge/lg_hnh/value_up/",
+    "lg_knowledge/lg_display/annual_reports/",
+    "lg_knowledge/lg_display/earnings/",
+    "lg_knowledge/lg_innotek/earnings/",
+    "lg_knowledge/lg_innotek/value_up/",
+    "lg_knowledge/lg_uplus/earnings/",
+    "lg_knowledge/lg_cns/earnings/",
+    "lg_knowledge/lg_cns/investor_presentations/",
+    "lg_knowledge/lg_corp/earnings/",
+    "lg_knowledge/lg_corp/investor_presentations/",
+    "lg_knowledge/lg_corp/value_up/"
+  ],
+  "ledgerColumns": [
+    "company",
+    "companyId",
+    "local_file",
+    "source_page_url",
+    "direct_document_url",
+    "dart_receipt_url",
+    "title",
+    "date",
+    "document_type",
+    "request_package",
+    "selection_reason",
+    "rights_level",
+    "note"
+  ],
+  "acceptedUserLedgerAliases": {
+    "파일명": "title_or_local_file",
+    "원본 URL": "direct_document_url",
+    "fileId": "download_identifier",
+    "날짜": "date",
+    "유형": "document_type",
+    "선정 이유": "selection_reason"
+  },
+  "sourcePackages": [
+    {
+      "id": "PKG-01",
+      "name": "company identity and market identifiers",
+      "required": true,
+      "lgUse": "Confirm DART/KRX/IR routing and aliases for all nine LG listed affiliates in the supplied package."
+    },
+    {
+      "id": "PKG-02",
+      "name": "financial disclosure baseline",
+      "required": true,
+      "lgUse": "Support DART-backed financial baseline and official report context."
+    },
+    {
+      "id": "PKG-03",
+      "name": "earnings and investor presentation baseline",
+      "required": true,
+      "lgUse": "Support investor-facing brief cards and narrative source-backed claims from earnings materials."
+    },
+    {
+      "id": "PKG-04",
+      "name": "shareholder value and capital action baseline",
+      "required": true,
+      "lgUse": "Support value-up, dividend, buyback, capex, and capital-allocation claims only when source-backed."
+    },
+    {
+      "id": "PKG-05",
+      "name": "business pipeline and segment strategy baseline",
+      "required": true,
+      "lgUse": "Support appliance, vehicle components, OLED, battery, cathode/materials, telecom, DX/cloud, and holding-company themes only after promotion."
+    },
+    {
+      "id": "PKG-06",
+      "name": "governance and disclosure baseline",
+      "required": false,
+      "lgUse": "Use AGM and governance materials when governance or disclosure-control questions enter frozen scenarios."
+    }
+  ],
+  "downloadAdapterNotes": [
+    "LG Electronics, LG Energy Solution, LG H&H, LG CNS, and most LG Corp. files have direct public document URLs.",
+    "LG Chem direct files may require an official-site Referer header at collection time, but the artifact still records document-level URLs.",
+    "LG Display uses session/S3-style attachment URLs; these remain document-level URLs but may need refresh if stale.",
+    "LG Innotek uses POST-style file IDs; the adapter records constructed download endpoints and keeps the source page as the citable route.",
+    "LG Uplus uses dynamic browser downloads; rows without document-level URLs remain source-page-only until exact document URLs are supplied."
+  ],
+  "acceptanceChecklist": [
+    "Each company has at least one company-scoped folder and identifier-verified companyId.",
+    "Each source has a document-level URL, constructed official file endpoint, source-page URL, or explicit reason why only local-file evidence exists.",
+    "Each source has a one-line selection reason.",
+    "PDF files are validated by file header before extraction.",
+    "XLSX files remain conversion/manual-review candidates, not runtime knowledge.",
+    "Session-based or dynamic download records are flagged without blocking local extraction.",
+    "Runtime promotion requires exact evidence locator, company scope, forward-looking label where needed, and reviewed source-backed claim text."
+  ],
+  "nextArtifactsAfterIntake": [
+    "raw/manifests/lg.local-sources.json",
+    "raw/manifests/lg.extraction-report.json",
+    "raw/manifests/lg.narrative-claim-queue.json",
+    "wiki/groups/lg/sources.md",
+    "wiki/groups/lg/companies/*.md"
+  ],
+  "runtimePolicy": "The supplied LG source package is review evidence. No LG narrative source is runtime-eligible until promoted into source-backed claims with companyId, companyScope, evidence locator, and rights-safe source metadata."
+}

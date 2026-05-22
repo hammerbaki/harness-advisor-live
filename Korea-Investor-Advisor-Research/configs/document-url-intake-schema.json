@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "document-url-intake-schema.v0.1",
+  "purpose": "Validate public source provenance before local extracted PDFs or DART viewer filings are promoted into source-backed narrative claims. Exact document URLs are preferred, but an official source page plus document title, period, local checksum, and access metadata is acceptable when issuers use session-based or dynamic downloads.",
+  "requiredFields": [
+    "sourceId",
+    "groupId",
+    "companyId",
+    "koreanName",
+    "title",
+    "documentType",
+    "period",
+    "sourceRole",
+    "localPath",
+    "sourcePageUrl",
+    "publicDocumentUrl",
+    "urlStatus",
+    "promotionReadiness",
+    "rightsPolicy"
+  ],
+  "urlStatusValues": [
+    "pending_user_url",
+    "public_url_supplied",
+    "source_page_url_supplied",
+    "dart_viewer_url_supplied",
+    "not_required_for_dart_api_seed",
+    "excluded_non_text",
+    "not_applicable"
+  ],
+  "promotionReadinessValues": [
+    "blocked_missing_document_url",
+    "blocked_pending_dart_extraction",
+    "ready_for_claim_review",
+    "ready_for_claim_review_with_source_page_provenance",
+    "metadata_only",
+    "excluded"
+  ],
+  "rules": [
+    {
+      "id": "DOCURL-01",
+      "rule": "Local PDF narrative claims must not be runtime-promoted until public source provenance is attached. Acceptable provenance is a document-level public URL, a stable DART/public filing URL, or an official source page combined with document title, period, local checksum, extraction hash, and evidence locator."
+    },
+    {
+      "id": "DOCURL-02",
+      "rule": "IR index pages are acceptable source-page provenance when an issuer does not expose stable document-level URLs. The claim must still identify the exact local document, covered period, checksum, extraction hash, and evidence locator."
+    },
+    {
+      "id": "DOCURL-03",
+      "rule": "DART viewer filings may use the receipt-number viewer URL as the public document URL, but claim promotion still requires extracted filing text and evidence locators."
+    },
+    {
+      "id": "DOCURL-04",
+      "rule": "URL intake is a paper and runtime gate; it should be validated before any narrative claim manifest is generated."
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "source-manifest.v0.1",
+  "groupId": "lg",
+  "sourceStatus": "financial-source-backed-seed",
+  "lastChecked": "2026-05-05",
+  "entries": [
+    {
+      "id": "lg-identifier-verification-9-company",
+      "type": "official_identifier_manifest",
+      "title": "LG 9-company OpenDART/KRX identifier verification",
+      "source": "OpenDART corpCode.xml",
+      "artifactPath": "raw/manifests/lg.identifier-verification.json",
+      "selectionReason": "Company-scoped routing is required before local IR materials can enter a common source-to-claim harness."
+    },
+    {
+      "id": "lg-local-source-inventory",
+      "type": "local_source_inventory",
+      "title": "LG 9-company local IR source inventory",
+      "artifactPath": "raw/manifests/lg.local-sources.json",
+      "docPath": "docs/63_lg_source_inventory_and_ingestion.md",
+      "selectionReason": "Hashes, validates, and reconciles the supplied LG IR files with document-level or official source-page URLs."
+    },
+    {
+      "id": "lg-pdf-extraction-report",
+      "type": "pdf_extraction_report",
+      "title": "LG official PDF extraction report",
+      "artifactPath": "raw/manifests/lg.extraction-report.json",
+      "docPath": "docs/63_lg_source_inventory_and_ingestion.md",
+      "selectionReason": "Separates text-bearing PDFs from low-text/OCR and non-PDF blockers before claim promotion."
+    },
+    {
+      "id": "lg-narrative-claim-queue",
+      "type": "narrative_claim_queue",
+      "title": "LG narrative claim queue",
+      "artifactPath": "raw/manifests/lg.narrative-claim-queue.json",
+      "docPath": "docs/64_lg_narrative_claim_queue.md",
+      "selectionReason": "Keeps LG IR materials out of runtime answers until atomic claims are reviewed and source-backed."
+    },
+    {
+      "id": "lg-dart-financial-table-2022-2024",
+      "type": "official_api_financial_table",
+      "title": "LG OpenDART annual financial table 2022-2024",
+      "source": "OpenDART",
+      "artifactPath": "raw/manifests/lg.dart-financial-table.2022-2024.json",
+      "docPath": "docs/60_lg_dart_financial_table.md",
+      "selectionReason": "Official API-backed financial baseline for the first LG transfer slice."
+    },
+    {
+      "id": "lg-source-backed-financial-seed",
+      "type": "source_backed_claim_manifest",
+      "title": "LG source-backed financial seed claims",
+      "artifactPath": "raw/manifests/lg.source-backed-claims.json",
+      "docPath": "docs/61_lg_source_backed_financial_seed.md",
+      "selectionReason": "Promotes only bounded OpenDART financial claims until local LG IR documents are reviewed."
+    }
+  ]
+}

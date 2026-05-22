@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "llm-framework-selection.v0.1",
+  "selectedFramework": "DSPy",
+  "selectedRepository": "https://github.com/stanfordnlp/dspy",
+  "runtimeGuardCandidate": "Instructor-style structured output validation",
+  "runtimeGuardRepository": "https://github.com/567-labs/instructor",
+  "decisionDate": "2026-05-02",
+  "projectNeed": [
+    "prompt-heavy PoC must be converted into code-owned, measurable LLM program boundaries",
+    "answer composer must be optimized against frozen advisor scenarios and source-backed trace checks",
+    "framework must fit LLM Wiki, RAG, source-backed claims, and autoresearch-style evaluation"
+  ],
+  "selectionBasis": [
+    "declarative signatures and modules fit the advisor composer boundary",
+    "optimizers can tune instructions, few-shot examples, or weights against project metrics",
+    "RAG and agent-loop examples map well to the public-data investor advisor architecture",
+    "clear research citation path and active ecosystem"
+  ],
+  "notSelectedFirst": [
+    {
+      "framework": "LMQL",
+      "reason": "Good for constrained decoding and control flow, but less central than metric-driven module optimization for this paper."
+    },
+    {
+      "framework": "Instructor",
+      "reason": "Excellent for typed extraction; too narrow as the primary framework because it does not optimize multi-stage LM programs."
+    },
+    {
+      "framework": "Guidance",
+      "reason": "Strong generation control, but the project currently needs scenario-level optimization more than token-level constraints."
+    },
+    {
+      "framework": "TextGrad",
+      "reason": "Strong optimization research reference, but more experimental for this production-preparation pipeline."
+    },
+    {
+      "framework": "AdalFlow",
+      "reason": "Relevant workflow optimization library, but DSPy has a clearer fit with signatures, RAG modules, and established citation path."
+    },
+    {
+      "framework": "OpenPipe",
+      "reason": "Useful later for cost and speed after enough production traces exist; not the first framework for a pre-API reference PoC."
+    }
+  ],
+  "adoptionPlan": [
+    "Keep Node/Replit runtime lightweight while trace and source contracts stabilize.",
+    "Add DSPy-compatible composer boundary to documentation and trace terminology.",
+    "Keep the live LLM runtime boundary schema-validated before adopting any optimized composer.",
+    "Create an offline Python sidecar experiment after the Hanwha paper baseline is frozen.",
+    "Use advisor-answer-quality-v0.2 as the metric for composer optimization.",
+    "Adopt optimized composer in runtime only if it beats deterministic baseline without development leakage."
+  ],
+  "runtimeDecision": "Do not install DSPy into the production/demo runtime yet. Treat DSPy as the selected paper framework and next offline optimization layer. For the live LLM boundary, use a small code-owned structured-output contract now; Instructor can replace the hand-rolled validator later if live structured generation becomes central."
+}

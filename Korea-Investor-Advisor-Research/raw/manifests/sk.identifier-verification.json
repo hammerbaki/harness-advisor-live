@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "identifier-verification.v0.1",
+  "groupId": "sk",
+  "generatedAt": "2026-05-03T00:00:00.000+09:00",
+  "source": {
+    "provider": "OpenDART",
+    "endpoint": "corpCode.xml",
+    "retrievedBy": "local DART_API_KEY",
+    "apiKeyPolicy": "DART_API_KEY loaded from local .env and omitted from this artifact."
+  },
+  "purpose": "Record the first SK identifier verification needed before applying the Hanwha/Samsung advisor template to SK.",
+  "records": [
+    {
+      "companyId": "sk-hynix",
+      "koreanName": "SK하이닉스",
+      "displayName": "SK Hynix",
+      "krxCode": "000660",
+      "dartCode": "00164779",
+      "dartCorpName": "SK하이닉스",
+      "dartCorpEngName": "SK hynix Inc.",
+      "dartStockCode": "000660",
+      "verificationStatus": "verified_official_dart_corpcode_match",
+      "runtimeUse": "eligible_for_dart_krx_routing_after_source_manifest"
+    },
+    {
+      "companyId": "sk-innovation",
+      "koreanName": "SK이노베이션",
+      "displayName": "SK Innovation",
+      "krxCode": "096770",
+      "dartCode": "00631518",
+      "dartCorpName": "SK이노베이션",
+      "dartCorpEngName": "SK Innovation Co., Ltd.",
+      "dartStockCode": "096770",
+      "verificationStatus": "verified_official_dart_corpcode_match",
+      "runtimeUse": "eligible_for_dart_krx_routing_after_source_manifest"
+    },
+    {
+      "companyId": "sk-inc",
+      "koreanName": "SK",
+      "displayName": "SK Inc.",
+      "krxCode": "034730",
+      "dartCode": "00181712",
+      "dartCorpName": "SK",
+      "dartCorpEngName": "SK Inc.",
+      "dartStockCode": "034730",
+      "verificationStatus": "verified_official_dart_corpcode_match",
+      "ambiguityNote": "OpenDART corpCode also includes an older SK Holdings entry with stock code 003600. The current listed SK Inc. route uses stock code 034730 and corp code 00181712.",
+      "runtimeUse": "eligible_for_dart_krx_routing_after_source_manifest"
+    },
+    {
+      "companyId": "sk-telecom",
+      "koreanName": "SK텔레콤",
+      "displayName": "SK Telecom",
+      "krxCode": "017670",
+      "dartCode": "00159023",
+      "dartCorpName": "SK텔레콤",
+      "dartCorpEngName": "SK TELECOM CO.,LTD",
+      "dartStockCode": "017670",
+      "verificationStatus": "verified_official_dart_corpcode_match",
+      "runtimeUse": "eligible_for_dart_krx_routing_after_source_manifest"
+    },
+    {
+      "companyId": "sk-square",
+      "koreanName": "SK스퀘어",
+      "displayName": "SK Square",
+      "krxCode": "402340",
+      "dartCode": "01596425",
+      "dartCorpName": "SK스퀘어",
+      "dartCorpEngName": "SK Square Co., Ltd.",
+      "dartStockCode": "402340",
+      "verificationStatus": "verified_official_dart_corpcode_match",
+      "runtimeUse": "eligible_for_dart_krx_routing_after_source_manifest"
+    }
+  ],
+  "nextActions": [
+    "Create SK source request package with official IR page URLs and document-level URLs.",
+    "Fetch DART annual financial table after identifier validation passes.",
+    "Create SK wiki seed pages only from official DART/IR source manifests.",
+    "Promote source-backed claims only after exact source URL, period, evidence needle, and claim class are recorded."
+  ]
+}

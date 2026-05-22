@@ -1,0 +1,21 @@
+modules = ["nodejs-24"]
+run = "npm install && npm run dev"
+
+[deployment]
+run = ["sh", "-c", "npm install && npm run build && PORT=5173 npm run preview"]
+deploymentTarget = "cloudrun"
+
+[[ports]]
+localPort = 5173
+externalPort = 80
+
+[workflows]
+runButton = "Research Demo"
+
+[[workflows.workflow]]
+name = "Research Demo"
+author = "codex"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install && npm run dev"

@@ -1,0 +1,194 @@
+{
+  "schemaVersion": "narrative-claim-seeds.v0.1",
+  "groupId": "samsung",
+  "purpose": "Reviewer-authored Samsung narrative seed claims. The promotion script verifies source readiness and exact evidence needles before adding these claims to the runtime source-backed manifest.",
+  "records": [
+    {
+      "companyId": "samsung-electronics",
+      "targetWikiPage": "wiki/groups/samsung/companies/samsung-electronics.md",
+      "claimType": "financial_business_pipeline",
+      "claimText": "삼성전자는 2026년 1분기 연결 기준 매출 133.9조원, 영업이익 57.2조원을 제시했고, 메모리 사업 호실적과 AI향 고부가가치 제품 판매 확대를 주요 실적 요인으로 설명했다.",
+      "sourceManifestId": "samsung-local-629eb49c47b4",
+      "sourceRuleIds": ["SCOPE-02", "SCOPE-03", "SRC-01", "SRC-05", "SRC-10", "SRC-11"],
+      "runtimeUsePolicy": "eligible_for_bounded_context_with_preliminary_result_label",
+      "reviewNote": "Preserves Samsung Electronics 2026Q1 preliminary earnings deck language and separates actual result from outlook.",
+      "sourceDocumentDate": "2026Q1",
+      "evidenceNeedles": [
+        "매출 영업이익 R& D 투자 133.9 조원 57.2 조원",
+        "메모리 사업 호실적에 힘입은 역대 최대 실적",
+        "AI 향 고부가가치 제품 판매 확대"
+      ]
+    },
+    {
+      "companyId": "samsung-electronics",
+      "targetWikiPage": "wiki/groups/samsung/companies/samsung-electronics.md",
+      "claimType": "business_pipeline_forward_looking",
+      "claimText": "삼성전자는 2026년 1분기 발표에서 HBM4 확대, DDR5·SOCAMM2 등 AI향 고부가가치 제품 비중 확대, HBM4E 첫 샘플 공급 예정 등을 메모리 전략 축으로 제시했다.",
+      "sourceManifestId": "samsung-local-629eb49c47b4",
+      "sourceRuleIds": ["SCOPE-02", "SCOPE-03", "SRC-01", "SRC-05", "SRC-10", "SRC-11"],
+      "runtimeUsePolicy": "eligible_for_bounded_context_with_forward_looking_label",
+      "reviewNote": "Forward-looking memory/HBM strategy claim; must be presented as management outlook, not realized performance.",
+      "sourceDocumentDate": "2026Q1",
+      "forwardLooking": true,
+      "evidenceNeedles": [
+        "HBM4 확대 및 DDR5, SOCAMM2 등 AI 향 고부가가치 제품 비중 지속 확대",
+        "HBM4E 첫 샘플 공급 예정",
+        "AI 향 제품 중심의 판매 운영 지속 계획"
+      ]
+    },
+    {
+      "companyId": "samsung-sdi",
+      "targetWikiPage": "wiki/groups/samsung/companies/samsung-sdi.md",
+      "claimType": "financial_business_pipeline",
+      "claimText": "삼성SDI는 2026년 1분기 매출 35,764억원, 영업손실 1,556억원을 제시하며 전분기와 전년동기 대비 영업손실이 축소됐다고 표시했다.",
+      "sourceManifestId": "samsung-local-3fbe76fb3e6d",
+      "sourceRuleIds": ["SCOPE-02", "SCOPE-03", "SRC-01", "SRC-05", "SRC-10", "SRC-11"],
+      "runtimeUsePolicy": "eligible_for_bounded_context_with_preliminary_result_label",
+      "reviewNote": "Preserves the 2026Q1 earnings deck loss-reduction label without turning it into an investment recommendation.",
+      "sourceDocumentDate": "2026Q1",
+      "evidenceNeedles": [
+        "매출 31,768 38,587 35,764",
+        "영업이익 △ 4,341 △ 2,992 △ 1,556",
+        "적자축소 적자축소"
+      ]
+    },
+    {
+      "companyId": "samsung-sdi",
+      "targetWikiPage": "wiki/groups/samsung/companies/samsung-sdi.md",
+      "claimType": "business_pipeline_forward_looking",
+      "claimText": "삼성SDI는 2026년 1분기 발표에서 전력용 ESS·AI Data Center용 BBU 등 미국 ESS 프로젝트 수주 확대, Non-PFE LFP 소재 공급망 구축, Mercedes Benz 공급계약 체결을 주요 사업 진행 사항으로 제시했다.",
+      "sourceManifestId": "samsung-local-3fbe76fb3e6d",
+      "sourceRuleIds": ["SCOPE-02", "SCOPE-03", "SRC-01", "SRC-05", "SRC-10", "SRC-11"],
+      "runtimeUsePolicy": "eligible_for_bounded_context_with_forward_looking_label",
+      "reviewNote": "Business pipeline claim from Samsung SDI 2026Q1 deck; use as monitoring variable, not certainty.",
+      "sourceDocumentDate": "2026Q1",
+      "forwardLooking": true,
+      "evidenceNeedles": [
+        "전력용 ESS · AI Data Center 용 BBU 등 美 ESS 프로젝트 수주 확대",
+        "Non - PFE LFP 소재 공급망 구축",
+        "Mercedes Benz 공급계약 체결"
+      ]
+    },
+    {
+      "companyId": "samsung-ct",
+      "targetWikiPage": "wiki/groups/samsung/companies/samsung-ct.md",
+      "claimType": "shareholder_value_business",
+      "claimText": "삼성물산은 2026년 주주서한에서 2025년 매출 41조원, 당기순이익 3.9조원과 MSCI AAA, CDP A 등급을 제시했다.",
+      "sourceManifestId": "samsung-local-e0cdd972a5c0",
+      "sourceRuleIds": ["SCOPE-02", "SCOPE-03", "SRC-01", "SRC-06", "SRC-10", "SRC-11"],
+      "runtimeUsePolicy": "eligible_for_bounded_context_with_shareholder_letter_label",
+      "reviewNote": "Shareholder-letter claim; keeps performance and ESG rating language tied to the issuer letter.",
+      "sourceDocumentDate": "2026",
+      "evidenceNeedles": [
+        "매출 41 조원 , 당기순이익 3 . 9 조원",
+        "MSCI) 평가 AAA 등급",
+        "탄소정보공개 프로젝트 (CDP) A 등급"
+      ]
+    },
+    {
+      "companyId": "samsung-ct",
+      "targetWikiPage": "wiki/groups/samsung/companies/samsung-ct.md",
+      "claimType": "business_pipeline_forward_looking",
+      "claimText": "삼성물산은 2026년 주주서한에서 건설 부문의 데이터센터·공항 등 기술 특화 상품 수주 확대와 에너지 솔루션 사업 기회 창출을 사업 방향으로 제시했다.",
+      "sourceManifestId": "samsung-local-e0cdd972a5c0",
+      "sourceRuleIds": ["SCOPE-02", "SCOPE-03", "SRC-01", "SRC-06", "SRC-10", "SRC-11"],
+      "runtimeUsePolicy": "eligible_for_bounded_context_with_forward_looking_label",
+      "reviewNote": "Forward-looking shareholder-letter claim; use as management strategy, not realized order flow.",
+      "sourceDocumentDate": "2026",
+      "forwardLooking": true,
+      "evidenceNeedles": [
+        "건설 부문은 데이터 센터 , 공항 등 기술 특화 상품 수주를 확대",
+        "에너지 솔루션 등 미래 유망 분야에서 사업 기회를 창출"
+      ]
+    },
+    {
+      "companyId": "samsung-biologics",
+      "targetWikiPage": "wiki/groups/samsung/companies/samsung-biologics.md",
+      "claimType": "financial_business_pipeline",
+      "claimText": "삼성바이오로직스는 2025년 4분기 발표에서 2025년 연간 매출 45,570억원, 영업이익 20,692억원(OPM 45.4%)을 제시하고, 2026년 매출 성장 가이던스 15~20%를 제시했다.",
+      "sourceManifestId": "samsung-local-28343e06d363",
+      "sourceRuleIds": ["SCOPE-02", "SCOPE-03", "SRC-01", "SRC-05", "SRC-10", "SRC-11"],
+      "runtimeUsePolicy": "eligible_for_bounded_context_with_forward_looking_label",
+      "reviewNote": "Combines realized 2025 result with clearly labeled 2026 management guidance.",
+      "sourceDocumentDate": "2025Q4",
+      "forwardLooking": true,
+      "evidenceNeedles": [
+        "연 4 간 : 매출 45 , 570 억 , 영업이익 20 , 692 억 (OPM : 45 . 4 % )",
+        "’26 년 매출 성장 가이던스 +15 ~ 20%"
+      ]
+    },
+    {
+      "companyId": "samsung-biologics",
+      "targetWikiPage": "wiki/groups/samsung/companies/samsung-biologics.md",
+      "claimType": "business_pipeline",
+      "claimText": "삼성바이오로직스는 2025년 4분기 발표에서 누적 수주 212억 달러, CMO 107건, CDO 164건을 제시했다.",
+      "sourceManifestId": "samsung-local-28343e06d363",
+      "sourceRuleIds": ["SCOPE-02", "SCOPE-03", "SRC-01", "SRC-05", "SRC-10", "SRC-11"],
+      "runtimeUsePolicy": "eligible_for_bounded_context",
+      "reviewNote": "Order/backlog-style business pipeline claim from official earnings presentation.",
+      "sourceDocumentDate": "2025Q4",
+      "evidenceNeedles": [
+        "수주 지속 : 누적 수주 212 억 달러 , CMO 107 건 , CDO 164 건"
+      ]
+    },
+    {
+      "companyId": "samsung-life",
+      "targetWikiPage": "wiki/groups/samsung/companies/samsung-life.md",
+      "claimType": "capital_risk",
+      "claimText": "삼성생명은 2025년 사업보고서에서 K-ICS 지급여력비율을 내부적으로 관리하고 외부에 공시하며, 감독기관의 K-ICS 지급여력비율 기준을 준수하고 있다고 밝혔다.",
+      "sourceManifestId": "samsung-dart-20260311004614",
+      "sourceRuleIds": ["SCOPE-02", "SCOPE-03", "SRC-02", "SRC-04", "SRC-10", "SRC-11"],
+      "runtimeUsePolicy": "eligible_for_bounded_context_with_regulatory_filing_label",
+      "reviewNote": "Capital adequacy claim from DART-extracted business report; no revenue definition is introduced.",
+      "sourceDocumentDate": "2025.12",
+      "evidenceNeedles": [
+        "K-ICS 지급여력비율은 당사가 예상하지 못한 손실",
+        "당사는 감독기관에서 규정한 K-ICS 지급여력비율을 준수하고 있습니다"
+      ]
+    },
+    {
+      "companyId": "samsung-life",
+      "targetWikiPage": "wiki/groups/samsung/companies/samsung-life.md",
+      "claimType": "shareholder_capital",
+      "claimText": "삼성생명은 2025년 사업보고서에서 당기 현금배당을 주당 5,300원, 전기 4,500원으로 표시했다.",
+      "sourceManifestId": "samsung-dart-20260311004614",
+      "sourceRuleIds": ["SCOPE-02", "SCOPE-03", "SRC-02", "SRC-04", "SRC-06", "SRC-10", "SRC-11"],
+      "runtimeUsePolicy": "eligible_for_bounded_context_with_regulatory_filing_label",
+      "reviewNote": "Dividend claim from DART-extracted business report; use as historical shareholder-return context.",
+      "sourceDocumentDate": "2025.12",
+      "evidenceNeedles": [
+        "현 금 배 당 [주당배당금(률) -당기 : 5,300원(1,060%) 전기 : 4,500원(900%)]"
+      ]
+    },
+    {
+      "companyId": "samsung-fire-marine",
+      "targetWikiPage": "wiki/groups/samsung/companies/samsung-fire-marine.md",
+      "claimType": "capital_risk",
+      "claimText": "삼성화재는 2025년 사업보고서에서 K-ICS 기준 요구자본을 유지하기 위해 리스크를 생명·장기손해보험, 일반손해보험, 시장, 신용, 운영위험액으로 구분해 산출하고 분기별로 경영진에 보고한다고 밝혔다.",
+      "sourceManifestId": "samsung-dart-20260312001399",
+      "sourceRuleIds": ["SCOPE-02", "SCOPE-03", "SRC-02", "SRC-04", "SRC-10", "SRC-11"],
+      "runtimeUsePolicy": "eligible_for_bounded_context_with_regulatory_filing_label",
+      "reviewNote": "Capital/risk management claim from DART-extracted business report; no finance-company revenue definition is introduced.",
+      "sourceDocumentDate": "2025.12",
+      "evidenceNeedles": [
+        "연결실체는 요구자본(K-ICS 기준 지급여력기준금액)을 유지하기 위해",
+        "분기별로 산출결과와 원인 및 대응방안을 경영진에 보고"
+      ]
+    },
+    {
+      "companyId": "samsung-fire-marine",
+      "targetWikiPage": "wiki/groups/samsung/companies/samsung-fire-marine.md",
+      "claimType": "shareholder_capital",
+      "claimText": "삼성화재는 제75기 정기주주총회에서 제75기 재무제표 및 이익배당 승인 건이 원안대로 승인되었고, 주당 배당금은 보통주 19,000원, 우선주 19,005원으로 표시됐다고 보고했다.",
+      "sourceManifestId": "samsung-dart-20260312001399",
+      "sourceRuleIds": ["SCOPE-02", "SCOPE-03", "SRC-02", "SRC-04", "SRC-06", "SRC-10", "SRC-11"],
+      "runtimeUsePolicy": "eligible_for_bounded_context_with_regulatory_filing_label",
+      "reviewNote": "Shareholder-return claim from DART-extracted business report.",
+      "sourceDocumentDate": "2025.12",
+      "evidenceNeedles": [
+        "제1호 의안: 제75기 재무제표 및 이익배당 승인의 건",
+        "원안대로 승인: 주당 배당금 보통주 19,000원, 우선주 19,005원"
+      ]
+    }
+  ]
+}

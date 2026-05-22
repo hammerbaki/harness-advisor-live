@@ -1,0 +1,167 @@
+{
+  "schemaVersion": "investor-candidate-question-set.v0.1",
+  "groupId": "samsung",
+  "generatedAt": "2026-05-02T08:34:43.017Z",
+  "sourceBasis": [
+    "Samsung local source inventory and extraction report",
+    "Samsung claim-candidate plan",
+    "Original HanWha-Advisor follow-up-chip and golden-thread demo patterns"
+  ],
+  "policy": "These are candidate investor questions. They are not frozen evaluation scenarios until Samsung source-backed seed claims exist.",
+  "totals": {
+    "questions": 12,
+    "byRoute": {
+      "business_pipeline": 2,
+      "dart_filing": 2,
+      "financial_brief": 2,
+      "group_comparison": 1,
+      "market_brief": 1,
+      "risk_signal": 1,
+      "shareholder_return": 1,
+      "source_comparison": 1,
+      "source_maturity": 1
+    },
+    "byCompanyId": {
+      "samsung": 2,
+      "samsung-biologics": 2,
+      "samsung-ct": 2,
+      "samsung-electronics": 2,
+      "samsung-fire-marine": 1,
+      "samsung-life": 1,
+      "samsung-sdi": 2
+    }
+  },
+  "questions": [
+    {
+      "id": "samsung-q-001",
+      "companyId": "samsung-electronics",
+      "route": "financial_brief",
+      "question": "삼성전자 최근 실적 회복이 메모리와 HBM에서 얼마나 확인되는지 요약해줘",
+      "why": "삼성전자 IR 실적발표 자료가 충분하고, 한화 원본의 재무 브리프-후속 질문 흐름과 대응된다.",
+      "expectedEvidence": [
+        "earnings_presentation",
+        "market_data",
+        "dart_financial_table"
+      ]
+    },
+    {
+      "id": "samsung-q-002",
+      "companyId": "samsung-electronics",
+      "route": "business_pipeline",
+      "question": "삼성전자 HBM과 AI 메모리 관련 투자 포인트와 확인할 변수를 분리해줘",
+      "why": "사용자는 인사이트를 원하지만 추천은 피해야 하므로 확인 변수 중심 질문으로 설계했다.",
+      "expectedEvidence": [
+        "earnings_presentation",
+        "news_optional"
+      ]
+    },
+    {
+      "id": "samsung-q-003",
+      "companyId": "samsung-sdi",
+      "route": "risk_signal",
+      "question": "삼성SDI 적자 전환의 핵심 원인과 회복 조건을 실적 자료 기준으로 정리해줘",
+      "why": "SDI 자료에 매출/영업이익 및 ESS/배터리 전망이 있어 재무와 사업 변수를 함께 평가할 수 있다.",
+      "expectedEvidence": [
+        "earnings_presentation",
+        "dart_financial_table"
+      ]
+    },
+    {
+      "id": "samsung-q-004",
+      "companyId": "samsung-sdi",
+      "route": "market_brief",
+      "question": "삼성SDI ESS와 전자재료가 배터리 부진을 얼마나 보완할 수 있는지 검토해줘",
+      "why": "원본 PoC의 산업/경쟁사 후속 흐름을 삼성 배터리/소재 맥락으로 바꾼 질문이다.",
+      "expectedEvidence": [
+        "earnings_presentation"
+      ]
+    },
+    {
+      "id": "samsung-q-005",
+      "companyId": "samsung-ct",
+      "route": "shareholder_return",
+      "question": "삼성물산 주주서한과 실적 자료 기준으로 주주환원과 포트폴리오 변화를 요약해줘",
+      "why": "삼성물산은 주주서한, 검토보고서, 사업보고서가 있어 claim 후보화에 적합하다.",
+      "expectedEvidence": [
+        "shareholder_letter",
+        "business_report",
+        "quarterly_report"
+      ]
+    },
+    {
+      "id": "samsung-q-006",
+      "companyId": "samsung-ct",
+      "route": "source_comparison",
+      "question": "삼성물산 2026년 1분기 자료에서 PPT와 영문자막이 말하는 핵심 메시지를 비교해줘",
+      "why": "녹음 파일은 제외하고 PPT/자막 대체자료를 지식화할 수 있는지 검증하는 질문이다.",
+      "expectedEvidence": [
+        "earnings_presentation",
+        "subtitle"
+      ]
+    },
+    {
+      "id": "samsung-q-007",
+      "companyId": "samsung-biologics",
+      "route": "business_pipeline",
+      "question": "삼성바이오로직스 수주와 생산능력 확대가 매출 성장에 어떻게 연결되는지 정리해줘",
+      "why": "바이오로직스 자료에는 수주, 공장, CDMO/CMO/CDO, 성장률 관련 문구가 많다.",
+      "expectedEvidence": [
+        "earnings_presentation",
+        "business_report",
+        "operating_report"
+      ]
+    },
+    {
+      "id": "samsung-q-008",
+      "companyId": "samsung-biologics",
+      "route": "financial_brief",
+      "question": "삼성바이오로직스 영업이익률과 투자 계획을 함께 보면 어떤 리스크가 보이는지 검토해줘",
+      "why": "고성장과 대규모 투자 집행을 함께 보여주는 자료가 있어 가치투자 검토축에 적합하다.",
+      "expectedEvidence": [
+        "earnings_presentation",
+        "audit_report"
+      ]
+    },
+    {
+      "id": "samsung-q-009",
+      "companyId": "samsung-life",
+      "route": "dart_filing",
+      "question": "삼성생명 최근 공시 기준으로 자본과 주주환원 관련 확인 포인트를 정리해줘",
+      "why": "삼성생명은 SPA IR보다 DART 공시 backbone을 먼저 쓰는 구조가 적합하다.",
+      "expectedEvidence": [
+        "dart_viewer_pending_extraction"
+      ]
+    },
+    {
+      "id": "samsung-q-010",
+      "companyId": "samsung-fire-marine",
+      "route": "dart_filing",
+      "question": "삼성화재 손해율과 자본정책을 투자자 관점에서 확인할 변수를 정리해줘",
+      "why": "손해보험사는 일반 제조업 재무 질문과 다르므로 보험 특화 질문을 분리해야 한다.",
+      "expectedEvidence": [
+        "dart_viewer_pending_extraction"
+      ]
+    },
+    {
+      "id": "samsung-q-011",
+      "companyId": "samsung",
+      "route": "group_comparison",
+      "question": "삼성 주요 계열사 중 2024년 대비 2025년에 실적 방향이 갈린 회사를 구분해줘",
+      "why": "DART 재무 테이블이 만들어진 뒤 그룹 단위 비교 기능을 검증하기 위한 질문이다.",
+      "expectedEvidence": [
+        "dart_financial_table"
+      ]
+    },
+    {
+      "id": "samsung-q-012",
+      "companyId": "samsung",
+      "route": "source_maturity",
+      "question": "삼성 분석에서 지금 source-backed로 답할 수 있는 범위와 아직 보강할 자료를 구분해줘",
+      "why": "논문과 상용화 모두에서 source maturity disclosure가 핵심이기 때문이다.",
+      "expectedEvidence": [
+        "claim_candidate_plan",
+        "source_inventory"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,208 @@
+{
+  "schemaVersion": "narrative-claim-seeds.v0.1",
+  "groupId": "sk",
+  "purpose": "Reviewer-authored SK narrative seed claims. These records are not runtime knowledge until scripts/promote-sk-source-backed-claims.mjs verifies public URL, extraction status, source text hash, evidence locator, companyId, companyScope, and source-selection rules.",
+  "records": [
+    {
+      "companyId": "sk-hynix",
+      "companyScope": "listed_company",
+      "sourceManifestId": "sk-local-1f3a2e24c2e6",
+      "claimType": "business_strategy",
+      "claimText": "SK하이닉스의 2024년 Corporate Value-up Plan은 회사를 글로벌 제조·R&D·판매 네트워크를 갖춘 'Total AI Memory Provider'로 설명한다.",
+      "sourceDocumentDate": "2024",
+      "evidenceNeedles": [
+        "SK hynix grows into Total AI Memory Provider with Global Manufacturing R&D and Sales Network"
+      ],
+      "sourceRuleIds": ["SCOPE-02", "SCOPE-03", "SCOPE-04", "SRC-01", "SRC-05", "SRC-06", "SRC-10", "SRC-11", "SRC-12"],
+      "runtimeUsePolicy": "eligible_for_bounded_context_with_forward_looking_label",
+      "targetWikiPage": "wiki/groups/sk/companies/sk-hynix.md",
+      "forwardLooking": true,
+      "reviewNote": "Use only as a bounded strategy framing claim. HBM seminar image PDFs remain blocked until OCR or a text-bearing source is supplied."
+    },
+    {
+      "companyId": "sk-hynix",
+      "companyScope": "listed_company",
+      "sourceManifestId": "sk-local-1f3a2e24c2e6",
+      "claimType": "shareholder_return",
+      "claimText": "SK하이닉스는 2025~2027년 주주환원 정책에서 고정배당을 주당 1,200원에서 1,500원으로 높이고, 재무 목표 달성 시 3년 누적 FCF의 50% 범위 내 추가 환원을 제시한다.",
+      "sourceDocumentDate": "2024",
+      "evidenceNeedles": [
+        "Fixed dividend increased to KRW 1 500 per share from KRW 1 200 per share",
+        "within 50% of three year cumulative FCF"
+      ],
+      "sourceRuleIds": ["SCOPE-02", "SCOPE-03", "SCOPE-04", "SRC-01", "SRC-06", "SRC-10", "SRC-11", "SRC-12"],
+      "runtimeUsePolicy": "eligible_for_bounded_context_with_forward_looking_label",
+      "targetWikiPage": "wiki/groups/sk/companies/sk-hynix.md",
+      "forwardLooking": true,
+      "reviewNote": "Use as a shareholder-return plan claim, not as a guarantee of future payout."
+    },
+    {
+      "companyId": "sk-innovation",
+      "companyScope": "listed_company",
+      "sourceManifestId": "sk-local-e4f0fa5ef4ed",
+      "claimType": "business_strategy",
+      "claimText": "SK이노베이션의 2025년 4Q Earnings Release는 2026년 핵심 과제로 기존 포트폴리오 재편, 순차입금 축소를 통한 재무 안정화, 전력 생산부터 소비까지 포괄하는 Electrification 전략을 제시한다.",
+      "sourceDocumentDate": "2025Q4",
+      "evidenceNeedles": [
+        "Revamp Business Portfolio Reshape existing business portfolio to enhance core competitiveness",
+        "Reduce net debt through divestment and monetization of non core assets",
+        "Secure end to end solutions across power generation to consumption"
+      ],
+      "sourceRuleIds": ["SCOPE-02", "SCOPE-03", "SCOPE-04", "SRC-01", "SRC-05", "SRC-10", "SRC-11", "SRC-12"],
+      "runtimeUsePolicy": "eligible_for_bounded_context_with_forward_looking_label",
+      "targetWikiPage": "wiki/groups/sk/companies/sk-innovation.md",
+      "forwardLooking": true,
+      "reviewNote": "Use as management-stated 2026 initiative context. Do not convert it into an investment recommendation."
+    },
+    {
+      "companyId": "sk-innovation",
+      "companyScope": "listed_company",
+      "sourceManifestId": "sk-local-e4f0fa5ef4ed",
+      "claimType": "business_strategy",
+      "claimText": "SK이노베이션의 2025년 4Q Earnings Release는 배터리 부문에 대해 비우호적 환경 속에서도 포트폴리오 리밸런싱과 ESS 역량 강화로 중장기 배터리 포트폴리오를 재편하고 있다고 설명한다.",
+      "sourceDocumentDate": "2025Q4",
+      "evidenceNeedles": [
+        "Despite an unfavorable external environment the mid to long term battery portfolio is being reshaped through portfolio rebalancing and strengthened ESS business capabilities"
+      ],
+      "sourceRuleIds": ["SCOPE-02", "SCOPE-03", "SCOPE-04", "SRC-01", "SRC-05", "SRC-10", "SRC-11", "SRC-12"],
+      "runtimeUsePolicy": "eligible_for_bounded_context_with_forward_looking_label",
+      "targetWikiPage": "wiki/groups/sk/companies/sk-innovation.md",
+      "forwardLooking": true,
+      "reviewNote": "Use only as a company-stated battery-portfolio context claim bounded to the 2025Q4 release."
+    },
+    {
+      "companyId": "sk-inc",
+      "companyScope": "listed_company",
+      "sourceManifestId": "sk-local-d020660e5bd5",
+      "claimType": "business_strategy",
+      "claimText": "SK Inc.의 2024년 기업가치 제고 계획은 중장기 투자 포트폴리오를 Green, 첨단소재, Digital, Bio의 네 핵심 영역으로 관리한다고 설명한다.",
+      "sourceDocumentDate": "2024",
+      "evidenceNeedles": [
+        "4 大 핵심 영역 중심으로 중장기적 관점의 투자 Portfolio 관리 및 사업 추진",
+        "Green EV 배터리 수소 재생에너지 환경 솔루션",
+        "Digital 유무선 통신 인프라와 AI 를 결합한 첨단 ICT 서비스 및 AI 데이터센터"
+      ],
+      "sourceRuleIds": ["SCOPE-02", "SCOPE-03", "SCOPE-04", "SRC-01", "SRC-05", "SRC-06", "SRC-10", "SRC-11", "SRC-12"],
+      "runtimeUsePolicy": "eligible_for_bounded_context_with_forward_looking_label",
+      "targetWikiPage": "wiki/groups/sk/companies/sk-inc.md",
+      "forwardLooking": true,
+      "reviewNote": "Use as holding-company portfolio framing. Avoid extending it to unverified affiliate-level financial claims."
+    },
+    {
+      "companyId": "sk-inc",
+      "companyScope": "listed_company",
+      "sourceManifestId": "sk-local-d020660e5bd5",
+      "claimType": "shareholder_return",
+      "claimText": "SK Inc.의 2024년 기업가치 제고 계획은 FY2024~2026 기간 보통주 기준 연간 최소 DPS 5,000원과 시가총액 1~2% 규모의 자기주식 매입·소각 또는 추가 배당을 주주환원 확대 방향으로 제시한다.",
+      "sourceDocumentDate": "2024",
+      "evidenceNeedles": [
+        "연간 주당 최소 배당금 5 000 원",
+        "시가총액의 1 2% 규모의 자기주식 매입 소각 또는 정기 배당 시 추가 배당금 지급"
+      ],
+      "sourceRuleIds": ["SCOPE-02", "SCOPE-03", "SCOPE-04", "SRC-01", "SRC-06", "SRC-10", "SRC-11", "SRC-12"],
+      "runtimeUsePolicy": "eligible_for_bounded_context_with_forward_looking_label",
+      "targetWikiPage": "wiki/groups/sk/companies/sk-inc.md",
+      "forwardLooking": true,
+      "reviewNote": "Use as stated value-up policy. Answer wording must preserve forward-looking plan status."
+    },
+    {
+      "companyId": "sk-telecom",
+      "companyScope": "listed_company",
+      "sourceManifestId": "sk-local-77570239f18d",
+      "claimType": "business_strategy",
+      "claimText": "SK텔레콤의 2025년 연간 실적 발표 보도자료는 AI 데이터센터 관련 매출이 5,199억원으로 전년 대비 34.9% 성장했다고 밝혔다.",
+      "sourceDocumentDate": "2025Q4",
+      "evidenceNeedles": [
+        "AI 데이터센터 관련 매출은 5 199 억 원으로 전년 대비 34.9% 성장했다"
+      ],
+      "sourceRuleIds": ["SCOPE-02", "SCOPE-03", "SCOPE-04", "SRC-01", "SRC-05", "SRC-10", "SRC-11", "SRC-12"],
+      "runtimeUsePolicy": "eligible_for_bounded_context",
+      "targetWikiPage": "wiki/groups/sk/companies/sk-telecom.md",
+      "forwardLooking": false,
+      "reviewNote": "Use as realized AI data-center revenue context from the official earnings press release."
+    },
+    {
+      "companyId": "sk-telecom",
+      "companyScope": "listed_company",
+      "sourceManifestId": "sk-local-77570239f18d",
+      "claimType": "business_strategy",
+      "claimText": "SK텔레콤은 2025년 연간 실적 발표에서 상품, 마케팅, 네트워크, 유통 채널 등 기존 통신 전 영역에 AI를 도입해 고객 경험을 제고하겠다는 계획을 밝혔다.",
+      "sourceDocumentDate": "2025Q4",
+      "evidenceNeedles": [
+        "기존 통신 모든 영역에 AI 를 도입해 고객 경험을 제고"
+      ],
+      "sourceRuleIds": ["SCOPE-02", "SCOPE-03", "SCOPE-04", "SRC-01", "SRC-05", "SRC-10", "SRC-11", "SRC-12"],
+      "runtimeUsePolicy": "eligible_for_bounded_context_with_forward_looking_label",
+      "targetWikiPage": "wiki/groups/sk/companies/sk-telecom.md",
+      "forwardLooking": true,
+      "reviewNote": "Use as forward-looking telecom-AI transformation plan from the same official press release."
+    },
+    {
+      "companyId": "sk-square",
+      "companyScope": "listed_company",
+      "sourceManifestId": "sk-local-a8520c7b2b32",
+      "claimType": "value_up_plan",
+      "claimText": "SK스퀘어의 2025년 기업가치 제고계획은 2025년 3분기 기준 NAV 할인율 52.9%, ROE 33.7%, PBR 1.1배를 제시하며 기존 NAV 할인율 목표에 근접했다고 설명한다.",
+      "sourceDocumentDate": "2025",
+      "evidenceNeedles": [
+        "시가총액 7.3 10.7 26.6 NAV 27.1 31.2 56.5 Discount 73.0% 65.7% 52.9%",
+        "ROE △8.1% 21.7% 33.7%",
+        "PBR 0.5x 0.6x 1.1x"
+      ],
+      "sourceRuleIds": ["SCOPE-02", "SCOPE-03", "SCOPE-04", "SRC-01", "SRC-05", "SRC-06", "SRC-10", "SRC-11", "SRC-12"],
+      "runtimeUsePolicy": "eligible_for_bounded_context_with_forward_looking_label",
+      "targetWikiPage": "wiki/groups/sk/companies/sk-square.md",
+      "forwardLooking": true,
+      "reviewNote": "Use as a value-up/NAV-discount framing claim. Preserve company-stated plan status and date basis."
+    },
+    {
+      "companyId": "sk-square",
+      "companyScope": "listed_company",
+      "sourceManifestId": "sk-local-19faec03a771",
+      "claimType": "financial_metric",
+      "claimText": "SK스퀘어의 2025 Portfolio Update는 2025년 연결 기준 총 NAV 100.2조원, 매출액 1,411.5십억원, 영업이익 8,797.4십억원, 당기순이익 8,818.7십억원을 제시한다.",
+      "sourceDocumentDate": "2025",
+      "evidenceNeedles": [
+        "100.2 조원 총 NAV 매출액 1,411.5 지분법손익 8,930.4 영업이익 8,797.4 당기순이익 8,818.7"
+      ],
+      "sourceRuleIds": ["SCOPE-02", "SCOPE-03", "SCOPE-04", "SRC-01", "SRC-05", "SRC-10", "SRC-11", "SRC-12"],
+      "runtimeUsePolicy": "eligible_for_bounded_context_with_preliminary_result_label",
+      "targetWikiPage": "wiki/groups/sk/companies/sk-square.md",
+      "forwardLooking": false,
+      "reviewNote": "Use as company-published portfolio-update financial context. The source states the information may change through audit review, so answer wording must preserve the preliminary/result-update boundary."
+    },
+    {
+      "companyId": "sk-square",
+      "companyScope": "listed_company",
+      "sourceManifestId": "sk-local-19faec03a771",
+      "claimType": "shareholder_return",
+      "claimText": "SK스퀘어의 2025 Portfolio Update는 주당 1,500원 추가 배당과 보유 자사주 2.1% 소각을 주주가치 제고 실행으로 제시한다.",
+      "sourceDocumentDate": "2025",
+      "evidenceNeedles": [
+        "주당 1,500 원 추가 배당 , 보유 자사주 (2.1%) 소각"
+      ],
+      "sourceRuleIds": ["SCOPE-02", "SCOPE-03", "SCOPE-04", "SRC-01", "SRC-05", "SRC-06", "SRC-10", "SRC-11", "SRC-12"],
+      "runtimeUsePolicy": "eligible_for_bounded_context",
+      "targetWikiPage": "wiki/groups/sk/companies/sk-square.md",
+      "forwardLooking": false,
+      "reviewNote": "Use as source-stated shareholder-return execution context, not as a recommendation or forecast."
+    },
+    {
+      "companyId": "sk-square",
+      "companyScope": "listed_company",
+      "sourceManifestId": "sk-local-19faec03a771",
+      "claimType": "portfolio_value",
+      "claimText": "SK스퀘어의 2025 Portfolio Update는 2025년 NAV 100.23조원 중 SK하이닉스 가치 95.11조원을 핵심 포트폴리오 비중으로 제시한다.",
+      "sourceDocumentDate": "2025",
+      "evidenceNeedles": [
+        "총 NAV 100.23",
+        "SK 하이닉스 95.11"
+      ],
+      "sourceRuleIds": ["SCOPE-02", "SCOPE-03", "SCOPE-04", "SRC-01", "SRC-05", "SRC-10", "SRC-11", "SRC-12"],
+      "runtimeUsePolicy": "eligible_for_bounded_context",
+      "targetWikiPage": "wiki/groups/sk/companies/sk-square.md",
+      "forwardLooking": false,
+      "reviewNote": "Use to explain SK Square's portfolio concentration boundary. Do not infer unlisted portfolio valuation changes beyond the cited NAV table."
+    }
+  ]
+}

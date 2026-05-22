@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "source-manifest.v0.1",
+  "groupId": "sk",
+  "sourceStatus": "bounded-source-backed-reference-slice",
+  "lastChecked": "2026-05-03",
+  "entries": [
+    {
+      "id": "sk-source-001",
+      "companyId": "sk-hynix",
+      "title": "SK하이닉스 OpenDART/KRX identifier baseline",
+      "sourceType": "identifier_baseline",
+      "sourceRole": "official_api_routing",
+      "period": "current",
+      "sourceUrl": "https://opendart.fss.or.kr/",
+      "localArtifact": "raw/manifests/sk.identifier-verification.json",
+      "runtimeStatus": "eligible_for_dart_krx_routing"
+    },
+    {
+      "id": "sk-source-002",
+      "companyId": "sk-innovation",
+      "title": "SK이노베이션 OpenDART/KRX identifier baseline",
+      "sourceType": "identifier_baseline",
+      "sourceRole": "official_api_routing",
+      "period": "current",
+      "sourceUrl": "https://opendart.fss.or.kr/",
+      "localArtifact": "raw/manifests/sk.identifier-verification.json",
+      "runtimeStatus": "eligible_for_dart_krx_routing"
+    },
+    {
+      "id": "sk-source-003",
+      "companyId": "sk-inc",
+      "title": "SK OpenDART/KRX identifier baseline",
+      "sourceType": "identifier_baseline",
+      "sourceRole": "official_api_routing",
+      "period": "current",
+      "sourceUrl": "https://opendart.fss.or.kr/",
+      "localArtifact": "raw/manifests/sk.identifier-verification.json",
+      "runtimeStatus": "eligible_for_dart_krx_routing"
+    },
+    {
+      "id": "sk-source-004",
+      "companyId": "sk-telecom",
+      "title": "SK텔레콤 OpenDART/KRX identifier baseline",
+      "sourceType": "identifier_baseline",
+      "sourceRole": "official_api_routing",
+      "period": "current",
+      "sourceUrl": "https://opendart.fss.or.kr/",
+      "localArtifact": "raw/manifests/sk.identifier-verification.json",
+      "runtimeStatus": "eligible_for_dart_krx_routing"
+    },
+    {
+      "id": "sk-source-005",
+      "companyId": "",
+      "title": "SK OpenDART annual financial table 2022-2024",
+      "sourceType": "financial_api_table",
+      "sourceRole": "official_financial_baseline",
+      "period": "2022-2024",
+      "sourceUrl": "https://opendart.fss.or.kr/",
+      "localArtifact": "raw/manifests/sk.dart-financial-table.2022-2024.json",
+      "runtimeStatus": "eligible_for_bounded_financial_claims"
+    },
+    {
+      "id": "sk-source-006",
+      "companyId": "",
+      "title": "SK document-level source request plan",
+      "sourceType": "source_request_plan",
+      "sourceRole": "narrative_claim_readiness",
+      "period": "next-step",
+      "sourceUrl": "",
+      "localArtifact": "raw/manifests/sk.source-request-plan.json",
+      "runtimeStatus": "not_runtime_evidence"
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "schemaVersion": "source-manifest.v0.1",
+  "groupId": "samsung",
+  "sourceStatus": "dart-financial-and-url-intake-ready",
+  "lastChecked": "2026-05-03",
+  "entries": [
+    {
+      "id": "samsung-coverage-universe-seed-2026-05-02",
+      "title": "Samsung listed-company coverage universe seed",
+      "sourceType": "seed_table",
+      "sourceStatus": "seed-unverified",
+      "manifestPath": "raw/manifests/samsung.coverage-universe.seed.json",
+      "selectionRationale": "Defines the company universe and source-request backlog for applying the Hanwha reference template to Samsung without treating unverified values as source-backed claims.",
+      "paperUse": "Scope definition and reproducibility checklist only; not citable as verified financial evidence."
+    },
+    {
+      "id": "samsung-identifier-verification-2026-05-02",
+      "title": "Samsung 15-company DART/KRX identifier verification",
+      "sourceType": "identifier_verification",
+      "sourceStatus": "user-supplied-api-verified",
+      "manifestPath": "raw/manifests/samsung.identifier-verification.json",
+      "selectionRationale": "Records DART corp codes, KRX codes, ISINs, listing dates, and official IR intake URLs for the Samsung expansion universe.",
+      "paperUse": "Identifier and source-intake evidence only; not a financial claim source."
+    },
+    {
+      "id": "samsung-electronics-ir-events-index",
+      "companyId": "samsung-electronics",
+      "title": "Samsung Electronics IR events and presentations",
+      "sourceType": "issuer_ir_index",
+      "sourceStatus": "intake-candidate",
+      "url": "https://www.samsung.com/sec/ir/",
+      "selectionRationale": "Company-specific issuer IR source for earnings events, presentations, and event history.",
+      "paperUse": "Index only until individual documents are inventoried with dates and URLs."
+    },
+    {
+      "id": "samsung-sdi-ir-activity-index",
+      "companyId": "samsung-sdi",
+      "title": "Samsung SDI IR activity",
+      "sourceType": "issuer_ir_index",
+      "sourceStatus": "intake-candidate",
+      "url": "https://www.samsungsdi.co.kr/ir/ir-activity/index.html",
+      "selectionRationale": "Company-specific issuer IR source for Samsung SDI investor activity and presentation material.",
+      "paperUse": "Index only until individual documents are inventoried with dates and URLs."
+    },
+    {
+      "id": "samsung-ct-ir-overview-index",
+      "companyId": "samsung-ct",
+      "title": "Samsung C&T IR overview",
+      "sourceType": "issuer_ir_index",
+      "sourceStatus": "intake-candidate",
+      "url": "https://www.samsungcnt.com/ir/overview.do",
+      "selectionRationale": "Company-specific issuer IR source for Samsung C&T investor overview and linked materials.",
+      "paperUse": "Index only until individual documents are inventoried with dates and URLs."
+    },
+    {
+      "id": "samsung-life-ir-index",
+      "companyId": "samsung-life",
+      "title": "Samsung Life official IR page",
+      "sourceType": "issuer_ir_index",
+      "sourceStatus": "intake-candidate",
+      "url": "https://www.samsunglife.com/individual/display/invest/PDK-IRIVI015220M",
+      "selectionRationale": "Company-specific official IR source replacing the earlier third-party IRGO discovery page.",
+      "paperUse": "Index only until individual documents are inventoried with dates and URLs."
+    },
+    {
+      "id": "samsung-fire-ir-page-candidate",
+      "companyId": "samsung-fire-marine",
+      "title": "Samsung Fire investor page candidate",
+      "sourceType": "issuer_ir_index",
+      "sourceStatus": "intake-candidate",
+      "url": "https://www.samsungfire.com/v2/html/company_eng/index.html",
+      "selectionRationale": "Candidate issuer investor page for Samsung Fire & Marine. Needs crawl/extraction verification before claim promotion.",
+      "paperUse": "Index only until individual documents are inventoried with dates and URLs."
+    },
+    {
+      "id": "samsung-biologics-ir-overview-index",
+      "companyId": "samsung-biologics",
+      "title": "Samsung Biologics IR overview",
+      "sourceType": "issuer_ir_index",
+      "sourceStatus": "intake-candidate",
+      "url": "https://samsungbiologics.com/kr/ir/overview",
+      "selectionRationale": "Company-specific issuer IR source for Samsung Biologics investor overview and quarterly materials.",
+      "paperUse": "Index only until individual documents are inventoried with dates and URLs."
+    },
+    {
+      "id": "samsung-electro-mechanics-ir-archive",
+      "companyId": "samsung-electro-mechanics",
+      "title": "Samsung Electro-Mechanics IR archive",
+      "sourceType": "issuer_ir_index",
+      "sourceStatus": "intake-candidate",
+      "url": "https://www.samsungsem.com/kr/about-us/investor-relations/archive.do",
+      "selectionRationale": "Company-specific issuer IR source for Samsung Electro-Mechanics investor materials.",
+      "paperUse": "Index only until individual documents are inventoried with dates and URLs."
+    },
+    {
+      "id": "samsung-sds-ir-events-index",
+      "companyId": "samsung-sds",
+      "title": "Samsung SDS IR events",
+      "sourceType": "issuer_ir_index",
+      "sourceStatus": "intake-candidate",
+      "url": "https://www.samsungsds.com/kr/investor/ir_events/about_ir_events.html",
+      "selectionRationale": "Company-specific issuer IR source for Samsung SDS investor events.",
+      "paperUse": "Index only until individual documents are inventoried with dates and URLs."
+    },
+    {
+      "id": "samsung-heavy-industries-ir-index",
+      "companyId": "samsung-heavy-industries",
+      "title": "Samsung Heavy Industries IR page",
+      "sourceType": "issuer_ir_index",
+      "sourceStatus": "intake-candidate",
+      "url": "https://www.samsungshi.com/Ko/Ir_director.aspx",
+      "selectionRationale": "Company-specific issuer IR source for Samsung Heavy Industries investor materials.",
+      "paperUse": "Index only until individual documents are inventoried with dates and URLs."
+    },
+    {
+      "id": "samsung-ea-ir-overview",
+      "companyId": "samsung-ea",
+      "title": "Samsung E&A IR overview",
+      "sourceType": "issuer_ir_index",
+      "sourceStatus": "intake-candidate",
+      "url": "https://www.samsungena.com/kr/ir/overview",
+      "selectionRationale": "Company-specific issuer IR source for Samsung E&A investor materials.",
+      "paperUse": "Index only until individual documents are inventoried with dates and URLs."
+    },
+    {
+      "id": "samsung-card-ir-index",
+      "companyId": "samsung-card",
+      "title": "Samsung Card investment information",
+      "sourceType": "issuer_ir_index",
+      "sourceStatus": "intake-candidate",
+      "url": "https://www.samsungcard.com/company/investment/UHPPCI0201M0.jsp",
+      "selectionRationale": "Company-specific issuer IR source for Samsung Card investor materials.",
+      "paperUse": "Index only until individual documents are inventoried with dates and URLs."
+    },
+    {
+      "id": "samsung-securities-ir-index",
+      "companyId": "samsung-securities",
+      "title": "Samsung Securities IR page",
+      "sourceType": "issuer_ir_index",
+      "sourceStatus": "intake-candidate",
+      "url": "https://www.samsungsecurities.co.kr/kor/invest/ir.do",
+      "selectionRationale": "Company-specific issuer IR source for Samsung Securities investor materials.",
+      "paperUse": "Index only until individual documents are inventoried with dates and URLs."
+    },
+    {
+      "id": "cheil-worldwide-ir-index",
+      "companyId": "cheil-worldwide",
+      "title": "Cheil Worldwide IR page",
+      "sourceType": "issuer_ir_index",
+      "sourceStatus": "intake-candidate",
+      "url": "https://www.cheil.com/kr/ir/",
+      "selectionRationale": "Company-specific issuer IR source for Cheil Worldwide investor materials.",
+      "paperUse": "Index only until individual documents are inventoried with dates and URLs."
+    },
+    {
+      "id": "hotel-shilla-ir-report-index",
+      "companyId": "hotel-shilla",
+      "title": "Hotel Shilla IR report page",
+      "sourceType": "issuer_ir_index",
+      "sourceStatus": "intake-candidate",
+      "url": "https://www.hotelshilla.net/ir/report.do",
+      "selectionRationale": "Company-specific issuer IR source for Hotel Shilla investor reports.",
+      "paperUse": "Index only until individual documents are inventoried with dates and URLs."
+    },
+    {
+      "id": "s1-investor-index",
+      "companyId": "s1",
+      "title": "S-1 investor page",
+      "sourceType": "issuer_ir_index",
+      "sourceStatus": "intake-candidate",
+      "url": "https://invest.s1.co.kr:1447/invest/index.do",
+      "selectionRationale": "Company-specific issuer IR source for S-1 investor materials.",
+      "paperUse": "Index only until individual documents are inventoried with dates and URLs."
+    }
+  ]
+}

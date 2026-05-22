@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "knowledge-base-organization.v0.1",
+  "generatedAt": "2026-05-07T01:39:50.602Z",
+  "knowledgeBaseRoot": "Knowledge Base",
+  "sourceLedger": "Korea-Investor-Advisor-Research/raw/manifests/source-ledger.v0.1.json",
+  "policy": "Logical organization only. Raw files remain in their provenance-preserving group/company folders; index files are generated for product and paper workflows.",
+  "summary": {
+    "sourceRecords": 600,
+    "companyRecords": 38,
+    "pdfSources": 578,
+    "sourcesWithUrl": 593,
+    "sourcesWithSelectionReason": 590,
+    "irDownloadMatchedSources": 210,
+    "topLevelItems": 8,
+    "foldersClassified": 184,
+    "foldersNeedingReview": 1,
+    "systemFilesIgnored": 9,
+    "groupReadmesWritten": 5
+  },
+  "generatedFiles": [
+    "Knowledge Base/README.md",
+    "Knowledge Base/_index/README.md",
+    "Knowledge Base/_index/company-source-index.md",
+    "Knowledge Base/_index/group-source-summary.md",
+    "Knowledge Base/_index/company-source-index.csv",
+    "Knowledge Base/_index/group-source-summary.csv",
+    "Knowledge Base/_index/folder-taxonomy.md",
+    "Knowledge Base/_index/folder-taxonomy.csv",
+    "Knowledge Base/_index/system-files-to-ignore.md",
+    "Knowledge Base/_index/source-ledger-pointer.json",
+    "Knowledge Base/samsung_knowledge/README.md",
+    "Knowledge Base/sk_knowledge/README.md",
+    "Knowledge Base/hyundai_knowledge/README.md",
+    "Knowledge Base/lg_knowledge/README.md",
+    "Knowledge Base/hanhwa_knowledge/README.md"
+  ]
+}

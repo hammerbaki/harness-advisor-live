@@ -1,0 +1,175 @@
+{
+  "schemaVersion": "advisor-eval-scenarios.v0.1",
+  "scenarioSetId": "hyundai-motor-reference-slice-v0.1",
+  "groupId": "hyundai-motor",
+  "stage": "third-transfer-five-company-reference-slice",
+  "createdAt": "2026-05-03",
+  "purpose": "Freeze the Hyundai Motor Group five-company reference-slice questions after official document intake, PDF extraction, OpenDART financial extraction, source-backed claim promotion, narrative claim queueing, and wiki compilation. This tests whether the common harness can route automotive affiliates and produce bounded investor-facing financial answers across the selected first-slice companies.",
+  "paperUse": {
+    "allowedClaim": "Hyundai Motor Group demonstrates a third transfer slice using the same source inventory, extraction report, narrative claim queue, source-backed claim manifest, wiki namespace, and evaluation scenario schemas across five selected listed companies.",
+    "notAllowedClaim": "These scenarios do not prove full Hyundai Motor Group coverage, full strategy coverage, live news coverage, or commercial investment-advisory readiness.",
+    "expansionNote": "Additional Hyundai Motor Group affiliates can be added by registering identifiers, source manifests, extracted records, source-backed claims, wiki pages, and affiliate-routing checks under the same schema."
+  },
+  "runtimeAssumptions": {
+    "presentationMode": "text",
+    "currentExpectedRuntimeMode": "mixed",
+    "allowedRuntimeModesAfterLiveApi": ["mixed", "fallback", "live"],
+    "expectedTraceSteps": [
+      "dart.disclosures",
+      "krx.market",
+      "news.search",
+      "wiki.context",
+      "claims.sourceBacked",
+      "llm.compose"
+    ],
+    "requiredTraceFields": [
+      "schemaVersion",
+      "runId",
+      "generatedAt",
+      "runtimeMode",
+      "groupId",
+      "representativeCompanyId",
+      "questionHash",
+      "promptPolicyHash",
+      "promptPolicyVersion",
+      "llmMode",
+      "llmOutputContractVersion",
+      "llmOutputContractStatus",
+      "statusCounts",
+      "reproducibility"
+    ],
+    "answerPolicy": [
+      "Answer must be investor-facing Korean prose, not development-status prose.",
+      "Visible answer must not expose raw source-backed claim IDs.",
+      "Answer must disclose when latest news or market data is not connected live.",
+      "Named-affiliate questions must route to that affiliate even though the visible UI stays group-level.",
+      "Narrative strategy, EV, value-up, and shareholder-return claims must not be inferred from queued PDFs until source-backed narrative claims are promoted."
+    ],
+    "claimMatchPolicy": "expectedClaimIds are minimum required source-backed financial claims. Additional selected claims are allowed only when they are affiliate-scoped and relevant."
+  },
+  "scenarios": [
+    {
+      "id": "hyundai-frozen-001-motor-financial-trend",
+      "title": "Hyundai Motor revenue and operating-income trend",
+      "question": "현대차 2024년 매출과 영업이익을 2023년과 비교해서 요약해줘",
+      "intent": "Check whether Hyundai Motor questions route to Hyundai Motor and select OpenDART annual financial metric and trend claims.",
+      "expectedRepresentativeCompanyId": "hyundai-motor",
+      "expectedClaimIds": [
+        "hyundai-sbc-011",
+        "hyundai-sbc-001",
+        "hyundai-sbc-006"
+      ],
+      "requiredAnswerSignals": [
+        "현대차",
+        "2024년",
+        "매출액",
+        "영업이익",
+        "OpenDART"
+      ],
+      "paperTableBucket": "hyundai_affiliate_routing_motor_financial_grounding"
+    },
+    {
+      "id": "hyundai-frozen-002-kia-financial-trend",
+      "title": "Kia revenue and operating-income trend",
+      "question": "기아 2024년 실적을 매출과 영업이익 기준으로 정리해줘",
+      "intent": "Check whether Kia questions route to Kia even though local Kia SPA IR files are not yet downloaded.",
+      "expectedRepresentativeCompanyId": "kia",
+      "expectedClaimIds": [
+        "hyundai-sbc-012",
+        "hyundai-sbc-002",
+        "hyundai-sbc-007"
+      ],
+      "requiredAnswerSignals": [
+        "기아",
+        "2024년",
+        "매출액",
+        "영업이익",
+        "OpenDART"
+      ],
+      "paperTableBucket": "hyundai_affiliate_routing_kia_financial_grounding"
+    },
+    {
+      "id": "hyundai-frozen-003-mobis-financial-trend",
+      "title": "Hyundai Mobis revenue and operating-income trend",
+      "question": "현대모비스 2024년 실적 변화에서 매출과 영업이익을 분리해서 설명해줘",
+      "intent": "Check whether Hyundai Mobis questions route to Hyundai Mobis and preserve the DART financial account labels without promoting blocked low-text IR PDFs.",
+      "expectedRepresentativeCompanyId": "hyundai-mobis",
+      "expectedClaimIds": [
+        "hyundai-sbc-013",
+        "hyundai-sbc-003",
+        "hyundai-sbc-008"
+      ],
+      "requiredAnswerSignals": [
+        "현대모비스",
+        "2024년",
+        "매출액",
+        "영업이익",
+        "OpenDART"
+      ],
+      "paperTableBucket": "hyundai_affiliate_routing_mobis_financial_grounding"
+    },
+    {
+      "id": "hyundai-frozen-004-glovis-financial-trend",
+      "title": "Hyundai Glovis revenue and operating-income trend",
+      "question": "현대글로비스 2024년 매출과 영업이익을 2023년과 비교해서 요약해줘",
+      "intent": "Check whether Hyundai Glovis questions route to Hyundai Glovis and combine OpenDART annual trend claims with the promoted issuer IR preliminary-result claim.",
+      "expectedRepresentativeCompanyId": "hyundai-glovis",
+      "expectedClaimIds": [
+        "hyundai-sbc-014",
+        "hyundai-sbc-004",
+        "hyundai-sbc-009"
+      ],
+      "requiredAnswerSignals": [
+        "현대글로비스",
+        "2024년",
+        "매출액",
+        "영업이익",
+        "OpenDART"
+      ],
+      "paperTableBucket": "hyundai_affiliate_routing_glovis_financial_grounding"
+    },
+    {
+      "id": "hyundai-frozen-005-rotem-financial-trend",
+      "title": "Hyundai Rotem revenue, operating income, and business mix",
+      "question": "현대로템 2024년 실적을 매출액과 영업이익 기준으로 전년과 비교하고 사업부 매출 구성을 함께 정리해줘",
+      "intent": "Check whether Hyundai Rotem questions route to Hyundai Rotem and combine OpenDART annual trend claims with the approved DART business-report claim.",
+      "expectedRepresentativeCompanyId": "hyundai-rotem",
+      "expectedClaimIds": [
+        "hyundai-sbc-015",
+        "hyundai-sbc-005",
+        "hyundai-sbc-010"
+      ],
+      "requiredAnswerSignals": [
+        "현대로템",
+        "2024년",
+        "매출액",
+        "영업이익",
+        "OpenDART"
+      ],
+      "paperTableBucket": "hyundai_affiliate_routing_rotem_financial_grounding"
+    },
+    {
+      "id": "hyundai-frozen-006-motor-kia-comparison",
+      "title": "Hyundai Motor and Kia financial comparison",
+      "question": "현대자동차와 기아의 2024년 매출액과 영업이익 흐름을 비교해줘",
+      "intent": "Check whether a cross-affiliate Hyundai Motor Group comparison preserves explicit company mentions, selects source-backed financial claims, and keeps the response within promoted evidence.",
+      "expectedRepresentativeCompanyId": "hyundai-motor",
+      "expectedClaimIds": [
+        "hyundai-sbc-011",
+        "hyundai-sbc-001",
+        "hyundai-sbc-002",
+        "hyundai-sbc-006",
+        "hyundai-sbc-007"
+      ],
+      "requiredAnswerSignals": [
+        "현대자동차",
+        "기아",
+        "2024년",
+        "매출액",
+        "영업이익",
+        "OpenDART"
+      ],
+      "paperTableBucket": "hyundai_cross_affiliate_financial_comparison"
+    }
+  ]
+}

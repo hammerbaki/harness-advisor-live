@@ -1,0 +1,2016 @@
+{
+  "schemaVersion": "live-answer-quality-audit.v0.1",
+  "generatedAt": "2026-05-07T14:47:17.314Z",
+  "purpose": "Check whether live DART/KRX/Naver inputs preserve customer-facing answer quality, source-link hygiene, follow-up hygiene, and traceability.",
+  "baseUrl": "http://127.0.0.1:8797",
+  "serverMode": "spawned-quality-audit-server",
+  "cachePolicy": "memory-cache-disabled",
+  "samplePolicy": {
+    "groupIds": [
+      "samsung",
+      "sk",
+      "hyundai-motor",
+      "lg",
+      "hanwha"
+    ],
+    "questionTemplateIds": [
+      "news-disclosure-brief",
+      "financial-brief",
+      "market-risk-brief"
+    ],
+    "maxSamples": 15,
+    "requiredTraceLabels": [
+      "dart.disclosures",
+      "krx.market",
+      "news.search",
+      "claims.sourceBacked"
+    ]
+  },
+  "thresholds": {
+    "minSourceClaims": 3,
+    "requiredSectionLead": "핵심 인사이트",
+    "noBlockerSamples": true
+  },
+  "summary": {
+    "samples": 15,
+    "passSamples": 15,
+    "warningSamples": 0,
+    "blockerSamples": 0,
+    "averageScore": 100,
+    "checkFailures": {}
+  },
+  "samples": [
+    {
+      "scenarioId": "samsung-news-disclosure-brief",
+      "groupId": "samsung",
+      "label": "뉴스·공시 브리프",
+      "question": "삼성 최근 뉴스와 공시 기준으로 핵심 확인 포인트를 요약해줘",
+      "representativeCompanyId": "samsung-electronics",
+      "runtimeMode": "mixed",
+      "elapsedMs": 2537,
+      "answerLength": 1003,
+      "sourceClaimCount": 5,
+      "linkCount": 5,
+      "followUpCount": 4,
+      "traceArtifactPath": "evals/traces/run_f7a5184e-f9ff-4fcd-a217-0441c360a734.json",
+      "status": "pass",
+      "score": 100,
+      "checks": [
+        {
+          "id": "live-trace-contract",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "statuses": {
+              "dart.disclosures": "live",
+              "krx.market": "live",
+              "news.search": "live",
+              "wiki.context": "local",
+              "claims.sourceBacked": "local",
+              "llm.compose": "fixture"
+            },
+            "missing": [],
+            "nonLiveExternal": [],
+            "claimsLocal": true
+          }
+        },
+        {
+          "id": "source-claims-selected",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 5,
+            "uniqueCompanyIds": [
+              "samsung-electronics",
+              "samsung-sdi",
+              "samsung-ct"
+            ]
+          }
+        },
+        {
+          "id": "insight-first-section",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "sections": [
+              "핵심 인사이트",
+              "근거 신호",
+              "왜 중요한가",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ]
+          }
+        },
+        {
+          "id": "development-leak-absence",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "recommendation-safety",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "matches": []
+          }
+        },
+        {
+          "id": "source-link-package",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 5,
+            "hasDart": true,
+            "hasMarket": true,
+            "hasNews": true,
+            "hasOfficialOrClaim": true,
+            "labels": [
+              "삼성전자_2026_1Q_실적발표",
+              "주식등의대량보유상황보고서(일반)",
+              "DART 전자공시시스템",
+              "KRX 정보데이터시스템",
+              "[주요공시] 삼성전자, KT&G, 한국항공우주, 계룡건설산업, 다원시스, 젬..."
+            ]
+          }
+        },
+        {
+          "id": "follow-up-quality",
+          "severity": "blocker",
+          "passed": true,
+          "score": 10,
+          "details": {
+            "count": 4,
+            "developerFacing": [],
+            "generic": []
+          }
+        },
+        {
+          "id": "trace-export",
+          "severity": "blocker",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "path": "evals/traces/run_f7a5184e-f9ff-4fcd-a217-0441c360a734.json"
+          }
+        },
+        {
+          "id": "novice-or-pedagogical-tone",
+          "severity": "warning",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "matches": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "samsung-financial-brief",
+      "groupId": "samsung",
+      "label": "재무 브리프",
+      "question": "삼성 재무 브리프를 매출, 영업이익, 수익성 변화 중심으로 정리해줘",
+      "representativeCompanyId": "samsung-electronics",
+      "runtimeMode": "mixed",
+      "elapsedMs": 1874,
+      "answerLength": 601,
+      "sourceClaimCount": 5,
+      "linkCount": 5,
+      "followUpCount": 4,
+      "traceArtifactPath": "evals/traces/run_482e2869-6cd7-4253-9772-622635231dd2.json",
+      "status": "pass",
+      "score": 100,
+      "checks": [
+        {
+          "id": "live-trace-contract",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "statuses": {
+              "dart.disclosures": "live",
+              "krx.market": "live",
+              "news.search": "live",
+              "wiki.context": "local",
+              "claims.sourceBacked": "local",
+              "llm.compose": "fixture"
+            },
+            "missing": [],
+            "nonLiveExternal": [],
+            "claimsLocal": true
+          }
+        },
+        {
+          "id": "source-claims-selected",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 5,
+            "uniqueCompanyIds": [
+              "samsung-electronics",
+              "samsung-sdi",
+              "samsung-biologics"
+            ]
+          }
+        },
+        {
+          "id": "insight-first-section",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ]
+          }
+        },
+        {
+          "id": "development-leak-absence",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "recommendation-safety",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "matches": []
+          }
+        },
+        {
+          "id": "source-link-package",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 5,
+            "hasDart": true,
+            "hasMarket": true,
+            "hasNews": true,
+            "hasOfficialOrClaim": true,
+            "labels": [
+              "삼성전자_2026_1Q_실적발표",
+              "주식등의대량보유상황보고서(일반)",
+              "DART 전자공시시스템",
+              "KRX 정보데이터시스템",
+              "[주요공시] 삼성전자, KT&G, 한국항공우주, 계룡건설산업, 다원시스, 젬..."
+            ]
+          }
+        },
+        {
+          "id": "follow-up-quality",
+          "severity": "blocker",
+          "passed": true,
+          "score": 10,
+          "details": {
+            "count": 4,
+            "developerFacing": [],
+            "generic": []
+          }
+        },
+        {
+          "id": "trace-export",
+          "severity": "blocker",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "path": "evals/traces/run_482e2869-6cd7-4253-9772-622635231dd2.json"
+          }
+        },
+        {
+          "id": "novice-or-pedagogical-tone",
+          "severity": "warning",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "matches": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "samsung-market-risk-brief",
+      "groupId": "samsung",
+      "label": "시장·리스크 브리프",
+      "question": "삼성 주가와 최근 공시를 함께 보고 확인할 리스크 신호를 정리해줘",
+      "representativeCompanyId": "samsung-electronics",
+      "runtimeMode": "mixed",
+      "elapsedMs": 1882,
+      "answerLength": 1200,
+      "sourceClaimCount": 5,
+      "linkCount": 5,
+      "followUpCount": 4,
+      "traceArtifactPath": "evals/traces/run_56ad4fd6-e9c4-416d-8404-a7b913b3fad2.json",
+      "status": "pass",
+      "score": 100,
+      "checks": [
+        {
+          "id": "live-trace-contract",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "statuses": {
+              "dart.disclosures": "live",
+              "krx.market": "live",
+              "news.search": "live",
+              "wiki.context": "local",
+              "claims.sourceBacked": "local",
+              "llm.compose": "fixture"
+            },
+            "missing": [],
+            "nonLiveExternal": [],
+            "claimsLocal": true
+          }
+        },
+        {
+          "id": "source-claims-selected",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 5,
+            "uniqueCompanyIds": [
+              "samsung-electronics",
+              "samsung-sdi",
+              "samsung-ct"
+            ]
+          }
+        },
+        {
+          "id": "insight-first-section",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "sections": [
+              "핵심 인사이트",
+              "근거 신호",
+              "왜 중요한가",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ]
+          }
+        },
+        {
+          "id": "development-leak-absence",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "recommendation-safety",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "matches": []
+          }
+        },
+        {
+          "id": "source-link-package",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 5,
+            "hasDart": true,
+            "hasMarket": true,
+            "hasNews": true,
+            "hasOfficialOrClaim": true,
+            "labels": [
+              "삼성전자_2026_1Q_실적발표",
+              "주식등의대량보유상황보고서(일반)",
+              "DART 전자공시시스템",
+              "KRX 정보데이터시스템",
+              "[주요공시] 삼성전자, KT&G, 한국항공우주, 계룡건설산업, 다원시스, 젬..."
+            ]
+          }
+        },
+        {
+          "id": "follow-up-quality",
+          "severity": "blocker",
+          "passed": true,
+          "score": 10,
+          "details": {
+            "count": 4,
+            "developerFacing": [],
+            "generic": []
+          }
+        },
+        {
+          "id": "trace-export",
+          "severity": "blocker",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "path": "evals/traces/run_56ad4fd6-e9c4-416d-8404-a7b913b3fad2.json"
+          }
+        },
+        {
+          "id": "novice-or-pedagogical-tone",
+          "severity": "warning",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "matches": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "sk-news-disclosure-brief",
+      "groupId": "sk",
+      "label": "뉴스·공시 브리프",
+      "question": "SK 최근 뉴스와 공시 기준으로 핵심 확인 포인트를 요약해줘",
+      "representativeCompanyId": "sk-inc",
+      "runtimeMode": "mixed",
+      "elapsedMs": 1565,
+      "answerLength": 1248,
+      "sourceClaimCount": 5,
+      "linkCount": 5,
+      "followUpCount": 4,
+      "traceArtifactPath": "evals/traces/run_96e42ea1-4aac-4837-a74c-894fdaac881c.json",
+      "status": "pass",
+      "score": 100,
+      "checks": [
+        {
+          "id": "live-trace-contract",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "statuses": {
+              "dart.disclosures": "live",
+              "krx.market": "live",
+              "news.search": "live",
+              "wiki.context": "local",
+              "claims.sourceBacked": "local",
+              "llm.compose": "fixture"
+            },
+            "missing": [],
+            "nonLiveExternal": [],
+            "claimsLocal": true
+          }
+        },
+        {
+          "id": "source-claims-selected",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 5,
+            "uniqueCompanyIds": [
+              "sk-inc"
+            ]
+          }
+        },
+        {
+          "id": "insight-first-section",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "sections": [
+              "핵심 인사이트",
+              "근거 신호",
+              "왜 중요한가",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ]
+          }
+        },
+        {
+          "id": "development-leak-absence",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "recommendation-safety",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "matches": []
+          }
+        },
+        {
+          "id": "source-link-package",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 5,
+            "hasDart": true,
+            "hasMarket": true,
+            "hasNews": true,
+            "hasOfficialOrClaim": true,
+            "labels": [
+              "2024-10-282024_SK_Inc._기업가치_제고_계획",
+              "파생상품거래손실발생(자회사의 주요경영사항)              ",
+              "DART 전자공시시스템",
+              "KRX 정보데이터시스템",
+              "NHN 컨소시엄, 복지부 AI '스마트홈' 주관사 선정…\"재가 돌봄 표준 정립..."
+            ]
+          }
+        },
+        {
+          "id": "follow-up-quality",
+          "severity": "blocker",
+          "passed": true,
+          "score": 10,
+          "details": {
+            "count": 4,
+            "developerFacing": [],
+            "generic": []
+          }
+        },
+        {
+          "id": "trace-export",
+          "severity": "blocker",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "path": "evals/traces/run_96e42ea1-4aac-4837-a74c-894fdaac881c.json"
+          }
+        },
+        {
+          "id": "novice-or-pedagogical-tone",
+          "severity": "warning",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "matches": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "sk-financial-brief",
+      "groupId": "sk",
+      "label": "재무 브리프",
+      "question": "SK 재무 브리프를 매출, 영업이익, 수익성 변화 중심으로 정리해줘",
+      "representativeCompanyId": "sk-inc",
+      "runtimeMode": "mixed",
+      "elapsedMs": 2090,
+      "answerLength": 1203,
+      "sourceClaimCount": 5,
+      "linkCount": 5,
+      "followUpCount": 4,
+      "traceArtifactPath": "evals/traces/run_123407e9-d984-43cc-a417-c9433f85ae74.json",
+      "status": "pass",
+      "score": 100,
+      "checks": [
+        {
+          "id": "live-trace-contract",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "statuses": {
+              "dart.disclosures": "live",
+              "krx.market": "live",
+              "news.search": "live",
+              "wiki.context": "local",
+              "claims.sourceBacked": "local",
+              "llm.compose": "fixture"
+            },
+            "missing": [],
+            "nonLiveExternal": [],
+            "claimsLocal": true
+          }
+        },
+        {
+          "id": "source-claims-selected",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 5,
+            "uniqueCompanyIds": [
+              "sk-inc"
+            ]
+          }
+        },
+        {
+          "id": "insight-first-section",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "왜 중요한가",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ]
+          }
+        },
+        {
+          "id": "development-leak-absence",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "recommendation-safety",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "matches": []
+          }
+        },
+        {
+          "id": "source-link-package",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 5,
+            "hasDart": true,
+            "hasMarket": true,
+            "hasNews": true,
+            "hasOfficialOrClaim": true,
+            "labels": [
+              "2024-10-282024_SK_Inc._기업가치_제고_계획",
+              "파생상품거래손실발생(자회사의 주요경영사항)              ",
+              "DART 전자공시시스템",
+              "KRX 정보데이터시스템",
+              "NHN 컨소시엄, 복지부 AI '스마트홈' 주관사 선정…\"재가 돌봄 표준 정립..."
+            ]
+          }
+        },
+        {
+          "id": "follow-up-quality",
+          "severity": "blocker",
+          "passed": true,
+          "score": 10,
+          "details": {
+            "count": 4,
+            "developerFacing": [],
+            "generic": []
+          }
+        },
+        {
+          "id": "trace-export",
+          "severity": "blocker",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "path": "evals/traces/run_123407e9-d984-43cc-a417-c9433f85ae74.json"
+          }
+        },
+        {
+          "id": "novice-or-pedagogical-tone",
+          "severity": "warning",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "matches": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "sk-market-risk-brief",
+      "groupId": "sk",
+      "label": "시장·리스크 브리프",
+      "question": "SK 주가와 최근 공시를 함께 보고 확인할 리스크 신호를 정리해줘",
+      "representativeCompanyId": "sk-inc",
+      "runtimeMode": "mixed",
+      "elapsedMs": 1924,
+      "answerLength": 1248,
+      "sourceClaimCount": 5,
+      "linkCount": 5,
+      "followUpCount": 4,
+      "traceArtifactPath": "evals/traces/run_8c515ef7-bda5-40ac-bb80-c82aa460231c.json",
+      "status": "pass",
+      "score": 100,
+      "checks": [
+        {
+          "id": "live-trace-contract",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "statuses": {
+              "dart.disclosures": "live",
+              "krx.market": "live",
+              "news.search": "live",
+              "wiki.context": "local",
+              "claims.sourceBacked": "local",
+              "llm.compose": "fixture"
+            },
+            "missing": [],
+            "nonLiveExternal": [],
+            "claimsLocal": true
+          }
+        },
+        {
+          "id": "source-claims-selected",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 5,
+            "uniqueCompanyIds": [
+              "sk-inc"
+            ]
+          }
+        },
+        {
+          "id": "insight-first-section",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "sections": [
+              "핵심 인사이트",
+              "근거 신호",
+              "왜 중요한가",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ]
+          }
+        },
+        {
+          "id": "development-leak-absence",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "recommendation-safety",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "matches": []
+          }
+        },
+        {
+          "id": "source-link-package",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 5,
+            "hasDart": true,
+            "hasMarket": true,
+            "hasNews": true,
+            "hasOfficialOrClaim": true,
+            "labels": [
+              "2024-10-282024_SK_Inc._기업가치_제고_계획",
+              "파생상품거래손실발생(자회사의 주요경영사항)              ",
+              "DART 전자공시시스템",
+              "KRX 정보데이터시스템",
+              "NHN 컨소시엄, 복지부 AI '스마트홈' 주관사 선정…\"재가 돌봄 표준 정립..."
+            ]
+          }
+        },
+        {
+          "id": "follow-up-quality",
+          "severity": "blocker",
+          "passed": true,
+          "score": 10,
+          "details": {
+            "count": 4,
+            "developerFacing": [],
+            "generic": []
+          }
+        },
+        {
+          "id": "trace-export",
+          "severity": "blocker",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "path": "evals/traces/run_8c515ef7-bda5-40ac-bb80-c82aa460231c.json"
+          }
+        },
+        {
+          "id": "novice-or-pedagogical-tone",
+          "severity": "warning",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "matches": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "hyundai-motor-news-disclosure-brief",
+      "groupId": "hyundai-motor",
+      "label": "뉴스·공시 브리프",
+      "question": "현대자동차 최근 뉴스와 공시 기준으로 핵심 확인 포인트를 요약해줘",
+      "representativeCompanyId": "hyundai-motor",
+      "runtimeMode": "mixed",
+      "elapsedMs": 1766,
+      "answerLength": 749,
+      "sourceClaimCount": 3,
+      "linkCount": 5,
+      "followUpCount": 4,
+      "traceArtifactPath": "evals/traces/run_d1d497ab-ae3b-4e26-abc8-d248c6c64011.json",
+      "status": "pass",
+      "score": 100,
+      "checks": [
+        {
+          "id": "live-trace-contract",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "statuses": {
+              "dart.disclosures": "live",
+              "krx.market": "live",
+              "news.search": "live",
+              "wiki.context": "local",
+              "claims.sourceBacked": "local",
+              "llm.compose": "fixture"
+            },
+            "missing": [],
+            "nonLiveExternal": [],
+            "claimsLocal": true
+          }
+        },
+        {
+          "id": "source-claims-selected",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 3,
+            "uniqueCompanyIds": [
+              "hyundai-motor"
+            ]
+          }
+        },
+        {
+          "id": "insight-first-section",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "sections": [
+              "핵심 인사이트",
+              "근거 신호",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ]
+          }
+        },
+        {
+          "id": "development-leak-absence",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "recommendation-safety",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "matches": []
+          }
+        },
+        {
+          "id": "source-link-package",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 5,
+            "hasDart": true,
+            "hasMarket": true,
+            "hasNews": true,
+            "hasOfficialOrClaim": true,
+            "labels": [
+              "현대자동차 공식 IR 근거",
+              "기업설명회(IR)개최(안내공시)              ",
+              "DART 전자공시시스템",
+              "KRX 정보데이터시스템",
+              "현대차, 상용 대표 3종 '마이티·파비스·엑시언트' 출시"
+            ]
+          }
+        },
+        {
+          "id": "follow-up-quality",
+          "severity": "blocker",
+          "passed": true,
+          "score": 10,
+          "details": {
+            "count": 4,
+            "developerFacing": [],
+            "generic": []
+          }
+        },
+        {
+          "id": "trace-export",
+          "severity": "blocker",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "path": "evals/traces/run_d1d497ab-ae3b-4e26-abc8-d248c6c64011.json"
+          }
+        },
+        {
+          "id": "novice-or-pedagogical-tone",
+          "severity": "warning",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "matches": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "hyundai-motor-financial-brief",
+      "groupId": "hyundai-motor",
+      "label": "재무 브리프",
+      "question": "현대자동차 재무 브리프를 매출, 영업이익, 수익성 변화 중심으로 정리해줘",
+      "representativeCompanyId": "hyundai-motor",
+      "runtimeMode": "mixed",
+      "elapsedMs": 2193,
+      "answerLength": 704,
+      "sourceClaimCount": 3,
+      "linkCount": 5,
+      "followUpCount": 4,
+      "traceArtifactPath": "evals/traces/run_bc53d5f5-cbdd-4b5f-90c9-2c8f9dfc3fb3.json",
+      "status": "pass",
+      "score": 100,
+      "checks": [
+        {
+          "id": "live-trace-contract",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "statuses": {
+              "dart.disclosures": "live",
+              "krx.market": "live",
+              "news.search": "live",
+              "wiki.context": "local",
+              "claims.sourceBacked": "local",
+              "llm.compose": "fixture"
+            },
+            "missing": [],
+            "nonLiveExternal": [],
+            "claimsLocal": true
+          }
+        },
+        {
+          "id": "source-claims-selected",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 3,
+            "uniqueCompanyIds": [
+              "hyundai-motor"
+            ]
+          }
+        },
+        {
+          "id": "insight-first-section",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ]
+          }
+        },
+        {
+          "id": "development-leak-absence",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "recommendation-safety",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "matches": []
+          }
+        },
+        {
+          "id": "source-link-package",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 5,
+            "hasDart": true,
+            "hasMarket": true,
+            "hasNews": true,
+            "hasOfficialOrClaim": true,
+            "labels": [
+              "2025년 4분기 실적발표 자료",
+              "기업설명회(IR)개최(안내공시)              ",
+              "DART 전자공시시스템",
+              "KRX 정보데이터시스템",
+              "현대차, 상용 대표 3종 '마이티·파비스·엑시언트' 출시"
+            ]
+          }
+        },
+        {
+          "id": "follow-up-quality",
+          "severity": "blocker",
+          "passed": true,
+          "score": 10,
+          "details": {
+            "count": 4,
+            "developerFacing": [],
+            "generic": []
+          }
+        },
+        {
+          "id": "trace-export",
+          "severity": "blocker",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "path": "evals/traces/run_bc53d5f5-cbdd-4b5f-90c9-2c8f9dfc3fb3.json"
+          }
+        },
+        {
+          "id": "novice-or-pedagogical-tone",
+          "severity": "warning",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "matches": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "hyundai-motor-market-risk-brief",
+      "groupId": "hyundai-motor",
+      "label": "시장·리스크 브리프",
+      "question": "현대자동차 주가와 최근 공시를 함께 보고 확인할 리스크 신호를 정리해줘",
+      "representativeCompanyId": "hyundai-motor",
+      "runtimeMode": "mixed",
+      "elapsedMs": 1643,
+      "answerLength": 749,
+      "sourceClaimCount": 3,
+      "linkCount": 5,
+      "followUpCount": 4,
+      "traceArtifactPath": "evals/traces/run_70fe9d09-71cd-4219-863a-19b2d35f3bce.json",
+      "status": "pass",
+      "score": 100,
+      "checks": [
+        {
+          "id": "live-trace-contract",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "statuses": {
+              "dart.disclosures": "live",
+              "krx.market": "live",
+              "news.search": "live",
+              "wiki.context": "local",
+              "claims.sourceBacked": "local",
+              "llm.compose": "fixture"
+            },
+            "missing": [],
+            "nonLiveExternal": [],
+            "claimsLocal": true
+          }
+        },
+        {
+          "id": "source-claims-selected",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 3,
+            "uniqueCompanyIds": [
+              "hyundai-motor"
+            ]
+          }
+        },
+        {
+          "id": "insight-first-section",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "sections": [
+              "핵심 인사이트",
+              "근거 신호",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ]
+          }
+        },
+        {
+          "id": "development-leak-absence",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "recommendation-safety",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "matches": []
+          }
+        },
+        {
+          "id": "source-link-package",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 5,
+            "hasDart": true,
+            "hasMarket": true,
+            "hasNews": true,
+            "hasOfficialOrClaim": true,
+            "labels": [
+              "현대자동차 공식 IR 근거",
+              "기업설명회(IR)개최(안내공시)              ",
+              "DART 전자공시시스템",
+              "KRX 정보데이터시스템",
+              "현대차, 상용 대표 3종 '마이티·파비스·엑시언트' 출시"
+            ]
+          }
+        },
+        {
+          "id": "follow-up-quality",
+          "severity": "blocker",
+          "passed": true,
+          "score": 10,
+          "details": {
+            "count": 4,
+            "developerFacing": [],
+            "generic": []
+          }
+        },
+        {
+          "id": "trace-export",
+          "severity": "blocker",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "path": "evals/traces/run_70fe9d09-71cd-4219-863a-19b2d35f3bce.json"
+          }
+        },
+        {
+          "id": "novice-or-pedagogical-tone",
+          "severity": "warning",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "matches": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "lg-news-disclosure-brief",
+      "groupId": "lg",
+      "label": "뉴스·공시 브리프",
+      "question": "LG 최근 뉴스와 공시 기준으로 핵심 확인 포인트를 요약해줘",
+      "representativeCompanyId": "lg-corp",
+      "runtimeMode": "mixed",
+      "elapsedMs": 1866,
+      "answerLength": 765,
+      "sourceClaimCount": 5,
+      "linkCount": 5,
+      "followUpCount": 4,
+      "traceArtifactPath": "evals/traces/run_88a0d357-becb-44e1-8e09-cb6ff0e83ba2.json",
+      "status": "pass",
+      "score": 100,
+      "checks": [
+        {
+          "id": "live-trace-contract",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "statuses": {
+              "dart.disclosures": "live",
+              "krx.market": "live",
+              "news.search": "live",
+              "wiki.context": "local",
+              "claims.sourceBacked": "local",
+              "llm.compose": "fixture"
+            },
+            "missing": [],
+            "nonLiveExternal": [],
+            "claimsLocal": true
+          }
+        },
+        {
+          "id": "source-claims-selected",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 5,
+            "uniqueCompanyIds": [
+              "lg-electronics",
+              "lg-chem",
+              "lg-innotek"
+            ]
+          }
+        },
+        {
+          "id": "insight-first-section",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "sections": [
+              "핵심 인사이트",
+              "근거 신호",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ]
+          }
+        },
+        {
+          "id": "development-leak-absence",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "recommendation-safety",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "matches": []
+          }
+        },
+        {
+          "id": "source-link-package",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 5,
+            "hasDart": true,
+            "hasMarket": true,
+            "hasNews": true,
+            "hasOfficialOrClaim": true,
+            "labels": [
+              "2026_Q1_실적발표자료_KR",
+              "연결재무제표기준영업(잠정)실적(공정공시)              ",
+              "DART 전자공시시스템",
+              "KRX 정보데이터시스템",
+              "[주요공시] 삼성전자, KT&G, 한국항공우주, 계룡건설산업, 다원시스, 젬..."
+            ]
+          }
+        },
+        {
+          "id": "follow-up-quality",
+          "severity": "blocker",
+          "passed": true,
+          "score": 10,
+          "details": {
+            "count": 4,
+            "developerFacing": [],
+            "generic": []
+          }
+        },
+        {
+          "id": "trace-export",
+          "severity": "blocker",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "path": "evals/traces/run_88a0d357-becb-44e1-8e09-cb6ff0e83ba2.json"
+          }
+        },
+        {
+          "id": "novice-or-pedagogical-tone",
+          "severity": "warning",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "matches": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "lg-financial-brief",
+      "groupId": "lg",
+      "label": "재무 브리프",
+      "question": "LG 재무 브리프를 매출, 영업이익, 수익성 변화 중심으로 정리해줘",
+      "representativeCompanyId": "lg-corp",
+      "runtimeMode": "mixed",
+      "elapsedMs": 2148,
+      "answerLength": 720,
+      "sourceClaimCount": 5,
+      "linkCount": 5,
+      "followUpCount": 4,
+      "traceArtifactPath": "evals/traces/run_a88d5669-c227-4428-9b9a-be3559b1b5ca.json",
+      "status": "pass",
+      "score": 100,
+      "checks": [
+        {
+          "id": "live-trace-contract",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "statuses": {
+              "dart.disclosures": "live",
+              "krx.market": "live",
+              "news.search": "live",
+              "wiki.context": "local",
+              "claims.sourceBacked": "local",
+              "llm.compose": "fixture"
+            },
+            "missing": [],
+            "nonLiveExternal": [],
+            "claimsLocal": true
+          }
+        },
+        {
+          "id": "source-claims-selected",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 5,
+            "uniqueCompanyIds": [
+              "lg-electronics",
+              "lg-chem",
+              "lg-innotek"
+            ]
+          }
+        },
+        {
+          "id": "insight-first-section",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ]
+          }
+        },
+        {
+          "id": "development-leak-absence",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "recommendation-safety",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "matches": []
+          }
+        },
+        {
+          "id": "source-link-package",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 5,
+            "hasDart": true,
+            "hasMarket": true,
+            "hasNews": true,
+            "hasOfficialOrClaim": true,
+            "labels": [
+              "2026_Q1_실적발표자료_KR",
+              "연결재무제표기준영업(잠정)실적(공정공시)              ",
+              "DART 전자공시시스템",
+              "KRX 정보데이터시스템",
+              "[주요공시] 삼성전자, KT&G, 한국항공우주, 계룡건설산업, 다원시스, 젬..."
+            ]
+          }
+        },
+        {
+          "id": "follow-up-quality",
+          "severity": "blocker",
+          "passed": true,
+          "score": 10,
+          "details": {
+            "count": 4,
+            "developerFacing": [],
+            "generic": []
+          }
+        },
+        {
+          "id": "trace-export",
+          "severity": "blocker",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "path": "evals/traces/run_a88d5669-c227-4428-9b9a-be3559b1b5ca.json"
+          }
+        },
+        {
+          "id": "novice-or-pedagogical-tone",
+          "severity": "warning",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "matches": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "lg-market-risk-brief",
+      "groupId": "lg",
+      "label": "시장·리스크 브리프",
+      "question": "LG 주가와 최근 공시를 함께 보고 확인할 리스크 신호를 정리해줘",
+      "representativeCompanyId": "lg-corp",
+      "runtimeMode": "mixed",
+      "elapsedMs": 1761,
+      "answerLength": 544,
+      "sourceClaimCount": 5,
+      "linkCount": 5,
+      "followUpCount": 4,
+      "traceArtifactPath": "evals/traces/run_e268ba3d-9a5f-407e-a0f5-ba17f1bd7cac.json",
+      "status": "pass",
+      "score": 100,
+      "checks": [
+        {
+          "id": "live-trace-contract",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "statuses": {
+              "dart.disclosures": "live",
+              "krx.market": "live",
+              "news.search": "live",
+              "wiki.context": "local",
+              "claims.sourceBacked": "local",
+              "llm.compose": "fixture"
+            },
+            "missing": [],
+            "nonLiveExternal": [],
+            "claimsLocal": true
+          }
+        },
+        {
+          "id": "source-claims-selected",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 5,
+            "uniqueCompanyIds": [
+              "lg-electronics",
+              "lg-chem",
+              "lg-energy-solution",
+              "lg-innotek",
+              "lg-uplus"
+            ]
+          }
+        },
+        {
+          "id": "insight-first-section",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "sections": [
+              "핵심 인사이트",
+              "근거 신호",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ]
+          }
+        },
+        {
+          "id": "development-leak-absence",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "recommendation-safety",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "matches": []
+          }
+        },
+        {
+          "id": "source-link-package",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 5,
+            "hasDart": true,
+            "hasMarket": true,
+            "hasNews": true,
+            "hasOfficialOrClaim": true,
+            "labels": [
+              "LG 공식 IR 근거",
+              "연결재무제표기준영업(잠정)실적(공정공시)              ",
+              "DART 전자공시시스템",
+              "KRX 정보데이터시스템",
+              "[주요공시] 삼성전자, KT&G, 한국항공우주, 계룡건설산업, 다원시스, 젬..."
+            ]
+          }
+        },
+        {
+          "id": "follow-up-quality",
+          "severity": "blocker",
+          "passed": true,
+          "score": 10,
+          "details": {
+            "count": 4,
+            "developerFacing": [],
+            "generic": []
+          }
+        },
+        {
+          "id": "trace-export",
+          "severity": "blocker",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "path": "evals/traces/run_e268ba3d-9a5f-407e-a0f5-ba17f1bd7cac.json"
+          }
+        },
+        {
+          "id": "novice-or-pedagogical-tone",
+          "severity": "warning",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "matches": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "hanwha-news-disclosure-brief",
+      "groupId": "hanwha",
+      "label": "뉴스·공시 브리프",
+      "question": "한화 최근 뉴스와 공시 기준으로 핵심 확인 포인트를 요약해줘",
+      "representativeCompanyId": "hanwha",
+      "runtimeMode": "mixed",
+      "elapsedMs": 2230,
+      "answerLength": 854,
+      "sourceClaimCount": 5,
+      "linkCount": 5,
+      "followUpCount": 4,
+      "traceArtifactPath": "evals/traces/run_b953aa4d-430f-42e6-bd5c-b6ae61c39769.json",
+      "status": "pass",
+      "score": 100,
+      "checks": [
+        {
+          "id": "live-trace-contract",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "statuses": {
+              "dart.disclosures": "live",
+              "krx.market": "live",
+              "news.search": "live",
+              "wiki.context": "local",
+              "claims.sourceBacked": "local",
+              "llm.compose": "fixture"
+            },
+            "missing": [],
+            "nonLiveExternal": [],
+            "claimsLocal": true
+          }
+        },
+        {
+          "id": "source-claims-selected",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 5,
+            "uniqueCompanyIds": [
+              "hanwha"
+            ]
+          }
+        },
+        {
+          "id": "insight-first-section",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "sections": [
+              "핵심 인사이트",
+              "근거 신호",
+              "왜 중요한가",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ]
+          }
+        },
+        {
+          "id": "development-leak-absence",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "recommendation-safety",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "matches": []
+          }
+        },
+        {
+          "id": "source-link-package",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 5,
+            "hasDart": true,
+            "hasMarket": true,
+            "hasNews": true,
+            "hasOfficialOrClaim": true,
+            "labels": [
+              "(주)한화_4Q25 Earnings(연결)",
+              "중대재해발생              ",
+              "DART 전자공시시스템",
+              "KRX 정보데이터시스템",
+              "복귀전마저 0이닝 4실점…한화 김서현의 공은 어디로 향하는가"
+            ]
+          }
+        },
+        {
+          "id": "follow-up-quality",
+          "severity": "blocker",
+          "passed": true,
+          "score": 10,
+          "details": {
+            "count": 4,
+            "developerFacing": [],
+            "generic": []
+          }
+        },
+        {
+          "id": "trace-export",
+          "severity": "blocker",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "path": "evals/traces/run_b953aa4d-430f-42e6-bd5c-b6ae61c39769.json"
+          }
+        },
+        {
+          "id": "novice-or-pedagogical-tone",
+          "severity": "warning",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "matches": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "hanwha-financial-brief",
+      "groupId": "hanwha",
+      "label": "재무 브리프",
+      "question": "한화 재무 브리프를 매출, 영업이익, 수익성 변화 중심으로 정리해줘",
+      "representativeCompanyId": "hanwha",
+      "runtimeMode": "mixed",
+      "elapsedMs": 2272,
+      "answerLength": 857,
+      "sourceClaimCount": 5,
+      "linkCount": 5,
+      "followUpCount": 4,
+      "traceArtifactPath": "evals/traces/run_bcee5d9a-7f3f-483d-8c3e-f7a6f579b9c8.json",
+      "status": "pass",
+      "score": 100,
+      "checks": [
+        {
+          "id": "live-trace-contract",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "statuses": {
+              "dart.disclosures": "live",
+              "krx.market": "live",
+              "news.search": "live",
+              "wiki.context": "local",
+              "claims.sourceBacked": "local",
+              "llm.compose": "fixture"
+            },
+            "missing": [],
+            "nonLiveExternal": [],
+            "claimsLocal": true
+          }
+        },
+        {
+          "id": "source-claims-selected",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 5,
+            "uniqueCompanyIds": [
+              "hanwha"
+            ]
+          }
+        },
+        {
+          "id": "insight-first-section",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "왜 중요한가",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ]
+          }
+        },
+        {
+          "id": "development-leak-absence",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "recommendation-safety",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "matches": []
+          }
+        },
+        {
+          "id": "source-link-package",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 5,
+            "hasDart": true,
+            "hasMarket": true,
+            "hasNews": true,
+            "hasOfficialOrClaim": true,
+            "labels": [
+              "1. (주)한화, 기업설명회_20260114",
+              "중대재해발생              ",
+              "DART 전자공시시스템",
+              "KRX 정보데이터시스템",
+              "복귀전마저 0이닝 4실점…한화 김서현의 공은 어디로 향하는가"
+            ]
+          }
+        },
+        {
+          "id": "follow-up-quality",
+          "severity": "blocker",
+          "passed": true,
+          "score": 10,
+          "details": {
+            "count": 4,
+            "developerFacing": [],
+            "generic": []
+          }
+        },
+        {
+          "id": "trace-export",
+          "severity": "blocker",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "path": "evals/traces/run_bcee5d9a-7f3f-483d-8c3e-f7a6f579b9c8.json"
+          }
+        },
+        {
+          "id": "novice-or-pedagogical-tone",
+          "severity": "warning",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "matches": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "hanwha-market-risk-brief",
+      "groupId": "hanwha",
+      "label": "시장·리스크 브리프",
+      "question": "한화 주가와 최근 공시를 함께 보고 확인할 리스크 신호를 정리해줘",
+      "representativeCompanyId": "hanwha",
+      "runtimeMode": "mixed",
+      "elapsedMs": 1917,
+      "answerLength": 854,
+      "sourceClaimCount": 5,
+      "linkCount": 5,
+      "followUpCount": 4,
+      "traceArtifactPath": "evals/traces/run_ddb220dc-35b7-4f3a-a381-f7c5e926af01.json",
+      "status": "pass",
+      "score": 100,
+      "checks": [
+        {
+          "id": "live-trace-contract",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "statuses": {
+              "dart.disclosures": "live",
+              "krx.market": "live",
+              "news.search": "live",
+              "wiki.context": "local",
+              "claims.sourceBacked": "local",
+              "llm.compose": "fixture"
+            },
+            "missing": [],
+            "nonLiveExternal": [],
+            "claimsLocal": true
+          }
+        },
+        {
+          "id": "source-claims-selected",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 5,
+            "uniqueCompanyIds": [
+              "hanwha"
+            ]
+          }
+        },
+        {
+          "id": "insight-first-section",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "sections": [
+              "핵심 인사이트",
+              "근거 신호",
+              "왜 중요한가",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ]
+          }
+        },
+        {
+          "id": "development-leak-absence",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "recommendation-safety",
+          "severity": "blocker",
+          "passed": true,
+          "score": 14,
+          "details": {
+            "matches": []
+          }
+        },
+        {
+          "id": "source-link-package",
+          "severity": "blocker",
+          "passed": true,
+          "score": 12,
+          "details": {
+            "count": 5,
+            "hasDart": true,
+            "hasMarket": true,
+            "hasNews": true,
+            "hasOfficialOrClaim": true,
+            "labels": [
+              "(주)한화_4Q25 Earnings(연결)",
+              "중대재해발생              ",
+              "DART 전자공시시스템",
+              "KRX 정보데이터시스템",
+              "복귀전마저 0이닝 4실점…한화 김서현의 공은 어디로 향하는가"
+            ]
+          }
+        },
+        {
+          "id": "follow-up-quality",
+          "severity": "blocker",
+          "passed": true,
+          "score": 10,
+          "details": {
+            "count": 4,
+            "developerFacing": [],
+            "generic": []
+          }
+        },
+        {
+          "id": "trace-export",
+          "severity": "blocker",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "path": "evals/traces/run_ddb220dc-35b7-4f3a-a381-f7c5e926af01.json"
+          }
+        },
+        {
+          "id": "novice-or-pedagogical-tone",
+          "severity": "warning",
+          "passed": true,
+          "score": 6,
+          "details": {
+            "matches": []
+          }
+        }
+      ]
+    }
+  ]
+}

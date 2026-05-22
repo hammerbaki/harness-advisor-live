@@ -1,0 +1,191 @@
+{
+  "schemaVersion": "client-source-request-template.v0.1",
+  "policyVersion": "2026-05-01",
+  "purpose": "Define precise client document requests for building traceable investor-advisor knowledge systems without asking for all related documents. The required unit is source provenance, not necessarily a stable document-level download URL.",
+  "forbiddenRequestPattern": {
+    "pattern": "Please send all related documents.",
+    "reason": "This creates unbounded scope, duplicates, rights problems, privacy risk, and unverifiable knowledge ingestion."
+  },
+  "requestPrinciples": [
+    {
+      "id": "REQ-01",
+      "name": "use-case first",
+      "rule": "Every requested document must map to a named advisor use case, claim class, evaluation scenario, or UI/runtime feature."
+    },
+    {
+      "id": "REQ-02",
+      "name": "source type before file names",
+      "rule": "Ask for document categories and metadata first; ask for files only when the source type is required by the knowledge plan."
+    },
+    {
+      "id": "REQ-03",
+      "name": "public source preferred",
+      "rule": "Prefer stable public document URLs, DART receipt numbers, KRX identifiers, and official IR source pages before requesting uploaded files. When the issuer uses dynamic or session-based downloads, record the official source page, exact document title, period, local file name, checksum, and access date."
+    },
+    {
+      "id": "REQ-04",
+      "name": "latest and bounded by default",
+      "rule": "Default time scope is latest fiscal year, latest four quarters, latest value-up/shareholder-return materials, and latest governance baselines unless a longitudinal claim requires more."
+    },
+    {
+      "id": "REQ-05",
+      "name": "rights and confidentiality explicit",
+      "rule": "Every source must indicate whether it is public, client-confidential, licensed third-party, or restricted."
+    },
+    {
+      "id": "REQ-06",
+      "name": "no raw dumps",
+      "rule": "Do not accept unsorted email archives, chat exports, shared-drive dumps, contract folders, or press clipping folders unless a narrow claim-driven request has been approved."
+    },
+    {
+      "id": "REQ-07",
+      "name": "minimum metadata required",
+      "rule": "Each source must include title, issuer/publisher, date or period, source-page URL, public document URL or filing ID when available, file origin when uploaded, owner/contact when non-public, rights level, and intended use."
+    }
+  ],
+  "requestPackages": [
+    {
+      "id": "PKG-01",
+      "name": "company identity and market identifiers",
+      "requiredFor": ["target setup", "DART/KRX/news routing", "group selector"],
+      "askFor": [
+        "listed entity names in Korean and English",
+        "KRX ticker codes",
+        "DART corp codes or DART profile links",
+        "official IR website URLs",
+        "representative subsidiaries included in scope"
+      ],
+      "doNotAskFor": [
+        "all subsidiary documents",
+        "internal org charts not used in public investor communication"
+      ]
+    },
+    {
+      "id": "PKG-02",
+      "name": "financial disclosure baseline",
+      "requiredFor": ["financial claims", "segment claims", "risk claims"],
+      "askFor": [
+        "latest annual report",
+        "latest four quarterly or semiannual reports",
+        "restated or corrected reports affecting the selected period",
+        "DART receipt numbers or public filing URLs"
+      ],
+      "defaultPeriod": "latest fiscal year plus latest four quarters",
+      "doNotAskFor": [
+        "full historical archive unless trend analysis requires it",
+        "spreadsheet exports without source period or owner"
+      ]
+    },
+    {
+      "id": "PKG-03",
+      "name": "earnings and investor presentation baseline",
+      "requiredFor": ["news brief", "stock brief", "investor thesis", "demo screenshots"],
+      "askFor": [
+        "latest four earnings presentations",
+        "latest investor day or corporate presentation",
+        "official transcript or replay link if the transcript is already public",
+        "latest value-up or shareholder-return presentation"
+      ],
+      "defaultPeriod": "latest four quarters and current strategic event",
+      "doNotAskFor": [
+        "audio files without transcripts unless voice-demo evaluation requires them",
+        "old IR decks unless a specific claim needs them"
+      ]
+    },
+    {
+      "id": "PKG-04",
+      "name": "shareholder value and capital action baseline",
+      "requiredFor": ["value-up claims", "capital allocation", "shareholder return", "governance-sensitive answers"],
+      "askFor": [
+        "value-up plan",
+        "dividend policy",
+        "buyback or cancellation notice",
+        "preferred-share or capital action documents",
+        "spin-off, merger, split-off, or restructuring presentation"
+      ],
+      "doNotAskFor": [
+        "board deliberation materials unless explicitly approved for confidential analysis",
+        "draft plans not approved for model ingestion"
+      ]
+    },
+    {
+      "id": "PKG-05",
+      "name": "governance and disclosure baseline",
+      "requiredFor": ["governance claims", "risk controls", "board/committee explanations"],
+      "askFor": [
+        "articles of incorporation",
+        "corporate governance charter",
+        "board rules",
+        "committee rules",
+        "disclosure policy",
+        "shareholder meeting materials relevant to current claims"
+      ],
+      "doNotAskFor": [
+        "personal data on directors beyond public disclosures",
+        "meeting minutes unless a narrow confidential workflow is approved"
+      ]
+    },
+    {
+      "id": "PKG-06",
+      "name": "market-view comparison",
+      "requiredFor": ["external view comparison", "contradiction checks", "sales demo"],
+      "askFor": [
+        "public analyst report links or bibliographic metadata",
+        "licensed report titles and dates if the client has usage rights",
+        "internal summary note that is cleared for use"
+      ],
+      "doNotAskFor": [
+        "licensed report PDFs unless redistribution and model-use rights are explicit",
+        "unattributed market rumors"
+      ]
+    },
+    {
+      "id": "PKG-07",
+      "name": "commercial operating context",
+      "requiredFor": ["client-specific deployment", "private operating advisor", "workflow integration"],
+      "askFor": [
+        "approved user roles",
+        "allowed answer scope",
+        "prohibited topics",
+        "approved data retention policy",
+        "contact for source verification"
+      ],
+      "doNotAskFor": [
+        "employee personal data",
+        "customer personal data",
+        "contracts, emails, or chat logs unless narrowed and approved"
+      ]
+    }
+  ],
+  "intakeSpreadsheetColumns": [
+    "requestPackageId",
+    "sourceTitle",
+    "issuerOrPublisher",
+    "sourceDateOrPeriod",
+    "sourceType",
+    "sourcePageUrl",
+    "publicDocumentUrl",
+    "dartReceiptUrlOrFilingId",
+    "fileNameIfUploaded",
+    "localChecksumIfKnown",
+    "rightsLevel",
+    "confidentialityLevel",
+    "intendedClaimOrUseCase",
+    "sourceOwner",
+    "notes"
+  ],
+  "rightsLevels": [
+    "public-official",
+    "public-third-party",
+    "client-confidential-approved",
+    "licensed-third-party-metadata-only",
+    "restricted-do-not-ingest"
+  ],
+  "acceptanceCriteria": [
+    "Each uploaded or linked source maps to at least one request package.",
+    "Each source has a date or covered period.",
+    "Each source has rights and confidentiality labels.",
+    "Each public source has source provenance: a source-page URL, public document URL, DART/public filing ID, or a documented reason why only local-file evidence is available.",
+    "No source is promoted to wiki/runtime context before claim-level traceability is recorded."
+  ]
+}

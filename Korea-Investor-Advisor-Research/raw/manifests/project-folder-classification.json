@@ -1,0 +1,121 @@
+{
+  "schemaVersion": "project-folder-classification.v0.1",
+  "generatedAt": "2026-05-05T12:21:57.537Z",
+  "projectRoot": "/Users/jj/Library/CloudStorage/OneDrive-개인/Research/6. Value Investment AI Advisor",
+  "repoRoot": "/Users/jj/Library/CloudStorage/OneDrive-개인/Research/6. Value Investment AI Advisor/Korea-Investor-Advisor-Research",
+  "policy": "Do not physically move active roots until scripts, docs, Replit export, and paper build paths are path-agnostic. Use this taxonomy first as a stable classification layer.",
+  "proposedFutureRootShape": [
+    "app/ or Korea-Investor-Advisor-Research/",
+    "sources/knowledge-base/ or Knowledge Base/",
+    "sources/incoming/",
+    "papers/arxiv/",
+    "references/",
+    "archive/original-poc/"
+  ],
+  "records": [
+    {
+      "path": "Korea-Investor-Advisor-Research",
+      "class": "current-product-research-repository",
+      "role": "Vite/React product, Node API, manifests, extracted text, wiki, evaluation, and reproducibility scripts.",
+      "currentAction": "keep-as-active-root",
+      "futureAction": "May be renamed to app/ only after all scripts and deployment docs are path-agnostic.",
+      "moveRisk": "high",
+      "exists": true,
+      "kind": "directory",
+      "fileCount": 1359,
+      "dirCount": 73,
+      "bytes": 147609190
+    },
+    {
+      "path": "Knowledge Base",
+      "class": "raw-source-package",
+      "role": "User/client supplied official IR, DART, PDF, PPT, and source URL packages.",
+      "currentAction": "keep-outside-repo-as-immutable-source-root",
+      "futureAction": "May become sources/knowledge-base after inventory scripts support SOURCE_ROOT.",
+      "moveRisk": "high",
+      "exists": true,
+      "kind": "directory",
+      "fileCount": 606,
+      "dirCount": 175,
+      "bytes": 1371488371
+    },
+    {
+      "path": "HanWha-Advisor-main",
+      "class": "original-poc-archive",
+      "role": "Read-only reference snapshot from the Replit-built Hanwha advisor PoC.",
+      "currentAction": "keep-read-only-and-do-not-mix-with-clean-runtime",
+      "futureAction": "May become archive/original-poc/HanWha-Advisor-main after source references are stabilized.",
+      "moveRisk": "medium",
+      "exists": true,
+      "kind": "directory",
+      "fileCount": 537,
+      "dirCount": 74,
+      "bytes": 8216775
+    },
+    {
+      "path": "arxiv-paper",
+      "class": "paper-workspace",
+      "role": "Paused arXiv LaTeX draft workspace; product development remains priority.",
+      "currentAction": "keep-separate-from-product-until-product-freeze",
+      "futureAction": "May become papers/arxiv after paper build paths are checked.",
+      "moveRisk": "medium",
+      "exists": true,
+      "kind": "directory",
+      "fileCount": 23,
+      "dirCount": 8,
+      "bytes": 427163
+    },
+    {
+      "path": "ir_download",
+      "class": "incoming-source-staging",
+      "role": "External source download staging area already reconciled against Knowledge Base by SHA-256.",
+      "currentAction": "keep-temporarily-for-audit-replay",
+      "futureAction": "Archive after no pending source drops depend on this folder.",
+      "moveRisk": "medium",
+      "exists": true,
+      "kind": "directory",
+      "fileCount": 210,
+      "dirCount": 7,
+      "bytes": 597035764
+    },
+    {
+      "path": "ElizaOS.pdf",
+      "class": "reference-paper",
+      "role": "External paper used for structure benchmarking.",
+      "currentAction": "keep-at-project-root-until-reference-folder-is-approved",
+      "futureAction": "Move to references/papers/ElizaOS.pdf in physical migration stage.",
+      "moveRisk": "low",
+      "exists": true,
+      "kind": "file",
+      "fileCount": 1,
+      "dirCount": 0,
+      "bytes": 2775275
+    },
+    {
+      "path": "electronics-14-04161-v2.pdf",
+      "class": "author-prior-paper",
+      "role": "Previously published AI marketing automation agent paper used as related/prior work reference.",
+      "currentAction": "keep-at-project-root-until-reference-folder-is-approved",
+      "futureAction": "Move to references/prior-work/electronics-14-04161-v2.pdf in physical migration stage.",
+      "moveRisk": "low",
+      "exists": true,
+      "kind": "file",
+      "fileCount": 1,
+      "dirCount": 0,
+      "bytes": 16160188
+    },
+    {
+      "path": ".DS_Store",
+      "class": "local-system-file",
+      "role": "macOS metadata, not project evidence.",
+      "currentAction": "ignore",
+      "futureAction": "Remove during repository packaging, not during source classification.",
+      "moveRisk": "low",
+      "exists": true,
+      "kind": "file",
+      "fileCount": 1,
+      "dirCount": 0,
+      "bytes": 18436
+    }
+  ]
+}

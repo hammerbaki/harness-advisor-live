@@ -1,0 +1,175 @@
+{
+  "schemaVersion": "advisor-eval-scenarios.v0.1",
+  "scenarioSetId": "lg-reference-slice-v0.1",
+  "groupId": "lg",
+  "stage": "fourth-transfer-five-company-reference-slice",
+  "createdAt": "2026-05-05",
+  "purpose": "Freeze the LG five-company reference-slice questions after OpenDART identifier verification, annual financial extraction, source-backed claim promotion, and wiki seed compilation. This tests whether the common harness can route LG affiliates and produce bounded investor-facing financial answers across the selected first-slice companies.",
+  "paperUse": {
+    "allowedClaim": "LG demonstrates a fourth transfer slice using the same identifier verification, DART financial table, source-backed claim manifest, wiki namespace, and evaluation scenario schemas across five selected listed companies.",
+    "notAllowedClaim": "These scenarios do not prove full LG Group coverage, official IR narrative coverage, live news coverage, or commercial investment-advisory readiness.",
+    "expansionNote": "Future LG expansion should add exact document URLs, local official files, extraction reports, narrative claim queues, and promoted narrative claims without changing the common runtime schema."
+  },
+  "runtimeAssumptions": {
+    "presentationMode": "text",
+    "currentExpectedRuntimeMode": "mixed",
+    "allowedRuntimeModesAfterLiveApi": ["mixed", "fallback", "live"],
+    "expectedTraceSteps": [
+      "dart.disclosures",
+      "krx.market",
+      "news.search",
+      "wiki.context",
+      "claims.sourceBacked",
+      "llm.compose"
+    ],
+    "requiredTraceFields": [
+      "schemaVersion",
+      "runId",
+      "generatedAt",
+      "runtimeMode",
+      "groupId",
+      "representativeCompanyId",
+      "questionHash",
+      "promptPolicyHash",
+      "promptPolicyVersion",
+      "llmMode",
+      "llmOutputContractVersion",
+      "llmOutputContractStatus",
+      "statusCounts",
+      "reproducibility"
+    ],
+    "answerPolicy": [
+      "Answer must be investor-facing Korean prose, not development-status prose.",
+      "Visible answer must not expose raw source-backed claim IDs.",
+      "Answer must disclose when latest news or market data is not connected live.",
+      "Named-affiliate questions must route to that affiliate even though the visible UI stays group-level.",
+      "Narrative strategy, shareholder-return, battery, OLED, and appliance claims must not be inferred from unreviewed IR materials until source-backed narrative claims are promoted."
+    ],
+    "claimMatchPolicy": "expectedClaimIds are minimum required source-backed financial claims. Additional selected claims are allowed only when they are affiliate-scoped and relevant."
+  },
+  "scenarios": [
+    {
+      "id": "lg-frozen-001-electronics-financial-trend",
+      "title": "LG Electronics revenue and operating-income trend",
+      "question": "LG전자 2024년 매출액과 영업이익을 2023년과 비교해서 정리해줘",
+      "intent": "Check whether LG Electronics questions route to LG Electronics and select OpenDART annual financial metric and trend claims.",
+      "expectedRepresentativeCompanyId": "lg-electronics",
+      "expectedClaimIds": [
+        "lg-sbc-011",
+        "lg-sbc-001",
+        "lg-sbc-006"
+      ],
+      "requiredAnswerSignals": [
+        "LG전자",
+        "2024년",
+        "매출액",
+        "영업이익",
+        "OpenDART"
+      ],
+      "paperTableBucket": "lg_affiliate_routing_electronics_financial_grounding"
+    },
+    {
+      "id": "lg-frozen-002-chem-financial-trend",
+      "title": "LG Chem revenue and operating-income trend",
+      "question": "LG화학 2024년 실적을 매출액과 영업이익 기준으로 전년과 비교해줘",
+      "intent": "Check whether LG Chem questions route to LG Chem and preserve strict DART account labels.",
+      "expectedRepresentativeCompanyId": "lg-chem",
+      "expectedClaimIds": [
+        "lg-sbc-012",
+        "lg-sbc-002",
+        "lg-sbc-007"
+      ],
+      "requiredAnswerSignals": [
+        "LG화학",
+        "2024년",
+        "매출액",
+        "영업이익",
+        "OpenDART"
+      ],
+      "paperTableBucket": "lg_affiliate_routing_chem_financial_grounding"
+    },
+    {
+      "id": "lg-frozen-003-energy-solution-financial-trend",
+      "title": "LG Energy Solution revenue and operating-income trend",
+      "question": "LG에너지솔루션 2024년 매출액과 영업이익 변화를 전년 대비로 설명해줘",
+      "intent": "Check whether LG Energy Solution questions route to LG Energy Solution and avoid unpromoted battery narrative claims.",
+      "expectedRepresentativeCompanyId": "lg-energy-solution",
+      "expectedClaimIds": [
+        "lg-sbc-013",
+        "lg-sbc-003",
+        "lg-sbc-008"
+      ],
+      "requiredAnswerSignals": [
+        "LG에너지솔루션",
+        "2024년",
+        "매출액",
+        "영업이익",
+        "OpenDART"
+      ],
+      "paperTableBucket": "lg_affiliate_routing_energy_solution_financial_grounding"
+    },
+    {
+      "id": "lg-frozen-004-innotek-financial-trend",
+      "title": "LG Innotek revenue, operating income, and recent quarter",
+      "question": "LG이노텍 최근 실적과 2024년 매출액·영업이익 흐름을 함께 정리해줘",
+      "intent": "Check whether LG Innotek questions route to LG Innotek and combine OpenDART annual trend claims with the promoted issuer IR preliminary-result claim.",
+      "expectedRepresentativeCompanyId": "lg-innotek",
+      "expectedClaimIds": [
+        "lg-sbc-014",
+        "lg-sbc-004",
+        "lg-sbc-009"
+      ],
+      "requiredAnswerSignals": [
+        "LG이노텍",
+        "2024년",
+        "매출액",
+        "영업이익",
+        "OpenDART"
+      ],
+      "paperTableBucket": "lg_affiliate_routing_innotek_financial_grounding"
+    },
+    {
+      "id": "lg-frozen-005-uplus-financial-trend",
+      "title": "LG Uplus revenue, operating income, and service revenue",
+      "question": "LG유플러스 최근 실적과 2024년 매출액·영업이익 흐름을 함께 정리해줘",
+      "intent": "Check whether LG Uplus questions route to LG Uplus and combine OpenDART annual trend claims with the promoted issuer IR service-revenue claim.",
+      "expectedRepresentativeCompanyId": "lg-uplus",
+      "expectedClaimIds": [
+        "lg-sbc-015",
+        "lg-sbc-005",
+        "lg-sbc-010"
+      ],
+      "requiredAnswerSignals": [
+        "LG유플러스",
+        "2024년",
+        "매출액",
+        "영업이익",
+        "OpenDART"
+      ],
+      "paperTableBucket": "lg_affiliate_routing_uplus_financial_grounding"
+    },
+    {
+      "id": "lg-frozen-006-electronics-chem-comparison",
+      "title": "LG Electronics and LG Chem financial comparison",
+      "question": "LG전자와 LG화학의 2024년 매출액과 영업이익 흐름을 비교해줘",
+      "intent": "Check whether a cross-affiliate LG comparison preserves explicit company mentions, selects source-backed financial claims, and keeps the response within promoted evidence.",
+      "expectedRepresentativeCompanyId": "lg-electronics",
+      "expectedClaimIds": [
+        "lg-sbc-002",
+        "lg-sbc-001",
+        "lg-sbc-006",
+        "lg-sbc-007",
+        "lg-sbc-011"
+      ],
+      "requiredAnswerSignals": [
+        "LG전자",
+        "LG화학",
+        "2024년",
+        "매출액",
+        "영업이익",
+        "OpenDART"
+      ],
+      "paperTableBucket": "lg_cross_affiliate_financial_comparison"
+    }
+  ]
+}

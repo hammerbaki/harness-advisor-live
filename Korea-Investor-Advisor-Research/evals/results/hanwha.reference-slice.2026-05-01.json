@@ -1,0 +1,122 @@
+{
+  "schemaVersion": "advisor-eval-result-summary.v0.1",
+  "scenarioSetId": "hanwha-reference-slice-v0.1",
+  "groupId": "hanwha",
+  "evaluatedAt": "2026-05-01",
+  "stage": "pre-api-template-freeze",
+  "summary": {
+    "scenarioCount": 5,
+    "allRequiredClaimsPresent": true,
+    "allAnswersInvestorFacing": true,
+    "allAnswersCleanOfDevelopmentTerms": true,
+    "runtimeModeObserved": "mixed",
+    "interpretation": "The Hanwha reference slice is suitable as a frozen pre-API evaluation baseline, but not as evidence of fully live operation."
+  },
+  "paperUse": {
+    "recommendedFigureScenarioId": "hanwha-frozen-001-investment-brief",
+    "recommendedTableScenarios": [
+      "hanwha-frozen-002-financial-performance",
+      "hanwha-frozen-003-business-pipeline",
+      "hanwha-frozen-004-value-up",
+      "hanwha-frozen-005-governance-disclosure"
+    ],
+    "claim": "A vibe-coded Hanwha PoC can be reconstructed into a traceable source-backed advisor reference slice.",
+    "limitation": "The result summary is based on pre-API mixed-mode runs. It does not claim fully live data coverage or five-group production readiness."
+  },
+  "results": [
+    {
+      "scenarioId": "hanwha-frozen-001-investment-brief",
+      "traceFile": "evals/traces/run_84fd2953-8571-4e96-9283-3a8bab434545.json",
+      "runtimeMode": "mixed",
+      "expectedClaimIds": [
+        "hanwha-sbc-001",
+        "hanwha-sbc-003",
+        "hanwha-sbc-004",
+        "hanwha-sbc-005"
+      ],
+      "observedClaimIds": [
+        "hanwha-sbc-003",
+        "hanwha-sbc-004",
+        "hanwha-sbc-005",
+        "hanwha-sbc-001"
+      ],
+      "requiredClaimsPresent": true,
+      "answerCleanOfDevelopmentTerms": true,
+      "paperTableBucket": "general_investment_summary"
+    },
+    {
+      "scenarioId": "hanwha-frozen-002-financial-performance",
+      "traceFile": "evals/traces/run_f1f770be-16c6-4fbf-9f07-c2cc5d00e7f4.json",
+      "runtimeMode": "mixed",
+      "expectedClaimIds": [
+        "hanwha-sbc-001",
+        "hanwha-sbc-002"
+      ],
+      "observedClaimIds": [
+        "hanwha-sbc-001",
+        "hanwha-sbc-002",
+        "hanwha-sbc-007",
+        "hanwha-sbc-003"
+      ],
+      "requiredClaimsPresent": true,
+      "answerCleanOfDevelopmentTerms": true,
+      "paperTableBucket": "financial_metric_grounding"
+    },
+    {
+      "scenarioId": "hanwha-frozen-003-business-pipeline",
+      "traceFile": "evals/traces/run_a2f28b05-6a2a-4be2-b2e7-e617c2e34254.json",
+      "runtimeMode": "mixed",
+      "expectedClaimIds": [
+        "hanwha-sbc-003",
+        "hanwha-sbc-004"
+      ],
+      "observedClaimIds": [
+        "hanwha-sbc-003",
+        "hanwha-sbc-004",
+        "hanwha-sbc-005",
+        "hanwha-sbc-001"
+      ],
+      "requiredClaimsPresent": true,
+      "answerCleanOfDevelopmentTerms": true,
+      "paperTableBucket": "business_pipeline_grounding"
+    },
+    {
+      "scenarioId": "hanwha-frozen-004-value-up",
+      "traceFile": "evals/traces/run_237d858c-27e6-425a-826d-455fc2b14cb7.json",
+      "runtimeMode": "mixed",
+      "expectedClaimIds": [
+        "hanwha-sbc-006",
+        "hanwha-sbc-007",
+        "hanwha-sbc-008",
+        "hanwha-sbc-009"
+      ],
+      "observedClaimIds": [
+        "hanwha-sbc-006",
+        "hanwha-sbc-007",
+        "hanwha-sbc-008",
+        "hanwha-sbc-009"
+      ],
+      "requiredClaimsPresent": true,
+      "answerCleanOfDevelopmentTerms": true,
+      "paperTableBucket": "value_up_grounding"
+    },
+    {
+      "scenarioId": "hanwha-frozen-005-governance-disclosure",
+      "traceFile": "evals/traces/run_5bc3ad06-e6fe-413e-81c3-746c34583a1e.json",
+      "runtimeMode": "mixed",
+      "expectedClaimIds": [
+        "hanwha-sbc-010",
+        "hanwha-sbc-011"
+      ],
+      "observedClaimIds": [
+        "hanwha-sbc-010",
+        "hanwha-sbc-011",
+        "hanwha-sbc-001",
+        "hanwha-sbc-002"
+      ],
+      "requiredClaimsPresent": true,
+      "answerCleanOfDevelopmentTerms": true,
+      "paperTableBucket": "governance_process_grounding"
+    }
+  ]
+}

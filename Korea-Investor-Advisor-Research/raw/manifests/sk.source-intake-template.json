@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "source-intake-template.v0.1",
+  "groupId": "sk",
+  "generatedAt": "2026-05-05T14:35:00.000+09:00",
+  "status": "bounded-source-backed-reference-slice-url-reconciliation-pending",
+  "purpose": "Normalize SK source intake around the common source-to-claim harness. SK has financial and narrative seed claims, but some document URL ledger records still need reconciliation before broader claim promotion.",
+  "localKnowledgeRootExpected": "../Knowledge Base/sk_knowledge",
+  "ledgerExpected": "../Knowledge Base/sk_knowledge/document_urls.md",
+  "firstSliceCompanies": [
+    {
+      "companyId": "sk-hynix",
+      "koreanName": "SK하이닉스",
+      "displayName": "SK Hynix",
+      "krxCode": "000660",
+      "dartCode": "00164779",
+      "folderName": "sk_hynix"
+    },
+    {
+      "companyId": "sk-innovation",
+      "koreanName": "SK이노베이션",
+      "displayName": "SK Innovation",
+      "krxCode": "096770",
+      "dartCode": "00631518",
+      "folderName": "sk_innovation"
+    },
+    {
+      "companyId": "sk-inc",
+      "koreanName": "SK",
+      "displayName": "SK Inc.",
+      "krxCode": "034730",
+      "dartCode": "00181712",
+      "folderName": "sk_inc"
+    },
+    {
+      "companyId": "sk-telecom",
+      "koreanName": "SK텔레콤",
+      "displayName": "SK Telecom",
+      "krxCode": "017670",
+      "dartCode": "00159023",
+      "folderName": "sk_telecom"
+    },
+    {
+      "companyId": "sk-square",
+      "koreanName": "SK스퀘어",
+      "displayName": "SK Square",
+      "krxCode": "402340",
+      "dartCode": "01596425",
+      "folderName": "sk_square",
+      "collectionStatus": "source-package-needed"
+    }
+  ],
+  "ledgerColumns": [
+    "company",
+    "companyId",
+    "local_file",
+    "source_page_url",
+    "direct_document_url",
+    "dart_receipt_url",
+    "title",
+    "date",
+    "document_type",
+    "request_package",
+    "selection_reason",
+    "rights_level",
+    "note"
+  ],
+  "sourcePackages": [
+    {
+      "id": "SK-PKG-01",
+      "name": "identifier and financial baseline",
+      "required": true
+    },
+    {
+      "id": "SK-PKG-02",
+      "name": "SK Hynix memory and HBM narrative",
+      "required": true
+    },
+    {
+      "id": "SK-PKG-03",
+      "name": "SK Innovation energy and battery narrative",
+      "required": true
+    },
+    {
+      "id": "SK-PKG-04",
+      "name": "SK Inc. portfolio and shareholder value narrative",
+      "required": true
+    },
+    {
+      "id": "SK-PKG-05",
+      "name": "SK Telecom telecom, AI, and data-center narrative",
+      "required": true
+    },
+    {
+      "id": "SK-PKG-06",
+      "name": "SK Square ICT investment and portfolio narrative",
+      "required": true
+    }
+  ],
+  "acceptanceChecklist": [
+    "Every narrative claim has companyId and companyScope.",
+    "Every runtime source has document-level public URL or DART receipt URL.",
+    "Placeholder URLs remain excluded from runtime claim promotion.",
+    "Unmatched URL records remain backlog until reconciled to local files or dropped with reason."
+  ],
+  "runtimePolicy": "SK source material is runtime-eligible only after source-backed claim promotion with company scope, evidence locator, rights-safe URL metadata, and forward-looking labels where needed."
+}

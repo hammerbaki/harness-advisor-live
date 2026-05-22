@@ -1,0 +1,148 @@
+{
+  "schemaVersion": "source-selection-policy.v0.1",
+  "policyVersion": "2026-05-01",
+  "appliesTo": [
+    "samsung",
+    "sk",
+    "hyundai-motor",
+    "lg",
+    "hanwha",
+    "future-target-groups"
+  ],
+  "purpose": "Define repeatable document-selection rules for building investor-advisor reference slices across Korean corporate groups.",
+  "scopePrinciples": [
+    {
+      "id": "SCOPE-01",
+      "name": "reference-slice, not full archive by default",
+      "rule": "A group corpus may be scoped to the documents needed for a traceable demo, paper evaluation, or commercial use case. If it is not a full archive, the scope must be stated explicitly."
+    },
+    {
+      "id": "SCOPE-02",
+      "name": "claim-driven collection",
+      "rule": "Additional official materials are collected only when a claim, evaluation scenario, or runtime feature needs them."
+    },
+    {
+      "id": "SCOPE-03",
+      "name": "same template across groups",
+      "rule": "Each target group must use the same inventory, provenance, selection-rationale, extraction, claim-linking, wiki, and validation steps before being marked paper-ready."
+    },
+    {
+      "id": "SCOPE-04",
+      "name": "common output schema after source intake",
+      "rule": "Group-specific intake adapters may normalize different raw source layouts, but the emitted source inventory, extraction report, narrative claim queue, source-backed claim manifest, wiki namespace, and evaluation scenario schemas must remain common across groups."
+    }
+  ],
+  "selectionRules": [
+    {
+      "id": "SRC-01",
+      "name": "official issuer provenance",
+      "requiredFor": "primary-source-candidate",
+      "rule": "Prefer official issuer IR, governance, financial, shareholder-return, and disclosure materials with a stable public source page, public document URL, or public filing URL. A source-page URL is acceptable when document downloads are dynamic or session-based, as long as document title, period, local checksum, access date, and extraction hash are recorded."
+    },
+    {
+      "id": "SRC-02",
+      "name": "regulatory filing provenance",
+      "requiredFor": "financial-and-risk-claims",
+      "rule": "Periodic-report and material-disclosure claims should be linked to DART receipt numbers or public filing URLs when available."
+    },
+    {
+      "id": "SRC-03",
+      "name": "audit baseline",
+      "requiredFor": "audited-financial-baseline",
+      "rule": "Audit reports and consolidated audit reports are retained when they anchor accounting-grounded financial history or verify stale/hallucination-prone financial claims."
+    },
+    {
+      "id": "SRC-04",
+      "name": "current periodic disclosure",
+      "requiredFor": "periodic-disclosure-baseline",
+      "rule": "Recent annual, semiannual, and quarterly reports are retained when they support revenue, operating income, risk, segment, investment, or business-update claims."
+    },
+    {
+      "id": "SRC-05",
+      "name": "current earnings and IR material",
+      "requiredFor": "current-earnings-core-official-ir",
+      "rule": "Recent earnings decks and official IR presentations are retained when they support investor briefings, headline metrics, and segment-performance explanations."
+    },
+    {
+      "id": "SRC-06",
+      "name": "shareholder-value and capital actions",
+      "requiredFor": "value-up-and-capital-action-claims",
+      "rule": "Value-up plans, shareholder-return materials, buybacks, preferred-share actions, capital actions, and related official notices are retained as high-priority investor-advisor sources."
+    },
+    {
+      "id": "SRC-07",
+      "name": "governance baseline",
+      "requiredFor": "governance-sensitive-claims",
+      "rule": "Articles of incorporation, board/governance policy, disclosure policy, and shareholder-rights materials are retained when they affect capital allocation, governance interpretation, or investor rights."
+    },
+    {
+      "id": "SRC-08",
+      "name": "third-party market view as secondary context",
+      "requiredFor": "external-market-view-secondary-context",
+      "rule": "Analyst reports and broker materials may be retained as secondary market-view context, but facts must be checked against official issuer, DART, KRX, or reputable public-news sources."
+    },
+    {
+      "id": "SRC-09",
+      "name": "rights and redistribution boundary",
+      "requiredFor": "all-sources",
+      "rule": "Sources without clear redistribution rights must remain manifest-only or metadata-only. Full text should not be shipped to Replit or published unless rights are verified."
+    },
+    {
+      "id": "SRC-10",
+      "name": "machine extraction readiness",
+      "requiredFor": "wiki-promotion",
+      "rule": "A source can be promoted to runtime wiki context only after extraction or manual transcription is checked, hashed, and linked to source-level provenance. Exact document URLs are preferred but not required when an official IR source page and immutable local checksum identify the document."
+    },
+    {
+      "id": "SRC-11",
+      "name": "claim-level traceability",
+      "requiredFor": "runtime-use",
+      "rule": "No source is sufficient by itself for runtime answers. Each answerable claim must point to a source, source kind, date/period, companyId, companyScope, and verification state."
+    },
+    {
+      "id": "SRC-12",
+      "name": "company-scoped claim routing",
+      "requiredFor": "multi-company-runtime-routing",
+      "rule": "Every runtime-promoted claim must include companyId. Group or issuer-level claims may use the listed issuer companyId, while affiliate-specific claims must use the affiliate companyId recorded in configs/groups.json."
+    }
+  ],
+  "minimumSourceMetadata": [
+    "groupId",
+    "companyId",
+    "companyScope",
+    "sourceId",
+    "title",
+    "sourceRole",
+    "sourceCategory",
+    "publisherOrIssuer",
+    "sourceDateOrPeriod",
+    "publicSourceUrlOrFilingId",
+    "accessedAt",
+    "localPathOrStorageKey",
+    "checksum",
+    "rightsPolicy",
+    "selectionRuleIds",
+    "paperUseLevel",
+    "runtimeUsePolicy",
+    "verificationState",
+    "extractionStatus",
+    "extractionHash",
+    "claimQueueState"
+  ],
+  "paperUseLevels": {
+    "primary-source-candidate": "Official or regulatory source that can support paper and runtime claims after claim-level linking.",
+    "primary-source-candidate-after-type-check": "Official source requiring media-type or extraction verification before claim promotion.",
+    "secondary-context-only": "External interpretation source for market-view comparison, not primary factual support.",
+    "hold-until-reviewed": "Present in the corpus but not usable until provenance, rights, and selection role are reviewed."
+  },
+  "promotionGate": [
+    "inventory-complete",
+    "public-provenance-linked",
+    "selection-rationale-recorded",
+    "rights-policy-recorded",
+    "extraction-or-manual-review-complete",
+    "claim-level-source-linking-complete",
+    "wiki-lint-passed",
+    "runtime-validation-passed"
+  ]
+}

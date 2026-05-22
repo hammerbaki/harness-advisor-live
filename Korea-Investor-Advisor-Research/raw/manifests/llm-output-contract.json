@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "advisor-llm-output-contract.v0.1",
+  "createdAt": "2026-05-02",
+  "purpose": "Move repeatable answer-shape rules out of natural-language prompts and into a code-validated live LLM output contract. Visible answers must lead with audience-facing insight, while process evidence stays in trace/developer UI.",
+  "scope": {
+    "appliesTo": "live LLM composition boundary only",
+    "doesNotOwn": [
+      "group routing",
+      "DART/KRX/news collection",
+      "source-backed claim selection",
+      "links",
+      "follow-up question generation",
+      "trace envelope creation",
+      "developer UI visibility"
+    ]
+  },
+  "runtimeContract": {
+    "sections": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 6,
+      "allowedTitles": [
+        "핵심 인사이트",
+        "왜 중요한가",
+        "근거 신호",
+        "반증 리스크",
+        "다음 관찰 포인트",
+        "현황요약",
+        "이슈 요약",
+        "공시 연결",
+        "시장 반응",
+        "재무 포인트",
+        "산업맥락",
+        "사업 파이프라인",
+        "가치제고 포인트",
+        "주주환원 체크",
+        "거버넌스 포인트",
+        "공시·IR 체크",
+        "브리핑 검토축",
+        "확인 우선순위",
+        "리스크 체크"
+      ],
+      "body": "string or string[]; Korean investor-facing prose"
+    },
+    "sourceLimitationNote": {
+      "type": "optional string",
+      "requiredWhen": "any source state is fixture, fallback, or error"
+    }
+  },
+  "rejectionRules": [
+    "reject non-JSON live LLM output",
+    "reject duplicate or unapproved section titles",
+    "reject raw claim IDs and trace/schema/debug terms",
+    "reject recommendation-style buy/sell/target-price language",
+    "reject live outputs that ignore the question-specific answerPlan",
+    "reject live outputs that do not lead with 핵심 인사이트",
+    "reject first sections that narrate collection, loading, validation, or trace process instead of audience-facing insight",
+    "fallback to deterministic composer when validation fails"
+  ],
+  "answerPlans": {
+    "general": ["핵심 인사이트", "근거 신호", "반증 리스크", "다음 관찰 포인트"],
+    "financial": ["핵심 인사이트", "재무 포인트", "반증 리스크", "다음 관찰 포인트"],
+    "pipeline": ["핵심 인사이트", "사업 파이프라인", "반증 리스크", "다음 관찰 포인트"],
+    "valueUp": ["핵심 인사이트", "주주환원 체크", "반증 리스크", "다음 관찰 포인트"],
+    "governance": ["핵심 인사이트", "거버넌스 포인트", "반증 리스크", "다음 관찰 포인트"],
+    "market": ["핵심 인사이트", "시장 반응", "반증 리스크", "다음 관찰 포인트"],
+    "global": ["핵심 인사이트", "왜 중요한가", "반증 리스크", "다음 관찰 포인트"],
+    "rival": ["핵심 인사이트", "산업맥락", "반증 리스크", "다음 관찰 포인트"]
+  },
+  "frameworkRelationship": {
+    "instructor": "Best immediate runtime guard candidate because it formalizes typed structured outputs and validation retries.",
+    "dspy": "Selected paper-facing optimization framework; use offline after the deterministic baseline is stable.",
+    "guidance": "Candidate for future constrained decoding where regex/CFG-level control is required.",
+    "openpipe": "Candidate after enough production traces exist for fine-tuning and cost reduction."
+  },
+  "implementedIn": [
+    "server/index.mjs",
+    "src/types.ts",
+    "evals/scenarios/hanwha.reference-slice.json",
+    "scripts/evaluate-advisor-scenarios.mjs"
+  ]
+}

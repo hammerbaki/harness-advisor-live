@@ -1,0 +1,900 @@
+{
+  "schemaVersion": "advisor-autoeval-result.v0.1",
+  "scenarioSetId": "sk-financial-seed-v0.1",
+  "groupId": "sk",
+  "stage": "financial-seed-transfer",
+  "rubricId": "advisor-answer-quality-v0.2",
+  "evaluatedAt": "2026-05-03T01:17:32.592Z",
+  "baselineDate": "2026-05-03",
+  "methodology": {
+    "loop": "fixed scenario -> run advisor -> score rubric -> keep/discard candidate",
+    "source": "Adapted from Karpathy autoresearch-style self-evaluation, bounded by source-backed finance trace rules.",
+    "originalPocInputs": [
+      "follow-up consistency guards",
+      "preamble and meta-narration stripping",
+      "status stream ordering and dedupe",
+      "trace hygiene",
+      "chart/TTS leak checks"
+    ]
+  },
+  "thresholds": {
+    "pass": 85,
+    "paperBaseline": 90,
+    "keepCandidate": 92,
+    "maxPreApiLatencyMs": 1500,
+    "minAnswerSections": 3,
+    "minFollowUps": 3,
+    "minLinks": 3
+  },
+  "summary": {
+    "scenarioCount": 4,
+    "averageScore": 97.75,
+    "passCount": 4,
+    "paperBaselineCount": 4,
+    "keepCandidateCount": 4,
+    "requiredFailureCount": 0,
+    "baselineStatus": "paper_baseline"
+  },
+  "results": [
+    {
+      "scenarioId": "sk-financial-001-hynix-turnaround",
+      "title": "SK Hynix 2024 financial turnaround",
+      "questionHash": "049a7feb61cd8c7a73c278863843a1bf164e5026d50f796f3bb0c987602c9046",
+      "paperTableBucket": "sk_financial_seed_hynix",
+      "score": 97,
+      "status": "paper_baseline",
+      "runtimeMode": "mixed",
+      "responseMode": "fixture",
+      "llmOutputContractStatus": "code",
+      "elapsedMs": 1700,
+      "traceFile": "evals/traces/run_a91bdeb3-9858-459d-b929-58be6ccf55ad.json",
+      "expectedClaimIds": [
+        "sk-sbc-001",
+        "sk-sbc-002"
+      ],
+      "observedClaimIds": [
+        "sk-sbc-002",
+        "sk-sbc-001"
+      ],
+      "checks": [
+        {
+          "id": "expected_claim_coverage",
+          "passed": true,
+          "required": true,
+          "weight": 18,
+          "score": 18,
+          "details": {
+            "missing": [],
+            "observedCount": 2
+          }
+        },
+        {
+          "id": "trace_contract",
+          "passed": true,
+          "required": true,
+          "weight": 14,
+          "score": 14,
+          "details": {
+            "expectedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "observedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "requiredAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "observedAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "missingFields": [],
+            "rawQuestionInTrace": false,
+            "assemblyHasFailure": false,
+            "expectedRepresentativeCompanyId": "sk-hynix",
+            "observedRepresentativeCompanyId": "sk-hynix",
+            "routeMatches": true
+          }
+        },
+        {
+          "id": "investor_facing_answer",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "sections": [
+              "현황요약",
+              "재무 포인트",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ],
+            "missingSignals": [],
+            "answerLength": 782
+          }
+        },
+        {
+          "id": "briefing_quality",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "bannedVague": [],
+            "hasJudgmentAxis": true,
+            "hasPriorityMonitoring": true,
+            "hasComparisonOrCausalContext": true,
+            "avoidsRecommendation": true,
+            "sections": [
+              "현황요약",
+              "재무 포인트",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ]
+          }
+        },
+        {
+          "id": "development_leak_absence",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "source_status_disclosure",
+          "passed": true,
+          "required": false,
+          "weight": 10,
+          "score": 10,
+          "details": {
+            "limited": true,
+            "statuses": [
+              "live",
+              "live",
+              "fixture",
+              "local",
+              "local",
+              "fixture"
+            ]
+          }
+        },
+        {
+          "id": "followup_quality",
+          "passed": true,
+          "required": false,
+          "weight": 7,
+          "score": 7,
+          "details": {
+            "count": 4,
+            "generic": [],
+            "developerFacing": []
+          }
+        },
+        {
+          "id": "template_variation",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "intent": "financial",
+            "sections": [
+              "현황요약",
+              "재무 포인트",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ],
+            "recommended": [
+              "현황요약",
+              "재무 포인트",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ],
+            "recommendedMatches": 4,
+            "rigidGeneric": false,
+            "hasQuestionSpecificTitle": true
+          }
+        },
+        {
+          "id": "link_package",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "count": 5,
+            "validCount": 5
+          }
+        },
+        {
+          "id": "latency_budget",
+          "passed": false,
+          "required": false,
+          "weight": 3,
+          "score": 0,
+          "details": {
+            "elapsedMs": 1700,
+            "maxPreApiLatencyMs": 1500
+          }
+        },
+        {
+          "id": "original_poc_regression_guards",
+          "passed": true,
+          "required": false,
+          "weight": 2,
+          "score": 2,
+          "details": {
+            "regressions": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "sk-financial-002-innovation-baseline",
+      "title": "SK Innovation 2024 financial baseline",
+      "questionHash": "d989bb6723789c1bcdec10357e7b3b2978095314c86b785c5bb732f315b739ef",
+      "paperTableBucket": "sk_financial_seed_innovation",
+      "score": 97,
+      "status": "paper_baseline",
+      "runtimeMode": "mixed",
+      "responseMode": "fixture",
+      "llmOutputContractStatus": "code",
+      "elapsedMs": 1523,
+      "traceFile": "evals/traces/run_266882f8-71ab-4cd5-8a01-30c61d5d8053.json",
+      "expectedClaimIds": [
+        "sk-sbc-007",
+        "sk-sbc-008"
+      ],
+      "observedClaimIds": [
+        "sk-sbc-007",
+        "sk-sbc-008"
+      ],
+      "checks": [
+        {
+          "id": "expected_claim_coverage",
+          "passed": true,
+          "required": true,
+          "weight": 18,
+          "score": 18,
+          "details": {
+            "missing": [],
+            "observedCount": 2
+          }
+        },
+        {
+          "id": "trace_contract",
+          "passed": true,
+          "required": true,
+          "weight": 14,
+          "score": 14,
+          "details": {
+            "expectedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "observedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "requiredAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "observedAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "missingFields": [],
+            "rawQuestionInTrace": false,
+            "assemblyHasFailure": false,
+            "expectedRepresentativeCompanyId": "sk-innovation",
+            "observedRepresentativeCompanyId": "sk-innovation",
+            "routeMatches": true
+          }
+        },
+        {
+          "id": "investor_facing_answer",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "sections": [
+              "현황요약",
+              "재무 포인트",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ],
+            "missingSignals": [],
+            "answerLength": 776
+          }
+        },
+        {
+          "id": "briefing_quality",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "bannedVague": [],
+            "hasJudgmentAxis": true,
+            "hasPriorityMonitoring": true,
+            "hasComparisonOrCausalContext": true,
+            "avoidsRecommendation": true,
+            "sections": [
+              "현황요약",
+              "재무 포인트",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ]
+          }
+        },
+        {
+          "id": "development_leak_absence",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "source_status_disclosure",
+          "passed": true,
+          "required": false,
+          "weight": 10,
+          "score": 10,
+          "details": {
+            "limited": true,
+            "statuses": [
+              "live",
+              "live",
+              "fixture",
+              "local",
+              "local",
+              "fixture"
+            ]
+          }
+        },
+        {
+          "id": "followup_quality",
+          "passed": true,
+          "required": false,
+          "weight": 7,
+          "score": 7,
+          "details": {
+            "count": 4,
+            "generic": [],
+            "developerFacing": []
+          }
+        },
+        {
+          "id": "template_variation",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "intent": "financial",
+            "sections": [
+              "현황요약",
+              "재무 포인트",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ],
+            "recommended": [
+              "현황요약",
+              "재무 포인트",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ],
+            "recommendedMatches": 4,
+            "rigidGeneric": false,
+            "hasQuestionSpecificTitle": true
+          }
+        },
+        {
+          "id": "link_package",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "count": 5,
+            "validCount": 5
+          }
+        },
+        {
+          "id": "latency_budget",
+          "passed": false,
+          "required": false,
+          "weight": 3,
+          "score": 0,
+          "details": {
+            "elapsedMs": 1523,
+            "maxPreApiLatencyMs": 1500
+          }
+        },
+        {
+          "id": "original_poc_regression_guards",
+          "passed": true,
+          "required": false,
+          "weight": 2,
+          "score": 2,
+          "details": {
+            "regressions": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "sk-financial-003-inc-baseline",
+      "title": "SK Inc. 2024 financial baseline",
+      "questionHash": "7d97d111ea0b58d7aab9c4707ff2cc1b2b7d9f91774eda7c3ac2b75e84198749",
+      "paperTableBucket": "sk_financial_seed_holding_company",
+      "score": 100,
+      "status": "paper_baseline",
+      "runtimeMode": "mixed",
+      "responseMode": "fixture",
+      "llmOutputContractStatus": "code",
+      "elapsedMs": 1471,
+      "traceFile": "evals/traces/run_b352f537-299e-4bdd-ae28-4a58e7ab0da7.json",
+      "expectedClaimIds": [
+        "sk-sbc-003",
+        "sk-sbc-004"
+      ],
+      "observedClaimIds": [
+        "sk-sbc-003",
+        "sk-sbc-004"
+      ],
+      "checks": [
+        {
+          "id": "expected_claim_coverage",
+          "passed": true,
+          "required": true,
+          "weight": 18,
+          "score": 18,
+          "details": {
+            "missing": [],
+            "observedCount": 2
+          }
+        },
+        {
+          "id": "trace_contract",
+          "passed": true,
+          "required": true,
+          "weight": 14,
+          "score": 14,
+          "details": {
+            "expectedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "observedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "requiredAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "observedAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "missingFields": [],
+            "rawQuestionInTrace": false,
+            "assemblyHasFailure": false,
+            "expectedRepresentativeCompanyId": "sk-inc",
+            "observedRepresentativeCompanyId": "sk-inc",
+            "routeMatches": true
+          }
+        },
+        {
+          "id": "investor_facing_answer",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "sections": [
+              "현황요약",
+              "재무 포인트",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ],
+            "missingSignals": [],
+            "answerLength": 769
+          }
+        },
+        {
+          "id": "briefing_quality",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "bannedVague": [],
+            "hasJudgmentAxis": true,
+            "hasPriorityMonitoring": true,
+            "hasComparisonOrCausalContext": true,
+            "avoidsRecommendation": true,
+            "sections": [
+              "현황요약",
+              "재무 포인트",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ]
+          }
+        },
+        {
+          "id": "development_leak_absence",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "source_status_disclosure",
+          "passed": true,
+          "required": false,
+          "weight": 10,
+          "score": 10,
+          "details": {
+            "limited": true,
+            "statuses": [
+              "live",
+              "live",
+              "fixture",
+              "local",
+              "local",
+              "fixture"
+            ]
+          }
+        },
+        {
+          "id": "followup_quality",
+          "passed": true,
+          "required": false,
+          "weight": 7,
+          "score": 7,
+          "details": {
+            "count": 4,
+            "generic": [],
+            "developerFacing": []
+          }
+        },
+        {
+          "id": "template_variation",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "intent": "financial",
+            "sections": [
+              "현황요약",
+              "재무 포인트",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ],
+            "recommended": [
+              "현황요약",
+              "재무 포인트",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ],
+            "recommendedMatches": 4,
+            "rigidGeneric": false,
+            "hasQuestionSpecificTitle": true
+          }
+        },
+        {
+          "id": "link_package",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "count": 5,
+            "validCount": 5
+          }
+        },
+        {
+          "id": "latency_budget",
+          "passed": true,
+          "required": false,
+          "weight": 3,
+          "score": 3,
+          "details": {
+            "elapsedMs": 1471,
+            "maxPreApiLatencyMs": 1500
+          }
+        },
+        {
+          "id": "original_poc_regression_guards",
+          "passed": true,
+          "required": false,
+          "weight": 2,
+          "score": 2,
+          "details": {
+            "regressions": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "sk-financial-004-telecom-baseline",
+      "title": "SK Telecom 2024 financial baseline",
+      "questionHash": "38927d6fbe01ec83330bb98b0e60dc855e4b97c0689ad09db0eeb7f8cbf5af0d",
+      "paperTableBucket": "sk_financial_seed_telecom",
+      "score": 97,
+      "status": "paper_baseline",
+      "runtimeMode": "mixed",
+      "responseMode": "fixture",
+      "llmOutputContractStatus": "code",
+      "elapsedMs": 1580,
+      "traceFile": "evals/traces/run_59efb47f-5d3b-4f59-9f6a-eaf7f7e11a7d.json",
+      "expectedClaimIds": [
+        "sk-sbc-005",
+        "sk-sbc-006"
+      ],
+      "observedClaimIds": [
+        "sk-sbc-006",
+        "sk-sbc-005"
+      ],
+      "checks": [
+        {
+          "id": "expected_claim_coverage",
+          "passed": true,
+          "required": true,
+          "weight": 18,
+          "score": 18,
+          "details": {
+            "missing": [],
+            "observedCount": 2
+          }
+        },
+        {
+          "id": "trace_contract",
+          "passed": true,
+          "required": true,
+          "weight": 14,
+          "score": 14,
+          "details": {
+            "expectedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "observedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "requiredAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "observedAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "missingFields": [],
+            "rawQuestionInTrace": false,
+            "assemblyHasFailure": false,
+            "expectedRepresentativeCompanyId": "sk-telecom",
+            "observedRepresentativeCompanyId": "sk-telecom",
+            "routeMatches": true
+          }
+        },
+        {
+          "id": "investor_facing_answer",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "sections": [
+              "현황요약",
+              "재무 포인트",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ],
+            "missingSignals": [],
+            "answerLength": 771
+          }
+        },
+        {
+          "id": "briefing_quality",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "bannedVague": [],
+            "hasJudgmentAxis": true,
+            "hasPriorityMonitoring": true,
+            "hasComparisonOrCausalContext": true,
+            "avoidsRecommendation": true,
+            "sections": [
+              "현황요약",
+              "재무 포인트",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ]
+          }
+        },
+        {
+          "id": "development_leak_absence",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "source_status_disclosure",
+          "passed": true,
+          "required": false,
+          "weight": 10,
+          "score": 10,
+          "details": {
+            "limited": true,
+            "statuses": [
+              "live",
+              "live",
+              "fixture",
+              "local",
+              "local",
+              "fixture"
+            ]
+          }
+        },
+        {
+          "id": "followup_quality",
+          "passed": true,
+          "required": false,
+          "weight": 7,
+          "score": 7,
+          "details": {
+            "count": 4,
+            "generic": [],
+            "developerFacing": []
+          }
+        },
+        {
+          "id": "template_variation",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "intent": "financial",
+            "sections": [
+              "현황요약",
+              "재무 포인트",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ],
+            "recommended": [
+              "현황요약",
+              "재무 포인트",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ],
+            "recommendedMatches": 4,
+            "rigidGeneric": false,
+            "hasQuestionSpecificTitle": true
+          }
+        },
+        {
+          "id": "link_package",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "count": 5,
+            "validCount": 5
+          }
+        },
+        {
+          "id": "latency_budget",
+          "passed": false,
+          "required": false,
+          "weight": 3,
+          "score": 0,
+          "details": {
+            "elapsedMs": 1580,
+            "maxPreApiLatencyMs": 1500
+          }
+        },
+        {
+          "id": "original_poc_regression_guards",
+          "passed": true,
+          "required": false,
+          "weight": 2,
+          "score": 2,
+          "details": {
+            "regressions": []
+          }
+        }
+      ]
+    }
+  ]
+}

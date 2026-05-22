@@ -1,0 +1,131 @@
+{
+  "schemaVersion": "source-adequacy-audit.v0.1",
+  "groupId": "samsung",
+  "createdAt": "2026-05-02",
+  "localKnowledgeRoot": "../samsung_knowledge",
+  "verdict": "sufficient_for_first_reference_layer_not_sufficient_for_full_historical_financial_claims",
+  "summary": {
+    "localFiles": 43,
+    "localPdfFiles": 40,
+    "validPdfFiles": 40,
+    "invalidPdfExtensionFiles": 0,
+    "localFolders": ["삼성전자", "삼성SDI", "삼성물산", "삼성바이오로직스"],
+    "dartViewerOnlyCompanies": ["삼성생명", "삼성화재"],
+    "dartViewerUrlsVerified": 10,
+    "extractionOk": 40,
+    "extractionCandidates": 40,
+    "dartFinancialTable": {
+      "records": 45,
+      "okRecords": 35,
+      "partialRecords": 6,
+      "errorRecords": 4
+    }
+  },
+  "coverage": {
+    "listedCompanies": {
+      "count": 15,
+      "basis": "Samsung listed-company universe recorded in raw/manifests/samsung.identifier-verification.json and configs/groups.json.",
+      "paperUse": "Scope universe only; runtime source-backed claims require document-level source extraction."
+    },
+    "firstReferenceLayerCompanies": {
+      "count": 6,
+      "companies": ["삼성전자", "삼성SDI", "삼성물산", "삼성바이오로직스", "삼성생명", "삼성화재"],
+      "basis": "Local IR PDFs plus DART viewer filings supplied for initial Samsung reference-layer ingestion."
+    }
+  },
+  "companyCoverage": [
+    {
+      "companyId": "samsung-electronics",
+      "koreanName": "삼성전자",
+      "localPdfCount": 6,
+      "coverage": "2024 Q4 through 2026 Q1 earnings presentation PDFs",
+      "sufficiency": "sufficient_for_recent_operating_context",
+      "gap": "Needs DART business reports or audited annual reports for source-backed 2022-2024 historical financial claims."
+    },
+    {
+      "companyId": "samsung-sdi",
+      "koreanName": "삼성SDI",
+      "localPdfCount": 6,
+      "coverage": "2024 Q4 through 2026 Q1 earnings presentation PDFs",
+      "sufficiency": "sufficient_for_recent_operating_context",
+      "gap": "Needs DART business reports or audited annual reports for source-backed 2022-2024 historical financial claims."
+    },
+    {
+      "companyId": "samsung-ct",
+      "koreanName": "삼성물산",
+      "localPdfCount": 13,
+      "coverage": "2025 business report, connected/separate audit and review reports, shareholder letters, and 2026 Q1 PPT/subtitle substitute materials",
+      "sufficiency": "strong_for_reference_layer_after_non_text_file_exclusion",
+      "gap": "Recording/non-text evidence is excluded unless transcript, subtitle, PPT, report PDF, or DART filing text is available."
+    },
+    {
+      "companyId": "samsung-biologics",
+      "koreanName": "삼성바이오로직스",
+      "localPdfCount": 15,
+      "coverage": "2024 and 2025 business/audit reports plus recent earnings and operating reports",
+      "sufficiency": "strong_for_reference_layer",
+      "gap": "Needs 2022-2023 official annual evidence only if the paper uses multi-year financial history."
+    },
+    {
+      "companyId": "samsung-life",
+      "koreanName": "삼성생명",
+      "localPdfCount": 0,
+      "coverage": "DART viewer URLs for 2024 annual and 2025 quarterly/annual filings",
+      "sufficiency": "sufficient_as_official_dart_backbone",
+      "gap": "Can proceed without local PDFs, but extraction must use DART document/filing pipeline."
+    },
+    {
+      "companyId": "samsung-fire-marine",
+      "koreanName": "삼성화재",
+      "localPdfCount": 0,
+      "coverage": "DART viewer URLs for 2024 annual and 2025 quarterly/annual filings",
+      "sufficiency": "sufficient_as_official_dart_backbone",
+      "gap": "Can proceed without local PDFs, but extraction must use DART document/filing pipeline."
+    }
+  ],
+  "qualityFindings": [
+    {
+      "severity": "resolved_ingestion_rule",
+      "finding": "Samsung C&T recording/non-text material is excluded from markdown/RAG/wiki evidence.",
+      "action": "Use PPT, subtitle, report PDF, transcript, or DART filing text as the knowledge source; retain non-text media only as metadata if needed."
+    },
+    {
+      "severity": "scope_gap",
+      "finding": "The DART API table now covers the 15-company 2022-2024 universe, but financial-sector revenue remains partial where OpenDART does not expose a comparable revenue account.",
+      "action": "Define an explicit finance-company account policy or add report-level evidence before promoting cross-industry revenue comparison claims."
+    }
+  ],
+  "dartViewerVerification": [
+    {
+      "companyId": "samsung-life",
+      "koreanName": "삼성생명",
+      "status": "verified_with_opendart_list",
+      "rceptNos": [
+        "20260311004614",
+        "20251114002091",
+        "20250813000585",
+        "20250515002067",
+        "20250312001063"
+      ],
+      "note": "The 2024 annual report was verified with a narrower March 2025 OpenDART list query."
+    },
+    {
+      "companyId": "samsung-fire-marine",
+      "koreanName": "삼성화재",
+      "status": "verified_with_opendart_list",
+      "rceptNos": [
+        "20260312001399",
+        "20251114002900",
+        "20250814004098",
+        "20250515002709",
+        "20250311001055"
+      ]
+    }
+  ],
+  "paperUsePolicy": [
+    "Use these sources to begin Samsung's first source-backed reference layer.",
+    "Do not cite the local package as complete Samsung coverage.",
+    "Do not promote any claim until file validity, source role, period, reporting basis, and source URL are recorded.",
+    "DART viewer URLs are acceptable official public-source references for Samsung Life and Samsung Fire where issuer IR sites do not expose stable static downloads."
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "schemaVersion": "identifier-verification.v0.1",
+  "groupId": "hyundai-motor",
+  "generatedAt": "2026-05-03T00:00:00.000+09:00",
+  "source": {
+    "name": "OpenDART corpCode.xml",
+    "localSnapshot": "/private/tmp/dart_corpcode.zip",
+    "verificationMethod": "Exact corp_name match with listed stock_code."
+  },
+  "records": [
+    {
+      "companyId": "hyundai-motor",
+      "koreanName": "현대자동차",
+      "displayName": "Hyundai Motor",
+      "krxCode": "005380",
+      "dartCode": "00164742",
+      "status": "verified"
+    },
+    {
+      "companyId": "kia",
+      "koreanName": "기아",
+      "displayName": "Kia",
+      "krxCode": "000270",
+      "dartCode": "00106641",
+      "status": "verified"
+    },
+    {
+      "companyId": "hyundai-mobis",
+      "koreanName": "현대모비스",
+      "displayName": "Hyundai Mobis",
+      "krxCode": "012330",
+      "dartCode": "00164788",
+      "status": "verified"
+    },
+    {
+      "companyId": "hyundai-glovis",
+      "koreanName": "현대글로비스",
+      "displayName": "Hyundai Glovis",
+      "krxCode": "086280",
+      "dartCode": "00360595",
+      "status": "verified_optional_second_wave"
+    },
+    {
+      "companyId": "hyundai-rotem",
+      "koreanName": "현대로템",
+      "displayName": "Hyundai Rotem",
+      "krxCode": "064350",
+      "dartCode": "00302926",
+      "status": "verified_optional_second_wave"
+    },
+    {
+      "companyId": "hyundai-autoever",
+      "koreanName": "현대오토에버",
+      "displayName": "Hyundai AutoEver",
+      "krxCode": "307950",
+      "dartCode": "00362441",
+      "status": "verified_optional_second_wave"
+    },
+    {
+      "companyId": "hyundai-wia",
+      "koreanName": "현대위아",
+      "displayName": "Hyundai Wia",
+      "krxCode": "011210",
+      "dartCode": "00106623",
+      "status": "verified_optional_second_wave"
+    },
+    {
+      "companyId": "hyundai-eandc",
+      "koreanName": "현대건설",
+      "displayName": "Hyundai Engineering & Construction",
+      "krxCode": "000720",
+      "dartCode": "00164478",
+      "status": "verified_optional_second_wave"
+    },
+    {
+      "companyId": "innocean",
+      "koreanName": "이노션",
+      "displayName": "Innocean",
+      "krxCode": "214320",
+      "dartCode": "00565154",
+      "status": "verified_optional_second_wave"
+    },
+    {
+      "companyId": "hyundai-motor-securities",
+      "koreanName": "현대차증권",
+      "displayName": "Hyundai Motor Securities",
+      "krxCode": "001500",
+      "dartCode": "00137997",
+      "status": "verified_optional_second_wave",
+      "accountPolicy": "financial_company_use_explicit_dart_accounts_only"
+    },
+    {
+      "companyId": "hyundai-bng-steel",
+      "koreanName": "현대비앤지스틸",
+      "displayName": "Hyundai BNG Steel",
+      "krxCode": "004560",
+      "dartCode": "00125743",
+      "status": "verified_optional_second_wave"
+    },
+    {
+      "companyId": "hyundai-steel",
+      "koreanName": "현대제철",
+      "displayName": "Hyundai Steel",
+      "krxCode": "004020",
+      "dartCode": "00145880",
+      "status": "verified_optional_second_wave"
+    }
+  ],
+  "notes": [
+    "The first Hyundai Motor Group runtime slice uses Hyundai Motor, Kia, and Hyundai Mobis. Second-wave companies are identifier-verified intake candidates, not runtime-promoted coverage.",
+    "The 2026-05-04 second-wave collection target is Hyundai Rotem, Hyundai AutoEver, Hyundai Wia, Hyundai Engineering & Construction, Hyundai Glovis, Innocean, Hyundai Motor Securities, and Hyundai BNG Steel.",
+    "Hyundai Motor Securities must preserve explicit DART account labels; the project must not define financial-company revenue by policy.",
+    "A separate old or unlisted matching row can exist in corpCode.xml; runtime routing must use listed rows with non-empty stock_code."
+  ]
+}

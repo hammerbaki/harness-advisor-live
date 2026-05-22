@@ -1,0 +1,430 @@
+{
+  "schemaVersion": "advisor-latency-report.v0.1",
+  "generatedAt": "2026-05-03T07:38:26.730Z",
+  "latencyBudgetMs": 1500,
+  "inputs": [
+    "evals/results/hanwha-reference-slice-v0.1.autoeval-baseline.2026-05-02.json",
+    "evals/results/samsung-reference-slice-v0.1.autoeval-baseline.2026-05-03.json",
+    "evals/results/sk-reference-slice-v0.1.autoeval-baseline.2026-05-03.json"
+  ],
+  "summary": {
+    "count": 14,
+    "averageMs": 2008.57,
+    "medianMs": 2156,
+    "p90Ms": 2467,
+    "maxMs": 2474,
+    "latencyPassCount": 2,
+    "latencyPassRate": 0.143,
+    "averageScore": 97.43
+  },
+  "byGroup": [
+    {
+      "key": "samsung",
+      "count": 5,
+      "averageMs": 2305.2,
+      "medianMs": 2264,
+      "p90Ms": 2474,
+      "maxMs": 2474,
+      "latencyPassCount": 0,
+      "latencyPassRate": 0,
+      "averageScore": 97
+    },
+    {
+      "key": "hanwha",
+      "count": 5,
+      "averageMs": 2130.4,
+      "medianMs": 2161,
+      "p90Ms": 2236,
+      "maxMs": 2236,
+      "latencyPassCount": 0,
+      "latencyPassRate": 0,
+      "averageScore": 97
+    },
+    {
+      "key": "sk",
+      "count": 4,
+      "averageMs": 1485.5,
+      "medianMs": 1408,
+      "p90Ms": 1619,
+      "maxMs": 1619,
+      "latencyPassCount": 2,
+      "latencyPassRate": 0.5,
+      "averageScore": 98.5
+    }
+  ],
+  "byStep": [
+    {
+      "key": "krx.market",
+      "count": 14,
+      "averageMs": 1904.86,
+      "medianMs": 2038,
+      "p90Ms": 2320,
+      "maxMs": 2378,
+      "statuses": {
+        "live": 14
+      }
+    },
+    {
+      "key": "dart.disclosures",
+      "count": 14,
+      "averageMs": 99.57,
+      "medianMs": 90,
+      "p90Ms": 141,
+      "maxMs": 148,
+      "statuses": {
+        "live": 14
+      }
+    },
+    {
+      "key": "wiki.context",
+      "count": 14,
+      "averageMs": 2.79,
+      "medianMs": 2,
+      "p90Ms": 5,
+      "maxMs": 11,
+      "statuses": {
+        "local": 14
+      }
+    },
+    {
+      "key": "llm.compose",
+      "count": 14,
+      "averageMs": 0.57,
+      "medianMs": 0,
+      "p90Ms": 1,
+      "maxMs": 5,
+      "statuses": {
+        "fixture": 14
+      }
+    },
+    {
+      "key": "claims.sourceBacked",
+      "count": 14,
+      "averageMs": 0.5,
+      "medianMs": 0,
+      "p90Ms": 1,
+      "maxMs": 2,
+      "statuses": {
+        "local": 14
+      }
+    },
+    {
+      "key": "news.search",
+      "count": 14,
+      "averageMs": 0.07,
+      "medianMs": 0,
+      "p90Ms": 0,
+      "maxMs": 1,
+      "statuses": {
+        "fixture": 14
+      }
+    }
+  ],
+  "byGroupStep": [
+    {
+      "key": "samsung:krx.market",
+      "count": 5,
+      "averageMs": 2205,
+      "medianMs": 2174,
+      "p90Ms": 2378,
+      "maxMs": 2378,
+      "statuses": {
+        "live": 5
+      }
+    },
+    {
+      "key": "hanwha:krx.market",
+      "count": 5,
+      "averageMs": 2022.4,
+      "medianMs": 2038,
+      "p90Ms": 2128,
+      "maxMs": 2128,
+      "statuses": {
+        "live": 5
+      }
+    },
+    {
+      "key": "sk:krx.market",
+      "count": 4,
+      "averageMs": 1382.75,
+      "medianMs": 1316,
+      "p90Ms": 1474,
+      "maxMs": 1474,
+      "statuses": {
+        "live": 4
+      }
+    },
+    {
+      "key": "hanwha:dart.disclosures",
+      "count": 5,
+      "averageMs": 101.6,
+      "medianMs": 106,
+      "p90Ms": 128,
+      "maxMs": 128,
+      "statuses": {
+        "live": 5
+      }
+    },
+    {
+      "key": "sk:dart.disclosures",
+      "count": 4,
+      "averageMs": 100.25,
+      "medianMs": 90,
+      "p90Ms": 141,
+      "maxMs": 141,
+      "statuses": {
+        "live": 4
+      }
+    },
+    {
+      "key": "samsung:dart.disclosures",
+      "count": 5,
+      "averageMs": 97,
+      "medianMs": 88,
+      "p90Ms": 148,
+      "maxMs": 148,
+      "statuses": {
+        "live": 5
+      }
+    },
+    {
+      "key": "hanwha:wiki.context",
+      "count": 5,
+      "averageMs": 4.2,
+      "medianMs": 2,
+      "p90Ms": 11,
+      "maxMs": 11,
+      "statuses": {
+        "local": 5
+      }
+    },
+    {
+      "key": "samsung:wiki.context",
+      "count": 5,
+      "averageMs": 2.4,
+      "medianMs": 2,
+      "p90Ms": 5,
+      "maxMs": 5,
+      "statuses": {
+        "local": 5
+      }
+    },
+    {
+      "key": "sk:wiki.context",
+      "count": 4,
+      "averageMs": 1.5,
+      "medianMs": 1,
+      "p90Ms": 2,
+      "maxMs": 2,
+      "statuses": {
+        "local": 4
+      }
+    },
+    {
+      "key": "hanwha:llm.compose",
+      "count": 5,
+      "averageMs": 1,
+      "medianMs": 0,
+      "p90Ms": 5,
+      "maxMs": 5,
+      "statuses": {
+        "fixture": 5
+      }
+    },
+    {
+      "key": "hanwha:claims.sourceBacked",
+      "count": 5,
+      "averageMs": 0.6,
+      "medianMs": 0,
+      "p90Ms": 2,
+      "maxMs": 2,
+      "statuses": {
+        "local": 5
+      }
+    },
+    {
+      "key": "samsung:claims.sourceBacked",
+      "count": 5,
+      "averageMs": 0.6,
+      "medianMs": 1,
+      "p90Ms": 1,
+      "maxMs": 1,
+      "statuses": {
+        "local": 5
+      }
+    },
+    {
+      "key": "sk:llm.compose",
+      "count": 4,
+      "averageMs": 0.5,
+      "medianMs": 0,
+      "p90Ms": 1,
+      "maxMs": 1,
+      "statuses": {
+        "fixture": 4
+      }
+    },
+    {
+      "key": "sk:claims.sourceBacked",
+      "count": 4,
+      "averageMs": 0.25,
+      "medianMs": 0,
+      "p90Ms": 1,
+      "maxMs": 1,
+      "statuses": {
+        "local": 4
+      }
+    },
+    {
+      "key": "hanwha:news.search",
+      "count": 5,
+      "averageMs": 0.2,
+      "medianMs": 0,
+      "p90Ms": 1,
+      "maxMs": 1,
+      "statuses": {
+        "fixture": 5
+      }
+    },
+    {
+      "key": "samsung:llm.compose",
+      "count": 5,
+      "averageMs": 0.2,
+      "medianMs": 0,
+      "p90Ms": 1,
+      "maxMs": 1,
+      "statuses": {
+        "fixture": 5
+      }
+    },
+    {
+      "key": "samsung:news.search",
+      "count": 5,
+      "averageMs": 0,
+      "medianMs": 0,
+      "p90Ms": 0,
+      "maxMs": 0,
+      "statuses": {
+        "fixture": 5
+      }
+    },
+    {
+      "key": "sk:news.search",
+      "count": 4,
+      "averageMs": 0,
+      "medianMs": 0,
+      "p90Ms": 0,
+      "maxMs": 0,
+      "statuses": {
+        "fixture": 4
+      }
+    }
+  ],
+  "slowestScenarios": [
+    {
+      "inputPath": "evals/results/samsung-reference-slice-v0.1.autoeval-baseline.2026-05-03.json",
+      "groupId": "samsung",
+      "scenarioId": "samsung-frozen-001-electronics-memory-hbm",
+      "score": 97,
+      "elapsedMs": 2474,
+      "latencyPassed": false,
+      "runtimeMode": "mixed",
+      "responseMode": "fixture"
+    },
+    {
+      "inputPath": "evals/results/samsung-reference-slice-v0.1.autoeval-baseline.2026-05-03.json",
+      "groupId": "samsung",
+      "scenarioId": "samsung-frozen-005-insurance-capital-dividend",
+      "score": 97,
+      "elapsedMs": 2467,
+      "latencyPassed": false,
+      "runtimeMode": "mixed",
+      "responseMode": "fixture"
+    },
+    {
+      "inputPath": "evals/results/samsung-reference-slice-v0.1.autoeval-baseline.2026-05-03.json",
+      "groupId": "samsung",
+      "scenarioId": "samsung-frozen-003-ct-shareholder-letter",
+      "score": 97,
+      "elapsedMs": 2264,
+      "latencyPassed": false,
+      "runtimeMode": "mixed",
+      "responseMode": "fixture"
+    },
+    {
+      "inputPath": "evals/results/hanwha-reference-slice-v0.1.autoeval-baseline.2026-05-02.json",
+      "groupId": "hanwha",
+      "scenarioId": "hanwha-frozen-004-value-up",
+      "score": 97,
+      "elapsedMs": 2236,
+      "latencyPassed": false,
+      "runtimeMode": "mixed",
+      "responseMode": "fixture"
+    },
+    {
+      "inputPath": "evals/results/hanwha-reference-slice-v0.1.autoeval-baseline.2026-05-02.json",
+      "groupId": "hanwha",
+      "scenarioId": "hanwha-frozen-001-investment-brief",
+      "score": 97,
+      "elapsedMs": 2186,
+      "latencyPassed": false,
+      "runtimeMode": "mixed",
+      "responseMode": "fixture"
+    },
+    {
+      "inputPath": "evals/results/samsung-reference-slice-v0.1.autoeval-baseline.2026-05-03.json",
+      "groupId": "samsung",
+      "scenarioId": "samsung-frozen-004-biologics-orders-guidance",
+      "score": 97,
+      "elapsedMs": 2165,
+      "latencyPassed": false,
+      "runtimeMode": "mixed",
+      "responseMode": "fixture"
+    },
+    {
+      "inputPath": "evals/results/hanwha-reference-slice-v0.1.autoeval-baseline.2026-05-02.json",
+      "groupId": "hanwha",
+      "scenarioId": "hanwha-frozen-002-financial-performance",
+      "score": 97,
+      "elapsedMs": 2161,
+      "latencyPassed": false,
+      "runtimeMode": "mixed",
+      "responseMode": "fixture"
+    },
+    {
+      "inputPath": "evals/results/samsung-reference-slice-v0.1.autoeval-baseline.2026-05-03.json",
+      "groupId": "samsung",
+      "scenarioId": "samsung-frozen-002-sdi-ess-profitability",
+      "score": 97,
+      "elapsedMs": 2156,
+      "latencyPassed": false,
+      "runtimeMode": "mixed",
+      "responseMode": "fixture"
+    },
+    {
+      "inputPath": "evals/results/hanwha-reference-slice-v0.1.autoeval-baseline.2026-05-02.json",
+      "groupId": "hanwha",
+      "scenarioId": "hanwha-frozen-005-governance-disclosure",
+      "score": 97,
+      "elapsedMs": 2124,
+      "latencyPassed": false,
+      "runtimeMode": "mixed",
+      "responseMode": "fixture"
+    },
+    {
+      "inputPath": "evals/results/hanwha-reference-slice-v0.1.autoeval-baseline.2026-05-02.json",
+      "groupId": "hanwha",
+      "scenarioId": "hanwha-frozen-003-business-pipeline",
+      "score": 97,
+      "elapsedMs": 1945,
+      "latencyPassed": false,
+      "runtimeMode": "mixed",
+      "responseMode": "fixture"
+    }
+  ],
+  "interpretation": [
+    "This report measures harness/runtime latency, not investment accuracy.",
+    "External sources and local context loading should be parallelized before live LLM composition becomes default.",
+    "A scenario can pass source/trace/answer quality while still failing the product latency budget."
+  ]
+}

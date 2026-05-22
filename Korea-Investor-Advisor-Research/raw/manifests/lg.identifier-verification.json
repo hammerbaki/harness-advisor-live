@@ -1,0 +1,163 @@
+{
+  "schemaVersion": "identifier-verification.v0.1",
+  "groupId": "lg",
+  "generatedAt": "2026-05-05T12:10:00.000+09:00",
+  "source": {
+    "provider": "OpenDART",
+    "endpoint": "corpCode.xml",
+    "retrievedBy": "local DART_API_KEY",
+    "apiKeyPolicy": "DART_API_KEY loaded from local .env and omitted from this artifact.",
+    "verificationMethod": "Exact corp_name match with listed stock_code."
+  },
+  "purpose": "Record LG listed-affiliate identifiers before applying the common Korean investor advisor onboarding standard to the user-supplied LG source package.",
+  "records": [
+    {
+      "companyId": "lg-electronics",
+      "koreanName": "LG전자",
+      "displayName": "LG Electronics",
+      "krxCode": "066570",
+      "dartCode": "00401731",
+      "dartCorpName": "LG전자",
+      "dartCorpEngName": "LG ELECTRONICS INC.",
+      "dartStockCode": "066570",
+      "status": "verified",
+      "verificationStatus": "verified_official_dart_corpcode_match",
+      "runtimeUse": "eligible_for_dart_krx_routing_after_source_manifest"
+    },
+    {
+      "companyId": "lg-chem",
+      "koreanName": "LG화학",
+      "displayName": "LG Chem",
+      "krxCode": "051910",
+      "dartCode": "00356361",
+      "dartCorpName": "LG화학",
+      "dartCorpEngName": "LG CHEM LTD",
+      "dartStockCode": "051910",
+      "status": "verified",
+      "verificationStatus": "verified_official_dart_corpcode_match",
+      "runtimeUse": "eligible_for_dart_krx_routing_after_source_manifest"
+    },
+    {
+      "companyId": "lg-energy-solution",
+      "koreanName": "LG에너지솔루션",
+      "displayName": "LG Energy Solution",
+      "krxCode": "373220",
+      "dartCode": "01515323",
+      "dartCorpName": "LG에너지솔루션",
+      "dartCorpEngName": "LG ENERGY SOLUTION, LTD.",
+      "dartStockCode": "373220",
+      "status": "verified",
+      "verificationStatus": "verified_official_dart_corpcode_match",
+      "runtimeUse": "eligible_for_dart_krx_routing_after_source_manifest"
+    },
+    {
+      "companyId": "lg-hnh",
+      "koreanName": "LG생활건강",
+      "displayName": "LG H&H",
+      "krxCode": "051900",
+      "dartCode": "00356370",
+      "dartCorpName": "LG생활건강",
+      "dartCorpEngName": "LG H&H Co., Ltd.",
+      "dartStockCode": "051900",
+      "status": "verified_optional_second_wave",
+      "verificationStatus": "verified_official_dart_corpcode_match",
+      "runtimeUse": "eligible_for_dart_krx_routing_after_source_manifest"
+    },
+    {
+      "companyId": "lg-display",
+      "koreanName": "LG디스플레이",
+      "displayName": "LG Display",
+      "krxCode": "034220",
+      "dartCode": "00105873",
+      "dartCorpName": "LG디스플레이",
+      "dartCorpEngName": "LG Display Co., Ltd.",
+      "dartStockCode": "034220",
+      "status": "verified_optional_second_wave",
+      "verificationStatus": "verified_official_dart_corpcode_match",
+      "runtimeUse": "eligible_for_dart_krx_routing_after_source_manifest"
+    },
+    {
+      "companyId": "lg-innotek",
+      "koreanName": "LG이노텍",
+      "displayName": "LG Innotek",
+      "krxCode": "011070",
+      "dartCode": "00105961",
+      "dartCorpName": "LG이노텍",
+      "dartCorpEngName": "LG INNOTEK CO., LTD.",
+      "dartStockCode": "011070",
+      "status": "verified_optional_second_wave",
+      "verificationStatus": "verified_official_dart_corpcode_match",
+      "runtimeUse": "eligible_for_dart_krx_routing_after_source_manifest"
+    },
+    {
+      "companyId": "lg-uplus",
+      "koreanName": "LG유플러스",
+      "displayName": "LG Uplus",
+      "krxCode": "032640",
+      "dartCode": "00231363",
+      "dartCorpName": "LG유플러스",
+      "dartCorpEngName": "LG Uplus Corp",
+      "dartStockCode": "032640",
+      "status": "verified_optional_second_wave",
+      "verificationStatus": "verified_official_dart_corpcode_match",
+      "runtimeUse": "eligible_for_dart_krx_routing_after_source_manifest"
+    },
+    {
+      "companyId": "lg-cns",
+      "koreanName": "LG씨엔에스",
+      "displayName": "LG CNS",
+      "krxCode": "064400",
+      "dartCode": "00139834",
+      "dartCorpName": "LG씨엔에스",
+      "dartCorpEngName": "LG CNS Co., Ltd.",
+      "dartStockCode": "064400",
+      "status": "verified_optional_second_wave",
+      "verificationStatus": "verified_official_dart_corpcode_match",
+      "runtimeUse": "eligible_for_dart_krx_routing_after_source_manifest"
+    },
+    {
+      "companyId": "lg-corp",
+      "koreanName": "LG",
+      "displayName": "LG Corp.",
+      "krxCode": "003550",
+      "dartCode": "00120021",
+      "dartCorpName": "LG",
+      "dartCorpEngName": "LG Corp.",
+      "dartStockCode": "003550",
+      "status": "verified_optional_second_wave",
+      "verificationStatus": "verified_official_dart_corpcode_match",
+      "runtimeUse": "eligible_for_dart_krx_routing_after_source_manifest"
+    }
+  ],
+  "scopePolicy": {
+    "runtimeFinancialSeed": [
+      "lg-electronics",
+      "lg-chem",
+      "lg-energy-solution"
+    ],
+    "localSourceIntakePackage": [
+      "lg-electronics",
+      "lg-energy-solution",
+      "lg-chem",
+      "lg-hnh",
+      "lg-display",
+      "lg-innotek",
+      "lg-uplus",
+      "lg-cns",
+      "lg-corp"
+    ],
+    "status": "identifier_verified_local_source_package_available",
+    "note": "The 9-company LG package can enter inventory, extraction, and narrative claim queue. Runtime promotion still requires reviewed source-backed claims."
+  },
+  "notes": [
+    "LG CNS is included because the supplied local package and OpenDART listed row both use stock code 064400.",
+    "LG Corp. uses the OpenDART listed row with stock code 003550 and corp code 00120021.",
+    "The first runtime financial seed remains LG Electronics, LG Chem, and LG Energy Solution until additional companies receive promoted claims and frozen scenarios."
+  ],
+  "nextActions": [
+    "Inventory the supplied ../lg_knowledge package.",
+    "Extract official PDFs and flag low-text or non-PDF files.",
+    "Create a narrative claim queue for human review.",
+    "Compile the LG LLM Wiki seed from DART financial claims, local source inventory, extraction metadata, and narrative queue status."
+  ]
+}

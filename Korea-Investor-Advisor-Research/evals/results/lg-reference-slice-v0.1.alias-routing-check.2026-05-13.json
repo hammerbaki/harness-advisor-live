@@ -1,0 +1,1352 @@
+{
+  "schemaVersion": "advisor-autoeval-result.v0.1",
+  "scenarioSetId": "lg-reference-slice-v0.1",
+  "groupId": "lg",
+  "stage": "fourth-transfer-five-company-reference-slice",
+  "rubricId": "advisor-answer-quality-v0.2",
+  "evaluatedAt": "2026-05-13T04:26:47.615Z",
+  "baselineDate": "2026-05-05",
+  "methodology": {
+    "loop": "fixed scenario -> run advisor -> score rubric -> keep/discard candidate",
+    "source": "Adapted from Karpathy autoresearch-style self-evaluation, bounded by source-backed finance trace rules.",
+    "originalPocInputs": [
+      "follow-up consistency guards",
+      "preamble and meta-narration stripping",
+      "status stream ordering and dedupe",
+      "trace hygiene",
+      "chart/TTS leak checks"
+    ]
+  },
+  "thresholds": {
+    "pass": 85,
+    "paperBaseline": 90,
+    "keepCandidate": 92,
+    "maxPreApiLatencyMs": 1500,
+    "minAnswerSections": 3,
+    "minFollowUps": 3,
+    "minLinks": 3
+  },
+  "summary": {
+    "scenarioCount": 6,
+    "averageScore": 99.5,
+    "passCount": 6,
+    "paperBaselineCount": 6,
+    "keepCandidateCount": 6,
+    "requiredFailureCount": 0,
+    "baselineStatus": "paper_baseline"
+  },
+  "results": [
+    {
+      "scenarioId": "lg-frozen-001-electronics-financial-trend",
+      "title": "LG Electronics revenue and operating-income trend",
+      "questionHash": "e89745d36128955a54ab9a614236db69c7b1d0b8fa6f7087b29d335d42b3e8f9",
+      "paperTableBucket": "lg_affiliate_routing_electronics_financial_grounding",
+      "score": 97,
+      "status": "paper_baseline",
+      "runtimeMode": "mixed",
+      "responseMode": "fixture",
+      "llmOutputContractStatus": "code",
+      "elapsedMs": 1775,
+      "traceFile": "evals/traces/run_f03d0e97-f41b-41d3-8a37-8e2f2fa76ea5.json",
+      "expectedClaimIds": [
+        "lg-sbc-011",
+        "lg-sbc-001",
+        "lg-sbc-006"
+      ],
+      "observedClaimIds": [
+        "lg-sbc-011",
+        "lg-sbc-001",
+        "lg-sbc-006"
+      ],
+      "checks": [
+        {
+          "id": "expected_claim_coverage",
+          "passed": true,
+          "required": true,
+          "weight": 18,
+          "score": 18,
+          "details": {
+            "missing": [],
+            "observedCount": 3
+          }
+        },
+        {
+          "id": "trace_contract",
+          "passed": true,
+          "required": true,
+          "weight": 14,
+          "score": 14,
+          "details": {
+            "expectedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "observedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "requiredAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "observedAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "missingFields": [],
+            "rawQuestionInTrace": false,
+            "assemblyHasFailure": false,
+            "expectedRepresentativeCompanyId": "lg-electronics",
+            "observedRepresentativeCompanyId": "lg-electronics",
+            "routeMatches": true
+          }
+        },
+        {
+          "id": "investor_facing_answer",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "missingSignals": [],
+            "answerLength": 714
+          }
+        },
+        {
+          "id": "briefing_quality",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "bannedVague": [],
+            "hasInsightLead": true,
+            "hasJudgmentAxis": true,
+            "hasPriorityMonitoring": true,
+            "hasComparisonOrCausalContext": true,
+            "avoidsRecommendation": true,
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ]
+          }
+        },
+        {
+          "id": "development_leak_absence",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "source_status_disclosure",
+          "passed": true,
+          "required": false,
+          "weight": 10,
+          "score": 10,
+          "details": {
+            "limited": true,
+            "statuses": [
+              "live",
+              "live",
+              "live",
+              "local",
+              "local",
+              "fixture"
+            ]
+          }
+        },
+        {
+          "id": "followup_quality",
+          "passed": true,
+          "required": false,
+          "weight": 7,
+          "score": 7,
+          "details": {
+            "count": 4,
+            "generic": [],
+            "developerFacing": []
+          }
+        },
+        {
+          "id": "template_variation",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "intent": "financial",
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "recommended": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "recommendedMatches": 4,
+            "rigidGeneric": false,
+            "hasQuestionSpecificTitle": true
+          }
+        },
+        {
+          "id": "link_package",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "count": 5,
+            "validCount": 5
+          }
+        },
+        {
+          "id": "latency_budget",
+          "passed": false,
+          "required": false,
+          "weight": 3,
+          "score": 0,
+          "details": {
+            "elapsedMs": 1775,
+            "maxPreApiLatencyMs": 1500
+          }
+        },
+        {
+          "id": "original_poc_regression_guards",
+          "passed": true,
+          "required": false,
+          "weight": 2,
+          "score": 2,
+          "details": {
+            "regressions": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "lg-frozen-002-chem-financial-trend",
+      "title": "LG Chem revenue and operating-income trend",
+      "questionHash": "4cfd4b6dbee18eb3522c861920565f251cd3c0ee7ccf2461b5f995d477d4434d",
+      "paperTableBucket": "lg_affiliate_routing_chem_financial_grounding",
+      "score": 100,
+      "status": "paper_baseline",
+      "runtimeMode": "mixed",
+      "responseMode": "fixture",
+      "llmOutputContractStatus": "code",
+      "elapsedMs": 127,
+      "traceFile": "evals/traces/run_cd5848a4-4615-415b-8592-952656dc2b33.json",
+      "expectedClaimIds": [
+        "lg-sbc-012",
+        "lg-sbc-002",
+        "lg-sbc-007"
+      ],
+      "observedClaimIds": [
+        "lg-sbc-012",
+        "lg-sbc-002",
+        "lg-sbc-007"
+      ],
+      "checks": [
+        {
+          "id": "expected_claim_coverage",
+          "passed": true,
+          "required": true,
+          "weight": 18,
+          "score": 18,
+          "details": {
+            "missing": [],
+            "observedCount": 3
+          }
+        },
+        {
+          "id": "trace_contract",
+          "passed": true,
+          "required": true,
+          "weight": 14,
+          "score": 14,
+          "details": {
+            "expectedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "observedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "requiredAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "observedAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "missingFields": [],
+            "rawQuestionInTrace": false,
+            "assemblyHasFailure": false,
+            "expectedRepresentativeCompanyId": "lg-chem",
+            "observedRepresentativeCompanyId": "lg-chem",
+            "routeMatches": true
+          }
+        },
+        {
+          "id": "investor_facing_answer",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "missingSignals": [],
+            "answerLength": 701
+          }
+        },
+        {
+          "id": "briefing_quality",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "bannedVague": [],
+            "hasInsightLead": true,
+            "hasJudgmentAxis": true,
+            "hasPriorityMonitoring": true,
+            "hasComparisonOrCausalContext": true,
+            "avoidsRecommendation": true,
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ]
+          }
+        },
+        {
+          "id": "development_leak_absence",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "source_status_disclosure",
+          "passed": true,
+          "required": false,
+          "weight": 10,
+          "score": 10,
+          "details": {
+            "limited": true,
+            "statuses": [
+              "live",
+              "live",
+              "live",
+              "local",
+              "local",
+              "fixture"
+            ]
+          }
+        },
+        {
+          "id": "followup_quality",
+          "passed": true,
+          "required": false,
+          "weight": 7,
+          "score": 7,
+          "details": {
+            "count": 4,
+            "generic": [],
+            "developerFacing": []
+          }
+        },
+        {
+          "id": "template_variation",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "intent": "financial",
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "recommended": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "recommendedMatches": 4,
+            "rigidGeneric": false,
+            "hasQuestionSpecificTitle": true
+          }
+        },
+        {
+          "id": "link_package",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "count": 5,
+            "validCount": 5
+          }
+        },
+        {
+          "id": "latency_budget",
+          "passed": true,
+          "required": false,
+          "weight": 3,
+          "score": 3,
+          "details": {
+            "elapsedMs": 127,
+            "maxPreApiLatencyMs": 1500
+          }
+        },
+        {
+          "id": "original_poc_regression_guards",
+          "passed": true,
+          "required": false,
+          "weight": 2,
+          "score": 2,
+          "details": {
+            "regressions": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "lg-frozen-003-energy-solution-financial-trend",
+      "title": "LG Energy Solution revenue and operating-income trend",
+      "questionHash": "c64f1730ba6f7bd229d85e776e1d43c6eafe066995ab49231228d6ce350246ea",
+      "paperTableBucket": "lg_affiliate_routing_energy_solution_financial_grounding",
+      "score": 100,
+      "status": "paper_baseline",
+      "runtimeMode": "mixed",
+      "responseMode": "fixture",
+      "llmOutputContractStatus": "code",
+      "elapsedMs": 90,
+      "traceFile": "evals/traces/run_02a94fb5-dac0-4af6-96eb-ef3d24539514.json",
+      "expectedClaimIds": [
+        "lg-sbc-013",
+        "lg-sbc-003",
+        "lg-sbc-008"
+      ],
+      "observedClaimIds": [
+        "lg-sbc-013",
+        "lg-sbc-003",
+        "lg-sbc-008"
+      ],
+      "checks": [
+        {
+          "id": "expected_claim_coverage",
+          "passed": true,
+          "required": true,
+          "weight": 18,
+          "score": 18,
+          "details": {
+            "missing": [],
+            "observedCount": 3
+          }
+        },
+        {
+          "id": "trace_contract",
+          "passed": true,
+          "required": true,
+          "weight": 14,
+          "score": 14,
+          "details": {
+            "expectedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "observedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "requiredAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "observedAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "missingFields": [],
+            "rawQuestionInTrace": false,
+            "assemblyHasFailure": false,
+            "expectedRepresentativeCompanyId": "lg-energy-solution",
+            "observedRepresentativeCompanyId": "lg-energy-solution",
+            "routeMatches": true
+          }
+        },
+        {
+          "id": "investor_facing_answer",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "missingSignals": [],
+            "answerLength": 751
+          }
+        },
+        {
+          "id": "briefing_quality",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "bannedVague": [],
+            "hasInsightLead": true,
+            "hasJudgmentAxis": true,
+            "hasPriorityMonitoring": true,
+            "hasComparisonOrCausalContext": true,
+            "avoidsRecommendation": true,
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ]
+          }
+        },
+        {
+          "id": "development_leak_absence",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "source_status_disclosure",
+          "passed": true,
+          "required": false,
+          "weight": 10,
+          "score": 10,
+          "details": {
+            "limited": true,
+            "statuses": [
+              "live",
+              "live",
+              "live",
+              "local",
+              "local",
+              "fixture"
+            ]
+          }
+        },
+        {
+          "id": "followup_quality",
+          "passed": true,
+          "required": false,
+          "weight": 7,
+          "score": 7,
+          "details": {
+            "count": 4,
+            "generic": [],
+            "developerFacing": []
+          }
+        },
+        {
+          "id": "template_variation",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "intent": "financial",
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "recommended": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "recommendedMatches": 4,
+            "rigidGeneric": false,
+            "hasQuestionSpecificTitle": true
+          }
+        },
+        {
+          "id": "link_package",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "count": 5,
+            "validCount": 5
+          }
+        },
+        {
+          "id": "latency_budget",
+          "passed": true,
+          "required": false,
+          "weight": 3,
+          "score": 3,
+          "details": {
+            "elapsedMs": 90,
+            "maxPreApiLatencyMs": 1500
+          }
+        },
+        {
+          "id": "original_poc_regression_guards",
+          "passed": true,
+          "required": false,
+          "weight": 2,
+          "score": 2,
+          "details": {
+            "regressions": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "lg-frozen-004-innotek-financial-trend",
+      "title": "LG Innotek revenue, operating income, and recent quarter",
+      "questionHash": "04dc541b83182c72dff5e49c43b33a87f5a61dedd4e5a2da8b38c5c24a571de0",
+      "paperTableBucket": "lg_affiliate_routing_innotek_financial_grounding",
+      "score": 100,
+      "status": "paper_baseline",
+      "runtimeMode": "mixed",
+      "responseMode": "fixture",
+      "llmOutputContractStatus": "code",
+      "elapsedMs": 104,
+      "traceFile": "evals/traces/run_1692c4b5-ee23-4419-a5b6-0ada5115ae35.json",
+      "expectedClaimIds": [
+        "lg-sbc-014",
+        "lg-sbc-004",
+        "lg-sbc-009"
+      ],
+      "observedClaimIds": [
+        "lg-sbc-014",
+        "lg-sbc-004",
+        "lg-sbc-009"
+      ],
+      "checks": [
+        {
+          "id": "expected_claim_coverage",
+          "passed": true,
+          "required": true,
+          "weight": 18,
+          "score": 18,
+          "details": {
+            "missing": [],
+            "observedCount": 3
+          }
+        },
+        {
+          "id": "trace_contract",
+          "passed": true,
+          "required": true,
+          "weight": 14,
+          "score": 14,
+          "details": {
+            "expectedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "observedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "requiredAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "observedAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "missingFields": [],
+            "rawQuestionInTrace": false,
+            "assemblyHasFailure": false,
+            "expectedRepresentativeCompanyId": "lg-innotek",
+            "observedRepresentativeCompanyId": "lg-innotek",
+            "routeMatches": true
+          }
+        },
+        {
+          "id": "investor_facing_answer",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "missingSignals": [],
+            "answerLength": 739
+          }
+        },
+        {
+          "id": "briefing_quality",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "bannedVague": [],
+            "hasInsightLead": true,
+            "hasJudgmentAxis": true,
+            "hasPriorityMonitoring": true,
+            "hasComparisonOrCausalContext": true,
+            "avoidsRecommendation": true,
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ]
+          }
+        },
+        {
+          "id": "development_leak_absence",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "source_status_disclosure",
+          "passed": true,
+          "required": false,
+          "weight": 10,
+          "score": 10,
+          "details": {
+            "limited": true,
+            "statuses": [
+              "live",
+              "live",
+              "live",
+              "local",
+              "local",
+              "fixture"
+            ]
+          }
+        },
+        {
+          "id": "followup_quality",
+          "passed": true,
+          "required": false,
+          "weight": 7,
+          "score": 7,
+          "details": {
+            "count": 4,
+            "generic": [],
+            "developerFacing": []
+          }
+        },
+        {
+          "id": "template_variation",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "intent": "financial",
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "recommended": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "recommendedMatches": 4,
+            "rigidGeneric": false,
+            "hasQuestionSpecificTitle": true
+          }
+        },
+        {
+          "id": "link_package",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "count": 5,
+            "validCount": 5
+          }
+        },
+        {
+          "id": "latency_budget",
+          "passed": true,
+          "required": false,
+          "weight": 3,
+          "score": 3,
+          "details": {
+            "elapsedMs": 104,
+            "maxPreApiLatencyMs": 1500
+          }
+        },
+        {
+          "id": "original_poc_regression_guards",
+          "passed": true,
+          "required": false,
+          "weight": 2,
+          "score": 2,
+          "details": {
+            "regressions": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "lg-frozen-005-uplus-financial-trend",
+      "title": "LG Uplus revenue, operating income, and service revenue",
+      "questionHash": "90dbe9ae300ccbdf77d7dcda8605fc96b7f16dd9eab5a044b5406b42413a1aab",
+      "paperTableBucket": "lg_affiliate_routing_uplus_financial_grounding",
+      "score": 100,
+      "status": "paper_baseline",
+      "runtimeMode": "mixed",
+      "responseMode": "fixture",
+      "llmOutputContractStatus": "code",
+      "elapsedMs": 128,
+      "traceFile": "evals/traces/run_92731a6f-bdc8-437f-a702-95d2124dca2d.json",
+      "expectedClaimIds": [
+        "lg-sbc-015",
+        "lg-sbc-005",
+        "lg-sbc-010"
+      ],
+      "observedClaimIds": [
+        "lg-sbc-015",
+        "lg-sbc-005",
+        "lg-sbc-010"
+      ],
+      "checks": [
+        {
+          "id": "expected_claim_coverage",
+          "passed": true,
+          "required": true,
+          "weight": 18,
+          "score": 18,
+          "details": {
+            "missing": [],
+            "observedCount": 3
+          }
+        },
+        {
+          "id": "trace_contract",
+          "passed": true,
+          "required": true,
+          "weight": 14,
+          "score": 14,
+          "details": {
+            "expectedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "observedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "requiredAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "observedAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "missingFields": [],
+            "rawQuestionInTrace": false,
+            "assemblyHasFailure": false,
+            "expectedRepresentativeCompanyId": "lg-uplus",
+            "observedRepresentativeCompanyId": "lg-uplus",
+            "routeMatches": true
+          }
+        },
+        {
+          "id": "investor_facing_answer",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "missingSignals": [],
+            "answerLength": 731
+          }
+        },
+        {
+          "id": "briefing_quality",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "bannedVague": [],
+            "hasInsightLead": true,
+            "hasJudgmentAxis": true,
+            "hasPriorityMonitoring": true,
+            "hasComparisonOrCausalContext": true,
+            "avoidsRecommendation": true,
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ]
+          }
+        },
+        {
+          "id": "development_leak_absence",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "source_status_disclosure",
+          "passed": true,
+          "required": false,
+          "weight": 10,
+          "score": 10,
+          "details": {
+            "limited": true,
+            "statuses": [
+              "live",
+              "live",
+              "live",
+              "local",
+              "local",
+              "fixture"
+            ]
+          }
+        },
+        {
+          "id": "followup_quality",
+          "passed": true,
+          "required": false,
+          "weight": 7,
+          "score": 7,
+          "details": {
+            "count": 4,
+            "generic": [],
+            "developerFacing": []
+          }
+        },
+        {
+          "id": "template_variation",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "intent": "financial",
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "recommended": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "recommendedMatches": 4,
+            "rigidGeneric": false,
+            "hasQuestionSpecificTitle": true
+          }
+        },
+        {
+          "id": "link_package",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "count": 5,
+            "validCount": 5
+          }
+        },
+        {
+          "id": "latency_budget",
+          "passed": true,
+          "required": false,
+          "weight": 3,
+          "score": 3,
+          "details": {
+            "elapsedMs": 128,
+            "maxPreApiLatencyMs": 1500
+          }
+        },
+        {
+          "id": "original_poc_regression_guards",
+          "passed": true,
+          "required": false,
+          "weight": 2,
+          "score": 2,
+          "details": {
+            "regressions": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "lg-frozen-006-electronics-chem-comparison",
+      "title": "LG Electronics and LG Chem financial comparison",
+      "questionHash": "9359ba42d02c03701226fa29b4ecbb10369efd60b1a030ebf8a28f6a909a5afe",
+      "paperTableBucket": "lg_cross_affiliate_financial_comparison",
+      "score": 100,
+      "status": "paper_baseline",
+      "runtimeMode": "mixed",
+      "responseMode": "fixture",
+      "llmOutputContractStatus": "code",
+      "elapsedMs": 1,
+      "traceFile": "evals/traces/run_64348971-95d7-4169-9d5a-f86a48b43020.json",
+      "expectedClaimIds": [
+        "lg-sbc-002",
+        "lg-sbc-001",
+        "lg-sbc-006",
+        "lg-sbc-007",
+        "lg-sbc-011"
+      ],
+      "observedClaimIds": [
+        "lg-sbc-001",
+        "lg-sbc-002",
+        "lg-sbc-006",
+        "lg-sbc-007",
+        "lg-sbc-011"
+      ],
+      "checks": [
+        {
+          "id": "expected_claim_coverage",
+          "passed": true,
+          "required": true,
+          "weight": 18,
+          "score": 18,
+          "details": {
+            "missing": [],
+            "observedCount": 5
+          }
+        },
+        {
+          "id": "trace_contract",
+          "passed": true,
+          "required": true,
+          "weight": 14,
+          "score": 14,
+          "details": {
+            "expectedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "observedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "requiredAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "observedAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "missingFields": [],
+            "rawQuestionInTrace": false,
+            "assemblyHasFailure": false,
+            "expectedRepresentativeCompanyId": "lg-electronics",
+            "observedRepresentativeCompanyId": "lg-electronics",
+            "routeMatches": true
+          }
+        },
+        {
+          "id": "investor_facing_answer",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "missingSignals": [],
+            "answerLength": 719
+          }
+        },
+        {
+          "id": "briefing_quality",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "bannedVague": [],
+            "hasInsightLead": true,
+            "hasJudgmentAxis": true,
+            "hasPriorityMonitoring": true,
+            "hasComparisonOrCausalContext": true,
+            "avoidsRecommendation": true,
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ]
+          }
+        },
+        {
+          "id": "development_leak_absence",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "source_status_disclosure",
+          "passed": true,
+          "required": false,
+          "weight": 10,
+          "score": 10,
+          "details": {
+            "limited": true,
+            "statuses": [
+              "live",
+              "live",
+              "live",
+              "local",
+              "local",
+              "fixture"
+            ]
+          }
+        },
+        {
+          "id": "followup_quality",
+          "passed": true,
+          "required": false,
+          "weight": 7,
+          "score": 7,
+          "details": {
+            "count": 4,
+            "generic": [],
+            "developerFacing": []
+          }
+        },
+        {
+          "id": "template_variation",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "intent": "financial",
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "recommended": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "recommendedMatches": 4,
+            "rigidGeneric": false,
+            "hasQuestionSpecificTitle": true
+          }
+        },
+        {
+          "id": "link_package",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "count": 5,
+            "validCount": 5
+          }
+        },
+        {
+          "id": "latency_budget",
+          "passed": true,
+          "required": false,
+          "weight": 3,
+          "score": 3,
+          "details": {
+            "elapsedMs": 1,
+            "maxPreApiLatencyMs": 1500
+          }
+        },
+        {
+          "id": "original_poc_regression_guards",
+          "passed": true,
+          "required": false,
+          "weight": 2,
+          "score": 2,
+          "details": {
+            "regressions": []
+          }
+        }
+      ]
+    }
+  ]
+}

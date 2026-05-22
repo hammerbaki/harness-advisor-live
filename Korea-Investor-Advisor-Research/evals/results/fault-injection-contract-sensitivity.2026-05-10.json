@@ -1,0 +1,148 @@
+{
+  "schemaVersion": "advisor-fault-injection-result.v0.1",
+  "generatedAt": "2026-05-10T10:17:13.728Z",
+  "baselineDate": "2026-05-10",
+  "scenarioSetId": "samsung-reference-slice-v0.1",
+  "groupId": "samsung",
+  "scenarioId": "samsung-frozen-001-electronics-memory-hbm",
+  "methodology": {
+    "purpose": "Check whether the frozen-scenario contract validators detect deliberately induced faults.",
+    "baseline": "A valid advisor response is generated first; each mutation alters one contract dimension and reruns the same deterministic checks.",
+    "scope": "Contract sensitivity only. This is not an expert review and not an open-world robustness benchmark."
+  },
+  "baselineChecks": [
+    {
+      "id": "expected_claim_coverage",
+      "passed": true,
+      "details": {
+        "missing": [],
+        "expectedCount": 4,
+        "observedCount": 5
+      }
+    },
+    {
+      "id": "trace_contract",
+      "passed": true,
+      "details": {
+        "orderMatches": true,
+        "missingFields": [],
+        "rawQuestionInTrace": false,
+        "assemblyComplete": true,
+        "assemblyHasFailure": false,
+        "expectedRepresentativeCompanyId": "samsung-electronics",
+        "observedRepresentativeCompanyId": "samsung-electronics",
+        "routeMatches": true
+      }
+    },
+    {
+      "id": "investor_facing_answer",
+      "passed": true,
+      "details": {
+        "missingSignals": [],
+        "sectionCount": 5,
+        "answerLength": 945
+      }
+    },
+    {
+      "id": "development_leak_absence",
+      "passed": true,
+      "details": {
+        "leaks": []
+      }
+    },
+    {
+      "id": "link_package",
+      "passed": true,
+      "details": {
+        "count": 5,
+        "validCount": 5
+      }
+    },
+    {
+      "id": "latency_budget",
+      "passed": true,
+      "details": {
+        "elapsedMs": 4,
+        "maxPreApiLatencyMs": 1500
+      }
+    }
+  ],
+  "summary": {
+    "mutationCount": 7,
+    "detectedCount": 7,
+    "undetectedCount": 0,
+    "status": "all_faults_detected"
+  },
+  "results": [
+    {
+      "id": "missing_expected_claim",
+      "contractDimension": "Claim refs",
+      "inducedFault": "Remove expected claim samsung-sbc-020 from sourceClaims.",
+      "expectedFailedCheckId": "expected_claim_coverage",
+      "detected": true,
+      "failedChecks": [
+        "expected_claim_coverage"
+      ]
+    },
+    {
+      "id": "wrong_company_route",
+      "contractDimension": "Route checks",
+      "inducedFault": "Replace the representative company route with an unrelated identifier.",
+      "expectedFailedCheckId": "trace_contract",
+      "detected": true,
+      "failedChecks": [
+        "trace_contract"
+      ]
+    },
+    {
+      "id": "missing_trace_field",
+      "contractDimension": "Trace",
+      "inducedFault": "Delete a required trace field.",
+      "expectedFailedCheckId": "trace_contract",
+      "detected": true,
+      "failedChecks": [
+        "trace_contract"
+      ]
+    },
+    {
+      "id": "answer_contract_break",
+      "contractDimension": "Answer",
+      "inducedFault": "Remove the required answer signal 삼성전자.",
+      "expectedFailedCheckId": "investor_facing_answer",
+      "detected": true,
+      "failedChecks": [
+        "investor_facing_answer"
+      ]
+    },
+    {
+      "id": "developer_trace_leak",
+      "contractDimension": "No leakage",
+      "inducedFault": "Inject development-facing trace labels and raw claim IDs into the visible answer.",
+      "expectedFailedCheckId": "development_leak_absence",
+      "detected": true,
+      "failedChecks": [
+        "development_leak_absence"
+      ]
+    },
+    {
+      "id": "broken_source_link",
+      "contractDimension": "Links",
+      "inducedFault": "Replace a source link with a non-HTTP value.",
+      "expectedFailedCheckId": "link_package",
+      "detected": true,
+      "failedChecks": [
+        "link_package"
+      ]
+    },
+    {
+      "id": "latency_budget_violation",
+      "contractDimension": "Latency",
+      "inducedFault": "Set elapsedMs above 1500ms budget.",
+      "expectedFailedCheckId": "latency_budget",
+      "detected": true,
+      "failedChecks": [
+        "latency_budget"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "schemaVersion": "source-intake-template.v0.1",
+  "groupId": "samsung",
+  "generatedAt": "2026-05-05T14:35:00.000+09:00",
+  "status": "document-url-intake-ready",
+  "purpose": "Normalize Samsung source intake around the same source-to-claim harness used for the other target groups. Samsung already has a document URL intake ledger; this template records the reusable onboarding contract.",
+  "localKnowledgeRootExpected": "../Knowledge Base/samsung_knowledge",
+  "ledgerExpected": "../Knowledge Base/samsung_knowledge/document_urls.md",
+  "firstSliceCompanies": [
+    {
+      "companyId": "samsung-electronics",
+      "koreanName": "삼성전자",
+      "displayName": "Samsung Electronics",
+      "krxCode": "005930",
+      "dartCode": "00126380",
+      "folderName": "삼성전자"
+    },
+    {
+      "companyId": "samsung-sdi",
+      "koreanName": "삼성SDI",
+      "displayName": "Samsung SDI",
+      "krxCode": "006400",
+      "dartCode": "00126362",
+      "folderName": "삼성SDI"
+    },
+    {
+      "companyId": "samsung-ct",
+      "koreanName": "삼성물산",
+      "displayName": "Samsung C&T",
+      "krxCode": "028260",
+      "dartCode": "00149655",
+      "folderName": "삼성물산"
+    },
+    {
+      "companyId": "samsung-biologics",
+      "koreanName": "삼성바이오로직스",
+      "displayName": "Samsung Biologics",
+      "krxCode": "207940",
+      "dartCode": "00877059",
+      "folderName": "삼성바이오로직스"
+    },
+    {
+      "companyId": "samsung-electro-mechanics",
+      "koreanName": "삼성전기",
+      "displayName": "Samsung Electro-Mechanics",
+      "krxCode": "009150",
+      "dartCode": "00126371",
+      "folderName": "삼성전기",
+      "collectionStatus": "source-package-needed"
+    }
+  ],
+  "optionalSecondWaveCompanies": [
+    "samsung-sds",
+    "samsung-heavy-industries",
+    "samsung-ea",
+    "samsung-life",
+    "samsung-fire-marine",
+    "samsung-card",
+    "samsung-securities",
+    "cheil-worldwide",
+    "hotel-shilla",
+    "s1"
+  ],
+  "ledgerColumns": [
+    "company",
+    "companyId",
+    "local_file",
+    "source_page_url",
+    "direct_document_url",
+    "dart_receipt_url",
+    "title",
+    "date",
+    "document_type",
+    "request_package",
+    "selection_reason",
+    "rights_level",
+    "note"
+  ],
+  "sourcePackages": [
+    {
+      "id": "PKG-01",
+      "name": "company identity and market identifiers",
+      "required": true
+    },
+    {
+      "id": "PKG-02",
+      "name": "financial disclosure baseline",
+      "required": true
+    },
+    {
+      "id": "PKG-03",
+      "name": "earnings and investor presentation baseline",
+      "required": true
+    },
+    {
+      "id": "PKG-04",
+      "name": "shareholder value and capital action baseline",
+      "required": true
+    }
+  ],
+  "acceptanceChecklist": [
+    "Document-level URLs or DART viewer URLs are attached before narrative claim promotion.",
+    "Financial-company figures use only explicit DART account labels.",
+    "Runtime claims preserve companyId, companyScope, period, source URL, evidence locator, and forward-looking label where needed."
+  ],
+  "runtimePolicy": "Samsung documents are review evidence until promoted into source-backed claims with companyId, companyScope, evidence locator, and rights-safe source metadata."
+}

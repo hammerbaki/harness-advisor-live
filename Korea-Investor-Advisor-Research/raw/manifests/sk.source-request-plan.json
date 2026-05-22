@@ -1,0 +1,162 @@
+{
+  "schemaVersion": "source-request-plan.v0.1",
+  "groupId": "sk",
+  "generatedAt": "2026-05-03T00:00:00.000+09:00",
+  "status": "identifier_verified_financial_seed_ready_document_urls_needed",
+  "purpose": "Define the bounded source request needed to advance SK from financial seed coverage to a Samsung-level first-transfer slice.",
+  "doNotAskFor": [
+    "all SK-related documents",
+    "unbounded affiliate archives",
+    "licensed analyst PDFs without model-use rights",
+    "audio or video files without public transcript/subtitle unless specifically needed"
+  ],
+  "currentKnownOfficialEntryPoints": [
+    {
+      "companyId": "sk-hynix",
+      "koreanName": "SK하이닉스",
+      "sourceRole": "official_issuer_ir",
+      "sourcePageUrl": "https://www.skhynix.com/ir/UI-FR-IR06/",
+      "use": "earnings presentation and IR material discovery",
+      "verificationStatus": "http_200_checked",
+      "documentLevelUrlStatus": "needed"
+    },
+    {
+      "companyId": "sk-innovation",
+      "koreanName": "SK이노베이션",
+      "sourceRole": "official_issuer_ir",
+      "sourcePageUrl": "https://www.skinnovation.com/ir/earning",
+      "use": "earnings presentation and energy/battery narrative discovery",
+      "verificationStatus": "official_ir_entry_found",
+      "documentLevelUrlStatus": "needed"
+    },
+    {
+      "companyId": "sk-inc",
+      "koreanName": "SK",
+      "sourceRole": "official_issuer_ir",
+      "sourcePageUrl": "https://www.sk-inc.com/en/ir/irArchive.aspx",
+      "use": "holding-company IR archive and presentation discovery",
+      "verificationStatus": "http_200_checked",
+      "documentLevelUrlStatus": "needed"
+    },
+    {
+      "companyId": "sk-telecom",
+      "koreanName": "SK텔레콤",
+      "sourceRole": "official_issuer_ir",
+      "sourcePageUrl": "https://www.sktelecom.com/en/investor/lib/presentation.do",
+      "use": "earnings presentation and IR material discovery",
+      "verificationStatus": "http_200_checked",
+      "documentLevelUrlStatus": "needed"
+    }
+  ],
+  "requestedSourcePackages": [
+    {
+      "requestPackageId": "SK-PKG-01",
+      "name": "identifier and financial baseline",
+      "status": "complete_for_initial_seed",
+      "requiredUse": ["DART routing", "KRX routing", "financial baseline claims"],
+      "availableArtifacts": [
+        "raw/manifests/sk.identifier-verification.json",
+        "raw/manifests/sk.dart-financial-table.2022-2024.json",
+        "raw/manifests/sk.source-backed-claims.json"
+      ],
+      "remainingAsk": []
+    },
+    {
+      "requestPackageId": "SK-PKG-02",
+      "name": "SK Hynix memory and HBM narrative",
+      "status": "needed",
+      "requiredUse": ["business pipeline claims", "stock brief", "investor thesis", "Samsung/SK semiconductor comparison"],
+      "askFor": [
+        "latest four SK Hynix earnings presentation document URLs",
+        "latest SK Hynix annual report or DART receipt URL",
+        "latest public HBM/AI memory strategy presentation or transcript if available",
+        "latest capex or capacity expansion official material if used in claims"
+      ],
+      "minimumMetadata": [
+        "document title",
+        "issuer",
+        "period",
+        "source page URL",
+        "direct PDF/PPT URL or DART receipt URL",
+        "rights level"
+      ]
+    },
+    {
+      "requestPackageId": "SK-PKG-03",
+      "name": "SK Innovation energy, battery, and merger narrative",
+      "status": "needed",
+      "requiredUse": ["energy and battery claims", "portfolio transition claims", "SK group comparison", "financial trend interpretation"],
+      "askFor": [
+        "latest four SK Innovation earnings presentation document URLs",
+        "latest SK Innovation annual report or DART receipt URL",
+        "latest official SK On battery strategy or earnings material if used in claims",
+        "latest official SK E&S merger, LNG, or energy-transition material if used in claims",
+        "latest shareholder-return, dividend, or capital-allocation material if used in claims"
+      ],
+      "minimumMetadata": [
+        "document title",
+        "issuer",
+        "period",
+        "source page URL",
+        "direct PDF/PPT URL or DART receipt URL",
+        "rights level"
+      ]
+    },
+    {
+      "requestPackageId": "SK-PKG-04",
+      "name": "SK Inc. portfolio and shareholder value narrative",
+      "status": "needed",
+      "requiredUse": ["holding-company claims", "portfolio risk", "shareholder-return/value-up questions"],
+      "askFor": [
+        "latest SK Inc. investor presentation document URL",
+        "latest annual report or DART receipt URL",
+        "latest value-up, shareholder-return, dividend, or capital-allocation document URL",
+        "current portfolio or investment-company explanation material"
+      ],
+      "minimumMetadata": [
+        "document title",
+        "issuer",
+        "period",
+        "source page URL",
+        "direct PDF/PPT URL or DART receipt URL",
+        "rights level"
+      ]
+    },
+    {
+      "requestPackageId": "SK-PKG-05",
+      "name": "SK Telecom telecom, AI, and data-center narrative",
+      "status": "needed",
+      "requiredUse": ["telecom segment claims", "AI/data-center thesis", "financial trend interpretation"],
+      "askFor": [
+        "latest four SK Telecom earnings presentation document URLs",
+        "latest annual report or DART receipt URL",
+        "latest public AI/data-center strategy material if used in claims",
+        "latest shareholder-return or dividend policy material"
+      ],
+      "minimumMetadata": [
+        "document title",
+        "issuer",
+        "period",
+        "source page URL",
+        "direct PDF/PPT URL or DART receipt URL",
+        "rights level"
+      ]
+    }
+  ],
+  "acceptanceCriteriaBeforeRuntimePromotion": [
+    "Every narrative claim must have a companyId.",
+    "Every narrative claim must have a document-level public URL or DART receipt URL.",
+    "Every source must include period, issuer, rights level, and source role.",
+    "SK Hynix HBM and memory claims must not be inferred from stock price or news fixture.",
+    "SK Innovation energy, battery, merger, and portfolio-transition claims must not be inferred from broad energy category labels.",
+    "SK Telecom AI/data-center claims must not be inferred from broad telecom category labels.",
+    "SK Inc. portfolio and shareholder-return claims must preserve whether the claim is holding-company level or affiliate-specific."
+  ],
+  "nextActions": [
+    "Collect document-level URLs for the four requested narrative source packages.",
+    "Create SK local source inventory only after files or exact URLs exist.",
+    "Generate SK wiki seed pages from source manifests.",
+    "Promote SK narrative claims after evidence locator review.",
+    "Create SK frozen scenarios after at least one financial and one narrative claim path pass."
+  ]
+}

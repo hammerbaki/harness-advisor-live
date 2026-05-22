@@ -1,0 +1,1132 @@
+{
+  "schemaVersion": "advisor-autoeval-result.v0.1",
+  "scenarioSetId": "hanwha-reference-slice-v0.1",
+  "groupId": "hanwha",
+  "stage": "pre-api-template-freeze",
+  "rubricId": "advisor-answer-quality-v0.2",
+  "evaluatedAt": "2026-05-03T01:27:45.042Z",
+  "baselineDate": "2026-05-03",
+  "methodology": {
+    "loop": "fixed scenario -> run advisor -> score rubric -> keep/discard candidate",
+    "source": "Adapted from Karpathy autoresearch-style self-evaluation, bounded by source-backed finance trace rules.",
+    "originalPocInputs": [
+      "follow-up consistency guards",
+      "preamble and meta-narration stripping",
+      "status stream ordering and dedupe",
+      "trace hygiene",
+      "chart/TTS leak checks"
+    ]
+  },
+  "thresholds": {
+    "pass": 85,
+    "paperBaseline": 90,
+    "keepCandidate": 92,
+    "maxPreApiLatencyMs": 1500,
+    "minAnswerSections": 3,
+    "minFollowUps": 3,
+    "minLinks": 3
+  },
+  "summary": {
+    "scenarioCount": 5,
+    "averageScore": 97.6,
+    "passCount": 5,
+    "paperBaselineCount": 5,
+    "keepCandidateCount": 5,
+    "requiredFailureCount": 0,
+    "baselineStatus": "paper_baseline"
+  },
+  "results": [
+    {
+      "scenarioId": "hanwha-frozen-001-investment-brief",
+      "title": "Latest news and investment-point brief",
+      "questionHash": "32486cb16fc4af9939a43008766fed0bf9902aceb1f2407c433a5fc189b725fe",
+      "paperTableBucket": "general_investment_summary",
+      "score": 97,
+      "status": "paper_baseline",
+      "runtimeMode": "mixed",
+      "responseMode": "fixture",
+      "llmOutputContractStatus": "code",
+      "elapsedMs": 1584,
+      "traceFile": "evals/traces/run_47fd50ba-2300-4588-8d0c-012d8c75eabc.json",
+      "expectedClaimIds": [
+        "hanwha-sbc-001",
+        "hanwha-sbc-003",
+        "hanwha-sbc-004",
+        "hanwha-sbc-005"
+      ],
+      "observedClaimIds": [
+        "hanwha-sbc-003",
+        "hanwha-sbc-004",
+        "hanwha-sbc-005",
+        "hanwha-sbc-001"
+      ],
+      "checks": [
+        {
+          "id": "expected_claim_coverage",
+          "passed": true,
+          "required": true,
+          "weight": 18,
+          "score": 18,
+          "details": {
+            "missing": [],
+            "observedCount": 4
+          }
+        },
+        {
+          "id": "trace_contract",
+          "passed": true,
+          "required": true,
+          "weight": 14,
+          "score": 14,
+          "details": {
+            "expectedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "observedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "requiredAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "observedAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "missingFields": [],
+            "rawQuestionInTrace": false,
+            "assemblyHasFailure": false,
+            "expectedRepresentativeCompanyId": null,
+            "observedRepresentativeCompanyId": "hanwha",
+            "routeMatches": true
+          }
+        },
+        {
+          "id": "investor_facing_answer",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "sections": [
+              "이슈 요약",
+              "공시 연결",
+              "산업맥락",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ],
+            "missingSignals": [],
+            "answerLength": 975
+          }
+        },
+        {
+          "id": "briefing_quality",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "bannedVague": [],
+            "hasJudgmentAxis": true,
+            "hasPriorityMonitoring": true,
+            "hasComparisonOrCausalContext": true,
+            "avoidsRecommendation": true,
+            "sections": [
+              "이슈 요약",
+              "공시 연결",
+              "산업맥락",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ]
+          }
+        },
+        {
+          "id": "development_leak_absence",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "source_status_disclosure",
+          "passed": true,
+          "required": false,
+          "weight": 10,
+          "score": 10,
+          "details": {
+            "limited": true,
+            "statuses": [
+              "live",
+              "live",
+              "fixture",
+              "local",
+              "local",
+              "fixture"
+            ]
+          }
+        },
+        {
+          "id": "followup_quality",
+          "passed": true,
+          "required": false,
+          "weight": 7,
+          "score": 7,
+          "details": {
+            "count": 4,
+            "generic": [],
+            "developerFacing": []
+          }
+        },
+        {
+          "id": "template_variation",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "intent": "general",
+            "sections": [
+              "이슈 요약",
+              "공시 연결",
+              "산업맥락",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ],
+            "recommended": [
+              "이슈 요약",
+              "공시 연결",
+              "시장 반응",
+              "확인 우선순위"
+            ],
+            "recommendedMatches": 3,
+            "rigidGeneric": false,
+            "hasQuestionSpecificTitle": true
+          }
+        },
+        {
+          "id": "link_package",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "count": 5,
+            "validCount": 5
+          }
+        },
+        {
+          "id": "latency_budget",
+          "passed": false,
+          "required": false,
+          "weight": 3,
+          "score": 0,
+          "details": {
+            "elapsedMs": 1584,
+            "maxPreApiLatencyMs": 1500
+          }
+        },
+        {
+          "id": "original_poc_regression_guards",
+          "passed": true,
+          "required": false,
+          "weight": 2,
+          "score": 2,
+          "details": {
+            "regressions": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "hanwha-frozen-002-financial-performance",
+      "title": "Financial performance summary",
+      "questionHash": "f526962378f5e40ba892ff9c0873b963b2d5a68f4146b30c16a1202356395de9",
+      "paperTableBucket": "financial_metric_grounding",
+      "score": 100,
+      "status": "paper_baseline",
+      "runtimeMode": "mixed",
+      "responseMode": "fixture",
+      "llmOutputContractStatus": "code",
+      "elapsedMs": 1492,
+      "traceFile": "evals/traces/run_a6504059-0647-4b00-8b7f-beb4562ced4d.json",
+      "expectedClaimIds": [
+        "hanwha-sbc-001",
+        "hanwha-sbc-002"
+      ],
+      "observedClaimIds": [
+        "hanwha-sbc-001",
+        "hanwha-sbc-002",
+        "hanwha-sbc-007",
+        "hanwha-sbc-003"
+      ],
+      "checks": [
+        {
+          "id": "expected_claim_coverage",
+          "passed": true,
+          "required": true,
+          "weight": 18,
+          "score": 18,
+          "details": {
+            "missing": [],
+            "observedCount": 4
+          }
+        },
+        {
+          "id": "trace_contract",
+          "passed": true,
+          "required": true,
+          "weight": 14,
+          "score": 14,
+          "details": {
+            "expectedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "observedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "requiredAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "observedAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "missingFields": [],
+            "rawQuestionInTrace": false,
+            "assemblyHasFailure": false,
+            "expectedRepresentativeCompanyId": null,
+            "observedRepresentativeCompanyId": "hanwha",
+            "routeMatches": true
+          }
+        },
+        {
+          "id": "investor_facing_answer",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "sections": [
+              "현황요약",
+              "재무 포인트",
+              "산업맥락",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ],
+            "missingSignals": [],
+            "answerLength": 1085
+          }
+        },
+        {
+          "id": "briefing_quality",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "bannedVague": [],
+            "hasJudgmentAxis": true,
+            "hasPriorityMonitoring": true,
+            "hasComparisonOrCausalContext": true,
+            "avoidsRecommendation": true,
+            "sections": [
+              "현황요약",
+              "재무 포인트",
+              "산업맥락",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ]
+          }
+        },
+        {
+          "id": "development_leak_absence",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "source_status_disclosure",
+          "passed": true,
+          "required": false,
+          "weight": 10,
+          "score": 10,
+          "details": {
+            "limited": true,
+            "statuses": [
+              "live",
+              "live",
+              "fixture",
+              "local",
+              "local",
+              "fixture"
+            ]
+          }
+        },
+        {
+          "id": "followup_quality",
+          "passed": true,
+          "required": false,
+          "weight": 7,
+          "score": 7,
+          "details": {
+            "count": 4,
+            "generic": [],
+            "developerFacing": []
+          }
+        },
+        {
+          "id": "template_variation",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "intent": "financial",
+            "sections": [
+              "현황요약",
+              "재무 포인트",
+              "산업맥락",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ],
+            "recommended": [
+              "현황요약",
+              "재무 포인트",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ],
+            "recommendedMatches": 4,
+            "rigidGeneric": false,
+            "hasQuestionSpecificTitle": true
+          }
+        },
+        {
+          "id": "link_package",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "count": 5,
+            "validCount": 5
+          }
+        },
+        {
+          "id": "latency_budget",
+          "passed": true,
+          "required": false,
+          "weight": 3,
+          "score": 3,
+          "details": {
+            "elapsedMs": 1492,
+            "maxPreApiLatencyMs": 1500
+          }
+        },
+        {
+          "id": "original_poc_regression_guards",
+          "passed": true,
+          "required": false,
+          "weight": 2,
+          "score": 2,
+          "details": {
+            "regressions": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "hanwha-frozen-003-business-pipeline",
+      "title": "Business pipeline and BNCP thesis",
+      "questionHash": "5ab2c8f0725975338dd7ce2e0f5f88c7686e45f0ed9e95e375b174cabfa0d266",
+      "paperTableBucket": "business_pipeline_grounding",
+      "score": 97,
+      "status": "paper_baseline",
+      "runtimeMode": "mixed",
+      "responseMode": "fixture",
+      "llmOutputContractStatus": "code",
+      "elapsedMs": 1593,
+      "traceFile": "evals/traces/run_5baf13a2-b5e7-4c12-9f86-3346bec94228.json",
+      "expectedClaimIds": [
+        "hanwha-sbc-003",
+        "hanwha-sbc-004"
+      ],
+      "observedClaimIds": [
+        "hanwha-sbc-003",
+        "hanwha-sbc-004",
+        "hanwha-sbc-005",
+        "hanwha-sbc-001"
+      ],
+      "checks": [
+        {
+          "id": "expected_claim_coverage",
+          "passed": true,
+          "required": true,
+          "weight": 18,
+          "score": 18,
+          "details": {
+            "missing": [],
+            "observedCount": 4
+          }
+        },
+        {
+          "id": "trace_contract",
+          "passed": true,
+          "required": true,
+          "weight": 14,
+          "score": 14,
+          "details": {
+            "expectedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "observedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "requiredAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "observedAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "missingFields": [],
+            "rawQuestionInTrace": false,
+            "assemblyHasFailure": false,
+            "expectedRepresentativeCompanyId": null,
+            "observedRepresentativeCompanyId": "hanwha",
+            "routeMatches": true
+          }
+        },
+        {
+          "id": "investor_facing_answer",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "sections": [
+              "이슈 요약",
+              "사업 파이프라인",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ],
+            "missingSignals": [],
+            "answerLength": 968
+          }
+        },
+        {
+          "id": "briefing_quality",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "bannedVague": [],
+            "hasJudgmentAxis": true,
+            "hasPriorityMonitoring": true,
+            "hasComparisonOrCausalContext": true,
+            "avoidsRecommendation": true,
+            "sections": [
+              "이슈 요약",
+              "사업 파이프라인",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ]
+          }
+        },
+        {
+          "id": "development_leak_absence",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "source_status_disclosure",
+          "passed": true,
+          "required": false,
+          "weight": 10,
+          "score": 10,
+          "details": {
+            "limited": true,
+            "statuses": [
+              "live",
+              "live",
+              "fixture",
+              "local",
+              "local",
+              "fixture"
+            ]
+          }
+        },
+        {
+          "id": "followup_quality",
+          "passed": true,
+          "required": false,
+          "weight": 7,
+          "score": 7,
+          "details": {
+            "count": 4,
+            "generic": [],
+            "developerFacing": []
+          }
+        },
+        {
+          "id": "template_variation",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "intent": "pipeline",
+            "sections": [
+              "이슈 요약",
+              "사업 파이프라인",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ],
+            "recommended": [
+              "이슈 요약",
+              "사업 파이프라인",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ],
+            "recommendedMatches": 4,
+            "rigidGeneric": false,
+            "hasQuestionSpecificTitle": true
+          }
+        },
+        {
+          "id": "link_package",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "count": 5,
+            "validCount": 5
+          }
+        },
+        {
+          "id": "latency_budget",
+          "passed": false,
+          "required": false,
+          "weight": 3,
+          "score": 0,
+          "details": {
+            "elapsedMs": 1593,
+            "maxPreApiLatencyMs": 1500
+          }
+        },
+        {
+          "id": "original_poc_regression_guards",
+          "passed": true,
+          "required": false,
+          "weight": 2,
+          "score": 2,
+          "details": {
+            "regressions": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "hanwha-frozen-004-value-up",
+      "title": "Value-up and shareholder-return plan",
+      "questionHash": "c0489b3bca9a0d6aef94aaeb19a7bd6a687a6f198e033bb8f5a9044eea51d7a7",
+      "paperTableBucket": "value_up_grounding",
+      "score": 97,
+      "status": "paper_baseline",
+      "runtimeMode": "mixed",
+      "responseMode": "fixture",
+      "llmOutputContractStatus": "code",
+      "elapsedMs": 1555,
+      "traceFile": "evals/traces/run_fbe9b9e8-1353-41b6-8364-2be0e099e6e3.json",
+      "expectedClaimIds": [
+        "hanwha-sbc-006",
+        "hanwha-sbc-007",
+        "hanwha-sbc-008",
+        "hanwha-sbc-009"
+      ],
+      "observedClaimIds": [
+        "hanwha-sbc-006",
+        "hanwha-sbc-007",
+        "hanwha-sbc-008",
+        "hanwha-sbc-009"
+      ],
+      "checks": [
+        {
+          "id": "expected_claim_coverage",
+          "passed": true,
+          "required": true,
+          "weight": 18,
+          "score": 18,
+          "details": {
+            "missing": [],
+            "observedCount": 4
+          }
+        },
+        {
+          "id": "trace_contract",
+          "passed": true,
+          "required": true,
+          "weight": 14,
+          "score": 14,
+          "details": {
+            "expectedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "observedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "requiredAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "observedAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "missingFields": [],
+            "rawQuestionInTrace": false,
+            "assemblyHasFailure": false,
+            "expectedRepresentativeCompanyId": null,
+            "observedRepresentativeCompanyId": "hanwha",
+            "routeMatches": true
+          }
+        },
+        {
+          "id": "investor_facing_answer",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "sections": [
+              "가치제고 포인트",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ],
+            "missingSignals": [],
+            "answerLength": 995
+          }
+        },
+        {
+          "id": "briefing_quality",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "bannedVague": [],
+            "hasJudgmentAxis": true,
+            "hasPriorityMonitoring": true,
+            "hasComparisonOrCausalContext": true,
+            "avoidsRecommendation": true,
+            "sections": [
+              "가치제고 포인트",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ]
+          }
+        },
+        {
+          "id": "development_leak_absence",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "source_status_disclosure",
+          "passed": true,
+          "required": false,
+          "weight": 10,
+          "score": 10,
+          "details": {
+            "limited": true,
+            "statuses": [
+              "live",
+              "live",
+              "fixture",
+              "local",
+              "local",
+              "fixture"
+            ]
+          }
+        },
+        {
+          "id": "followup_quality",
+          "passed": true,
+          "required": false,
+          "weight": 7,
+          "score": 7,
+          "details": {
+            "count": 4,
+            "generic": [],
+            "developerFacing": []
+          }
+        },
+        {
+          "id": "template_variation",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "intent": "valueUp",
+            "sections": [
+              "가치제고 포인트",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ],
+            "recommended": [
+              "가치제고 포인트",
+              "주주환원 체크",
+              "브리핑 검토축",
+              "확인 우선순위"
+            ],
+            "recommendedMatches": 3,
+            "rigidGeneric": false,
+            "hasQuestionSpecificTitle": true
+          }
+        },
+        {
+          "id": "link_package",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "count": 5,
+            "validCount": 5
+          }
+        },
+        {
+          "id": "latency_budget",
+          "passed": false,
+          "required": false,
+          "weight": 3,
+          "score": 0,
+          "details": {
+            "elapsedMs": 1555,
+            "maxPreApiLatencyMs": 1500
+          }
+        },
+        {
+          "id": "original_poc_regression_guards",
+          "passed": true,
+          "required": false,
+          "weight": 2,
+          "score": 2,
+          "details": {
+            "regressions": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "hanwha-frozen-005-governance-disclosure",
+      "title": "Governance and disclosure process",
+      "questionHash": "7ce72882751108758cf3ad9f025044c310d178ba90958a77b0fdb717be746518",
+      "paperTableBucket": "governance_process_grounding",
+      "score": 97,
+      "status": "paper_baseline",
+      "runtimeMode": "mixed",
+      "responseMode": "fixture",
+      "llmOutputContractStatus": "code",
+      "elapsedMs": 1593,
+      "traceFile": "evals/traces/run_804af5ed-2f83-43a3-864a-cc362213484e.json",
+      "expectedClaimIds": [
+        "hanwha-sbc-010",
+        "hanwha-sbc-011"
+      ],
+      "observedClaimIds": [
+        "hanwha-sbc-010",
+        "hanwha-sbc-011",
+        "hanwha-sbc-005",
+        "hanwha-sbc-006"
+      ],
+      "checks": [
+        {
+          "id": "expected_claim_coverage",
+          "passed": true,
+          "required": true,
+          "weight": 18,
+          "score": 18,
+          "details": {
+            "missing": [],
+            "observedCount": 4
+          }
+        },
+        {
+          "id": "trace_contract",
+          "passed": true,
+          "required": true,
+          "weight": 14,
+          "score": 14,
+          "details": {
+            "expectedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "observedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "requiredAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "observedAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "missingFields": [],
+            "rawQuestionInTrace": false,
+            "assemblyHasFailure": false,
+            "expectedRepresentativeCompanyId": null,
+            "observedRepresentativeCompanyId": "hanwha",
+            "routeMatches": true
+          }
+        },
+        {
+          "id": "investor_facing_answer",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "sections": [
+              "거버넌스 포인트",
+              "산업맥락",
+              "리스크 체크",
+              "확인 우선순위"
+            ],
+            "missingSignals": [],
+            "answerLength": 1128
+          }
+        },
+        {
+          "id": "briefing_quality",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "bannedVague": [],
+            "hasJudgmentAxis": true,
+            "hasPriorityMonitoring": true,
+            "hasComparisonOrCausalContext": true,
+            "avoidsRecommendation": true,
+            "sections": [
+              "거버넌스 포인트",
+              "산업맥락",
+              "리스크 체크",
+              "확인 우선순위"
+            ]
+          }
+        },
+        {
+          "id": "development_leak_absence",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "source_status_disclosure",
+          "passed": true,
+          "required": false,
+          "weight": 10,
+          "score": 10,
+          "details": {
+            "limited": true,
+            "statuses": [
+              "live",
+              "live",
+              "fixture",
+              "local",
+              "local",
+              "fixture"
+            ]
+          }
+        },
+        {
+          "id": "followup_quality",
+          "passed": true,
+          "required": false,
+          "weight": 7,
+          "score": 7,
+          "details": {
+            "count": 4,
+            "generic": [],
+            "developerFacing": []
+          }
+        },
+        {
+          "id": "template_variation",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "intent": "governance",
+            "sections": [
+              "거버넌스 포인트",
+              "산업맥락",
+              "리스크 체크",
+              "확인 우선순위"
+            ],
+            "recommended": [
+              "거버넌스 포인트",
+              "공시·IR 체크",
+              "리스크 체크",
+              "확인 우선순위"
+            ],
+            "recommendedMatches": 3,
+            "rigidGeneric": false,
+            "hasQuestionSpecificTitle": true
+          }
+        },
+        {
+          "id": "link_package",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "count": 5,
+            "validCount": 5
+          }
+        },
+        {
+          "id": "latency_budget",
+          "passed": false,
+          "required": false,
+          "weight": 3,
+          "score": 0,
+          "details": {
+            "elapsedMs": 1593,
+            "maxPreApiLatencyMs": 1500
+          }
+        },
+        {
+          "id": "original_poc_regression_guards",
+          "passed": true,
+          "required": false,
+          "weight": 2,
+          "score": 2,
+          "details": {
+            "regressions": []
+          }
+        }
+      ]
+    }
+  ]
+}

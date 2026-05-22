@@ -1,0 +1,941 @@
+{
+  "schemaVersion": "document-consolidation-audit.v0.1",
+  "generatedAt": "2026-05-09T05:27:12.448Z",
+  "totalDocs": 93,
+  "activeDocs": 17,
+  "fixedAutomationReferences": 61,
+  "generatedLikely": 64,
+  "archiveCandidates": 14,
+  "unreferencedDocs": 32,
+  "recommendedDailyDocs": 17,
+  "possibleVisibleReductionPct": 82,
+  "grouped": {
+    "method_harness_engineering": [
+      "docs/10_tool_interface.md",
+      "docs/11_traceable_demo_architecture.md",
+      "docs/16_prompt_to_code_and_llm_wiki.md",
+      "docs/24_pre_api_stage_gate.md",
+      "docs/28_advisor_autoresearch_loop.md",
+      "docs/29_prompt_to_code_migration_audit.md",
+      "docs/31_llm_programming_framework_selection.md",
+      "docs/32_answer_generation_process_trace.md",
+      "docs/33_live_llm_output_contract.md"
+    ],
+    "source_governance_and_claim_promotion": [
+      "docs/20_source_selection_policy.md",
+      "docs/22_client_source_request_protocol.md",
+      "docs/53_group_onboarding_standard.md",
+      "docs/66_source_url_coverage_check.md",
+      "docs/67_group_data_completion_audit.md",
+      "docs/71_first_slice_selection_criteria.md",
+      "docs/72_first_slice_readiness_audit.md",
+      "docs/73_first_slice_gap_closure_plan.md",
+      "docs/73_hanwha_dart_financial_table.md"
+    ],
+    "five_group_transfer_log": [
+      "docs/17_hanwha_knowledge_diagnostic.md",
+      "docs/18_hanwha_official_ir_gap_audit.md",
+      "docs/19_hanwha_source_selection_rationale.md",
+      "docs/21_hanwha_official_backfill_plan.md",
+      "docs/23_hanwha_source_backed_claims.md",
+      "docs/35_hanwha_reference_slice_parity_audit.md",
+      "docs/36_samsung_coverage_universe_plan.md",
+      "docs/37_samsung_source_adequacy_audit.md",
+      "docs/39_samsung_dart_financial_table.md",
+      "docs/40_samsung_financial_sector_dart_account_audit.md",
+      "docs/41_samsung_source_backed_seed_claims.md",
+      "docs/42_samsung_url_and_narrative_claim_readiness.md",
+      "docs/43_hanwha_to_samsung_transfer_audit.md",
+      "docs/44_sk_transfer_readiness_plan.md",
+      "docs/45_sk_dart_financial_table.md",
+      "docs/46_hanwha_company_scope_and_backfill_resolution.md",
+      "docs/47_sk_source_inventory_and_ingestion.md",
+      "docs/48_sk_narrative_claim_queue.md",
+      "docs/49_sk_source_backed_narrative_claims.md",
+      "docs/50_sk_reference_slice_evaluation.md",
+      "docs/52_hyundai_motor_source_request.md",
+      "docs/54_hyundai_motor_dart_financial_table.md",
+      "docs/55_hyundai_motor_narrative_claim_queue.md",
+      "docs/56_hyundai_motor_source_backed_financial_seed.md",
+      "docs/57_hyundai_second_wave_intake_preparation.md",
+      "docs/58_hyundai_second_wave_source_intake_result.md",
+      "docs/60_lg_dart_financial_table.md",
+      "docs/61_lg_source_backed_financial_seed.md",
+      "docs/62_lg_financial_seed_and_reference_slice.md",
+      "docs/63_lg_source_inventory_and_ingestion.md",
+      "docs/64_lg_narrative_claim_queue.md"
+    ],
+    "publication_strategy": [
+      "docs/34_paper_draft.md",
+      "docs/38_agent_quality_management_strategy.md",
+      "docs/59_publication_strategy_and_sci_path.md",
+      "docs/74_paper_capture_ui_mode.md"
+    ],
+    "product_stage_control": [
+      "docs/01_architecture.md",
+      "docs/12_commercial_design_review.md",
+      "docs/13_group_company_template.md",
+      "docs/65_product_completion_stage_gate.md",
+      "docs/68_group_company_balance_plan.md",
+      "docs/69_knowledge_base_folder_structure.md",
+      "docs/70_arxiv_25_company_baseline.md",
+      "docs/75_live_api_integration_readiness.md"
+    ],
+    "poc_archive": [
+      "docs/00_research_plan.md",
+      "docs/02_migration_plan.md",
+      "docs/03_reproducibility.md",
+      "docs/04_poc_reuse_map.md",
+      "docs/05_stage_plan.md",
+      "docs/06_poc_inventory.md",
+      "docs/07_prior_paper_reference.md",
+      "docs/08_replit_demo.md",
+      "docs/09_ui_parity_check.md",
+      "docs/14_template_readiness_audit.md",
+      "docs/15_reference_slice_expansion_pipeline.md",
+      "docs/25_hanwha_frozen_evaluation.md",
+      "docs/26_frozen_scenarios_and_client_questions.md",
+      "docs/27_original_poc_enrichment_audit.md",
+      "docs/30_poc_stage_distinction.md"
+    ]
+  },
+  "records": [
+    {
+      "file": "docs/00_research_plan.md",
+      "active": false,
+      "fixedAutomationReference": false,
+      "generatedLikely": false,
+      "archiveCandidate": true,
+      "consolidationGroup": "poc_archive",
+      "action": "archive-after-safety-pass"
+    },
+    {
+      "file": "docs/01_architecture.md",
+      "active": true,
+      "fixedAutomationReference": false,
+      "generatedLikely": false,
+      "archiveCandidate": true,
+      "consolidationGroup": "product_stage_control",
+      "action": "keep-active"
+    },
+    {
+      "file": "docs/02_migration_plan.md",
+      "active": false,
+      "fixedAutomationReference": false,
+      "generatedLikely": false,
+      "archiveCandidate": true,
+      "consolidationGroup": "poc_archive",
+      "action": "archive-after-safety-pass"
+    },
+    {
+      "file": "docs/03_reproducibility.md",
+      "active": false,
+      "fixedAutomationReference": false,
+      "generatedLikely": false,
+      "archiveCandidate": true,
+      "consolidationGroup": "poc_archive",
+      "action": "archive-after-safety-pass"
+    },
+    {
+      "file": "docs/04_poc_reuse_map.md",
+      "active": false,
+      "fixedAutomationReference": false,
+      "generatedLikely": false,
+      "archiveCandidate": true,
+      "consolidationGroup": "poc_archive",
+      "action": "archive-after-safety-pass"
+    },
+    {
+      "file": "docs/05_stage_plan.md",
+      "active": false,
+      "fixedAutomationReference": false,
+      "generatedLikely": false,
+      "archiveCandidate": true,
+      "consolidationGroup": "poc_archive",
+      "action": "archive-after-safety-pass"
+    },
+    {
+      "file": "docs/06_poc_inventory.md",
+      "active": false,
+      "fixedAutomationReference": false,
+      "generatedLikely": false,
+      "archiveCandidate": true,
+      "consolidationGroup": "poc_archive",
+      "action": "archive-after-safety-pass"
+    },
+    {
+      "file": "docs/07_prior_paper_reference.md",
+      "active": false,
+      "fixedAutomationReference": false,
+      "generatedLikely": false,
+      "archiveCandidate": true,
+      "consolidationGroup": "poc_archive",
+      "action": "archive-after-safety-pass"
+    },
+    {
+      "file": "docs/08_replit_demo.md",
+      "active": false,
+      "fixedAutomationReference": false,
+      "generatedLikely": false,
+      "archiveCandidate": true,
+      "consolidationGroup": "poc_archive",
+      "action": "archive-after-safety-pass"
+    },
+    {
+      "file": "docs/09_ui_parity_check.md",
+      "active": false,
+      "fixedAutomationReference": false,
+      "generatedLikely": false,
+      "archiveCandidate": true,
+      "consolidationGroup": "poc_archive",
+      "action": "archive-after-safety-pass"
+    },
+    {
+      "file": "docs/10_tool_interface.md",
+      "active": false,
+      "fixedAutomationReference": false,
+      "generatedLikely": false,
+      "archiveCandidate": false,
+      "consolidationGroup": "method_harness_engineering",
+      "action": "consolidate-after-first-slice"
+    },
+    {
+      "file": "docs/11_traceable_demo_architecture.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "method_harness_engineering",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/12_commercial_design_review.md",
+      "active": false,
+      "fixedAutomationReference": false,
+      "generatedLikely": false,
+      "archiveCandidate": false,
+      "consolidationGroup": "product_stage_control",
+      "action": "consolidate-after-first-slice"
+    },
+    {
+      "file": "docs/13_group_company_template.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "product_stage_control",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/14_template_readiness_audit.md",
+      "active": false,
+      "fixedAutomationReference": false,
+      "generatedLikely": true,
+      "archiveCandidate": true,
+      "consolidationGroup": "poc_archive",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/15_reference_slice_expansion_pipeline.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": true,
+      "consolidationGroup": "poc_archive",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/16_prompt_to_code_and_llm_wiki.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "method_harness_engineering",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/17_hanwha_knowledge_diagnostic.md",
+      "active": false,
+      "fixedAutomationReference": false,
+      "generatedLikely": false,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "consolidate-after-first-slice"
+    },
+    {
+      "file": "docs/18_hanwha_official_ir_gap_audit.md",
+      "active": false,
+      "fixedAutomationReference": false,
+      "generatedLikely": false,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "consolidate-after-first-slice"
+    },
+    {
+      "file": "docs/19_hanwha_source_selection_rationale.md",
+      "active": false,
+      "fixedAutomationReference": false,
+      "generatedLikely": false,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "consolidate-after-first-slice"
+    },
+    {
+      "file": "docs/20_source_selection_policy.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "source_governance_and_claim_promotion",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/21_hanwha_official_backfill_plan.md",
+      "active": false,
+      "fixedAutomationReference": false,
+      "generatedLikely": false,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "consolidate-after-first-slice"
+    },
+    {
+      "file": "docs/22_client_source_request_protocol.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "source_governance_and_claim_promotion",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/23_hanwha_source_backed_claims.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/24_pre_api_stage_gate.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "method_harness_engineering",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/25_hanwha_frozen_evaluation.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": true,
+      "consolidationGroup": "poc_archive",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/26_frozen_scenarios_and_client_questions.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": true,
+      "consolidationGroup": "poc_archive",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/27_original_poc_enrichment_audit.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "poc_archive",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/28_advisor_autoresearch_loop.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "method_harness_engineering",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/29_prompt_to_code_migration_audit.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "method_harness_engineering",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/30_poc_stage_distinction.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": true,
+      "consolidationGroup": "poc_archive",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/31_llm_programming_framework_selection.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "method_harness_engineering",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/32_answer_generation_process_trace.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "method_harness_engineering",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/33_live_llm_output_contract.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "method_harness_engineering",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/34_paper_draft.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "publication_strategy",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/35_hanwha_reference_slice_parity_audit.md",
+      "active": false,
+      "fixedAutomationReference": false,
+      "generatedLikely": false,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "consolidate-after-first-slice"
+    },
+    {
+      "file": "docs/36_samsung_coverage_universe_plan.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/37_samsung_source_adequacy_audit.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/38_agent_quality_management_strategy.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "publication_strategy",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/39_samsung_dart_financial_table.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/40_samsung_financial_sector_dart_account_audit.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/41_samsung_source_backed_seed_claims.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/42_samsung_url_and_narrative_claim_readiness.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/43_hanwha_to_samsung_transfer_audit.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/44_sk_transfer_readiness_plan.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/45_sk_dart_financial_table.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/46_hanwha_company_scope_and_backfill_resolution.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/47_sk_source_inventory_and_ingestion.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/48_sk_narrative_claim_queue.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/49_sk_source_backed_narrative_claims.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/50_sk_reference_slice_evaluation.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/51_latency_hardening_and_measurement.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "unclassified",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/52_hyundai_motor_source_request.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/53_group_onboarding_standard.md",
+      "active": true,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "source_governance_and_claim_promotion",
+      "action": "keep-active"
+    },
+    {
+      "file": "docs/54_hyundai_motor_dart_financial_table.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/55_hyundai_motor_narrative_claim_queue.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/56_hyundai_motor_source_backed_financial_seed.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/57_hyundai_second_wave_intake_preparation.md",
+      "active": false,
+      "fixedAutomationReference": false,
+      "generatedLikely": false,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "consolidate-after-first-slice"
+    },
+    {
+      "file": "docs/58_hyundai_second_wave_source_intake_result.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/59_publication_strategy_and_sci_path.md",
+      "active": false,
+      "fixedAutomationReference": false,
+      "generatedLikely": false,
+      "archiveCandidate": false,
+      "consolidationGroup": "publication_strategy",
+      "action": "consolidate-after-first-slice"
+    },
+    {
+      "file": "docs/60_lg_dart_financial_table.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/61_lg_source_backed_financial_seed.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/62_lg_financial_seed_and_reference_slice.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/63_lg_source_inventory_and_ingestion.md",
+      "active": false,
+      "fixedAutomationReference": false,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/64_lg_narrative_claim_queue.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "five_group_transfer_log",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/65_product_completion_stage_gate.md",
+      "active": true,
+      "fixedAutomationReference": false,
+      "generatedLikely": false,
+      "archiveCandidate": false,
+      "consolidationGroup": "product_stage_control",
+      "action": "keep-active"
+    },
+    {
+      "file": "docs/66_source_url_coverage_check.md",
+      "active": false,
+      "fixedAutomationReference": false,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "source_governance_and_claim_promotion",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/67_group_data_completion_audit.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "source_governance_and_claim_promotion",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/68_group_company_balance_plan.md",
+      "active": false,
+      "fixedAutomationReference": false,
+      "generatedLikely": false,
+      "archiveCandidate": false,
+      "consolidationGroup": "product_stage_control",
+      "action": "consolidate-after-first-slice"
+    },
+    {
+      "file": "docs/69_knowledge_base_folder_structure.md",
+      "active": true,
+      "fixedAutomationReference": false,
+      "generatedLikely": false,
+      "archiveCandidate": false,
+      "consolidationGroup": "product_stage_control",
+      "action": "keep-active"
+    },
+    {
+      "file": "docs/70_arxiv_25_company_baseline.md",
+      "active": true,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "product_stage_control",
+      "action": "keep-active"
+    },
+    {
+      "file": "docs/71_first_slice_selection_criteria.md",
+      "active": true,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "source_governance_and_claim_promotion",
+      "action": "keep-active"
+    },
+    {
+      "file": "docs/72_first_slice_readiness_audit.md",
+      "active": true,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "source_governance_and_claim_promotion",
+      "action": "keep-active"
+    },
+    {
+      "file": "docs/73_first_slice_gap_closure_plan.md",
+      "active": true,
+      "fixedAutomationReference": false,
+      "generatedLikely": false,
+      "archiveCandidate": false,
+      "consolidationGroup": "source_governance_and_claim_promotion",
+      "action": "keep-active"
+    },
+    {
+      "file": "docs/73_hanwha_dart_financial_table.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "source_governance_and_claim_promotion",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/74_paper_capture_ui_mode.md",
+      "active": true,
+      "fixedAutomationReference": false,
+      "generatedLikely": false,
+      "archiveCandidate": false,
+      "consolidationGroup": "publication_strategy",
+      "action": "keep-active"
+    },
+    {
+      "file": "docs/75_live_api_integration_readiness.md",
+      "active": true,
+      "fixedAutomationReference": false,
+      "generatedLikely": false,
+      "archiveCandidate": false,
+      "consolidationGroup": "product_stage_control",
+      "action": "keep-active"
+    },
+    {
+      "file": "docs/76_document_consolidation_audit.md",
+      "active": true,
+      "fixedAutomationReference": false,
+      "generatedLikely": false,
+      "archiveCandidate": false,
+      "consolidationGroup": "unclassified",
+      "action": "keep-active"
+    },
+    {
+      "file": "docs/77_hanwha_narrative_claim_queue.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "unclassified",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/77_ir_download_backfill_import.md",
+      "active": true,
+      "fixedAutomationReference": false,
+      "generatedLikely": false,
+      "archiveCandidate": false,
+      "consolidationGroup": "unclassified",
+      "action": "keep-active"
+    },
+    {
+      "file": "docs/78_project_folder_reclassification.md",
+      "active": true,
+      "fixedAutomationReference": false,
+      "generatedLikely": false,
+      "archiveCandidate": false,
+      "consolidationGroup": "unclassified",
+      "action": "keep-active"
+    },
+    {
+      "file": "docs/79_source_ledger_and_consolidation.md",
+      "active": true,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "unclassified",
+      "action": "keep-active"
+    },
+    {
+      "file": "docs/80_knowledge_base_folder_organization.md",
+      "active": true,
+      "fixedAutomationReference": false,
+      "generatedLikely": false,
+      "archiveCandidate": false,
+      "consolidationGroup": "unclassified",
+      "action": "keep-active"
+    },
+    {
+      "file": "docs/81_ir_download_retirement.md",
+      "active": true,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "unclassified",
+      "action": "keep-active"
+    },
+    {
+      "file": "docs/82_claim_promotion_review_packet.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "unclassified",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/83_claim_review_proposals_for_approval.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "unclassified",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/84_claim_review_approval_record.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "unclassified",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/85_review_approved_runtime_claims.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "unclassified",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/86_product_and_paper_readiness.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "unclassified",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/87_live_api_connection_smoke_test.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "unclassified",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/88_live_answer_quality_audit.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "unclassified",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/89_human_answer_review_packet.md",
+      "active": false,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "unclassified",
+      "action": "keep-generated-until-path-migration"
+    },
+    {
+      "file": "docs/README.md",
+      "active": true,
+      "fixedAutomationReference": true,
+      "generatedLikely": true,
+      "archiveCandidate": false,
+      "consolidationGroup": "unclassified",
+      "action": "keep-active"
+    }
+  ]
+}

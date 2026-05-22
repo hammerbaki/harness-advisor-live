@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "ir-download-retirement.v0.1",
+  "generatedAt": "2026-05-05T12:50:21.617Z",
+  "retiredPath": "ir_download",
+  "existedBeforeRetirement": true,
+  "removed": true,
+  "importManifest": "Korea-Investor-Advisor-Research/raw/manifests/ir-download-backfill-import.json",
+  "retirementBasis": "All ir_download source files were previously copied or matched as SHA-256 duplicates in Knowledge Base. The staging folder no longer contains unique source evidence.",
+  "counts": {
+    "sourceFiles": 210,
+    "duplicateRecords": 210,
+    "copiedRecords": 0,
+    "unsafeRecords": 0
+  }
+}

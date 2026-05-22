@@ -1,0 +1,124 @@
+{
+  "schemaVersion": "advisor-eval-scenarios.v0.1",
+  "scenarioSetId": "sk-financial-seed-v0.1",
+  "groupId": "sk",
+  "stage": "financial-seed-transfer",
+  "createdAt": "2026-05-03",
+  "purpose": "Freeze the first SK financial-seed questions used to evaluate whether the Hanwha/Samsung advisor template can route SK affiliates and select OpenDART financial seed claims before SK narrative IR sources are promoted.",
+  "paperUse": {
+    "allowedClaim": "SK demonstrates that the template can begin transfer once DART/KRX identifiers and financial seed claims are verified.",
+    "notAllowedClaim": "These scenarios do not prove SK narrative IR coverage, HBM strategy coverage, SK Innovation energy/battery coverage, telecom AI coverage, or Samsung-level first-transfer completeness.",
+    "expansionNote": "SK should receive a reference-slice scenario only after official document-level IR URLs and narrative source-backed claims are promoted."
+  },
+  "runtimeAssumptions": {
+    "presentationMode": "text",
+    "currentExpectedRuntimeMode": "mixed",
+    "allowedRuntimeModesAfterLiveApi": ["mixed", "fallback", "live"],
+    "expectedTraceSteps": [
+      "dart.disclosures",
+      "krx.market",
+      "news.search",
+      "wiki.context",
+      "claims.sourceBacked",
+      "llm.compose"
+    ],
+    "requiredTraceFields": [
+      "schemaVersion",
+      "runId",
+      "generatedAt",
+      "runtimeMode",
+      "groupId",
+      "representativeCompanyId",
+      "questionHash",
+      "promptPolicyHash",
+      "promptPolicyVersion",
+      "llmMode",
+      "llmOutputContractVersion",
+      "llmOutputContractStatus",
+      "statusCounts",
+      "reproducibility"
+    ],
+    "answerPolicy": [
+      "Answer must be investor-facing Korean prose, not development-status prose.",
+      "Answer must not expose raw source-backed claim IDs.",
+      "Answer must disclose when latest news or market data is not connected live.",
+      "When an SK affiliate is named, representativeCompanyId must route to that affiliate.",
+      "Named-affiliate questions must not pull unrelated SK affiliate financial claims just to fill the maximum claim count."
+    ],
+    "claimMatchPolicy": "expectedClaimIds are minimum required source-backed claims. For named-affiliate SK financial questions, unrelated affiliate claims should be excluded."
+  },
+  "scenarios": [
+    {
+      "id": "sk-financial-001-hynix-turnaround",
+      "title": "SK Hynix 2024 financial turnaround",
+      "question": "SK하이닉스 2024년 실적 회복을 OpenDART 기준으로 요약해줘",
+      "intent": "Check whether SK Hynix questions route to SK Hynix and select only Hynix financial seed claims.",
+      "expectedRepresentativeCompanyId": "sk-hynix",
+      "expectedClaimIds": [
+        "sk-sbc-001",
+        "sk-sbc-002"
+      ],
+      "requiredAnswerSignals": [
+        "SK하이닉스",
+        "OpenDART",
+        "매출액",
+        "영업이익"
+      ],
+      "paperTableBucket": "sk_financial_seed_hynix"
+    },
+    {
+      "id": "sk-financial-002-innovation-baseline",
+      "title": "SK Innovation 2024 financial baseline",
+      "question": "SK이노베이션 2024년 연결 실적을 OpenDART 기준으로 요약해줘",
+      "intent": "Check whether SK Innovation questions route to SK Innovation and select only SK Innovation financial seed claims.",
+      "expectedRepresentativeCompanyId": "sk-innovation",
+      "expectedClaimIds": [
+        "sk-sbc-007",
+        "sk-sbc-008"
+      ],
+      "requiredAnswerSignals": [
+        "SK이노베이션",
+        "OpenDART",
+        "매출액",
+        "영업이익"
+      ],
+      "paperTableBucket": "sk_financial_seed_innovation"
+    },
+    {
+      "id": "sk-financial-003-inc-baseline",
+      "title": "SK Inc. 2024 financial baseline",
+      "question": "SK 2024년 연결 실적을 OpenDART 기준으로 정리해줘",
+      "intent": "Check whether SK Inc. questions route to the listed holding company and select holding-company financial seed claims.",
+      "expectedRepresentativeCompanyId": "sk-inc",
+      "expectedClaimIds": [
+        "sk-sbc-003",
+        "sk-sbc-004"
+      ],
+      "requiredAnswerSignals": [
+        "SK",
+        "OpenDART",
+        "매출액",
+        "영업이익"
+      ],
+      "paperTableBucket": "sk_financial_seed_holding_company"
+    },
+    {
+      "id": "sk-financial-004-telecom-baseline",
+      "title": "SK Telecom 2024 financial baseline",
+      "question": "SK텔레콤 2024년 연결 실적을 OpenDART 기준으로 요약해줘",
+      "intent": "Check whether SK Telecom questions route to SK Telecom and select telecom financial seed claims.",
+      "expectedRepresentativeCompanyId": "sk-telecom",
+      "expectedClaimIds": [
+        "sk-sbc-005",
+        "sk-sbc-006"
+      ],
+      "requiredAnswerSignals": [
+        "SK텔레콤",
+        "OpenDART",
+        "매출액",
+        "영업이익"
+      ],
+      "paperTableBucket": "sk_financial_seed_telecom"
+    }
+  ]
+}

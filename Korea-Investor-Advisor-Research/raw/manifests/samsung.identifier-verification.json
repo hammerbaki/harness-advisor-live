@@ -1,0 +1,199 @@
+{
+  "schemaVersion": "identifier-verification.v0.1",
+  "groupId": "samsung",
+  "createdAt": "2026-05-02",
+  "sourceStatus": "user-supplied-api-verified",
+  "sourceFile": "/Users/jj/Downloads/삼성그룹 주요 15개 상장 계열사 종합 정리 (DART OpenAPI + KRX OpenAPI 검증).md",
+  "verificationBasis": [
+    "DART company.json status=000 reported by the supplied verification file.",
+    "KRX KOSPI base-info match reported by the supplied verification file for 2026-04-30.",
+    "IR URLs are treated as intake candidates until document-level crawl and extraction checks are performed."
+  ],
+  "records": [
+    {
+      "companyId": "samsung-electronics",
+      "koreanName": "삼성전자",
+      "dartCorpName": "삼성전자(주)",
+      "dartCode": "00126380",
+      "krxCode": "005930",
+      "isin": "KR7005930003",
+      "market": "KOSPI",
+      "listingDate": "19750611",
+      "irUrl": "https://www.samsung.com/sec/ir/",
+      "verificationState": "identifier_verified_from_user_supplied_api_result"
+    },
+    {
+      "companyId": "samsung-sdi",
+      "koreanName": "삼성SDI",
+      "dartCorpName": "삼성SDI(주)",
+      "dartCode": "00126362",
+      "krxCode": "006400",
+      "isin": "KR7006400006",
+      "market": "KOSPI",
+      "listingDate": "19790227",
+      "irUrl": "https://www.samsungsdi.co.kr/ir/ir-activity/index.html",
+      "verificationState": "identifier_verified_from_user_supplied_api_result"
+    },
+    {
+      "companyId": "samsung-ct",
+      "koreanName": "삼성물산",
+      "dartCorpName": "삼성물산(주)",
+      "dartCode": "00149655",
+      "krxCode": "028260",
+      "isin": "KR7028260008",
+      "market": "KOSPI",
+      "listingDate": "20141218",
+      "irUrl": "https://www.samsungcnt.com/ir/overview.do",
+      "verificationState": "identifier_verified_from_user_supplied_api_result"
+    },
+    {
+      "companyId": "samsung-life",
+      "koreanName": "삼성생명",
+      "dartCorpName": "삼성생명보험(주)",
+      "dartCode": "00126256",
+      "krxCode": "032830",
+      "isin": "KR7032830002",
+      "market": "KOSPI",
+      "listingDate": "20100512",
+      "irUrl": "https://www.samsunglife.com/individual/display/invest/PDK-IRIVI015220M",
+      "verificationState": "identifier_verified_from_user_supplied_api_result"
+    },
+    {
+      "companyId": "samsung-fire-marine",
+      "koreanName": "삼성화재",
+      "dartCorpName": "삼성화재해상보험(주)",
+      "dartCode": "00139214",
+      "krxCode": "000810",
+      "isin": "KR7000810002",
+      "market": "KOSPI",
+      "listingDate": "19750630",
+      "irUrl": "https://www.samsungfire.com/v2/html/company_eng/index.html",
+      "verificationState": "identifier_verified_from_user_supplied_api_result"
+    },
+    {
+      "companyId": "samsung-biologics",
+      "koreanName": "삼성바이오로직스",
+      "dartCorpName": "삼성바이오로직스(주)",
+      "dartCode": "00877059",
+      "krxCode": "207940",
+      "isin": "KR7207940008",
+      "market": "KOSPI",
+      "listingDate": "20161110",
+      "irUrl": "https://samsungbiologics.com/kr/ir/overview",
+      "verificationState": "identifier_verified_from_user_supplied_api_result"
+    },
+    {
+      "companyId": "samsung-electro-mechanics",
+      "koreanName": "삼성전기",
+      "dartCorpName": "삼성전기(주)",
+      "dartCode": "00126371",
+      "krxCode": "009150",
+      "isin": "KR7009150004",
+      "market": "KOSPI",
+      "listingDate": "19790227",
+      "irUrl": "https://www.samsungsem.com/kr/about-us/investor-relations/archive.do",
+      "verificationState": "identifier_verified_from_user_supplied_api_result"
+    },
+    {
+      "companyId": "samsung-sds",
+      "koreanName": "삼성SDS",
+      "dartCorpName": "삼성에스디에스(주)",
+      "dartCode": "00126186",
+      "krxCode": "018260",
+      "isin": "KR7018260000",
+      "market": "KOSPI",
+      "listingDate": "20141114",
+      "irUrl": "https://www.samsungsds.com/kr/investor/ir_events/about_ir_events.html",
+      "verificationState": "identifier_verified_from_user_supplied_api_result"
+    },
+    {
+      "companyId": "samsung-heavy-industries",
+      "koreanName": "삼성중공업",
+      "dartCorpName": "삼성중공업(주)",
+      "dartCode": "00126478",
+      "krxCode": "010140",
+      "isin": "KR7010140002",
+      "market": "KOSPI",
+      "listingDate": "19940128",
+      "irUrl": "https://www.samsungshi.com/Ko/Ir_director.aspx",
+      "verificationState": "identifier_verified_from_user_supplied_api_result"
+    },
+    {
+      "companyId": "samsung-ea",
+      "koreanName": "삼성E&A",
+      "dartCorpName": "삼성이앤에이(주)",
+      "dartCode": "00126308",
+      "krxCode": "028050",
+      "isin": "KR7028050003",
+      "market": "KOSPI",
+      "listingDate": "19961224",
+      "irUrl": "https://www.samsungena.com/kr/ir/overview",
+      "verificationState": "identifier_verified_from_user_supplied_api_result"
+    },
+    {
+      "companyId": "samsung-card",
+      "koreanName": "삼성카드",
+      "dartCorpName": "삼성카드(주)",
+      "dartCode": "00126292",
+      "krxCode": "029780",
+      "isin": "KR7029780004",
+      "market": "KOSPI",
+      "listingDate": "20070627",
+      "irUrl": "https://www.samsungcard.com/company/investment/UHPPCI0201M0.jsp",
+      "verificationState": "identifier_verified_from_user_supplied_api_result"
+    },
+    {
+      "companyId": "samsung-securities",
+      "koreanName": "삼성증권",
+      "dartCorpName": "삼성증권(주)",
+      "dartCode": "00104856",
+      "krxCode": "016360",
+      "isin": "KR7016360000",
+      "market": "KOSPI",
+      "listingDate": "19880328",
+      "irUrl": "https://www.samsungsecurities.co.kr/kor/invest/ir.do",
+      "verificationState": "identifier_verified_from_user_supplied_api_result"
+    },
+    {
+      "companyId": "cheil-worldwide",
+      "koreanName": "제일기획",
+      "dartCorpName": "(주)제일기획",
+      "dartCode": "00148276",
+      "krxCode": "030000",
+      "isin": "KR7030000004",
+      "market": "KOSPI",
+      "listingDate": "19980303",
+      "irUrl": "https://www.cheil.com/kr/ir/",
+      "verificationState": "identifier_verified_from_user_supplied_api_result"
+    },
+    {
+      "companyId": "hotel-shilla",
+      "koreanName": "호텔신라",
+      "dartCorpName": "(주)호텔신라",
+      "dartCode": "00165680",
+      "krxCode": "008770",
+      "isin": "KR7008770000",
+      "market": "KOSPI",
+      "listingDate": "19910312",
+      "irUrl": "https://www.hotelshilla.net/ir/report.do",
+      "verificationState": "identifier_verified_from_user_supplied_api_result"
+    },
+    {
+      "companyId": "s1",
+      "koreanName": "에스원",
+      "dartCorpName": "(주)에스원",
+      "dartCode": "00158501",
+      "krxCode": "012750",
+      "isin": "KR7012750006",
+      "market": "KOSPI",
+      "listingDate": "19960130",
+      "irUrl": "https://invest.s1.co.kr:1447/invest/index.do",
+      "verificationState": "identifier_verified_from_user_supplied_api_result"
+    }
+  ],
+  "paperUsePolicy": [
+    "Use as identifier verification evidence for Samsung expansion setup.",
+    "Do not use company metadata or IR index URLs as source-backed financial claims.",
+    "Promote financial or strategy claims only after document-level source URLs and extraction notes are attached."
+  ]
+}

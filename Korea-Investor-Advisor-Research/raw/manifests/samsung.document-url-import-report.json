@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "document-url-import-report.v0.1",
+  "groupId": "samsung",
+  "generatedAt": "2026-05-02T14:44:25.515Z",
+  "inputPath": "/Users/jj/Downloads/삼성그룹 6개사 IR 자료 — 문서 단위 URL 목록.md",
+  "intakePath": "raw/manifests/samsung.document-url-intake.json",
+  "parsed": {
+    "directRows": 40,
+    "dartRows": 10,
+    "pendingRows": 1,
+    "supplementalRows": 4
+  },
+  "matched": {
+    "localDocumentUrls": 39,
+    "dartViewerRows": 10
+  },
+  "remaining": {
+    "pendingUserUrls": 1,
+    "blockedMissingDocumentUrl": 1,
+    "blockedPendingDartExtraction": 0
+  },
+  "unmatchedDirectRows": [
+    {
+      "companyHeading": "삼성물산",
+      "lineNumber": 51,
+      "title": "삼성물산_2026_1Q_실적발표_보고서",
+      "sourcePageUrl": "https://www.samsungcnt.com/ir/event-earnings/earnings-release.do",
+      "publicDocumentUrl": "https://www.samsungcnt.com/file/down.do?id=86690b51-5d25-470c-b1e1-f4cca14814df",
+      "rceptNo": null,
+      "dcmNo": null,
+      "note": null
+    }
+  ],
+  "unmatchedDartRows": [],
+  "pendingRows": [
+    {
+      "companyHeading": "삼성물산",
+      "lineNumber": 52,
+      "title": "삼성물산_2026_1Q_실적발표_PPT",
+      "sourcePageUrl": "https://www.samsungcnt.com/ir/event-earnings/earnings-release.do",
+      "publicDocumentUrl": null,
+      "rceptNo": null,
+      "dcmNo": null,
+      "note": "(실적발표 보고서 페이지에서 별도 PPT 파일로 제공되지 않음 — 보고서와 동일 URL)"
+    }
+  ],
+  "supplementalRows": [
+    {
+      "companyHeading": "삼성물산",
+      "lineNumber": 59,
+      "title": "2025년 1분기",
+      "sourcePageUrl": "https://www.samsungcnt.com/ir/event-earnings/earnings-release.do",
+      "publicDocumentUrl": "https://www.samsungcnt.com/file/down.do?id=a5cf0c17-5b3b-4a25-b6d5-bf7d9a3f5ec0",
+      "rceptNo": null,
+      "dcmNo": null,
+      "note": "supplemental table row without local PDF filename"
+    },
+    {
+      "companyHeading": "삼성물산",
+      "lineNumber": 60,
+      "title": "2025년 2분기",
+      "sourcePageUrl": "https://www.samsungcnt.com/ir/event-earnings/earnings-release.do",
+      "publicDocumentUrl": "https://www.samsungcnt.com/file/down.do?id=340c68d3-adbb-4af3-8a15-d35b9c20d718",
+      "rceptNo": null,
+      "dcmNo": null,
+      "note": "supplemental table row without local PDF filename"
+    },
+    {
+      "companyHeading": "삼성물산",
+      "lineNumber": 61,
+      "title": "2025년 3분기",
+      "sourcePageUrl": "https://www.samsungcnt.com/ir/event-earnings/earnings-release.do",
+      "publicDocumentUrl": "https://www.samsungcnt.com/file/down.do?id=7b30db3d-36c8-4db7-912d-6b54e07fd1d0",
+      "rceptNo": null,
+      "dcmNo": null,
+      "note": "supplemental table row without local PDF filename"
+    },
+    {
+      "companyHeading": "삼성물산",
+      "lineNumber": 62,
+      "title": "2025년 4분기",
+      "sourcePageUrl": "https://www.samsungcnt.com/ir/event-earnings/earnings-release.do",
+      "publicDocumentUrl": "https://www.samsungcnt.com/file/down.do?id=d178d64b-7fc0-400c-b657-f62211fca59b",
+      "rceptNo": null,
+      "dcmNo": null,
+      "note": "supplemental table row without local PDF filename"
+    }
+  ],
+  "duplicateDirectTitles": [],
+  "policyNotes": [
+    "A broad IR index URL does not satisfy document-level provenance.",
+    "A note that a PPT is the same URL as a report is not promoted unless the public URL is an exact match to the local artifact being used.",
+    "DART viewer URLs are sufficient as public filing references, but text extraction is still required before narrative claims become review-ready."
+  ]
+}

@@ -1,0 +1,646 @@
+{
+  "schemaVersion": "group-data-completion-audit.v0.1",
+  "generatedAt": "2026-05-07T08:07:29.296Z",
+  "purpose": "Track whether each target business group has enough company-scoped source structure to support the common investor-advisor harness.",
+  "interpretation": "This audit is a product and research readiness gate. It does not claim full investment coverage for any group.",
+  "totals": {
+    "groups": 5,
+    "groupsWithSourceIntakeTemplate": 5,
+    "groupsWithModernInventory": 5,
+    "groupsWithSourceBackedClaims": 5,
+    "openGapCount": 3
+  },
+  "records": [
+    {
+      "groupId": "samsung",
+      "status": "source-ready",
+      "sourceStatus": "dart-financial-and-url-intake-ready",
+      "configuredCompanies": 15,
+      "listedCompanies": 15,
+      "hasSourceIntakeTemplate": true,
+      "sourceIntakeFirstSliceCompanies": [
+        "samsung-electronics",
+        "samsung-sdi",
+        "samsung-ct",
+        "samsung-biologics",
+        "samsung-electro-mechanics"
+      ],
+      "localInventory": {
+        "schemaVersion": "local-source-inventory.v0.2",
+        "schemaLevel": 2,
+        "entries": 112,
+        "byCompany": {
+          "삼성물산": 13,
+          "삼성바이오로직스": 15,
+          "삼성생명": 5,
+          "삼성전기": 60,
+          "삼성전자": 6,
+          "삼성화재": 5,
+          "삼성SDI": 6,
+          "unknown": 2
+        },
+        "byDecision": {
+          "extract-to-markdown-and-wiki-candidate": 58,
+          "extract-via-dart-document-pipeline": 10,
+          "manifest-support-note": 2,
+          "manual-source-review": 42
+        },
+        "urlReconciliation": null,
+        "documentUrlStatus": {
+          "matched_from_document_url_list": 73,
+          "not_required": 12,
+          "pending_url_reconciliation": 27
+        }
+      },
+      "sourceBackedClaims": {
+        "records": 36,
+        "byCompany": {
+          "cheil-worldwide": 1,
+          "hotel-shilla": 1,
+          "s1": 1,
+          "samsung-biologics": 5,
+          "samsung-card": 1,
+          "samsung-ct": 5,
+          "samsung-ea": 1,
+          "samsung-electro-mechanics": 2,
+          "samsung-electronics": 5,
+          "samsung-fire-marine": 3,
+          "samsung-heavy-industries": 1,
+          "samsung-life": 3,
+          "samsung-sdi": 5,
+          "samsung-sds": 1,
+          "samsung-securities": 1
+        },
+        "missingCompanyScope": 0
+      },
+      "wikiCompanyPages": 7,
+      "gaps": []
+    },
+    {
+      "groupId": "sk",
+      "status": "source-ready",
+      "sourceStatus": "bounded-source-backed-reference-slice",
+      "configuredCompanies": 5,
+      "listedCompanies": 5,
+      "hasSourceIntakeTemplate": true,
+      "sourceIntakeFirstSliceCompanies": [
+        "sk-hynix",
+        "sk-innovation",
+        "sk-inc",
+        "sk-telecom",
+        "sk-square"
+      ],
+      "localInventory": {
+        "schemaVersion": "local-source-inventory.v0.2",
+        "schemaLevel": 2,
+        "entries": 132,
+        "byCompany": {
+          "SK": 17,
+          "SK스퀘어": 75,
+          "SK이노베이션": 4,
+          "SK텔레콤": 25,
+          "SK하이닉스": 11
+        },
+        "byDecision": {
+          "extract-to-markdown-and-wiki-candidate": 132
+        },
+        "urlReconciliation": {
+          "policy": "Document-level URLs are used for claim-promotion eligibility. Unmatched local PDFs may still be extracted for review, but cannot become runtime claims until URL reconciliation is complete.",
+          "unmatchedUrlRecords": [
+            {
+              "companyId": "sk-telecom",
+              "title": "2025 4Q Investor Briefing (KOR)",
+              "date": null,
+              "sourcePageUrl": "https://www.sktelecom.com/investor/lib/announce.do",
+              "documentUrl": "https://www.sktelecom.com/img/kor/qua/20260205/4Q25InvestorBriefingKOR.pdf",
+              "selectionReason": "최신 분기 통신·AI 사업 실적 및 T우주·AI 에이전트 매출 현황 파악",
+              "rceptNo": null,
+              "isPlaceholderUrl": false,
+              "urlSource": "../Knowledge Base/sk_knowledge/SK그룹 4개사 IR 자료 — 문서 단위 URL 목록.md",
+              "reconciliationStatus": "url_record_not_matched_to_local_file"
+            },
+            {
+              "companyId": "sk-telecom",
+              "title": "2024 AGM CEO Speech",
+              "date": null,
+              "sourcePageUrl": "https://www.sktelecom.com/investor/lib/presentation.do",
+              "documentUrl": "https://www.sktelecom.com/img/kor/presen/20240326/crop_SKTCEOSpeech2024KR.pdf",
+              "selectionReason": "전년도 주주총회 CEO 발언, 전략 연속성 분석",
+              "rceptNo": null,
+              "isPlaceholderUrl": false,
+              "urlSource": "../Knowledge Base/sk_knowledge/SK그룹 4개사 IR 자료 — 문서 단위 URL 목록.md",
+              "reconciliationStatus": "url_record_not_matched_to_local_file"
+            },
+            {
+              "companyId": "sk-telecom",
+              "title": "제42기 사업보고서 (2025년)",
+              "date": null,
+              "sourcePageUrl": "https://www.sktelecom.com/investor/lib/breport.do",
+              "documentUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260318000532",
+              "selectionReason": "2025년 전체 사업 현황·재무성과, 투자자 의사결정 핵심 기초자료",
+              "rceptNo": "20260318000532",
+              "isPlaceholderUrl": false,
+              "urlSource": "../Knowledge Base/sk_knowledge/SK그룹 4개사 IR 자료 — 문서 단위 URL 목록.md",
+              "reconciliationStatus": "url_record_not_matched_to_local_file"
+            },
+            {
+              "companyId": "sk-telecom",
+              "title": "제41기 사업보고서 (2024년)",
+              "date": null,
+              "sourcePageUrl": "https://www.sktelecom.com/investor/lib/breport.do",
+              "documentUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250317000684",
+              "selectionReason": "전년도 비교 기준 자료",
+              "rceptNo": "20250317000684",
+              "isPlaceholderUrl": false,
+              "urlSource": "../Knowledge Base/sk_knowledge/SK그룹 4개사 IR 자료 — 문서 단위 URL 목록.md",
+              "reconciliationStatus": "url_record_not_matched_to_local_file"
+            },
+            {
+              "companyId": "sk-telecom",
+              "title": "제40기 사업보고서 (2023년)",
+              "date": null,
+              "sourcePageUrl": "https://www.sktelecom.com/investor/lib/breport.do",
+              "documentUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240318000570",
+              "selectionReason": "3개년 추세 분석을 위한 기준 자료",
+              "rceptNo": "20240318000570",
+              "isPlaceholderUrl": false,
+              "urlSource": "../Knowledge Base/sk_knowledge/SK그룹 4개사 IR 자료 — 문서 단위 URL 목록.md",
+              "reconciliationStatus": "url_record_not_matched_to_local_file"
+            },
+            {
+              "companyId": "sk-telecom",
+              "title": "제42기 감사보고서",
+              "date": null,
+              "sourcePageUrl": "https://www.sktelecom.com/investor/lib/areport.do",
+              "documentUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260310801352&dcmNo=11104726",
+              "selectionReason": "2025년 별도 기준 감사의견, 회계처리 적정성 검증",
+              "rceptNo": "20260310801352",
+              "isPlaceholderUrl": false,
+              "urlSource": "../Knowledge Base/sk_knowledge/SK그룹 4개사 IR 자료 — 문서 단위 URL 목록.md",
+              "reconciliationStatus": "url_record_not_matched_to_local_file"
+            },
+            {
+              "companyId": "sk-telecom",
+              "title": "제42기 연결감사보고서",
+              "date": null,
+              "sourcePageUrl": "https://www.sktelecom.com/investor/lib/areport.do",
+              "documentUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260310801352&dcmNo=11104727",
+              "selectionReason": "2025년 연결 기준 감사의견, 자회사 포함 재무 신뢰성 확인",
+              "rceptNo": "20260310801352",
+              "isPlaceholderUrl": false,
+              "urlSource": "../Knowledge Base/sk_knowledge/SK그룹 4개사 IR 자료 — 문서 단위 URL 목록.md",
+              "reconciliationStatus": "url_record_not_matched_to_local_file"
+            },
+            {
+              "companyId": "sk-telecom",
+              "title": "제41기 감사보고서",
+              "date": null,
+              "sourcePageUrl": "https://www.sktelecom.com/investor/lib/areport.do",
+              "documentUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250310800806&dcmNo=10387365",
+              "selectionReason": "전년도 비교 기준 감사보고서",
+              "rceptNo": "20250310800806",
+              "isPlaceholderUrl": false,
+              "urlSource": "../Knowledge Base/sk_knowledge/SK그룹 4개사 IR 자료 — 문서 단위 URL 목록.md",
+              "reconciliationStatus": "url_record_not_matched_to_local_file"
+            },
+            {
+              "companyId": "sk-telecom",
+              "title": "제41기 연결감사보고서",
+              "date": null,
+              "sourcePageUrl": "https://www.sktelecom.com/investor/lib/areport.do",
+              "documentUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250310800806&dcmNo=10387366",
+              "selectionReason": "전년도 연결 기준 감사보고서",
+              "rceptNo": "20250310800806",
+              "isPlaceholderUrl": false,
+              "urlSource": "../Knowledge Base/sk_knowledge/SK그룹 4개사 IR 자료 — 문서 단위 URL 목록.md",
+              "reconciliationStatus": "url_record_not_matched_to_local_file"
+            },
+            {
+              "companyId": "sk-telecom",
+              "title": "제40기 감사보고서",
+              "date": null,
+              "sourcePageUrl": "https://www.sktelecom.com/investor/lib/areport.do",
+              "documentUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240306800851&dcmNo=9689877",
+              "selectionReason": "3개년 추세 분석 기준 자료",
+              "rceptNo": "20240306800851",
+              "isPlaceholderUrl": false,
+              "urlSource": "../Knowledge Base/sk_knowledge/SK그룹 4개사 IR 자료 — 문서 단위 URL 목록.md",
+              "reconciliationStatus": "url_record_not_matched_to_local_file"
+            },
+            {
+              "companyId": "sk-telecom",
+              "title": "제40기 연결감사보고서",
+              "date": null,
+              "sourcePageUrl": "https://www.sktelecom.com/investor/lib/areport.do",
+              "documentUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240306800851&dcmNo=9689878",
+              "selectionReason": "3개년 연결 기준 추세 분석",
+              "rceptNo": "20240306800851",
+              "isPlaceholderUrl": false,
+              "urlSource": "../Knowledge Base/sk_knowledge/SK그룹 4개사 IR 자료 — 문서 단위 URL 목록.md",
+              "reconciliationStatus": "url_record_not_matched_to_local_file"
+            }
+          ]
+        },
+        "documentUrlStatus": {
+          "matched_from_document_url_list": 103,
+          "pending_url_reconciliation": 29
+        }
+      },
+      "sourceBackedClaims": {
+        "records": 27,
+        "byCompany": {
+          "sk-hynix": 5,
+          "sk-inc": 5,
+          "sk-innovation": 5,
+          "sk-square": 7,
+          "sk-telecom": 5
+        },
+        "missingCompanyScope": 0
+      },
+      "wikiCompanyPages": 5,
+      "gaps": [
+        {
+          "severity": "medium",
+          "code": "unmatched-url-records",
+          "message": "Some source provenance records are not matched to local files.",
+          "count": 11
+        }
+      ]
+    },
+    {
+      "groupId": "hyundai-motor",
+      "status": "source-ready",
+      "sourceStatus": "financial-source-backed-seed",
+      "configuredCompanies": 5,
+      "listedCompanies": 5,
+      "hasSourceIntakeTemplate": true,
+      "sourceIntakeFirstSliceCompanies": [
+        "hyundai-motor",
+        "kia",
+        "hyundai-mobis",
+        "hyundai-glovis",
+        "hyundai-rotem"
+      ],
+      "localInventory": {
+        "schemaVersion": "local-source-inventory.v0.2",
+        "schemaLevel": 2,
+        "entries": 158,
+        "byCompany": {
+          "기아": 17,
+          "이노션": 4,
+          "현대건설": 11,
+          "현대글로비스": 33,
+          "현대로템": 28,
+          "현대모비스": 12,
+          "현대비앤지스틸": 6,
+          "현대오토에버": 22,
+          "현대위아": 13,
+          "현대자동차": 11,
+          "현대제철": 1
+        },
+        "byDecision": {
+          "extract-to-markdown-and-wiki-candidate": 153,
+          "manifest-support-note": 2,
+          "manual-source-review": 3
+        },
+        "urlReconciliation": {
+          "policy": "Public source provenance is required for claim-promotion eligibility. Document-level URLs and DART viewer URLs are preferred. Source-page-only records are acceptable when the issuer uses dynamic downloads and the exact local document is fixed by title, period, checksum, extraction hash, and evidence locator.",
+          "unmatchedLedgerRecords": [
+            {
+              "company": "기아",
+              "companyId": "kia",
+              "localFile": "*(다운로드 불가 — SPA 동적 로딩)*",
+              "sourcePageUrl": "https://worldwide.kia.com/ko/company/investor-relations/library/ir-activities",
+              "publicDocumentUrl": null,
+              "dartReceiptUrl": null,
+              "title": "2026년 1분기 경영실적",
+              "date": "2026-04-24",
+              "documentType": "earnings_presentation",
+              "requestPackage": "PKG-03",
+              "selectionReason": "최신 분기 매출·영업이익·EV 판매 현황, 관세 영향 분석",
+              "rightsLevel": "public-official",
+              "note": null,
+              "ledgerPath": "../Knowledge Base/hyundai_knowledge/현대자동차그룹 IR 자료 — 문서 단위 URL 목록.md, ../Knowledge Base/hyundai_knowledge/document_urls.md",
+              "ledgerPaths": [
+                "../Knowledge Base/hyundai_knowledge/현대자동차그룹 IR 자료 — 문서 단위 URL 목록.md",
+                "../Knowledge Base/hyundai_knowledge/document_urls.md"
+              ],
+              "reconciliationStatus": "ledger_record_not_matched_to_local_file"
+            },
+            {
+              "company": "기아",
+              "companyId": "kia",
+              "localFile": "*(다운로드 불가 — SPA 동적 로딩)*",
+              "sourcePageUrl": "https://worldwide.kia.com/ko/company/investor-relations/library/ir-activities",
+              "publicDocumentUrl": null,
+              "dartReceiptUrl": null,
+              "title": "2025년 4분기 경영실적",
+              "date": "2026-01-28",
+              "documentType": "earnings_presentation",
+              "requestPackage": "PKG-03",
+              "selectionReason": "2025년 연간 확정 실적, 배당 결정 근거",
+              "rightsLevel": "public-official",
+              "note": null,
+              "ledgerPath": "../Knowledge Base/hyundai_knowledge/현대자동차그룹 IR 자료 — 문서 단위 URL 목록.md, ../Knowledge Base/hyundai_knowledge/document_urls.md",
+              "ledgerPaths": [
+                "../Knowledge Base/hyundai_knowledge/현대자동차그룹 IR 자료 — 문서 단위 URL 목록.md",
+                "../Knowledge Base/hyundai_knowledge/document_urls.md"
+              ],
+              "reconciliationStatus": "ledger_record_not_matched_to_local_file"
+            },
+            {
+              "company": "기아",
+              "companyId": "kia",
+              "localFile": "*(다운로드 불가 — SPA 동적 로딩)*",
+              "sourcePageUrl": "https://worldwide.kia.com/ko/company/investor-relations/library/ir-activities",
+              "publicDocumentUrl": null,
+              "dartReceiptUrl": null,
+              "title": "2025년 3분기 경영실적",
+              "date": "2025-10-31",
+              "documentType": "earnings_presentation",
+              "requestPackage": "PKG-03",
+              "selectionReason": "3분기 글로벌 판매 및 EV 비중 추이",
+              "rightsLevel": "public-official",
+              "note": null,
+              "ledgerPath": "../Knowledge Base/hyundai_knowledge/현대자동차그룹 IR 자료 — 문서 단위 URL 목록.md, ../Knowledge Base/hyundai_knowledge/document_urls.md",
+              "ledgerPaths": [
+                "../Knowledge Base/hyundai_knowledge/현대자동차그룹 IR 자료 — 문서 단위 URL 목록.md",
+                "../Knowledge Base/hyundai_knowledge/document_urls.md"
+              ],
+              "reconciliationStatus": "ledger_record_not_matched_to_local_file"
+            },
+            {
+              "company": "기아",
+              "companyId": "kia",
+              "localFile": "*(다운로드 불가 — SPA 동적 로딩)*",
+              "sourcePageUrl": "https://worldwide.kia.com/ko/company/investor-relations/library/ir-activities",
+              "publicDocumentUrl": null,
+              "dartReceiptUrl": null,
+              "title": "2025년 2분기 경영실적",
+              "date": "2025-07",
+              "documentType": "earnings_presentation",
+              "requestPackage": "PKG-03",
+              "selectionReason": "상반기 누적 실적 및 하반기 전망",
+              "rightsLevel": "public-official",
+              "note": null,
+              "ledgerPath": "../Knowledge Base/hyundai_knowledge/현대자동차그룹 IR 자료 — 문서 단위 URL 목록.md, ../Knowledge Base/hyundai_knowledge/document_urls.md",
+              "ledgerPaths": [
+                "../Knowledge Base/hyundai_knowledge/현대자동차그룹 IR 자료 — 문서 단위 URL 목록.md",
+                "../Knowledge Base/hyundai_knowledge/document_urls.md"
+              ],
+              "reconciliationStatus": "ledger_record_not_matched_to_local_file"
+            },
+            {
+              "company": "기아",
+              "companyId": "kia",
+              "localFile": "*(다운로드 불가 — SPA 동적 로딩)*",
+              "sourcePageUrl": "https://worldwide.kia.com/ko/company/investor-relations/library/ir-activities",
+              "publicDocumentUrl": null,
+              "dartReceiptUrl": null,
+              "title": "2025년 1분기 경영실적",
+              "date": "2025-04",
+              "documentType": "earnings_presentation",
+              "requestPackage": "PKG-03",
+              "selectionReason": "분기 실적 추이 분석",
+              "rightsLevel": "public-official",
+              "note": null,
+              "ledgerPath": "../Knowledge Base/hyundai_knowledge/현대자동차그룹 IR 자료 — 문서 단위 URL 목록.md, ../Knowledge Base/hyundai_knowledge/document_urls.md",
+              "ledgerPaths": [
+                "../Knowledge Base/hyundai_knowledge/현대자동차그룹 IR 자료 — 문서 단위 URL 목록.md",
+                "../Knowledge Base/hyundai_knowledge/document_urls.md"
+              ],
+              "reconciliationStatus": "ledger_record_not_matched_to_local_file"
+            },
+            {
+              "company": "기아",
+              "companyId": "kia",
+              "localFile": "*(다운로드 불가 — SPA 동적 로딩)*",
+              "sourcePageUrl": "https://worldwide.kia.com/ko/company/investor-relations/library/ir-activities",
+              "publicDocumentUrl": null,
+              "dartReceiptUrl": null,
+              "title": "2026 기아 CEO Investor Day",
+              "date": "2026-04-09",
+              "documentType": "investor_presentation",
+              "requestPackage": "PKG-03",
+              "selectionReason": "2026년 중장기 전략·EV 로드맵·재무목표 제시",
+              "rightsLevel": "public-official",
+              "note": null,
+              "ledgerPath": "../Knowledge Base/hyundai_knowledge/현대자동차그룹 IR 자료 — 문서 단위 URL 목록.md, ../Knowledge Base/hyundai_knowledge/document_urls.md",
+              "ledgerPaths": [
+                "../Knowledge Base/hyundai_knowledge/현대자동차그룹 IR 자료 — 문서 단위 URL 목록.md",
+                "../Knowledge Base/hyundai_knowledge/document_urls.md"
+              ],
+              "reconciliationStatus": "ledger_record_not_matched_to_local_file"
+            },
+            {
+              "company": "기아",
+              "companyId": "kia",
+              "localFile": "*(다운로드 불가 — SPA 동적 로딩)*",
+              "sourcePageUrl": "https://worldwide.kia.com/ko/company/investor-relations/library/ir-activities",
+              "publicDocumentUrl": null,
+              "dartReceiptUrl": null,
+              "title": "2025 기아 CEO Investor Day",
+              "date": "2025",
+              "documentType": "investor_presentation",
+              "requestPackage": "PKG-03",
+              "selectionReason": "2025년 전략 방향, 2026년 자료와 비교 분석용",
+              "rightsLevel": "public-official",
+              "note": null,
+              "ledgerPath": "../Knowledge Base/hyundai_knowledge/현대자동차그룹 IR 자료 — 문서 단위 URL 목록.md, ../Knowledge Base/hyundai_knowledge/document_urls.md",
+              "ledgerPaths": [
+                "../Knowledge Base/hyundai_knowledge/현대자동차그룹 IR 자료 — 문서 단위 URL 목록.md",
+                "../Knowledge Base/hyundai_knowledge/document_urls.md"
+              ],
+              "reconciliationStatus": "ledger_record_not_matched_to_local_file"
+            },
+            {
+              "company": "기아",
+              "companyId": "kia",
+              "localFile": "*(다운로드 불가 — SPA 동적 로딩)*",
+              "sourcePageUrl": "https://worldwide.kia.com/ko/company/investor-relations/library/ir-activities",
+              "publicDocumentUrl": null,
+              "dartReceiptUrl": null,
+              "title": "★Kia Investor Presentation_Mar 2026",
+              "date": "2026-03",
+              "documentType": "investor_presentation",
+              "requestPackage": "PKG-03",
+              "selectionReason": "JPM Korea Corporate Day 발표자료, 최신 투자자 메시지",
+              "rightsLevel": "public-official",
+              "note": null,
+              "ledgerPath": "../Knowledge Base/hyundai_knowledge/현대자동차그룹 IR 자료 — 문서 단위 URL 목록.md, ../Knowledge Base/hyundai_knowledge/document_urls.md",
+              "ledgerPaths": [
+                "../Knowledge Base/hyundai_knowledge/현대자동차그룹 IR 자료 — 문서 단위 URL 목록.md",
+                "../Knowledge Base/hyundai_knowledge/document_urls.md"
+              ],
+              "reconciliationStatus": "ledger_record_not_matched_to_local_file"
+            },
+            {
+              "company": "기아",
+              "companyId": "kia",
+              "localFile": "*(다운로드 불가 — SPA 동적 로딩)*",
+              "sourcePageUrl": "https://worldwide.kia.com/ko/company/investor-relations/library/ir-activities",
+              "publicDocumentUrl": null,
+              "dartReceiptUrl": null,
+              "title": "★Kia Investor Presentation_Nov 2025",
+              "date": "2025-11",
+              "documentType": "investor_presentation",
+              "requestPackage": "PKG-03",
+              "selectionReason": "해외 로드쇼 발표자료, 글로벌 투자자 대상 전략 메시지",
+              "rightsLevel": "public-official",
+              "note": null,
+              "ledgerPath": "../Knowledge Base/hyundai_knowledge/현대자동차그룹 IR 자료 — 문서 단위 URL 목록.md, ../Knowledge Base/hyundai_knowledge/document_urls.md",
+              "ledgerPaths": [
+                "../Knowledge Base/hyundai_knowledge/현대자동차그룹 IR 자료 — 문서 단위 URL 목록.md",
+                "../Knowledge Base/hyundai_knowledge/document_urls.md"
+              ],
+              "reconciliationStatus": "ledger_record_not_matched_to_local_file"
+            }
+          ]
+        },
+        "documentUrlStatus": {
+          "document_url_supplied": 76,
+          "missing_source_provenance": 7,
+          "source_page_url_supplied": 75
+        }
+      },
+      "sourceBackedClaims": {
+        "records": 15,
+        "byCompany": {
+          "hyundai-glovis": 3,
+          "hyundai-mobis": 3,
+          "hyundai-motor": 3,
+          "hyundai-rotem": 3,
+          "kia": 3
+        },
+        "missingCompanyScope": 0
+      },
+      "wikiCompanyPages": 5,
+      "gaps": [
+        {
+          "severity": "medium",
+          "code": "unmatched-ledger-records",
+          "message": "Some source provenance ledger records are not matched to local files.",
+          "count": 9
+        }
+      ]
+    },
+    {
+      "groupId": "lg",
+      "status": "source-ready",
+      "sourceStatus": "financial-source-backed-seed",
+      "configuredCompanies": 9,
+      "listedCompanies": 9,
+      "hasSourceIntakeTemplate": true,
+      "sourceIntakeFirstSliceCompanies": [
+        "lg-electronics",
+        "lg-chem",
+        "lg-energy-solution",
+        "lg-innotek",
+        "lg-uplus"
+      ],
+      "localInventory": {
+        "schemaVersion": "local-source-inventory.v0.2",
+        "schemaLevel": 2,
+        "entries": 98,
+        "byCompany": {
+          "LG": 13,
+          "LG디스플레이": 5,
+          "LG생활건강": 6,
+          "LG씨엔에스": 6,
+          "LG에너지솔루션": 13,
+          "LG유플러스": 4,
+          "LG이노텍": 15,
+          "LG전자": 18,
+          "LG화학": 18
+        },
+        "byDecision": {
+          "convert-or-extract-source": 5,
+          "duplicate-reference-only": 6,
+          "extract-to-markdown-and-wiki-candidate": 87
+        },
+        "urlReconciliation": {
+          "policy": "Document-level URLs or official source-page routes are recorded for review. Runtime promotion still requires a source-backed claim and evidence locator.",
+          "unmatchedLedgerRecords": []
+        },
+        "documentUrlStatus": {
+          "document_level_url": 84,
+          "source_page_only": 14
+        }
+      },
+      "sourceBackedClaims": {
+        "records": 15,
+        "byCompany": {
+          "lg-chem": 3,
+          "lg-electronics": 3,
+          "lg-energy-solution": 3,
+          "lg-innotek": 3,
+          "lg-uplus": 3
+        },
+        "missingCompanyScope": 0
+      },
+      "wikiCompanyPages": 9,
+      "gaps": [
+        {
+          "severity": "low",
+          "code": "source-page-only",
+          "message": "Some sources have source-page metadata but not direct document-level URLs.",
+          "count": 14
+        }
+      ]
+    },
+    {
+      "groupId": "hanwha",
+      "status": "reference-slice",
+      "sourceStatus": "issuer-source-backed-affiliate-intake-prepared",
+      "configuredCompanies": 9,
+      "listedCompanies": 8,
+      "hasSourceIntakeTemplate": true,
+      "sourceIntakeFirstSliceCompanies": [
+        "hanwha",
+        "hanwha-aerospace",
+        "hanwha-solutions",
+        "hanwha-systems",
+        "hanwha-ocean"
+      ],
+      "localInventory": {
+        "schemaVersion": "local-source-inventory.v0.2",
+        "schemaLevel": 2,
+        "entries": 104,
+        "byCompany": {
+          "hanwha": 46,
+          "hanwha-aerospace": 20,
+          "hanwha-ocean": 10,
+          "hanwha-solutions": 10,
+          "hanwha-systems": 18
+        },
+        "byDecision": {
+          "extract-to-markdown-and-wiki-candidate": 95,
+          "manual-type-check-before-extraction": 2,
+          "metadata-and-short-notes-only": 7
+        },
+        "urlReconciliation": {
+          "policy": "Public source provenance is required for claim-promotion eligibility. Document-level URLs and DART viewer URLs are preferred. Source-page-only records are acceptable when the issuer uses dynamic downloads and the exact local document is fixed by title, period, checksum, extraction hash, and evidence locator.",
+          "unmatchedLedgerRecords": []
+        },
+        "documentUrlStatus": {
+          "dart_receipt_url_supplied": 11,
+          "public_document_url_supplied": 14,
+          "source_page_url_supplied": 79
+        }
+      },
+      "sourceBackedClaims": {
+        "records": 20,
+        "byCompany": {
+          "hanwha": 12,
+          "hanwha-aerospace": 2,
+          "hanwha-ocean": 2,
+          "hanwha-solutions": 2,
+          "hanwha-systems": 2
+        },
+        "missingCompanyScope": 0
+      },
+      "wikiCompanyPages": 9,
+      "gaps": []
+    }
+  ]
+}

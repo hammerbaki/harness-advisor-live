@@ -1,0 +1,158 @@
+{
+  "schemaVersion": "advisor-eval-scenarios.v0.1",
+  "scenarioSetId": "hanwha-reference-slice-v0.1",
+  "groupId": "hanwha",
+  "stage": "five-company-reference-slice",
+  "createdAt": "2026-05-01",
+  "purpose": "Freeze the Hanwha five-company reference-slice questions used to evaluate whether the common harness can route selected Hanwha affiliates, select source-backed claims, and produce investor-facing answers under the same contract used for the other corporate-group slices.",
+  "paperUse": {
+    "allowedClaim": "Hanwha demonstrates the same five-company reference-slice structure used for the other corporate groups, with one question per selected listed company and one cross-affiliate comparison.",
+    "notAllowedClaim": "These scenarios do not prove full production readiness or full five-group source coverage.",
+    "expansionNote": "Additional Hanwha affiliates can be added by registering identifiers, source manifests, extracted records, source-backed claims, wiki pages, and affiliate-routing checks under the same schema."
+  },
+  "runtimeAssumptions": {
+    "presentationMode": "text",
+    "currentExpectedRuntimeMode": "mixed",
+    "allowedRuntimeModesAfterLiveApi": ["mixed", "fallback", "live"],
+    "expectedTraceSteps": [
+      "dart.disclosures",
+      "krx.market",
+      "news.search",
+      "wiki.context",
+      "claims.sourceBacked",
+      "llm.compose"
+    ],
+    "requiredTraceFields": [
+      "schemaVersion",
+      "runId",
+      "generatedAt",
+      "runtimeMode",
+      "groupId",
+      "representativeCompanyId",
+      "questionHash",
+      "promptPolicyHash",
+      "promptPolicyVersion",
+      "llmMode",
+      "llmOutputContractVersion",
+      "llmOutputContractStatus",
+      "statusCounts",
+      "reproducibility"
+    ],
+    "answerPolicy": [
+      "Answer must be investor-facing Korean prose, not development-status prose.",
+      "Answer must not expose raw prompt text or private extraction text.",
+      "Answer must disclose when latest news or market data is not connected live.",
+      "Visible answer must not expose raw source-backed claim IDs.",
+      "Selected source-backed claim IDs must remain available in response.sourceClaims and exported trace JSON."
+    ],
+    "claimMatchPolicy": "expectedClaimIds are minimum required source-backed claims. Additional selected claims are allowed when the question overlaps another verified claim class."
+  },
+  "scenarios": [
+    {
+      "id": "hanwha-frozen-001-inc-financial-performance",
+      "title": "Hanwha Inc. financial performance",
+      "question": "㈜한화 2025년 연결 실적을 매출·영업이익·영업이익률 기준으로 요약해줘",
+      "intent": "Check whether Hanwha Inc. questions route to the listed holding company and select official financial source-backed claims.",
+      "expectedRepresentativeCompanyId": "hanwha",
+      "expectedClaimIds": [
+        "hanwha-sbc-001",
+        "hanwha-sbc-002"
+      ],
+      "requiredAnswerSignals": [
+        "㈜한화",
+        "매출",
+        "영업이익",
+        "영업이익률"
+      ],
+      "paperTableBucket": "hanwha_inc_financial_metric_grounding"
+    },
+    {
+      "id": "hanwha-frozen-002-aerospace-financial-driver",
+      "title": "Hanwha Aerospace financial driver",
+      "question": "한화에어로스페이스 2026년 1분기 실적과 영업이익 개선 포인트를 공식 자료 기준으로 요약해줘",
+      "intent": "Check whether Hanwha Aerospace questions route to Hanwha Aerospace and select affiliate-scoped financial and business-driver claims.",
+      "expectedRepresentativeCompanyId": "hanwha-aerospace",
+      "expectedClaimIds": [
+        "hanwha-sbc-012",
+        "hanwha-sbc-017"
+      ],
+      "requiredAnswerSignals": [
+        "한화에어로스페이스",
+        "영업이익",
+        "1분기"
+      ],
+      "paperTableBucket": "hanwha_aerospace_affiliate_grounding"
+    },
+    {
+      "id": "hanwha-frozen-003-solutions-turnaround",
+      "title": "Hanwha Solutions turnaround drivers",
+      "question": "한화솔루션 2025년 실적과 2026년 1분기 흑자전환 요인을 공식 자료 기준으로 정리해줘",
+      "intent": "Check whether Hanwha Solutions questions route to Hanwha Solutions and select affiliate-scoped financial and turnaround-driver claims.",
+      "expectedRepresentativeCompanyId": "hanwha-solutions",
+      "expectedClaimIds": [
+        "hanwha-sbc-013",
+        "hanwha-sbc-018"
+      ],
+      "requiredAnswerSignals": [
+        "한화솔루션",
+        "흑자전환",
+        "영업이익"
+      ],
+      "paperTableBucket": "hanwha_solutions_affiliate_grounding"
+    },
+    {
+      "id": "hanwha-frozen-004-systems-financial-defense",
+      "title": "Hanwha Systems financial and defense segment check",
+      "question": "한화시스템 2025년 실적과 방산 부문 매출 흐름을 공식 자료 기준으로 요약해줘",
+      "intent": "Check whether Hanwha Systems questions route to Hanwha Systems and select affiliate-scoped financial and defense-segment claims.",
+      "expectedRepresentativeCompanyId": "hanwha-systems",
+      "expectedClaimIds": [
+        "hanwha-sbc-014",
+        "hanwha-sbc-019"
+      ],
+      "requiredAnswerSignals": [
+        "한화시스템",
+        "방산",
+        "매출"
+      ],
+      "paperTableBucket": "hanwha_systems_affiliate_grounding"
+    },
+    {
+      "id": "hanwha-frozen-005-ocean-financial-driver",
+      "title": "Hanwha Ocean financial driver",
+      "question": "한화오션 2025년 실적과 2026년 1분기 영업이익 개선을 공식 자료 기준으로 요약해줘",
+      "intent": "Check whether Hanwha Ocean questions route to Hanwha Ocean and select affiliate-scoped financial and improvement-driver claims.",
+      "expectedRepresentativeCompanyId": "hanwha-ocean",
+      "expectedClaimIds": [
+        "hanwha-sbc-015",
+        "hanwha-sbc-020"
+      ],
+      "requiredAnswerSignals": [
+        "한화오션",
+        "영업이익",
+        "1분기"
+      ],
+      "paperTableBucket": "hanwha_ocean_affiliate_grounding"
+    },
+    {
+      "id": "hanwha-frozen-006-aerospace-solution-comparison",
+      "title": "Hanwha Aerospace and Hanwha Solutions investment-point comparison",
+      "question": "한화에어로스페이스와 한화솔루션의 투자 포인트를 비교해줘",
+      "intent": "Check whether a cross-affiliate Hanwha comparison preserves explicit company mentions, selects promoted affiliate-level source-backed claims, and does not expose development trace details.",
+      "expectedRepresentativeCompanyId": "hanwha-aerospace",
+      "expectedClaimIds": [
+        "hanwha-sbc-012",
+        "hanwha-sbc-013",
+        "hanwha-sbc-017",
+        "hanwha-sbc-018"
+      ],
+      "requiredAnswerSignals": [
+        "한화에어로스페이스",
+        "한화솔루션",
+        "투자 포인트",
+        "공식"
+      ],
+      "paperTableBucket": "hanwha_cross_affiliate_investment_point_comparison"
+    }
+  ]
+}

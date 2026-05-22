@@ -1,0 +1,14 @@
+Mac Quick Start
+===============
+
+1) Install a TeX distribution on macOS (MacTeX or TinyTeX) and install VS Code.
+2) In VS Code, install the LaTeX Workshop extension.
+3) Open this folder in VS Code.
+4) Open main.tex.
+5) Save the file to trigger an automatic build, or run "Build LaTeX project".
+6) Edit the files inside sections/ and bib/references.bib.
+7) When preparing an arXiv upload, run:
+
+   ./arxiv_pack.sh
+
+This creates arxiv_submit.zip after excluding local build artifacts.

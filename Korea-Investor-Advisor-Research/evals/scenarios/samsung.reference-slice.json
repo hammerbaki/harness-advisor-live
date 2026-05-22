@@ -1,0 +1,176 @@
+{
+  "schemaVersion": "advisor-eval-scenarios.v0.1",
+  "scenarioSetId": "samsung-reference-slice-v0.1",
+  "groupId": "samsung",
+  "stage": "first-transfer-template-freeze",
+  "createdAt": "2026-05-03",
+  "purpose": "Freeze the first Samsung transfer-slice questions used to evaluate whether the Hanwha reference architecture can route to Samsung affiliate companies, select source-backed claims, and produce investor-facing answers without expanding the UI into a company selector.",
+  "paperUse": {
+    "allowedClaim": "Samsung demonstrates a first template-transfer test from the Hanwha reference architecture using DART financial claims plus official IR/DART narrative claims.",
+    "notAllowedClaim": "These scenarios do not prove full Samsung coverage, full five-group coverage, or commercial production readiness.",
+    "expansionNote": "SK, Hyundai Motor, and LG should receive equivalent scenario files after their identifier manifests, source inventories, source-backed claims, and affiliate-routing checks are created."
+  },
+  "runtimeAssumptions": {
+    "presentationMode": "text",
+    "currentExpectedRuntimeMode": "mixed",
+    "allowedRuntimeModesAfterLiveApi": ["mixed", "fallback", "live"],
+    "expectedTraceSteps": [
+      "dart.disclosures",
+      "krx.market",
+      "news.search",
+      "wiki.context",
+      "claims.sourceBacked",
+      "llm.compose"
+    ],
+    "requiredTraceFields": [
+      "schemaVersion",
+      "runId",
+      "generatedAt",
+      "runtimeMode",
+      "groupId",
+      "representativeCompanyId",
+      "questionHash",
+      "promptPolicyHash",
+      "promptPolicyVersion",
+      "llmMode",
+      "llmOutputContractVersion",
+      "llmOutputContractStatus",
+      "statusCounts",
+      "reproducibility"
+    ],
+    "answerPolicy": [
+      "Answer must be investor-facing Korean prose, not development-status prose.",
+      "Answer must not expose raw prompt text or private extraction text.",
+      "Answer must disclose when latest news or market data is not connected live.",
+      "Visible answer must not expose raw source-backed claim IDs.",
+      "Selected source-backed claim IDs must remain available in response.sourceClaims and exported trace JSON.",
+      "When a Samsung affiliate is named, representativeCompanyId must route to that affiliate even though the visible UI stays group-level."
+    ],
+    "claimMatchPolicy": "expectedClaimIds are minimum required source-backed claims. Additional selected claims are allowed when the question overlaps another verified claim class."
+  },
+  "scenarios": [
+    {
+      "id": "samsung-frozen-001-electronics-memory-hbm",
+      "title": "Samsung Electronics memory and HBM recovery",
+      "question": "삼성전자 HBM과 메모리 실적 회복을 공식 자료 기준으로 요약해줘",
+      "intent": "Check whether Samsung Electronics questions route to Samsung Electronics and select official IR plus DART financial claims.",
+      "expectedRepresentativeCompanyId": "samsung-electronics",
+      "expectedClaimIds": [
+        "samsung-sbc-020",
+        "samsung-sbc-001",
+        "samsung-sbc-016",
+        "samsung-sbc-021"
+      ],
+      "requiredAnswerSignals": [
+        "삼성전자",
+        "HBM",
+        "메모리",
+        "OpenDART"
+      ],
+      "paperTableBucket": "samsung_affiliate_routing_memory_grounding"
+    },
+    {
+      "id": "samsung-frozen-002-sdi-ess-profitability",
+      "title": "Samsung SDI loss narrowing and ESS pipeline",
+      "question": "삼성SDI 적자 축소와 ESS 수주 확대를 투자 관점의 확인 변수로 정리해줘",
+      "intent": "Check whether Samsung SDI questions route to Samsung SDI and select SDI-specific battery and DART claims.",
+      "expectedRepresentativeCompanyId": "samsung-sdi",
+      "expectedClaimIds": [
+        "samsung-sbc-022",
+        "samsung-sbc-023",
+        "samsung-sbc-002",
+        "samsung-sbc-017"
+      ],
+      "requiredAnswerSignals": [
+        "삼성SDI",
+        "ESS",
+        "영업손실",
+        "OpenDART"
+      ],
+      "paperTableBucket": "samsung_affiliate_routing_battery_grounding"
+    },
+    {
+      "id": "samsung-frozen-003-ct-shareholder-letter",
+      "title": "Samsung C&T shareholder letter and portfolio direction",
+      "question": "삼성물산 주주서한 기준으로 주주환원과 사업 방향을 요약해줘",
+      "intent": "Check whether Samsung C&T questions route to Samsung C&T and select shareholder-letter and portfolio claims.",
+      "expectedRepresentativeCompanyId": "samsung-ct",
+      "expectedClaimIds": [
+        "samsung-sbc-024",
+        "samsung-sbc-025",
+        "samsung-sbc-003",
+        "samsung-sbc-018"
+      ],
+      "requiredAnswerSignals": [
+        "삼성물산",
+        "주주",
+        "포트폴리오",
+        "OpenDART"
+      ],
+      "paperTableBucket": "samsung_affiliate_routing_shareholder_grounding"
+    },
+    {
+      "id": "samsung-frozen-004-biologics-orders-guidance",
+      "title": "Samsung Biologics orders and revenue guidance",
+      "question": "삼성바이오로직스 수주와 매출 성장 가이던스를 공식 자료 기준으로 정리해줘",
+      "intent": "Check whether Samsung Biologics questions route to Samsung Biologics and select order/backlog, guidance, and DART claims.",
+      "expectedRepresentativeCompanyId": "samsung-biologics",
+      "expectedClaimIds": [
+        "samsung-sbc-006",
+        "samsung-sbc-019",
+        "samsung-sbc-026",
+        "samsung-sbc-027"
+      ],
+      "requiredAnswerSignals": [
+        "삼성바이오로직스",
+        "수주",
+        "가이던스",
+        "OpenDART"
+      ],
+      "paperTableBucket": "samsung_affiliate_routing_biologics_grounding"
+    },
+    {
+      "id": "samsung-frozen-005-insurance-capital-dividend",
+      "title": "Samsung Life and Samsung Fire capital and dividend checks",
+      "question": "삼성생명과 삼성화재의 자본·배당 확인 포인트를 DART 기준으로 정리해줘",
+      "intent": "Check whether insurance questions select capital and dividend claims without inventing financial-company revenue definitions.",
+      "expectedRepresentativeCompanyId": "samsung-life",
+      "expectedClaimIds": [
+        "samsung-sbc-028",
+        "samsung-sbc-029",
+        "samsung-sbc-030",
+        "samsung-sbc-031"
+      ],
+      "requiredAnswerSignals": [
+        "삼성생명",
+        "삼성화재",
+        "자본",
+        "배당"
+      ],
+      "paperTableBucket": "samsung_financial_sector_account_boundary"
+    },
+    {
+      "id": "samsung-frozen-006-electronics-sdi-comparison",
+      "title": "Samsung Electronics and Samsung SDI financial comparison",
+      "question": "삼성전자와 삼성SDI의 2024년 매출액과 영업이익 흐름을 비교해줘",
+      "intent": "Check whether a cross-affiliate Samsung comparison preserves explicit company mentions, selects source-backed financial claims, and keeps the answer investor-facing without expanding beyond promoted claims.",
+      "expectedRepresentativeCompanyId": "samsung-electronics",
+      "expectedClaimIds": [
+        "samsung-sbc-020",
+        "samsung-sbc-001",
+        "samsung-sbc-002",
+        "samsung-sbc-016",
+        "samsung-sbc-017"
+      ],
+      "requiredAnswerSignals": [
+        "삼성전자",
+        "삼성SDI",
+        "2024년",
+        "매출액",
+        "영업이익",
+        "OpenDART"
+      ],
+      "paperTableBucket": "samsung_cross_affiliate_financial_comparison"
+    }
+  ]
+}

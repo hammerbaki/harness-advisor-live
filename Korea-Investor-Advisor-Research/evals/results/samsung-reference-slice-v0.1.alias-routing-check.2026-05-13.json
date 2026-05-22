@@ -1,0 +1,1385 @@
+{
+  "schemaVersion": "advisor-autoeval-result.v0.1",
+  "scenarioSetId": "samsung-reference-slice-v0.1",
+  "groupId": "samsung",
+  "stage": "first-transfer-template-freeze",
+  "rubricId": "advisor-answer-quality-v0.2",
+  "evaluatedAt": "2026-05-13T02:15:36.857Z",
+  "baselineDate": "2026-05-03",
+  "methodology": {
+    "loop": "fixed scenario -> run advisor -> score rubric -> keep/discard candidate",
+    "source": "Adapted from Karpathy autoresearch-style self-evaluation, bounded by source-backed finance trace rules.",
+    "originalPocInputs": [
+      "follow-up consistency guards",
+      "preamble and meta-narration stripping",
+      "status stream ordering and dedupe",
+      "trace hygiene",
+      "chart/TTS leak checks"
+    ]
+  },
+  "thresholds": {
+    "pass": 85,
+    "paperBaseline": 90,
+    "keepCandidate": 92,
+    "maxPreApiLatencyMs": 1500,
+    "minAnswerSections": 3,
+    "minFollowUps": 3,
+    "minLinks": 3
+  },
+  "summary": {
+    "scenarioCount": 6,
+    "averageScore": 99.5,
+    "passCount": 6,
+    "paperBaselineCount": 6,
+    "keepCandidateCount": 6,
+    "requiredFailureCount": 0,
+    "baselineStatus": "paper_baseline"
+  },
+  "results": [
+    {
+      "scenarioId": "samsung-frozen-001-electronics-memory-hbm",
+      "title": "Samsung Electronics memory and HBM recovery",
+      "questionHash": "f41420fdf9dec0f537ef18ca29bf3c3b5eafc2ace348d418eb0801360afd44cc",
+      "paperTableBucket": "samsung_affiliate_routing_memory_grounding",
+      "score": 97,
+      "status": "paper_baseline",
+      "runtimeMode": "mixed",
+      "responseMode": "fixture",
+      "llmOutputContractStatus": "code",
+      "elapsedMs": 1941,
+      "traceFile": "evals/traces/run_3ce22361-f6aa-46eb-b712-f62e5578464f.json",
+      "expectedClaimIds": [
+        "samsung-sbc-020",
+        "samsung-sbc-001",
+        "samsung-sbc-016",
+        "samsung-sbc-021"
+      ],
+      "observedClaimIds": [
+        "samsung-sbc-020",
+        "samsung-sbc-021",
+        "samsung-sbc-032",
+        "samsung-sbc-001",
+        "samsung-sbc-016"
+      ],
+      "checks": [
+        {
+          "id": "expected_claim_coverage",
+          "passed": true,
+          "required": true,
+          "weight": 18,
+          "score": 18,
+          "details": {
+            "missing": [],
+            "observedCount": 5
+          }
+        },
+        {
+          "id": "trace_contract",
+          "passed": true,
+          "required": true,
+          "weight": 14,
+          "score": 14,
+          "details": {
+            "expectedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "observedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "requiredAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "observedAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "missingFields": [],
+            "rawQuestionInTrace": false,
+            "assemblyHasFailure": false,
+            "expectedRepresentativeCompanyId": "samsung-electronics",
+            "observedRepresentativeCompanyId": "samsung-electronics",
+            "routeMatches": true
+          }
+        },
+        {
+          "id": "investor_facing_answer",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "왜 중요한가",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "missingSignals": [],
+            "answerLength": 950
+          }
+        },
+        {
+          "id": "briefing_quality",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "bannedVague": [],
+            "hasInsightLead": true,
+            "hasJudgmentAxis": true,
+            "hasPriorityMonitoring": true,
+            "hasComparisonOrCausalContext": true,
+            "avoidsRecommendation": true,
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "왜 중요한가",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ]
+          }
+        },
+        {
+          "id": "development_leak_absence",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "source_status_disclosure",
+          "passed": true,
+          "required": false,
+          "weight": 10,
+          "score": 10,
+          "details": {
+            "limited": true,
+            "statuses": [
+              "live",
+              "live",
+              "live",
+              "local",
+              "local",
+              "fixture"
+            ]
+          }
+        },
+        {
+          "id": "followup_quality",
+          "passed": true,
+          "required": false,
+          "weight": 7,
+          "score": 7,
+          "details": {
+            "count": 4,
+            "generic": [],
+            "developerFacing": []
+          }
+        },
+        {
+          "id": "template_variation",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "intent": "financial",
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "왜 중요한가",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "recommended": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "recommendedMatches": 4,
+            "rigidGeneric": false,
+            "hasQuestionSpecificTitle": true
+          }
+        },
+        {
+          "id": "link_package",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "count": 5,
+            "validCount": 5
+          }
+        },
+        {
+          "id": "latency_budget",
+          "passed": false,
+          "required": false,
+          "weight": 3,
+          "score": 0,
+          "details": {
+            "elapsedMs": 1941,
+            "maxPreApiLatencyMs": 1500
+          }
+        },
+        {
+          "id": "original_poc_regression_guards",
+          "passed": true,
+          "required": false,
+          "weight": 2,
+          "score": 2,
+          "details": {
+            "regressions": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "samsung-frozen-002-sdi-ess-profitability",
+      "title": "Samsung SDI loss narrowing and ESS pipeline",
+      "questionHash": "c713c4e1b9b549c82bc6cf704e01ec640ac52a8dd216953079eee44019a7fbc4",
+      "paperTableBucket": "samsung_affiliate_routing_battery_grounding",
+      "score": 100,
+      "status": "paper_baseline",
+      "runtimeMode": "mixed",
+      "responseMode": "fixture",
+      "llmOutputContractStatus": "code",
+      "elapsedMs": 150,
+      "traceFile": "evals/traces/run_ef560187-c192-49a5-a4eb-b751e1991d11.json",
+      "expectedClaimIds": [
+        "samsung-sbc-022",
+        "samsung-sbc-023",
+        "samsung-sbc-002",
+        "samsung-sbc-017"
+      ],
+      "observedClaimIds": [
+        "samsung-sbc-022",
+        "samsung-sbc-023",
+        "samsung-sbc-002",
+        "samsung-sbc-033",
+        "samsung-sbc-017"
+      ],
+      "checks": [
+        {
+          "id": "expected_claim_coverage",
+          "passed": true,
+          "required": true,
+          "weight": 18,
+          "score": 18,
+          "details": {
+            "missing": [],
+            "observedCount": 5
+          }
+        },
+        {
+          "id": "trace_contract",
+          "passed": true,
+          "required": true,
+          "weight": 14,
+          "score": 14,
+          "details": {
+            "expectedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "observedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "requiredAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "observedAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "missingFields": [],
+            "rawQuestionInTrace": false,
+            "assemblyHasFailure": false,
+            "expectedRepresentativeCompanyId": "samsung-sdi",
+            "observedRepresentativeCompanyId": "samsung-sdi",
+            "routeMatches": true
+          }
+        },
+        {
+          "id": "investor_facing_answer",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "sections": [
+              "핵심 인사이트",
+              "근거 신호",
+              "사업 파이프라인",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "missingSignals": [],
+            "answerLength": 1089
+          }
+        },
+        {
+          "id": "briefing_quality",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "bannedVague": [],
+            "hasInsightLead": true,
+            "hasJudgmentAxis": true,
+            "hasPriorityMonitoring": true,
+            "hasComparisonOrCausalContext": true,
+            "avoidsRecommendation": true,
+            "sections": [
+              "핵심 인사이트",
+              "근거 신호",
+              "사업 파이프라인",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ]
+          }
+        },
+        {
+          "id": "development_leak_absence",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "source_status_disclosure",
+          "passed": true,
+          "required": false,
+          "weight": 10,
+          "score": 10,
+          "details": {
+            "limited": true,
+            "statuses": [
+              "live",
+              "live",
+              "live",
+              "local",
+              "local",
+              "fixture"
+            ]
+          }
+        },
+        {
+          "id": "followup_quality",
+          "passed": true,
+          "required": false,
+          "weight": 7,
+          "score": 7,
+          "details": {
+            "count": 4,
+            "generic": [],
+            "developerFacing": []
+          }
+        },
+        {
+          "id": "template_variation",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "intent": "pipeline",
+            "sections": [
+              "핵심 인사이트",
+              "근거 신호",
+              "사업 파이프라인",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "recommended": [
+              "핵심 인사이트",
+              "사업 파이프라인",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "recommendedMatches": 4,
+            "rigidGeneric": false,
+            "hasQuestionSpecificTitle": true
+          }
+        },
+        {
+          "id": "link_package",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "count": 5,
+            "validCount": 5
+          }
+        },
+        {
+          "id": "latency_budget",
+          "passed": true,
+          "required": false,
+          "weight": 3,
+          "score": 3,
+          "details": {
+            "elapsedMs": 150,
+            "maxPreApiLatencyMs": 1500
+          }
+        },
+        {
+          "id": "original_poc_regression_guards",
+          "passed": true,
+          "required": false,
+          "weight": 2,
+          "score": 2,
+          "details": {
+            "regressions": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "samsung-frozen-003-ct-shareholder-letter",
+      "title": "Samsung C&T shareholder letter and portfolio direction",
+      "questionHash": "2d5b0aef73f055d98b5c3f72a93e4a7d2d21b629aadfb3489b92790399573f50",
+      "paperTableBucket": "samsung_affiliate_routing_shareholder_grounding",
+      "score": 100,
+      "status": "paper_baseline",
+      "runtimeMode": "mixed",
+      "responseMode": "fixture",
+      "llmOutputContractStatus": "code",
+      "elapsedMs": 146,
+      "traceFile": "evals/traces/run_dea42175-72f9-4911-aaf8-0ce2cca19f49.json",
+      "expectedClaimIds": [
+        "samsung-sbc-024",
+        "samsung-sbc-025",
+        "samsung-sbc-003",
+        "samsung-sbc-018"
+      ],
+      "observedClaimIds": [
+        "samsung-sbc-025",
+        "samsung-sbc-024",
+        "samsung-sbc-018",
+        "samsung-sbc-003",
+        "samsung-sbc-034"
+      ],
+      "checks": [
+        {
+          "id": "expected_claim_coverage",
+          "passed": true,
+          "required": true,
+          "weight": 18,
+          "score": 18,
+          "details": {
+            "missing": [],
+            "observedCount": 5
+          }
+        },
+        {
+          "id": "trace_contract",
+          "passed": true,
+          "required": true,
+          "weight": 14,
+          "score": 14,
+          "details": {
+            "expectedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "observedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "requiredAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "observedAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "missingFields": [],
+            "rawQuestionInTrace": false,
+            "assemblyHasFailure": false,
+            "expectedRepresentativeCompanyId": "samsung-ct",
+            "observedRepresentativeCompanyId": "samsung-ct",
+            "routeMatches": true
+          }
+        },
+        {
+          "id": "investor_facing_answer",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "sections": [
+              "핵심 인사이트",
+              "근거 신호",
+              "왜 중요한가",
+              "주주환원 체크",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "missingSignals": [],
+            "answerLength": 1302
+          }
+        },
+        {
+          "id": "briefing_quality",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "bannedVague": [],
+            "hasInsightLead": true,
+            "hasJudgmentAxis": true,
+            "hasPriorityMonitoring": true,
+            "hasComparisonOrCausalContext": true,
+            "avoidsRecommendation": true,
+            "sections": [
+              "핵심 인사이트",
+              "근거 신호",
+              "왜 중요한가",
+              "주주환원 체크",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ]
+          }
+        },
+        {
+          "id": "development_leak_absence",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "source_status_disclosure",
+          "passed": true,
+          "required": false,
+          "weight": 10,
+          "score": 10,
+          "details": {
+            "limited": true,
+            "statuses": [
+              "live",
+              "live",
+              "live",
+              "local",
+              "local",
+              "fixture"
+            ]
+          }
+        },
+        {
+          "id": "followup_quality",
+          "passed": true,
+          "required": false,
+          "weight": 7,
+          "score": 7,
+          "details": {
+            "count": 4,
+            "generic": [],
+            "developerFacing": []
+          }
+        },
+        {
+          "id": "template_variation",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "intent": "valueUp",
+            "sections": [
+              "핵심 인사이트",
+              "근거 신호",
+              "왜 중요한가",
+              "주주환원 체크",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "recommended": [
+              "핵심 인사이트",
+              "주주환원 체크",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "recommendedMatches": 4,
+            "rigidGeneric": false,
+            "hasQuestionSpecificTitle": true
+          }
+        },
+        {
+          "id": "link_package",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "count": 5,
+            "validCount": 5
+          }
+        },
+        {
+          "id": "latency_budget",
+          "passed": true,
+          "required": false,
+          "weight": 3,
+          "score": 3,
+          "details": {
+            "elapsedMs": 146,
+            "maxPreApiLatencyMs": 1500
+          }
+        },
+        {
+          "id": "original_poc_regression_guards",
+          "passed": true,
+          "required": false,
+          "weight": 2,
+          "score": 2,
+          "details": {
+            "regressions": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "samsung-frozen-004-biologics-orders-guidance",
+      "title": "Samsung Biologics orders and revenue guidance",
+      "questionHash": "0bcf5be8e8c9562a2b06e296c1d59f4754172dfb8f355532f25aeb0ee2f4eadb",
+      "paperTableBucket": "samsung_affiliate_routing_biologics_grounding",
+      "score": 100,
+      "status": "paper_baseline",
+      "runtimeMode": "mixed",
+      "responseMode": "fixture",
+      "llmOutputContractStatus": "code",
+      "elapsedMs": 111,
+      "traceFile": "evals/traces/run_99bfcfe3-06e5-48d0-b752-821c6688331f.json",
+      "expectedClaimIds": [
+        "samsung-sbc-006",
+        "samsung-sbc-019",
+        "samsung-sbc-026",
+        "samsung-sbc-027"
+      ],
+      "observedClaimIds": [
+        "samsung-sbc-026",
+        "samsung-sbc-035",
+        "samsung-sbc-027",
+        "samsung-sbc-006",
+        "samsung-sbc-019"
+      ],
+      "checks": [
+        {
+          "id": "expected_claim_coverage",
+          "passed": true,
+          "required": true,
+          "weight": 18,
+          "score": 18,
+          "details": {
+            "missing": [],
+            "observedCount": 5
+          }
+        },
+        {
+          "id": "trace_contract",
+          "passed": true,
+          "required": true,
+          "weight": 14,
+          "score": 14,
+          "details": {
+            "expectedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "observedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "requiredAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "observedAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "missingFields": [],
+            "rawQuestionInTrace": false,
+            "assemblyHasFailure": false,
+            "expectedRepresentativeCompanyId": "samsung-biologics",
+            "observedRepresentativeCompanyId": "samsung-biologics",
+            "routeMatches": true
+          }
+        },
+        {
+          "id": "investor_facing_answer",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "왜 중요한가",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "missingSignals": [],
+            "answerLength": 909
+          }
+        },
+        {
+          "id": "briefing_quality",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "bannedVague": [],
+            "hasInsightLead": true,
+            "hasJudgmentAxis": true,
+            "hasPriorityMonitoring": true,
+            "hasComparisonOrCausalContext": true,
+            "avoidsRecommendation": true,
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "왜 중요한가",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ]
+          }
+        },
+        {
+          "id": "development_leak_absence",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "source_status_disclosure",
+          "passed": true,
+          "required": false,
+          "weight": 10,
+          "score": 10,
+          "details": {
+            "limited": true,
+            "statuses": [
+              "live",
+              "live",
+              "live",
+              "local",
+              "local",
+              "fixture"
+            ]
+          }
+        },
+        {
+          "id": "followup_quality",
+          "passed": true,
+          "required": false,
+          "weight": 7,
+          "score": 7,
+          "details": {
+            "count": 4,
+            "generic": [],
+            "developerFacing": []
+          }
+        },
+        {
+          "id": "template_variation",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "intent": "financial",
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "왜 중요한가",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "recommended": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "recommendedMatches": 4,
+            "rigidGeneric": false,
+            "hasQuestionSpecificTitle": true
+          }
+        },
+        {
+          "id": "link_package",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "count": 5,
+            "validCount": 5
+          }
+        },
+        {
+          "id": "latency_budget",
+          "passed": true,
+          "required": false,
+          "weight": 3,
+          "score": 3,
+          "details": {
+            "elapsedMs": 111,
+            "maxPreApiLatencyMs": 1500
+          }
+        },
+        {
+          "id": "original_poc_regression_guards",
+          "passed": true,
+          "required": false,
+          "weight": 2,
+          "score": 2,
+          "details": {
+            "regressions": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "samsung-frozen-005-insurance-capital-dividend",
+      "title": "Samsung Life and Samsung Fire capital and dividend checks",
+      "questionHash": "ec00c9f1eb4c24572bc9ebc67fd18a1b1241e80f0202155599b041da92deb638",
+      "paperTableBucket": "samsung_financial_sector_account_boundary",
+      "score": 100,
+      "status": "paper_baseline",
+      "runtimeMode": "mixed",
+      "responseMode": "fixture",
+      "llmOutputContractStatus": "code",
+      "elapsedMs": 172,
+      "traceFile": "evals/traces/run_99ea7d2d-6de7-470b-a9ed-ef46362d13c5.json",
+      "expectedClaimIds": [
+        "samsung-sbc-028",
+        "samsung-sbc-029",
+        "samsung-sbc-030",
+        "samsung-sbc-031"
+      ],
+      "observedClaimIds": [
+        "samsung-sbc-028",
+        "samsung-sbc-029",
+        "samsung-sbc-030",
+        "samsung-sbc-031",
+        "samsung-sbc-004"
+      ],
+      "checks": [
+        {
+          "id": "expected_claim_coverage",
+          "passed": true,
+          "required": true,
+          "weight": 18,
+          "score": 18,
+          "details": {
+            "missing": [],
+            "observedCount": 5
+          }
+        },
+        {
+          "id": "trace_contract",
+          "passed": true,
+          "required": true,
+          "weight": 14,
+          "score": 14,
+          "details": {
+            "expectedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "observedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "requiredAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "observedAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "missingFields": [],
+            "rawQuestionInTrace": false,
+            "assemblyHasFailure": false,
+            "expectedRepresentativeCompanyId": "samsung-life",
+            "observedRepresentativeCompanyId": "samsung-life",
+            "routeMatches": true
+          }
+        },
+        {
+          "id": "investor_facing_answer",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "sections": [
+              "핵심 인사이트",
+              "근거 신호",
+              "주주환원 체크",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "missingSignals": [],
+            "answerLength": 1134
+          }
+        },
+        {
+          "id": "briefing_quality",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "bannedVague": [],
+            "hasInsightLead": true,
+            "hasJudgmentAxis": true,
+            "hasPriorityMonitoring": true,
+            "hasComparisonOrCausalContext": true,
+            "avoidsRecommendation": true,
+            "sections": [
+              "핵심 인사이트",
+              "근거 신호",
+              "주주환원 체크",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ]
+          }
+        },
+        {
+          "id": "development_leak_absence",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "source_status_disclosure",
+          "passed": true,
+          "required": false,
+          "weight": 10,
+          "score": 10,
+          "details": {
+            "limited": true,
+            "statuses": [
+              "live",
+              "live",
+              "live",
+              "local",
+              "local",
+              "fixture"
+            ]
+          }
+        },
+        {
+          "id": "followup_quality",
+          "passed": true,
+          "required": false,
+          "weight": 7,
+          "score": 7,
+          "details": {
+            "count": 4,
+            "generic": [],
+            "developerFacing": []
+          }
+        },
+        {
+          "id": "template_variation",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "intent": "valueUp",
+            "sections": [
+              "핵심 인사이트",
+              "근거 신호",
+              "주주환원 체크",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "recommended": [
+              "핵심 인사이트",
+              "주주환원 체크",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "recommendedMatches": 4,
+            "rigidGeneric": false,
+            "hasQuestionSpecificTitle": true
+          }
+        },
+        {
+          "id": "link_package",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "count": 5,
+            "validCount": 5
+          }
+        },
+        {
+          "id": "latency_budget",
+          "passed": true,
+          "required": false,
+          "weight": 3,
+          "score": 3,
+          "details": {
+            "elapsedMs": 172,
+            "maxPreApiLatencyMs": 1500
+          }
+        },
+        {
+          "id": "original_poc_regression_guards",
+          "passed": true,
+          "required": false,
+          "weight": 2,
+          "score": 2,
+          "details": {
+            "regressions": []
+          }
+        }
+      ]
+    },
+    {
+      "scenarioId": "samsung-frozen-006-electronics-sdi-comparison",
+      "title": "Samsung Electronics and Samsung SDI financial comparison",
+      "questionHash": "6b594a092e4e29b0a02b29d2b8ce579a4e4a11b7719abc5651526a5d402bffaa",
+      "paperTableBucket": "samsung_cross_affiliate_financial_comparison",
+      "score": 100,
+      "status": "paper_baseline",
+      "runtimeMode": "mixed",
+      "responseMode": "fixture",
+      "llmOutputContractStatus": "code",
+      "elapsedMs": 0,
+      "traceFile": "evals/traces/run_92c2bb81-5f10-4090-8496-e5b8654a0b01.json",
+      "expectedClaimIds": [
+        "samsung-sbc-020",
+        "samsung-sbc-001",
+        "samsung-sbc-002",
+        "samsung-sbc-016",
+        "samsung-sbc-017"
+      ],
+      "observedClaimIds": [
+        "samsung-sbc-001",
+        "samsung-sbc-002",
+        "samsung-sbc-016",
+        "samsung-sbc-017",
+        "samsung-sbc-020"
+      ],
+      "checks": [
+        {
+          "id": "expected_claim_coverage",
+          "passed": true,
+          "required": true,
+          "weight": 18,
+          "score": 18,
+          "details": {
+            "missing": [],
+            "observedCount": 5
+          }
+        },
+        {
+          "id": "trace_contract",
+          "passed": true,
+          "required": true,
+          "weight": 14,
+          "score": 14,
+          "details": {
+            "expectedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "observedSteps": [
+              "dart.disclosures",
+              "krx.market",
+              "news.search",
+              "wiki.context",
+              "claims.sourceBacked",
+              "llm.compose"
+            ],
+            "requiredAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "observedAssemblyIds": [
+              "intent.route",
+              "source.collect",
+              "wiki.crosscheck",
+              "claim.select",
+              "answer.plan",
+              "guardrail.validate"
+            ],
+            "missingFields": [],
+            "rawQuestionInTrace": false,
+            "assemblyHasFailure": false,
+            "expectedRepresentativeCompanyId": "samsung-electronics",
+            "observedRepresentativeCompanyId": "samsung-electronics",
+            "routeMatches": true
+          }
+        },
+        {
+          "id": "investor_facing_answer",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "missingSignals": [],
+            "answerLength": 738
+          }
+        },
+        {
+          "id": "briefing_quality",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "bannedVague": [],
+            "hasInsightLead": true,
+            "hasJudgmentAxis": true,
+            "hasPriorityMonitoring": true,
+            "hasComparisonOrCausalContext": true,
+            "avoidsRecommendation": true,
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ]
+          }
+        },
+        {
+          "id": "development_leak_absence",
+          "passed": true,
+          "required": true,
+          "weight": 12,
+          "score": 12,
+          "details": {
+            "leaks": []
+          }
+        },
+        {
+          "id": "source_status_disclosure",
+          "passed": true,
+          "required": false,
+          "weight": 10,
+          "score": 10,
+          "details": {
+            "limited": true,
+            "statuses": [
+              "live",
+              "live",
+              "live",
+              "local",
+              "local",
+              "fixture"
+            ]
+          }
+        },
+        {
+          "id": "followup_quality",
+          "passed": true,
+          "required": false,
+          "weight": 7,
+          "score": 7,
+          "details": {
+            "count": 4,
+            "generic": [],
+            "developerFacing": []
+          }
+        },
+        {
+          "id": "template_variation",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "intent": "financial",
+            "sections": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "recommended": [
+              "핵심 인사이트",
+              "재무 포인트",
+              "반증 리스크",
+              "다음 관찰 포인트"
+            ],
+            "recommendedMatches": 4,
+            "rigidGeneric": false,
+            "hasQuestionSpecificTitle": true
+          }
+        },
+        {
+          "id": "link_package",
+          "passed": true,
+          "required": false,
+          "weight": 5,
+          "score": 5,
+          "details": {
+            "count": 5,
+            "validCount": 5
+          }
+        },
+        {
+          "id": "latency_budget",
+          "passed": true,
+          "required": false,
+          "weight": 3,
+          "score": 3,
+          "details": {
+            "elapsedMs": 0,
+            "maxPreApiLatencyMs": 1500
+          }
+        },
+        {
+          "id": "original_poc_regression_guards",
+          "passed": true,
+          "required": false,
+          "weight": 2,
+          "score": 2,
+          "details": {
+            "regressions": []
+          }
+        }
+      ]
+    }
+  ]
+}

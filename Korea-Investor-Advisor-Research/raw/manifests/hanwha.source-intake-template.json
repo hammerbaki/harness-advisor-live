@@ -1,0 +1,161 @@
+{
+  "schemaVersion": "source-intake-template.v0.1",
+  "groupId": "hanwha",
+  "generatedAt": "2026-05-05T14:30:00.000+09:00",
+  "status": "issuer-reference-slice-affiliate-intake-prepared",
+  "purpose": "Normalize the original Hanwha PoC source package into the same source-to-claim harness used for Samsung, SK, Hyundai Motor, and LG. The current runtime-promoted Hanwha claims remain issuer-scoped to Hanwha Corporation; affiliate material must enter through company-scoped intake before promotion.",
+  "localKnowledgeRootExpected": "../Knowledge Base/hanhwa_knowledge",
+  "ledgerExpected": "../Knowledge Base/hanhwa_knowledge/document_urls.md",
+  "firstSliceCompanies": [
+    {
+      "companyId": "hanwha",
+      "koreanName": "㈜한화",
+      "displayName": "Hanwha Corporation",
+      "krxCode": "000880",
+      "dartCode": "00160588",
+      "folderName": "hanwha_corp"
+    },
+    {
+      "companyId": "hanwha-aerospace",
+      "koreanName": "한화에어로스페이스",
+      "displayName": "Hanwha Aerospace",
+      "krxCode": "012450",
+      "dartCode": "00126566",
+      "folderName": "hanwha_aerospace"
+    },
+    {
+      "companyId": "hanwha-solutions",
+      "koreanName": "한화솔루션",
+      "displayName": "Hanwha Solutions",
+      "krxCode": "009830",
+      "dartCode": "00162461",
+      "folderName": "hanwha_solutions"
+    },
+    {
+      "companyId": "hanwha-systems",
+      "koreanName": "한화시스템",
+      "displayName": "Hanwha Systems",
+      "krxCode": "272210",
+      "dartCode": "00339391",
+      "folderName": "hanwha_systems"
+    },
+    {
+      "companyId": "hanwha-ocean",
+      "koreanName": "한화오션",
+      "displayName": "Hanwha Ocean",
+      "krxCode": "042660",
+      "dartCode": "00111704",
+      "folderName": "hanwha_ocean"
+    }
+  ],
+  "optionalSecondWaveCompanies": [
+    {
+      "companyId": "hanwha-life",
+      "koreanName": "한화생명",
+      "displayName": "Hanwha Life",
+      "krxCode": "088350",
+      "dartCode": "00113058",
+      "folderName": "hanwha_life",
+      "accountPolicy": "financial_company_use_explicit_dart_accounts_only"
+    },
+    {
+      "companyId": "hanwha-investment-securities",
+      "koreanName": "한화투자증권",
+      "displayName": "Hanwha Investment & Securities",
+      "krxCode": "003530",
+      "dartCode": "00148610",
+      "folderName": "hanwha_investment_securities",
+      "accountPolicy": "financial_company_use_explicit_dart_accounts_only"
+    },
+    {
+      "companyId": "hanwha-galleria",
+      "koreanName": "한화갤러리아",
+      "displayName": "Hanwha Galleria",
+      "krxCode": "452260",
+      "dartCode": "01722437",
+      "folderName": "hanwha_galleria"
+    },
+    {
+      "companyId": "hanwha-estate",
+      "koreanName": "한화에스테이트",
+      "displayName": "Hanwha Estate",
+      "krxCode": "",
+      "dartCode": "",
+      "folderName": "hanwha_estate",
+      "runtimePolicy": "nonlisted_support_only_until_parent_or_official_source_scope_is_verified"
+    }
+  ],
+  "requiredFolderLayout": [
+    "hanhwa_knowledge/document_urls.md",
+    "hanhwa_knowledge/hanwha_corp/annual_reports/",
+    "hanhwa_knowledge/hanwha_corp/earnings/",
+    "hanhwa_knowledge/hanwha_corp/governance/",
+    "hanhwa_knowledge/hanwha_corp/value_up/",
+    "hanhwa_knowledge/hanwha_aerospace/annual_reports/",
+    "hanhwa_knowledge/hanwha_aerospace/earnings/",
+    "hanhwa_knowledge/hanwha_aerospace/investor_presentations/",
+    "hanhwa_knowledge/hanwha_solutions/annual_reports/",
+    "hanhwa_knowledge/hanwha_solutions/earnings/",
+    "hanhwa_knowledge/hanwha_solutions/investor_presentations/",
+    "hanhwa_knowledge/hanwha_systems/annual_reports/",
+    "hanhwa_knowledge/hanwha_systems/earnings/",
+    "hanhwa_knowledge/hanwha_ocean/annual_reports/",
+    "hanhwa_knowledge/hanwha_ocean/earnings/"
+  ],
+  "ledgerColumns": [
+    "company",
+    "companyId",
+    "local_file",
+    "source_page_url",
+    "direct_document_url",
+    "dart_receipt_url",
+    "title",
+    "date",
+    "document_type",
+    "request_package",
+    "selection_reason",
+    "rights_level",
+    "note"
+  ],
+  "sourcePackages": [
+    {
+      "id": "PKG-01",
+      "name": "company identity and market identifiers",
+      "required": true,
+      "hanwhaUse": "Confirm DART/KRX/IR routing and aliases for each Hanwha affiliate before affiliate claim promotion."
+    },
+    {
+      "id": "PKG-02",
+      "name": "financial disclosure baseline",
+      "required": true,
+      "hanwhaUse": "Use OpenDART annual financial-statement records as the canonical financial baseline."
+    },
+    {
+      "id": "PKG-03",
+      "name": "earnings and investor presentation baseline",
+      "required": true,
+      "hanwhaUse": "Support affiliate-specific business and segment narratives only when public source provenance and evidence locators exist. Use document-level URLs when available; otherwise use the official IR source page with document title, period, checksum, and extraction hash."
+    },
+    {
+      "id": "PKG-04",
+      "name": "shareholder value and capital action baseline",
+      "required": true,
+      "hanwhaUse": "Keep value-up, split, dividend, buyback, and capital-allocation claims source-backed and dated."
+    },
+    {
+      "id": "PKG-05",
+      "name": "governance and disclosure baseline",
+      "required": false,
+      "hanwhaUse": "Use issuer governance sources for disclosure-control and board-process questions."
+    }
+  ],
+  "acceptanceChecklist": [
+    "Each runtime companyId is group-prefixed except the holding issuer companyId `hanwha`.",
+    "Each local source entry has companyId and companyScope.",
+    "Each claim promoted beyond ㈜한화 has an affiliate-specific companyId.",
+    "Each source has public source provenance: a document-level URL, DART receipt URL, official IR source-page pointer with local checksum, or explicit claim-driven defer reason.",
+    "Analyst reports remain metadata-only unless licensing and quotation rights are separately cleared.",
+    "Financial-company revenue or business scale is never redefined manually; use only explicit DART account labels."
+  ],
+  "runtimePolicy": "Current Hanwha runtime claims are issuer-scoped. Affiliate materials are review evidence until promoted into source-backed claims with companyId, companyScope, evidence locator, rights-safe source metadata, and forward-looking labels where needed."
+}
