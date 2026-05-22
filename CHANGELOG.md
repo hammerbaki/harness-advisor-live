@@ -1,10 +1,11 @@
 # Changelog
 
-## arxiv-v1-prep
+## public-baseline-v0.1
 
-- Prepared the public baseline repository for the arXiv-stage paper.
-- Included the reference implementation, source and claim manifests, scenario and validation artifacts, paper source, figures, and compiled draft PDF.
-- Excluded local credentials, raw private staging folders, generated build outputs, and local-only traces.
+- Prepared the public baseline repository for the reference implementation.
+- Moved the implementation contents to the repository root.
+- Included source and claim manifests, scenario and validation artifacts, scripts, UI source, server code, and maintained context pages.
+- Excluded internal drafts, review notes, local credentials, raw private staging folders, generated build outputs, and local-only traces.
 
 ## Future Updates
 

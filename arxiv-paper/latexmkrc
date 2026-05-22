@@ -1,5 +1,0 @@
-# Conservative default for arXiv-friendly local builds
-$pdf_mode = 1;    # pdflatex
-$bibtex = 'bibtex %O %B';
-$max_repeat = 5;
-$cleanup_includes_cusdep_generated = 1;

@@ -1,62 +1,71 @@
 # Enterprise LLM Agent Harness
 
-This repository packages the research implementation and arXiv paper source for a traceable enterprise LLM-agent harness. The reference implementation reconstructs a demonstration-oriented investor briefing agent into a reproducible system built around source manifests, source-backed claims, bounded answer contracts, runtime traces, and validation checks.
+This repository contains a public-data reference implementation of a traceable enterprise LLM-agent harness for Korean investor briefing use cases.
 
-The repository name is intended to be:
+The implementation is organized around source manifests, evidence records, source-backed claims, bounded answer contracts, runtime traces, and validation checks. It is intended as a research artifact and reference implementation, not as investment advice or a commercial deployment package.
 
-```text
-enterprise-llm-agent-harness
-```
-
-## Contents
+## Repository Layout
 
 ```text
-Korea-Investor-Advisor-Research/   React/Vite app, harness code, configs, manifests, wiki layer, and evaluation scripts
-arxiv-paper/                       LaTeX paper source, BibTeX references, final figures, and compiled draft PDF
-RELEASE_CHECKLIST.md               Pre-publication checklist for GitHub and arXiv
+configs/          Group, company, source, and onboarding configuration
+evals/            Fixed scenarios, validation results, latency dashboards, and rubrics
+prompts/          Short policy prompts used at the composition boundary
+public/           Static UI assets used by the reference interface
+raw/manifests/    Public-source manifests, extracted metadata, and claim artifacts
+scripts/          Source processing, validation, evaluation, and audit scripts
+server/           Local server and fixture-compatible API interface
+src/              React/Vite mobile briefing interface and harness logic
+tests/            Test entry points and notes
+wiki/             Maintained group and company context pages
 ```
 
 ## What Is Included
 
-- Source code for the mobile briefing UI and local server interface.
-- Group/company configuration for the five-corporate-group reference slice.
-- Source manifests, claim manifests, wiki pages, scenario files, and validation scripts needed to reproduce the paper baseline.
-- Paper source, final figure assets, and the current compiled `main.pdf`.
+- Reference implementation for the mobile briefing UI and local server interface.
+- Configuration for five Korean corporate groups and selected listed companies.
+- Source and claim manifests used by the public-data reference slice.
+- Scenario files, validation results, fault-injection results, and latency dashboard artifacts.
+- Scripts for structure validation, scenario evaluation, source processing, and release checks.
 
 ## What Is Excluded
 
-- Local `.env` files and all API credentials.
-- `node_modules/`, Vite `dist/`, and other generated build outputs.
-- Heavy raw PDF/source archives from the local `Knowledge Base/` folder.
-- Historical PoC snapshot folders such as `HanWha-Advisor-main/`.
-- Local-only trace files that may contain machine-specific diagnostics.
+- Local `.env` files and API credentials.
+- `node_modules/`, Vite `dist/`, and TypeScript build artifacts.
+- Heavy raw-source archives and local extracted-document staging folders.
+- Local-only traces that may contain machine-specific diagnostics.
+- Internal drafts and review notes.
 
 ## Quick Start
 
 ```bash
-cd Korea-Investor-Advisor-Research
 npm install
 npm run validate:release
 npm run build
 ```
 
-Live DART, KRX, and NAVER integrations require local credentials. Copy `.env.example` to `.env` inside `Korea-Investor-Advisor-Research/` and fill in local values. Do not commit `.env`.
-
-## Paper Build
+For local development:
 
 ```bash
-cd arxiv-paper
-latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+npm run dev
 ```
 
-Before arXiv submission, replace the repository placeholder in `arxiv-paper/bib/references.bib` with the final public GitHub URL and version commit hash.
+Live DART, KRX, NAVER, and LLM-provider integrations require local credentials. Copy `.env.example` to `.env` and fill in local values. Do not commit `.env`.
+
+## Validation Artifacts
+
+The main reproducibility artifacts are:
+
+```text
+evals/scenarios/
+evals/results/
+evals/dashboard/
+raw/manifests/review-approved-runtime-promotion.json
+```
+
+The public baseline uses deterministic and fixture-compatible paths so that validation can be inspected without private credentials.
 
 ## Versioning
 
-The repository is intended to remain citable as the paper evolves. Use `VERSION` for the current public artifact label, `CHANGELOG.md` for release notes, and Git tags for stable paper snapshots such as `arxiv-v1`, `arxiv-v1.1`, or `arxiv-v2`.
+Use `VERSION` for the current public artifact label, `CHANGELOG.md` for release notes, and Git tags for stable snapshots such as `public-baseline-v0.1` or `public-baseline-v0.2`.
 
-For later paper or artifact updates, commit the exact source state that supports the PDF and push the new commit. If a change affects reported numbers, scenarios, manifests, or validation artifacts, rerun the relevant checks and record the change in `CHANGELOG.md` before tagging.
-
-## Status
-
-This repository is prepared as the public baseline for the arXiv-stage paper. It is not a commercial deployment package and does not contain confidential client data.
+When a revision changes reported numbers, scenarios, manifests, figures, or validation artifacts, rerun the relevant checks and record the change in `CHANGELOG.md` before tagging.

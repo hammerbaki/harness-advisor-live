@@ -1,0 +1,224 @@
+{
+  "schemaVersion": "first-slice-selection-policy.v0.1",
+  "policyVersion": "2026-05-05",
+  "purpose": "Define the repeatable criteria for promoting listed companies into the 25-company first paper/product reference slice.",
+  "design": {
+    "groups": 5,
+    "companiesPerGroup": 5,
+    "totalCompanies": 25,
+    "scope": "balanced-reference-slice-not-exhaustive-affiliate-coverage"
+  },
+  "promotionCriteria": [
+    {
+      "id": "FSC-01",
+      "name": "listed-and-identifier-ready",
+      "rule": "Prefer listed companies with KRX code, OpenDART corp code, aliases, and stable companyId."
+    },
+    {
+      "id": "FSC-02",
+      "name": "group-representative",
+      "rule": "The company should represent a material part of the group's public investment narrative."
+    },
+    {
+      "id": "FSC-03",
+      "name": "sector-diversifying",
+      "rule": "The company should add a distinct business axis rather than duplicate an already covered exposure."
+    },
+    {
+      "id": "FSC-04",
+      "name": "cross-group-comparable",
+      "rule": "The company should help compare similar roles across groups, such as semiconductors, batteries, mobility, telecom, components, logistics, defense, or holding-company capital allocation."
+    },
+    {
+      "id": "FSC-05",
+      "name": "public-source-available",
+      "rule": "Annual report, DART filing URL, recent earnings material, investor presentation, value-up plan, or shareholder-return material should be obtainable."
+    },
+    {
+      "id": "FSC-06",
+      "name": "runtime-claim-feasible",
+      "rule": "Claims should be promotable with companyId, companyScope, period/date, source URL or filing ID, evidence locator, and verification state."
+    },
+    {
+      "id": "FSC-07",
+      "name": "investor-facing-relevance",
+      "rule": "The company should naturally support investor questions about earnings, capital allocation, risk, business pipeline, valuation context, or market signal."
+    },
+    {
+      "id": "FSC-08",
+      "name": "scope-control",
+      "rule": "Avoid selecting companies that would require a new accounting framework, a new regulated-product domain, or broad subjective investment advice in the first slice."
+    }
+  ],
+  "deferralCriteria": [
+    "public-source-package-incomplete-or-unreconciled",
+    "duplicate-exposure-within-same-group",
+    "financial-subsidiary-needs-explicit-dart-account-policy",
+    "unlisted-or-hard-to-route-through-common-identifiers",
+    "third-party-commentary-without-primary-source-support",
+    "runtime-claims-lack-document-url-or-dart-receipt"
+  ],
+  "firstSliceCompanies": {
+    "samsung": [
+      {
+        "companyId": "samsung-electronics",
+        "koreanName": "삼성전자",
+        "rationale": "Core semiconductor and electronics anchor; primary market signal for Samsung exposure.",
+        "criteria": ["FSC-01", "FSC-02", "FSC-04", "FSC-05", "FSC-07"]
+      },
+      {
+        "companyId": "samsung-sdi",
+        "koreanName": "삼성SDI",
+        "rationale": "Battery and energy-storage axis; comparable to LG Energy Solution and SK Innovation battery exposure.",
+        "criteria": ["FSC-01", "FSC-03", "FSC-04", "FSC-05", "FSC-07"]
+      },
+      {
+        "companyId": "samsung-ct",
+        "koreanName": "삼성물산",
+        "rationale": "Holding, construction, trading, and capital-allocation axis; useful for portfolio-level interpretation.",
+        "criteria": ["FSC-01", "FSC-02", "FSC-03", "FSC-05", "FSC-07"]
+      },
+      {
+        "companyId": "samsung-biologics",
+        "koreanName": "삼성바이오로직스",
+        "rationale": "Bio/CDMO growth axis; adds a non-electronics high-growth vertical.",
+        "criteria": ["FSC-01", "FSC-03", "FSC-05", "FSC-07"]
+      },
+      {
+        "companyId": "samsung-electro-mechanics",
+        "koreanName": "삼성전기",
+        "rationale": "Component layer such as MLCC and camera modules; improves comparability with LG Innotek and Hyundai Mobis.",
+        "criteria": ["FSC-01", "FSC-03", "FSC-04", "FSC-05", "FSC-07"]
+      }
+    ],
+    "sk": [
+      {
+        "companyId": "sk-hynix",
+        "koreanName": "SK하이닉스",
+        "rationale": "Semiconductor and HBM anchor; core market narrative for SK.",
+        "criteria": ["FSC-01", "FSC-02", "FSC-04", "FSC-05", "FSC-07"]
+      },
+      {
+        "companyId": "sk-innovation",
+        "koreanName": "SK이노베이션",
+        "rationale": "Energy, battery, and transition exposure; captures restructuring and energy-cycle issues.",
+        "criteria": ["FSC-01", "FSC-03", "FSC-04", "FSC-05", "FSC-07"]
+      },
+      {
+        "companyId": "sk-inc",
+        "koreanName": "SK",
+        "rationale": "Holding-company and portfolio capital-allocation axis.",
+        "criteria": ["FSC-01", "FSC-02", "FSC-03", "FSC-05", "FSC-07"]
+      },
+      {
+        "companyId": "sk-telecom",
+        "koreanName": "SK텔레콤",
+        "rationale": "Telecom, AI, data-center, and stable cash-flow axis.",
+        "criteria": ["FSC-01", "FSC-03", "FSC-04", "FSC-05", "FSC-07"]
+      },
+      {
+        "companyId": "sk-square",
+        "koreanName": "SK스퀘어",
+        "rationale": "ICT investment and platform portfolio axis; connects portfolio structure with SK Hynix exposure.",
+        "criteria": ["FSC-01", "FSC-03", "FSC-04", "FSC-05", "FSC-07"]
+      }
+    ],
+    "hyundai-motor": [
+      {
+        "companyId": "hyundai-motor",
+        "koreanName": "현대자동차",
+        "rationale": "Primary OEM anchor and main market signal.",
+        "criteria": ["FSC-01", "FSC-02", "FSC-04", "FSC-05", "FSC-07"]
+      },
+      {
+        "companyId": "kia",
+        "koreanName": "기아",
+        "rationale": "Second OEM, product-mix, profitability, and global sales comparison axis.",
+        "criteria": ["FSC-01", "FSC-02", "FSC-04", "FSC-05", "FSC-07"]
+      },
+      {
+        "companyId": "hyundai-mobis",
+        "koreanName": "현대모비스",
+        "rationale": "Core parts, electrification, software, and module supply-chain axis.",
+        "criteria": ["FSC-01", "FSC-03", "FSC-04", "FSC-05", "FSC-07"]
+      },
+      {
+        "companyId": "hyundai-glovis",
+        "koreanName": "현대글로비스",
+        "rationale": "Logistics, finished-vehicle shipping, and value-chain resilience axis.",
+        "criteria": ["FSC-01", "FSC-03", "FSC-04", "FSC-05", "FSC-07"]
+      },
+      {
+        "companyId": "hyundai-rotem",
+        "koreanName": "현대로템",
+        "rationale": "Defense, rail, and export-growth axis; broadens beyond passenger vehicles.",
+        "criteria": ["FSC-01", "FSC-03", "FSC-04", "FSC-05", "FSC-07"]
+      }
+    ],
+    "lg": [
+      {
+        "companyId": "lg-electronics",
+        "koreanName": "LG전자",
+        "rationale": "Electronics, appliances, and vehicle-components anchor.",
+        "criteria": ["FSC-01", "FSC-02", "FSC-04", "FSC-05", "FSC-07"]
+      },
+      {
+        "companyId": "lg-chem",
+        "koreanName": "LG화학",
+        "rationale": "Chemicals and advanced-materials axis.",
+        "criteria": ["FSC-01", "FSC-03", "FSC-04", "FSC-05", "FSC-07"]
+      },
+      {
+        "companyId": "lg-energy-solution",
+        "koreanName": "LG에너지솔루션",
+        "rationale": "Battery and energy-storage axis.",
+        "criteria": ["FSC-01", "FSC-03", "FSC-04", "FSC-05", "FSC-07"]
+      },
+      {
+        "companyId": "lg-innotek",
+        "koreanName": "LG이노텍",
+        "rationale": "Components, camera modules, and vehicle electronics; comparable to Samsung Electro-Mechanics.",
+        "criteria": ["FSC-01", "FSC-03", "FSC-04", "FSC-05", "FSC-07"]
+      },
+      {
+        "companyId": "lg-uplus",
+        "koreanName": "LG유플러스",
+        "rationale": "Telecom, data, and stable cash-flow axis.",
+        "criteria": ["FSC-01", "FSC-03", "FSC-04", "FSC-05", "FSC-07"]
+      }
+    ],
+    "hanwha": [
+      {
+        "companyId": "hanwha",
+        "koreanName": "한화",
+        "rationale": "Reference issuer connecting DART/KRX records with group-level briefing.",
+        "criteria": ["FSC-01", "FSC-02", "FSC-05", "FSC-06", "FSC-07"]
+      },
+      {
+        "companyId": "hanwha-aerospace",
+        "koreanName": "한화에어로스페이스",
+        "rationale": "Defense and aerospace anchor; central to recent Hanwha investment narrative.",
+        "criteria": ["FSC-01", "FSC-02", "FSC-03", "FSC-04", "FSC-05", "FSC-07"]
+      },
+      {
+        "companyId": "hanwha-solutions",
+        "koreanName": "한화솔루션",
+        "rationale": "Energy, solar, and chemicals axis.",
+        "criteria": ["FSC-01", "FSC-03", "FSC-04", "FSC-05", "FSC-07"]
+      },
+      {
+        "companyId": "hanwha-systems",
+        "koreanName": "한화시스템",
+        "rationale": "Defense IT, radar, satellite, and systems-integration axis.",
+        "criteria": ["FSC-01", "FSC-03", "FSC-04", "FSC-05", "FSC-07"]
+      },
+      {
+        "companyId": "hanwha-ocean",
+        "koreanName": "한화오션",
+        "rationale": "Shipbuilding, naval, and defense-vessel axis.",
+        "criteria": ["FSC-01", "FSC-03", "FSC-04", "FSC-05", "FSC-07"]
+      }
+    ]
+  },
+  "paperWording": "We use a fixed 25-company reference slice consisting of five listed companies from each of five Korean business groups. The slice is selected to maximize group representativeness, sector diversity, public-source availability, and cross-group comparability while keeping the source-to-claim harness auditable. The slice is not intended to be exhaustive; additional affiliates are retained as second-wave product and SCI-study expansion material."
+}

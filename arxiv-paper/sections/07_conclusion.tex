@@ -1,7 +1,0 @@
-\section{Conclusion}
-
-This paper has shown how a prompt-dominant enterprise LLM proof-of-concept can be reconstructed as a traceable LLM-agent architecture. By moving source gates, claim layers, routing metadata, answer contracts, and validation traces into explicit harness artifacts, the implementation makes enterprise behavior more inspectable while retaining evidence for audit and reproduction.
-
-The reference implementation applies the approach to a bounded 25-company public-data slice across five Korean corporate groups. The system-level validation checks traceability, routing, migration from prompt rules to code, prevention of internal-output leakage, runtime-interface behavior, and latency. The latency result is one operational signal; the broader contribution is that enterprise behavior is relocated from an expanding prompt into artifacts that can be inspected, versioned, tested, and extended.
-
-Future work can broaden source coverage, add larger runtime ablations and expert review, harden live interfaces, and evaluate whether the briefings support professional investment analysis. A subsequent deployment study can compare the submitted baseline against commercialized versions with operational logs and live-LLM runs. One lesson from the case study is that enterprise LLM productization combines modeling concerns with systems-engineering concerns: the model must be surrounded by explicit source gates, runtime contracts, validation traces, and inspection surfaces before it is extended in commercial settings.
