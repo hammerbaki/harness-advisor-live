@@ -51,6 +51,12 @@ latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
 
 Before arXiv submission, replace the repository placeholder in `arxiv-paper/bib/references.bib` with the final public GitHub URL and version commit hash.
 
+## Versioning
+
+The repository is intended to remain citable as the paper evolves. Use `VERSION` for the current public artifact label, `CHANGELOG.md` for release notes, and Git tags for stable paper snapshots such as `arxiv-v1`, `arxiv-v1.1`, or `arxiv-v2`.
+
+For later paper or artifact updates, commit the exact source state that supports the PDF and push the new commit. If a change affects reported numbers, scenarios, manifests, or validation artifacts, rerun the relevant checks and record the change in `CHANGELOG.md` before tagging.
+
 ## Status
 
 This repository is prepared as the public baseline for the arXiv-stage paper. It is not a commercial deployment package and does not contain confidential client data.

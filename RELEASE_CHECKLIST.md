@@ -10,6 +10,7 @@ Use this checklist before pushing the repository to GitHub or citing it in the p
 - [ ] Run `npm run validate:release` from `Korea-Investor-Advisor-Research/`.
 - [ ] Rebuild `arxiv-paper/main.pdf`.
 - [ ] Commit the release with a stable version tag or commit hash.
+- [ ] Update `VERSION` and `CHANGELOG.md` when publishing a new citable paper/artifact snapshot.
 
 ## Paper
 
@@ -28,4 +29,22 @@ git commit -m "Initial release: traceable enterprise LLM agent harness"
 git branch -M main
 git remote add origin https://github.com/<user-or-org>/enterprise-llm-agent-harness.git
 git push -u origin main
+```
+
+## Iterative Paper Updates
+
+Use this shorter loop after the initial public push:
+
+```bash
+git status
+git add <changed files>
+git commit -m "Update paper and validation artifacts"
+git push
+```
+
+When a revision should be cited separately, update `VERSION`, add a `CHANGELOG.md` entry, and create a tag:
+
+```bash
+git tag arxiv-v1.1
+git push origin arxiv-v1.1
 ```
