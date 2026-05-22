@@ -8,7 +8,7 @@ The result is a reusable harness pattern for turning public corporate data into 
 
 ## What This Artifact Demonstrates
 
-- A five-corporate-group public-data slice with 25 selected listed companies and 113 source-backed runtime claims.
+- A public-data reference slice covering Samsung, SK, Hyundai Motor, LG, and Hanwha, with 25 selected listed companies and 113 source-backed runtime claims.
 - Fixed validation scenarios that check source-claim references, trace preservation, answer-structure requirements, and output hygiene.
 - Fault-injection and latency artifacts that show whether the validators detect induced contract violations and whether orchestration changes preserve the same answer contract.
 - A mobile briefing interface that exposes source links and follow-up questions to readers while keeping internal trace details out of the customer-facing answer.
@@ -31,7 +31,7 @@ wiki/             Maintained group and company context pages
 ## What Is Included
 
 - Reference implementation for the mobile briefing UI and local server interface.
-- Configuration for five Korean corporate groups and selected listed companies.
+- Configuration for Samsung, SK, Hyundai Motor, LG, and Hanwha, including selected listed companies.
 - Source and claim manifests used by the public-data reference slice.
 - Scenario files, validation results, fault-injection results, and latency dashboard artifacts.
 - Scripts for structure validation, scenario evaluation, source processing, and release checks.
@@ -73,9 +73,9 @@ raw/manifests/review-approved-runtime-promotion.json
 
 The public baseline uses deterministic and fixture-compatible paths so that validation can be inspected without private credentials.
 
-## Citable Baseline
+## Citable Artifact
 
-The current public artifact label is `public-baseline-v0.1`. Cite a specific Git commit when using this repository as a research artifact, because scenario files, manifests, and validation outputs may evolve as the system is extended.
+The current public artifact label is `public-baseline-v0.1`. The paper cites the repository URL with an access date; exact reruns can additionally record the Git commit or release tag used for a specific validation snapshot.
 
 ## Versioning
 

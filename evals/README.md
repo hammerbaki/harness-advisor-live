@@ -18,10 +18,11 @@ Each scenario should record:
 
 ## Fixed Validation Scenarios
 
-`scenarios/` contains fixed validation scenario definitions for the five-group
-public reference slice. These are not generated trace outputs; they are the
-frozen questions, expected claim IDs, trace expectations, and answer-level
-signals used to evaluate whether each group preserves the configured contracts.
+`scenarios/` contains fixed validation scenario definitions for the Samsung,
+SK, Hyundai Motor, LG, and Hanwha public reference slice. These are not
+generated trace outputs; they are the frozen questions, expected claim IDs,
+trace expectations, and answer-level signals used to evaluate whether each
+group preserves the configured contracts.
 
 Run:
 
