@@ -68,14 +68,12 @@ checks require cited sources to resolve to source packages or documented fallbac
 states; and language checks enforce the insight-first answer structure and block
 recommendation-style phrasing.
 
-## Related publication
+## Related manuscript
 
-A subset of this codebase - the source-to-claim pipeline, validation scenarios,
-fault-injection results, and latency measurements - is analyzed in a separate
-paper:
-
-> Ahn, J. and Kim, M. *Beyond Prompting: Harness Engineering for Enterprise LLM
-> Agents.* 2026. arXiv link to be added once posted.
+An accompanying manuscript, *Beyond Prompting: Harness Engineering for
+Enterprise LLM Agents*, uses this repository's source-to-claim pipeline,
+validation scenarios, fault-injection results, and latency measurements. Until a
+public preprint is available, cite this repository directly.
 
 If you cite this repository:
 
@@ -89,8 +87,8 @@ If you cite this repository:
 }
 ```
 
-The paper cites validation outputs under `evals/results/` and `evals/dashboard/`,
-and the review-approved promotion manifest at
+The manuscript cites validation outputs under `evals/results/` and
+`evals/dashboard/`, and the review-approved promotion manifest at
 `raw/manifests/review-approved-runtime-promotion.json`.
 
 ## Versioning
