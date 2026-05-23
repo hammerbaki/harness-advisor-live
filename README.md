@@ -6,7 +6,11 @@ per company from public filings (DART), market data (KRX), and news: financial
 signals, risks, monitoring points, and follow-up questions. Every visible claim
 links back to a registered source.
 
-![Mobile briefing for Samsung Electronics](docs/ui_mobile_answer_ko.png)
+![Five-group mobile briefing selector](docs/ui_mobile_main_ko_callout.png)
+
+The same interface produces a source-linked answer for the selected company:
+
+![Mobile answer for Samsung Electronics](docs/ui_mobile_answer_ko.png)
 
 ## What's inside
 
