@@ -1,4 +1,4 @@
-# Korea Investor Advisor
+# Korea Corporate Briefing Agent
 
 Mobile briefing tool for Korea's five largest corporate groups: Samsung, SK,
 Hyundai Motor, LG, and Hanwha. The app produces a short, source-linked briefing
