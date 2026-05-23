@@ -1,84 +1,107 @@
-# Enterprise LLM Agent Harness
+# Korea Investor Advisor
 
-This repository is the public reference implementation for a traceable enterprise LLM-agent harness developed from Korean investor briefing use cases.
+Mobile briefing tool for Korea's five largest corporate groups: Samsung, SK,
+Hyundai Motor, LG, and Hanwha. The app produces a short, source-linked briefing
+per company from public filings (DART), market data (KRX), and news: financial
+signals, risks, monitoring points, and follow-up questions. Every visible claim
+links back to a registered source.
 
-The project asks a practical productization question: how can a fast LLM prototype become an enterprise-grade system whose answers can be audited, replayed, and extended? Instead of relying on a larger prompt alone, the implementation moves source boundaries, claim governance, answer contracts, runtime traces, and validation checks into explicit artifacts.
+![Mobile briefing for Samsung Electronics](docs/ui_mobile_answer_ko.png)
 
-The result is a reusable harness pattern for turning public corporate data into reader-facing briefings with inspectable evidence. It is intended as a research artifact and reference implementation, not as investment advice or a commercial deployment package.
+## What's inside
 
-## What This Artifact Demonstrates
+- `src/` - Mobile UI (React + TypeScript + Vite).
+- `server/` - Local Node server for source collection and answer assembly.
+- `raw/manifests/` - Source manifests, evidence records, and source-backed claims.
+- `wiki/` - Maintained context pages used by the answer composer.
+- `prompts/` - Short policy prompts at the LLM composition boundary.
+- `evals/` - Validation scenarios, evaluation results, fault-injection JSON, and latency dashboards.
+- `scripts/` - Ingestion, claim promotion, validation, and release checks.
+- `tests/` - Notes and entry points for deterministic behavior checks.
+- `configs/`, `public/` - Group/company config and static assets.
 
-- A public-data reference slice covering Samsung, SK, Hyundai Motor, LG, and Hanwha, with 25 selected listed companies and 113 source-backed runtime claims.
-- Fixed validation scenarios that check source-claim references, trace preservation, answer-structure requirements, and output hygiene.
-- Fault-injection and latency artifacts that show whether the validators detect induced contract violations and whether orchestration changes preserve the same answer contract.
-- A mobile briefing interface that exposes source links and follow-up questions to readers while keeping internal trace details out of the customer-facing answer.
+The user-facing app is TypeScript. Node automation scripts under `scripts/` and
+`server/` are `.mjs`, which is why GitHub's language summary shows JavaScript as
+dominant.
 
-## Agent Harness Structure
-
-```text
-configs/          Control map for groups, companies, identifiers, source policy, and onboarding
-raw/manifests/    Source authority layer: manifests, evidence records, source-backed claims
-wiki/             Maintained context layer used by the composer, not the source of truth
-prompts/          Short policy prompts at the replaceable LLM composition boundary
-server/           Runtime assembly layer for source collection, traces, links, and answers
-src/              Reader-facing mobile product surface for briefings, links, and follow-ups
-evals/            Contract validation layer: scenarios, results, fault injection, latency dashboards
-scripts/          Harness operations for ingestion, claim promotion, validation, and release checks
-tests/            Notes and entry points for deterministic behavior checks
-public/           Static assets used by the reader-facing interface
-```
-
-## What Is Included
-
-- Reference implementation for the mobile briefing UI and local server interface.
-- Configuration for Samsung, SK, Hyundai Motor, LG, and Hanwha, including selected listed companies.
-- Source and claim manifests used by the public-data reference slice.
-- Scenario files, validation results, fault-injection results, and latency dashboard artifacts.
-- Scripts for structure validation, scenario evaluation, source processing, and release checks.
-
-## What Is Excluded
-
-- Local `.env` files and API credentials.
-- `node_modules/`, Vite `dist/`, and TypeScript build artifacts.
-- Heavy raw-source archives and local extracted-document staging folders.
-- Local-only traces that may contain machine-specific diagnostics.
-- Internal drafts and review notes.
-
-## Quick Start
+## Run it locally
 
 ```bash
 npm install
-npm run validate:release
-npm run build
-```
-
-For local development:
-
-```bash
 npm run dev
 ```
 
-Live DART, KRX, NAVER, and LLM-provider integrations require local credentials. Copy `.env.example` to `.env` and fill in local values. Do not commit `.env`.
+Live DART, KRX, NAVER, and LLM-provider calls require credentials. Copy
+`.env.example` to `.env` and fill in local values. Do not commit `.env`.
 
-## Validation Artifacts
+## Bundled validations
 
-The main reproducibility artifacts are:
-
-```text
-evals/scenarios/
-evals/results/
-evals/dashboard/
-raw/manifests/review-approved-runtime-promotion.json
+```bash
+npm run validate:release      # structure + template + scenarios
+npm run eval:samsung          # Samsung reference-slice scenarios
+npm run eval:sk               # SK reference-slice scenarios
+npm run eval:hyundai          # Hyundai Motor reference-slice scenarios
+npm run eval:lg               # LG reference-slice scenarios
+npm run eval:fault-injection  # 7-mutation contract sensitivity check
+npm run latency:advisor       # latency dashboard from saved measurements
 ```
 
-The public baseline uses deterministic and fixture-compatible paths so that validation can be inspected without private credentials.
+Each command writes JSON output under `evals/results/` or `evals/dashboard/`. A
+successful `validate:release` exits 0 and prints a summary table for
+claim-reference, trace, answer, and hygiene contracts.
 
-## Citable Artifact
+## Design background
 
-The current public artifact label is `public-baseline-v0.1`. The paper cites the repository URL with an access date; exact reruns can additionally record the Git commit or release tag used for a specific validation snapshot.
+The code separates source eligibility, entity routing, claim admission, answer
+planning, and trace generation into files rather than into one expanding prompt.
+The LLM is responsible for language composition only; everything else lives as
+manifests, schemas, and validators.
+
+The deterministic composer used in the bundled validations fills answer sections
+from selected source-backed claims without calling a generative model. A live LLM
+can be attached at the composition boundary; its output must pass the same answer
+contract.
+
+Validation is organized as three families of checks: leakage checks block
+internal claim identifiers and raw trace records from reader-facing answers; link
+checks require cited sources to resolve to source packages or documented fallback
+states; and language checks enforce the insight-first answer structure and block
+recommendation-style phrasing.
+
+## Related publication
+
+A subset of this codebase - the source-to-claim pipeline, validation scenarios,
+fault-injection results, and latency measurements - is analyzed in a separate
+paper:
+
+> Ahn, J. and Kim, M. *Beyond Prompting: Harness Engineering for Enterprise LLM
+> Agents.* 2026. arXiv link to be added once posted.
+
+If you cite this repository:
+
+```bibtex
+@misc{ahn2026harness,
+  author = {Ahn, Joongho},
+  title  = {enterprise-llm-agent-harness},
+  year   = {2026},
+  url    = {https://github.com/hammerbaki/enterprise-llm-agent-harness},
+  note   = {Accessed 2026-05-23}
+}
+```
+
+The paper cites validation outputs under `evals/results/` and `evals/dashboard/`,
+and the review-approved promotion manifest at
+`raw/manifests/review-approved-runtime-promotion.json`.
 
 ## Versioning
 
-Use `VERSION` for the current public artifact label, `CHANGELOG.md` for release notes, and Git tags for stable snapshots such as `public-baseline-v0.1` or `public-baseline-v0.2`.
+`VERSION` carries the current public artifact label, `CHANGELOG.md` records
+release notes, and stable snapshots are tagged. When a revision changes
+manifests, scenarios, figures, or validation artifacts, rerun the relevant checks
+and record the change in `CHANGELOG.md` before tagging.
 
-When a revision changes reported numbers, scenarios, manifests, figures, or validation artifacts, rerun the relevant checks and record the change in `CHANGELOG.md` before tagging.
+## Not investment advice
+
+This is a research and development artifact for technical demonstration. It is
+not investment advice, and the named corporate groups are included only as a
+public-data slice.

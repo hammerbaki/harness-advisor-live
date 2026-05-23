@@ -1,5 +1,11 @@
 # Changelog
 
+## public-baseline-v0.1 - 2026-05-23
+
+- README rewritten as a product-centric document; academic framing moved into a single "Design background" section.
+- Added a mobile briefing screenshot for the product-facing repository overview.
+- Snapshot used as the baseline reported in the accompanying paper *Beyond Prompting: Harness Engineering for Enterprise LLM Agents.*
+
 ## public-baseline-v0.1
 
 - Prepared the public baseline repository for the reference implementation.
