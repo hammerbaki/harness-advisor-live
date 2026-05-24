@@ -1,10 +1,10 @@
 {
   "schemaVersion": "live-api-smoke-test.v0.1",
-  "generatedAt": "2026-05-09T05:32:22.264Z",
+  "generatedAt": "2026-05-24T03:58:49.392Z",
   "purpose": "Verify that the local advisor API can reach DART, KRX, and Naver News with configured service-level credentials. API key values are intentionally omitted.",
-  "baseUrl": "http://127.0.0.1:5173",
-  "serverMode": "existing-local-server",
-  "cachePolicy": "may-use-existing-memory-cache",
+  "baseUrl": "http://127.0.0.1:8798",
+  "serverMode": "spawned-smoke-server",
+  "cachePolicy": "server-default-cache-policy",
   "keyPolicy": "Loaded from local environment or .env by the server; secret values are not written to this artifact.",
   "requiredTraceLabels": [
     "dart.disclosures",
@@ -19,14 +19,14 @@
       "krx.market": 5,
       "news.search": 5
     },
-    "maxElapsedMs": 190,
+    "maxElapsedMs": 1817,
     "minSourceClaimCount": 5
   },
   "records": [
     {
       "groupId": "samsung",
       "runtimeMode": "mixed",
-      "elapsedMs": 190,
+      "elapsedMs": 1817,
       "sourceClaimCount": 5,
       "apiStatuses": {
         "dart.disclosures": "live",
@@ -38,7 +38,7 @@
     {
       "groupId": "sk",
       "runtimeMode": "mixed",
-      "elapsedMs": 96,
+      "elapsedMs": 414,
       "sourceClaimCount": 5,
       "apiStatuses": {
         "dart.disclosures": "live",
@@ -50,7 +50,7 @@
     {
       "groupId": "hyundai-motor",
       "runtimeMode": "mixed",
-      "elapsedMs": 108,
+      "elapsedMs": 128,
       "sourceClaimCount": 5,
       "apiStatuses": {
         "dart.disclosures": "live",
@@ -62,7 +62,7 @@
     {
       "groupId": "lg",
       "runtimeMode": "mixed",
-      "elapsedMs": 94,
+      "elapsedMs": 86,
       "sourceClaimCount": 5,
       "apiStatuses": {
         "dart.disclosures": "live",
@@ -74,7 +74,7 @@
     {
       "groupId": "hanwha",
       "runtimeMode": "mixed",
-      "elapsedMs": 90,
+      "elapsedMs": 91,
       "sourceClaimCount": 5,
       "apiStatuses": {
         "dart.disclosures": "live",

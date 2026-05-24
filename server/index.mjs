@@ -2174,7 +2174,8 @@ function matchesStrictCompanyTerm(question, value, normalized) {
   const term = String(value ?? "").trim();
   if (!term) return false;
   const escaped = term.replace(/[.*+?^${}()|[\]\\]/gu, "\\$&");
-  const rawPattern = new RegExp(`(^|[^0-9A-Za-z가-힣])${escaped}($|[^0-9A-Za-z가-힣]|[와과의은는이가을를도만])`, "iu");
+  const particleBoundary = "[와과의은는이가을를도만](?=$|[^0-9A-Za-z가-힣])";
+  const rawPattern = new RegExp(`(^|[^0-9A-Za-z가-힣])${escaped}($|[^0-9A-Za-z가-힣]|${particleBoundary})`, "iu");
   if (rawPattern.test(raw)) return true;
   return normalizeCompanyMatch(raw) === normalized;
 }

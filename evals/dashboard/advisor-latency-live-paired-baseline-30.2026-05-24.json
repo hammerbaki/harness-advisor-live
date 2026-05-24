@@ -1,0 +1,586 @@
+{
+  "schemaVersion": "advisor-latency-report.v0.1",
+  "generatedAt": "2026-05-24T04:03:50.997Z",
+  "latencyBudgetMs": 1500,
+  "inputs": [
+    "evals/results/samsung-reference-slice-v0.1.live-paired-baseline.2026-05-24.json",
+    "evals/results/sk-reference-slice-v0.1.live-paired-baseline.2026-05-24.json",
+    "evals/results/hyundai-motor-reference-slice-v0.1.live-paired-baseline.2026-05-24.json",
+    "evals/results/lg-reference-slice-v0.1.live-paired-baseline.2026-05-24.json",
+    "evals/results/hanwha-reference-slice-v0.1.live-paired-baseline.2026-05-24.json"
+  ],
+  "summary": {
+    "count": 30,
+    "averageMs": 1648.23,
+    "medianMs": 1475,
+    "p90Ms": 1876,
+    "maxMs": 3632,
+    "latencyPassCount": 16,
+    "latencyPassRate": 0.533,
+    "averageScore": 98.6
+  },
+  "byGroup": [
+    {
+      "key": "hanwha",
+      "count": 6,
+      "averageMs": 2147.83,
+      "medianMs": 1558,
+      "p90Ms": 3632,
+      "maxMs": 3632,
+      "latencyPassCount": 2,
+      "latencyPassRate": 0.333,
+      "averageScore": 98
+    },
+    {
+      "key": "samsung",
+      "count": 6,
+      "averageMs": 1564.5,
+      "medianMs": 1418,
+      "p90Ms": 2033,
+      "maxMs": 2033,
+      "latencyPassCount": 3,
+      "latencyPassRate": 0.5,
+      "averageScore": 98.5
+    },
+    {
+      "key": "hyundai-motor",
+      "count": 6,
+      "averageMs": 1546,
+      "medianMs": 1470,
+      "p90Ms": 1697,
+      "maxMs": 1697,
+      "latencyPassCount": 3,
+      "latencyPassRate": 0.5,
+      "averageScore": 98.5
+    },
+    {
+      "key": "sk",
+      "count": 6,
+      "averageMs": 1506.17,
+      "medianMs": 1463,
+      "p90Ms": 1766,
+      "maxMs": 1766,
+      "latencyPassCount": 4,
+      "latencyPassRate": 0.667,
+      "averageScore": 99
+    },
+    {
+      "key": "lg",
+      "count": 6,
+      "averageMs": 1476.67,
+      "medianMs": 1469,
+      "p90Ms": 1548,
+      "maxMs": 1548,
+      "latencyPassCount": 4,
+      "latencyPassRate": 0.667,
+      "averageScore": 99
+    }
+  ],
+  "byStep": [
+    {
+      "key": "krx.market",
+      "count": 30,
+      "averageMs": 1646.33,
+      "medianMs": 1474,
+      "p90Ms": 1874,
+      "maxMs": 3631,
+      "statuses": {
+        "live": 30
+      }
+    },
+    {
+      "key": "dart.disclosures",
+      "count": 30,
+      "averageMs": 190.27,
+      "medianMs": 88,
+      "p90Ms": 171,
+      "maxMs": 2232,
+      "statuses": {
+        "live": 30
+      }
+    },
+    {
+      "key": "news.search",
+      "count": 30,
+      "averageMs": 163.4,
+      "medianMs": 65,
+      "p90Ms": 134,
+      "maxMs": 2215,
+      "statuses": {
+        "live": 30
+      }
+    },
+    {
+      "key": "wiki.context",
+      "count": 30,
+      "averageMs": 4,
+      "medianMs": 4,
+      "p90Ms": 5,
+      "maxMs": 17,
+      "statuses": {
+        "local": 30
+      }
+    },
+    {
+      "key": "claims.sourceBacked",
+      "count": 30,
+      "averageMs": 1.33,
+      "medianMs": 1,
+      "p90Ms": 2,
+      "maxMs": 4,
+      "statuses": {
+        "local": 30
+      }
+    },
+    {
+      "key": "llm.compose",
+      "count": 30,
+      "averageMs": 0.8,
+      "medianMs": 0,
+      "p90Ms": 1,
+      "maxMs": 13,
+      "statuses": {
+        "fixture": 30
+      }
+    }
+  ],
+  "byGroupStep": [
+    {
+      "key": "hanwha:krx.market",
+      "count": 6,
+      "averageMs": 2146.5,
+      "medianMs": 1556,
+      "p90Ms": 3631,
+      "maxMs": 3631,
+      "statuses": {
+        "live": 6
+      }
+    },
+    {
+      "key": "samsung:krx.market",
+      "count": 6,
+      "averageMs": 1558.33,
+      "medianMs": 1416,
+      "p90Ms": 2005,
+      "maxMs": 2005,
+      "statuses": {
+        "live": 6
+      }
+    },
+    {
+      "key": "hyundai-motor:krx.market",
+      "count": 6,
+      "averageMs": 1545,
+      "medianMs": 1470,
+      "p90Ms": 1696,
+      "maxMs": 1696,
+      "statuses": {
+        "live": 6
+      }
+    },
+    {
+      "key": "sk:krx.market",
+      "count": 6,
+      "averageMs": 1505.33,
+      "medianMs": 1463,
+      "p90Ms": 1766,
+      "maxMs": 1766,
+      "statuses": {
+        "live": 6
+      }
+    },
+    {
+      "key": "lg:krx.market",
+      "count": 6,
+      "averageMs": 1476.5,
+      "medianMs": 1469,
+      "p90Ms": 1548,
+      "maxMs": 1548,
+      "statuses": {
+        "live": 6
+      }
+    },
+    {
+      "key": "hanwha:dart.disclosures",
+      "count": 6,
+      "averageMs": 443.83,
+      "medianMs": 86,
+      "p90Ms": 2232,
+      "maxMs": 2232,
+      "statuses": {
+        "live": 6
+      }
+    },
+    {
+      "key": "hanwha:news.search",
+      "count": 6,
+      "averageMs": 417.17,
+      "medianMs": 65,
+      "p90Ms": 2215,
+      "maxMs": 2215,
+      "statuses": {
+        "live": 6
+      }
+    },
+    {
+      "key": "hyundai-motor:dart.disclosures",
+      "count": 6,
+      "averageMs": 163,
+      "medianMs": 97,
+      "p90Ms": 520,
+      "maxMs": 520,
+      "statuses": {
+        "live": 6
+      }
+    },
+    {
+      "key": "samsung:dart.disclosures",
+      "count": 6,
+      "averageMs": 161.5,
+      "medianMs": 100,
+      "p90Ms": 406,
+      "maxMs": 406,
+      "statuses": {
+        "live": 6
+      }
+    },
+    {
+      "key": "hyundai-motor:news.search",
+      "count": 6,
+      "averageMs": 149.17,
+      "medianMs": 80,
+      "p90Ms": 513,
+      "maxMs": 513,
+      "statuses": {
+        "live": 6
+      }
+    },
+    {
+      "key": "samsung:news.search",
+      "count": 6,
+      "averageMs": 128.5,
+      "medianMs": 66,
+      "p90Ms": 406,
+      "maxMs": 406,
+      "statuses": {
+        "live": 6
+      }
+    },
+    {
+      "key": "sk:dart.disclosures",
+      "count": 6,
+      "averageMs": 99.17,
+      "medianMs": 89,
+      "p90Ms": 137,
+      "maxMs": 137,
+      "statuses": {
+        "live": 6
+      }
+    },
+    {
+      "key": "lg:dart.disclosures",
+      "count": 6,
+      "averageMs": 83.83,
+      "medianMs": 86,
+      "p90Ms": 92,
+      "maxMs": 92,
+      "statuses": {
+        "live": 6
+      }
+    },
+    {
+      "key": "sk:news.search",
+      "count": 6,
+      "averageMs": 61.33,
+      "medianMs": 61,
+      "p90Ms": 82,
+      "maxMs": 82,
+      "statuses": {
+        "live": 6
+      }
+    },
+    {
+      "key": "lg:news.search",
+      "count": 6,
+      "averageMs": 60.83,
+      "medianMs": 61,
+      "p90Ms": 76,
+      "maxMs": 76,
+      "statuses": {
+        "live": 6
+      }
+    },
+    {
+      "key": "samsung:wiki.context",
+      "count": 6,
+      "averageMs": 6,
+      "medianMs": 4,
+      "p90Ms": 17,
+      "maxMs": 17,
+      "statuses": {
+        "local": 6
+      }
+    },
+    {
+      "key": "hanwha:wiki.context",
+      "count": 6,
+      "averageMs": 4.33,
+      "medianMs": 4,
+      "p90Ms": 6,
+      "maxMs": 6,
+      "statuses": {
+        "local": 6
+      }
+    },
+    {
+      "key": "lg:wiki.context",
+      "count": 6,
+      "averageMs": 3.83,
+      "medianMs": 4,
+      "p90Ms": 4,
+      "maxMs": 4,
+      "statuses": {
+        "local": 6
+      }
+    },
+    {
+      "key": "sk:wiki.context",
+      "count": 6,
+      "averageMs": 3.17,
+      "medianMs": 3,
+      "p90Ms": 5,
+      "maxMs": 5,
+      "statuses": {
+        "local": 6
+      }
+    },
+    {
+      "key": "samsung:llm.compose",
+      "count": 6,
+      "averageMs": 2.83,
+      "medianMs": 1,
+      "p90Ms": 13,
+      "maxMs": 13,
+      "statuses": {
+        "fixture": 6
+      }
+    },
+    {
+      "key": "hyundai-motor:wiki.context",
+      "count": 6,
+      "averageMs": 2.67,
+      "medianMs": 2,
+      "p90Ms": 4,
+      "maxMs": 4,
+      "statuses": {
+        "local": 6
+      }
+    },
+    {
+      "key": "samsung:claims.sourceBacked",
+      "count": 6,
+      "averageMs": 2,
+      "medianMs": 2,
+      "p90Ms": 4,
+      "maxMs": 4,
+      "statuses": {
+        "local": 6
+      }
+    },
+    {
+      "key": "lg:claims.sourceBacked",
+      "count": 6,
+      "averageMs": 1.33,
+      "medianMs": 1,
+      "p90Ms": 2,
+      "maxMs": 2,
+      "statuses": {
+        "local": 6
+      }
+    },
+    {
+      "key": "sk:claims.sourceBacked",
+      "count": 6,
+      "averageMs": 1.17,
+      "medianMs": 1,
+      "p90Ms": 2,
+      "maxMs": 2,
+      "statuses": {
+        "local": 6
+      }
+    },
+    {
+      "key": "hanwha:claims.sourceBacked",
+      "count": 6,
+      "averageMs": 1.17,
+      "medianMs": 1,
+      "p90Ms": 3,
+      "maxMs": 3,
+      "statuses": {
+        "local": 6
+      }
+    },
+    {
+      "key": "hyundai-motor:claims.sourceBacked",
+      "count": 6,
+      "averageMs": 1,
+      "medianMs": 1,
+      "p90Ms": 2,
+      "maxMs": 2,
+      "statuses": {
+        "local": 6
+      }
+    },
+    {
+      "key": "hyundai-motor:llm.compose",
+      "count": 6,
+      "averageMs": 0.5,
+      "medianMs": 0,
+      "p90Ms": 1,
+      "maxMs": 1,
+      "statuses": {
+        "fixture": 6
+      }
+    },
+    {
+      "key": "hanwha:llm.compose",
+      "count": 6,
+      "averageMs": 0.5,
+      "medianMs": 0,
+      "p90Ms": 1,
+      "maxMs": 1,
+      "statuses": {
+        "fixture": 6
+      }
+    },
+    {
+      "key": "sk:llm.compose",
+      "count": 6,
+      "averageMs": 0.17,
+      "medianMs": 0,
+      "p90Ms": 1,
+      "maxMs": 1,
+      "statuses": {
+        "fixture": 6
+      }
+    },
+    {
+      "key": "lg:llm.compose",
+      "count": 6,
+      "averageMs": 0,
+      "medianMs": 0,
+      "p90Ms": 0,
+      "maxMs": 0,
+      "statuses": {
+        "fixture": 6
+      }
+    }
+  ],
+  "slowestScenarios": [
+    {
+      "inputPath": "evals/results/hanwha-reference-slice-v0.1.live-paired-baseline.2026-05-24.json",
+      "groupId": "hanwha",
+      "scenarioId": "hanwha-frozen-004-systems-financial-defense",
+      "score": 97,
+      "elapsedMs": 3632,
+      "latencyPassed": false,
+      "runtimeMode": "mixed",
+      "responseMode": "fixture"
+    },
+    {
+      "inputPath": "evals/results/hanwha-reference-slice-v0.1.live-paired-baseline.2026-05-24.json",
+      "groupId": "hanwha",
+      "scenarioId": "hanwha-frozen-003-solutions-turnaround",
+      "score": 97,
+      "elapsedMs": 2949,
+      "latencyPassed": false,
+      "runtimeMode": "mixed",
+      "responseMode": "fixture"
+    },
+    {
+      "inputPath": "evals/results/samsung-reference-slice-v0.1.live-paired-baseline.2026-05-24.json",
+      "groupId": "samsung",
+      "scenarioId": "samsung-frozen-001-electronics-memory-hbm",
+      "score": 97,
+      "elapsedMs": 2033,
+      "latencyPassed": false,
+      "runtimeMode": "mixed",
+      "responseMode": "fixture"
+    },
+    {
+      "inputPath": "evals/results/hanwha-reference-slice-v0.1.live-paired-baseline.2026-05-24.json",
+      "groupId": "hanwha",
+      "scenarioId": "hanwha-frozen-006-aerospace-solution-comparison",
+      "score": 97,
+      "elapsedMs": 1876,
+      "latencyPassed": false,
+      "runtimeMode": "mixed",
+      "responseMode": "fixture"
+    },
+    {
+      "inputPath": "evals/results/sk-reference-slice-v0.1.live-paired-baseline.2026-05-24.json",
+      "groupId": "sk",
+      "scenarioId": "sk-frozen-002-innovation-electrification-battery",
+      "score": 97,
+      "elapsedMs": 1766,
+      "latencyPassed": false,
+      "runtimeMode": "mixed",
+      "responseMode": "fixture"
+    },
+    {
+      "inputPath": "evals/results/hyundai-motor-reference-slice-v0.1.live-paired-baseline.2026-05-24.json",
+      "groupId": "hyundai-motor",
+      "scenarioId": "hyundai-frozen-006-motor-kia-comparison",
+      "score": 97,
+      "elapsedMs": 1697,
+      "latencyPassed": false,
+      "runtimeMode": "mixed",
+      "responseMode": "fixture"
+    },
+    {
+      "inputPath": "evals/results/hyundai-motor-reference-slice-v0.1.live-paired-baseline.2026-05-24.json",
+      "groupId": "hyundai-motor",
+      "scenarioId": "hyundai-frozen-005-rotem-financial-trend",
+      "score": 97,
+      "elapsedMs": 1629,
+      "latencyPassed": false,
+      "runtimeMode": "mixed",
+      "responseMode": "fixture"
+    },
+    {
+      "inputPath": "evals/results/hyundai-motor-reference-slice-v0.1.live-paired-baseline.2026-05-24.json",
+      "groupId": "hyundai-motor",
+      "scenarioId": "hyundai-frozen-004-glovis-financial-trend",
+      "score": 97,
+      "elapsedMs": 1594,
+      "latencyPassed": false,
+      "runtimeMode": "mixed",
+      "responseMode": "fixture"
+    },
+    {
+      "inputPath": "evals/results/samsung-reference-slice-v0.1.live-paired-baseline.2026-05-24.json",
+      "groupId": "samsung",
+      "scenarioId": "samsung-frozen-002-sdi-ess-profitability",
+      "score": 97,
+      "elapsedMs": 1583,
+      "latencyPassed": false,
+      "runtimeMode": "mixed",
+      "responseMode": "fixture"
+    },
+    {
+      "inputPath": "evals/results/samsung-reference-slice-v0.1.live-paired-baseline.2026-05-24.json",
+      "groupId": "samsung",
+      "scenarioId": "samsung-frozen-005-insurance-capital-dividend",
+      "score": 97,
+      "elapsedMs": 1578,
+      "latencyPassed": false,
+      "runtimeMode": "mixed",
+      "responseMode": "fixture"
+    }
+  ],
+  "interpretation": [
+    "This report measures harness/runtime latency, not investment accuracy.",
+    "External sources and local context loading should be parallelized before live LLM composition becomes default.",
+    "A scenario can pass source/trace/answer quality while still failing the product latency budget."
+  ]
+}
