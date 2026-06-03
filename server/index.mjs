@@ -878,7 +878,21 @@ async function composeWithLLM(contextPackage) {
   }
   const model = llmModelForProvider(provider);
   const apiKey = llmApiKeyForProvider(provider);
+  const compositionProcess = [];
   if (!apiKey) {
+    compositionProcess.push({
+      stage: "credential_check",
+      status: "fail",
+      reason: "missing_api_key",
+      provider,
+      model
+    });
+    compositionProcess.push({
+      stage: "recovery",
+      status: "used",
+      method: "deterministic_composer",
+      reason: "missing_credentials"
+    });
     const fallback = deterministicAnswer(contextPackage, "live-llm-missing-credentials-fallback");
     return {
       ...fallback,
@@ -890,10 +904,18 @@ async function composeWithLLM(contextPackage) {
       outputContract: {
         version: llmOutputContractVersion,
         status: "missing_credentials",
-        errors: [`Missing API key for provider: ${provider}`]
+        errors: [`Missing API key for provider: ${provider}`],
+        process: compositionProcess
       }
     };
   }
+  compositionProcess.push({
+    stage: "credential_check",
+    status: "pass",
+    provider,
+    model,
+    temperature: llmTemperature()
+  });
 
   const prompt = [
     promptPolicy,
@@ -914,43 +936,28 @@ async function composeWithLLM(contextPackage) {
     JSON.stringify(contextPackage, null, 2)
   ].join("\n");
 
+  let text = "";
   try {
-    const text = await callLiveLLMProvider({ provider, model, apiKey, prompt });
-    const structured = parseStructuredLLMOutput(text);
-    const validation = validateStructuredAdvisorOutput(structured, contextPackage);
-    if (validation.passed) {
-      return {
-        mode: "live-llm-structured",
-        live: true,
-        status: "live",
-        provider,
-        model,
-        source: llmProviderLabel(provider),
-        summary: "LLM composed structured answer that passed the code-owned output contract.",
-        outputContract: {
-          version: llmOutputContractVersion,
-          status: "validated",
-          errors: []
-        },
-        answer: finalizeAdvisorAnswer(renderStructuredAdvisorOutput(structured))
-      };
-    }
-
-    const fallback = deterministicAnswer(contextPackage, "live-llm-contract-fallback");
-    return {
-      ...fallback,
-      status: "fallback",
-      provider,
-      model,
-      source: `${llmProviderLabel(provider)} + deterministic-composer`,
-      summary: `Live LLM output failed the output contract; deterministic composer used. ${validation.errors.slice(0, 2).join(" ")}`,
-      outputContract: {
-        version: llmOutputContractVersion,
-        status: "fallback",
-        errors: validation.errors.slice(0, 8)
-      }
-    };
+    text = await callLiveLLMProvider({ provider, model, apiKey, prompt });
+    compositionProcess.push({
+      stage: "live_llm_call",
+      status: "pass",
+      liveOutput: summarizeLiveLLMOutput(text)
+    });
   } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    compositionProcess.push({
+      stage: "live_llm_call",
+      status: "fail",
+      reason: "provider_call_error",
+      error: message
+    });
+    compositionProcess.push({
+      stage: "recovery",
+      status: "used",
+      method: "deterministic_composer",
+      reason: "provider_call_error"
+    });
     const fallback = deterministicAnswer(contextPackage, "live-llm-error-fallback");
     return {
       ...fallback,
@@ -958,14 +965,83 @@ async function composeWithLLM(contextPackage) {
       provider,
       model,
       source: `${llmProviderLabel(provider)} + deterministic-composer`,
-      summary: `Live LLM call failed; deterministic composer used. ${error instanceof Error ? error.message : String(error)}`,
+      summary: `Live LLM call failed; deterministic composer used. ${message}`,
       outputContract: {
         version: llmOutputContractVersion,
         status: "fallback",
-        errors: [error instanceof Error ? error.message : String(error)]
+        errors: [message],
+        process: compositionProcess
       }
     };
   }
+
+  const structured = parseStructuredLLMOutput(text);
+  compositionProcess.push({
+    stage: "json_parse",
+    status: structured && typeof structured === "object" && !Array.isArray(structured) ? "pass" : "fail",
+    reason: structured && typeof structured === "object" && !Array.isArray(structured)
+      ? undefined
+      : "not_json_object"
+  });
+
+  const validation = validateStructuredAdvisorOutput(structured, contextPackage);
+  if (validation.passed) {
+    compositionProcess.push({
+      stage: "output_contract_validation",
+      status: "pass",
+      errorCount: 0
+    });
+    compositionProcess.push({
+      stage: "recovery",
+      status: "not_needed"
+    });
+    return {
+      mode: "live-llm-structured",
+      live: true,
+      status: "live",
+      provider,
+      model,
+      source: llmProviderLabel(provider),
+      summary: "LLM composed structured answer that passed the code-owned output contract.",
+      outputContract: {
+        version: llmOutputContractVersion,
+        status: "validated",
+        errors: [],
+        process: compositionProcess,
+        liveOutput: summarizeLiveLLMOutput(text)
+      },
+      answer: finalizeAdvisorAnswer(renderStructuredAdvisorOutput(structured))
+    };
+  }
+
+  compositionProcess.push({
+    stage: "output_contract_validation",
+    status: "fail",
+    errorCount: validation.errors.length,
+    errors: validation.errors.slice(0, 8)
+  });
+  compositionProcess.push({
+    stage: "recovery",
+    status: "used",
+    method: "deterministic_composer",
+    reason: "output_contract_failure"
+  });
+  const fallback = deterministicAnswer(contextPackage, "live-llm-contract-fallback");
+  return {
+    ...fallback,
+    status: "fallback",
+    provider,
+    model,
+    source: `${llmProviderLabel(provider)} + deterministic-composer`,
+    summary: `Live LLM output failed the output contract; deterministic composer used. ${validation.errors.slice(0, 2).join(" ")}`,
+    outputContract: {
+      version: llmOutputContractVersion,
+      status: "fallback",
+      errors: validation.errors.slice(0, 8),
+      process: compositionProcess,
+      liveOutput: summarizeLiveLLMOutput(text)
+    }
+  };
 }
 
 function normalizeLLMProvider(value) {
@@ -1015,6 +1091,19 @@ function llmProviderLabel(provider) {
   if (provider === "gemini") return "Google Gemini API";
   if (provider === "openrouter") return "OpenRouter Chat Completions API";
   return "Live LLM API";
+}
+
+function summarizeLiveLLMOutput(text) {
+  const raw = String(text ?? "");
+  const summary = {
+    sha256: sha256(raw),
+    charCount: raw.length,
+    preview: raw.slice(0, 500)
+  };
+  if (process.env.ADVISOR_LIVE_LLM_STORE_RAW_OUTPUT === "1") {
+    summary.raw = raw;
+  }
+  return summary;
 }
 
 async function callLiveLLMProvider({ provider, model, apiKey, prompt }) {
@@ -1697,6 +1786,8 @@ function buildTraceEnvelope({ runId, group, representativeCompany, question, pre
     llmOutputContractVersion,
     llmOutputContractStatus: llm.outputContract?.status ?? "unknown",
     llmOutputContractErrors: llm.outputContract?.errors ?? [],
+    llmCompositionProcess: llm.outputContract?.process ?? [],
+    llmLiveOutput: llm.outputContract?.liveOutput ?? null,
     statusCounts,
     elapsedMs,
     reproducibility: {

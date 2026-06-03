@@ -59,6 +59,22 @@ The script reports two levels of outcome:
 - `fallbackRecoveryUsed`: the live model failed the output contract and the
   deterministic fallback composer was used.
 
+Each run also records the failure path instead of only the final pass/fail
+state:
+
+- `compositionBoundaryProcess` records credential checks, the live provider
+  call, JSON parsing, output-contract validation, and whether deterministic
+  recovery was used.
+- `contractEvaluationProcess` records the downstream harness checks for source
+  claims, trace, visible answer structure, leakage, links, follow-ups, and
+  recommendation-language absence.
+- `processStageSummary` aggregates those stages across providers, scenarios,
+  repeats, and temperature settings.
+
+By default, live model text is recorded as a hash, character count, and short
+preview. Set `ADVISOR_LIVE_LLM_STORE_RAW_OUTPUT=1` only for private diagnostic
+runs that need the full raw model output.
+
 Fallback runs are further divided into:
 
 - `fallbackAnswerContractPass`: the fallback answer preserved all required

@@ -262,6 +262,8 @@ function evaluateLiveRun(runSpec, item, response, repeatIndex) {
     checkRecommendationLanguage(response)
   ];
   const requiredFailures = checks.filter((check) => check.required && !check.passed);
+  const compositionBoundaryProcess = response.trace?.llmCompositionProcess ?? [];
+  const contractEvaluationProcess = buildContractEvaluationProcess(checks, requiredFailures);
   return {
     provider: runSpec.provider,
     requestedModel: runSpec.model,
@@ -278,6 +280,8 @@ function evaluateLiveRun(runSpec, item, response, repeatIndex) {
     llmTemperature: response.trace?.llmTemperature ?? null,
     llmOutputContractStatus: response.trace?.llmOutputContractStatus ?? null,
     llmOutputContractErrors: response.trace?.llmOutputContractErrors ?? [],
+    compositionBoundaryProcess,
+    contractEvaluationProcess,
     elapsedMs: response.elapsedMs,
     traceFile: response.traceArtifactPath ?? response.traceExportUrl ?? null,
     status: requiredFailures.length === 0 ? "contract_pass" : "required_failure",
@@ -439,6 +443,21 @@ function makeCheck(id, passed, details) {
   };
 }
 
+function buildContractEvaluationProcess(checks, requiredFailures) {
+  const stages = checks.map((check) => ({
+    stage: check.id,
+    status: check.passed ? "pass" : "fail",
+    required: check.required,
+    failureDetails: check.passed ? undefined : check.details
+  }));
+  stages.push({
+    stage: "final_harness_result",
+    status: requiredFailures.length === 0 ? "pass" : "fail",
+    failedRequiredChecks: requiredFailures.map((check) => check.id)
+  });
+  return stages;
+}
+
 function summarizeProvider(runSpec, runs) {
   const liveValidatedRuns = runs.filter((run) => run.checks.find((check) => check.id === "live_llm_output_contract")?.passed).length;
   const missingCredentialRuns = runs.filter((run) =>
@@ -459,6 +478,7 @@ function summarizeProvider(runSpec, runs) {
     contractPassRuns,
     requiredFailureRuns: runs.length - contractPassRuns,
     failureTaxonomy: summarizeFailureTaxonomy(runs),
+    processStageSummary: summarizeProcessStages(runs),
     runs
   };
 }
@@ -484,6 +504,7 @@ function summarizeExperiment(results) {
     missingCredentialRuns,
     contractFailures,
     failureTaxonomy: summarizeFailureTaxonomy(allRuns),
+    processStageSummary: summarizeProcessStages(allRuns),
     byCheck: summarizeChecks(allRuns),
     status:
       liveValidatedRuns === 0
@@ -492,6 +513,23 @@ function summarizeExperiment(results) {
           ? "pass"
           : "needs_review"
   };
+}
+
+function summarizeProcessStages(runs) {
+  const summary = {};
+  for (const run of runs) {
+    const stages = [
+      ...(run.compositionBoundaryProcess ?? []),
+      ...(run.contractEvaluationProcess ?? [])
+    ];
+    for (const stage of stages) {
+      const id = stage.stage ?? "unknown";
+      summary[id] ??= {};
+      const status = stage.status ?? "unknown";
+      summary[id][status] = (summary[id][status] ?? 0) + 1;
+    }
+  }
+  return summary;
 }
 
 function summarizeFailureTaxonomy(runs) {
