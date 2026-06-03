@@ -94,3 +94,12 @@ The scientific object is the interaction between live LLM outputs and the
 code-owned harness contracts. The run documents both first-pass live success and
 failure/recovery paths; fallback recovery is not counted as first-pass live LLM
 success.
+
+## Manuscript reporting status
+
+The current manuscript reports this run as the live-LLM composition-boundary
+check: three hosted model identifiers, all 30 fixed validation scenarios, three
+repeats, temperature 0.2, 234/270 first-pass structured-output passes, 36
+fallback/recovery paths, and 198/270 final harness-contract passes. The paper
+keeps this result separate from deterministic fixed-scenario validation,
+fault-injection validation, and orchestration latency.

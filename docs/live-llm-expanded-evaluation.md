@@ -1,7 +1,7 @@
 # Live LLM composition-boundary evaluation
 
-This note records the expanded live-LLM evaluation protocol used after the
-initial 15-run boundary check.
+This note records the expanded live-LLM evaluation protocol used for the
+current manuscript revision.
 
 ## Main arXiv run
 
@@ -13,6 +13,16 @@ The main run uses the full fixed validation scenario set:
 - temperature 0.2
 
 This produces 270 planned live-LLM composition-boundary runs.
+
+The run reported in the manuscript is:
+
+- `234/270` first-pass structured-output passes,
+- `36` deterministic fallback/recovery paths,
+- `198/270` final harness-contract passes,
+- `72/270` final required harness failures.
+
+These counts are reported as composition-boundary behavior. They are not a
+general hosted-model benchmark.
 
 ```bash
 export OPENROUTER_API_KEY="<redacted>"
@@ -124,3 +134,10 @@ contract after a live-model failure.
 The arXiv paper should report this as a composition-boundary sensitivity check.
 It is not a general model benchmark and does not replace the later SCI work on
 model expansion, user evaluation, and ablation.
+
+## Paper alignment
+
+The current manuscript cites this repository for the live-LLM result artifact,
+the run log, and the validation/latency artifacts. Keep this document aligned
+with `evals/results/live-llm-composition-boundary.full-30x3.2026-06-03.json`
+when revising the paper.
