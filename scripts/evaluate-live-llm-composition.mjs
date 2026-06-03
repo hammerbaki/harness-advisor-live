@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import { spawn } from "node:child_process";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { appendFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -33,6 +33,22 @@ const scenarioSets = await Promise.all(scenarioSpecs.map(async (spec) => ({
 const selectedScenarioIds = parseCsv(process.env.ADVISOR_LIVE_LLM_SCENARIO_IDS ?? "");
 const scenarios = selectScenarios(scenarioSets, selectedScenarioIds, scenarioPolicy);
 const providerResults = [];
+const outputPath =
+  process.env.ADVISOR_LIVE_LLM_OUTPUT ??
+  `evals/results/live-llm-composition-boundary.${today}.json`;
+const progressLogPath =
+  process.env.ADVISOR_LIVE_LLM_PROGRESS_LOG ??
+  replaceJsonExtension(outputPath, ".progress.jsonl");
+const progressSnapshotPath =
+  process.env.ADVISOR_LIVE_LLM_PROGRESS_SNAPSHOT ??
+  replaceJsonExtension(outputPath, ".progress.json");
+const progressEvery = parsePositiveInt(process.env.ADVISOR_LIVE_LLM_PROGRESS_EVERY ?? "1", 1);
+const startedAt = new Date().toISOString();
+const totalPlannedRuns = runSpecs.length * scenarios.length * repeatCount;
+const completedRuns = [];
+await resetJsonLineLog(progressLogPath);
+await appendJsonLine(progressLogPath, buildExperimentProgressRecord("experiment_start", "started"));
+await writeProgressSnapshot({ status: "started" });
 
 for (const [runIndex, runSpec] of runSpecs.entries()) {
   const server = await getAdvisorServer(runSpec, 8830 + runIndex);
@@ -40,12 +56,31 @@ for (const [runIndex, runSpec] of runSpecs.entries()) {
     const runs = [];
     for (let repeatIndex = 1; repeatIndex <= repeatCount; repeatIndex += 1) {
       for (const item of scenarios) {
-        const response = await callAdvisor(server.baseUrl, {
-          groupId: item.groupId,
-          question: item.scenario.question,
-          presentationMode: item.scenarioSet.runtimeAssumptions.presentationMode ?? "text"
-        });
-        runs.push(evaluateLiveRun(runSpec, item, response, repeatIndex));
+        const runNumber = completedRuns.length + 1;
+        const startRecord = buildProgressStartRecord(runSpec, item, repeatIndex, runNumber);
+        await appendJsonLine(progressLogPath, startRecord);
+        await writeProgressSnapshot({ status: "running", currentRun: startRecord });
+        try {
+          const response = await callAdvisor(server.baseUrl, {
+            groupId: item.groupId,
+            question: item.scenario.question,
+            presentationMode: item.scenarioSet.runtimeAssumptions.presentationMode ?? "text"
+          });
+          const evaluatedRun = evaluateLiveRun(runSpec, item, response, repeatIndex);
+          runs.push(evaluatedRun);
+          completedRuns.push(evaluatedRun);
+          const completeRecord = buildProgressCompleteRecord(evaluatedRun, completedRuns.length);
+          await appendJsonLine(progressLogPath, completeRecord);
+          if (completedRuns.length % progressEvery === 0 || completedRuns.length === totalPlannedRuns) {
+            await writeProgressSnapshot({ status: "running", currentRun: completeRecord });
+          }
+          logProgressRun(completeRecord);
+        } catch (error) {
+          const errorRecord = buildProgressErrorRecord(runSpec, item, repeatIndex, error, runNumber);
+          await appendJsonLine(progressLogPath, errorRecord);
+          await writeProgressSnapshot({ status: "error", currentRun: errorRecord, error });
+          throw error;
+        }
       }
     }
     providerResults.push(summarizeProvider(runSpec, runs));
@@ -87,10 +122,9 @@ const output = {
   providers: providerResults
 };
 
-const outputPath =
-  process.env.ADVISOR_LIVE_LLM_OUTPUT ??
-  `evals/results/live-llm-composition-boundary.${today}.json`;
 await writeJson(outputPath, output);
+await appendJsonLine(progressLogPath, buildExperimentProgressRecord("experiment_complete", "complete"));
+await writeProgressSnapshot({ status: "complete" });
 
 console.log("Live LLM composition-boundary evaluation complete");
 console.log(`Runs: ${runSpecs.map((spec) => spec.model ? `${spec.provider}:${spec.model}@T${spec.temperature}` : `${spec.provider}@T${spec.temperature}`).join(", ")}`);
@@ -102,6 +136,8 @@ console.log(`Contract-pass live runs: ${summary.contractPassLiveRuns}/${summary.
 console.log(`Fallback/recovery runs: ${summary.fallbackRuns}`);
 console.log(`Missing-credential runs: ${summary.missingCredentialRuns}`);
 console.log(`Result: ${outputPath}`);
+console.log(`Progress log: ${progressLogPath}`);
+console.log(`Progress snapshot: ${progressSnapshotPath}`);
 
 if ((summary.liveValidatedRuns === 0 || summary.contractFailures > 0) && process.env.ADVISOR_LIVE_LLM_ALLOW_FAILURES !== "1") {
   process.exitCode = 1;
@@ -115,6 +151,24 @@ async function writeJson(relativePath, data) {
   const fullPath = join(rootDir, relativePath);
   await mkdir(dirname(fullPath), { recursive: true });
   await writeFile(fullPath, `${JSON.stringify(data, null, 2)}\n`);
+}
+
+async function appendJsonLine(relativePath, data) {
+  const fullPath = join(rootDir, relativePath);
+  await mkdir(dirname(fullPath), { recursive: true });
+  await appendFile(fullPath, `${JSON.stringify(data)}\n`);
+}
+
+async function resetJsonLineLog(relativePath) {
+  const fullPath = join(rootDir, relativePath);
+  await mkdir(dirname(fullPath), { recursive: true });
+  await writeFile(fullPath, "");
+}
+
+function replaceJsonExtension(relativePath, replacement) {
+  return String(relativePath).endsWith(".json")
+    ? String(relativePath).replace(/\.json$/u, replacement)
+    : `${relativePath}${replacement}`;
 }
 
 function parseCsv(value) {
@@ -584,6 +638,175 @@ function summarizeChecks(runs) {
     }
   }
   return summary;
+}
+
+async function writeProgressSnapshot({ status, currentRun = null, error = null }) {
+  const snapshot = {
+    schemaVersion: "advisor-live-llm-progress.v0.1",
+    experimentId: "live-llm-composition-boundary-v0.2",
+    startedAt,
+    updatedAt: new Date().toISOString(),
+    status,
+    outputPath,
+    progressLogPath,
+    progressSnapshotPath,
+    design: {
+      providerSpecs,
+      temperatures,
+      repeatCount,
+      scenarioPolicy: selectedScenarioIds.length > 0
+        ? "explicit scenario id subset"
+        : scenarioPolicy === "all"
+          ? "full fixed validation scenario set"
+          : "one representative fixed validation scenario per corporate group",
+      scenarioCount: scenarios.length,
+      totalPlannedRuns
+    },
+    totalPlannedRuns,
+    completedRuns: completedRuns.length,
+    remainingRuns: Math.max(totalPlannedRuns - completedRuns.length, 0),
+    currentRun,
+    summary: summarizeProgressRuns(completedRuns)
+  };
+  if (error) snapshot.error = serializeError(error);
+  await writeJson(progressSnapshotPath, snapshot);
+}
+
+function summarizeProgressRuns(runs) {
+  const contractPassRuns = runs.filter((run) => run.status === "contract_pass").length;
+  const liveValidatedRuns = runs.filter((run) => run.checks.find((check) => check.id === "live_llm_output_contract")?.passed).length;
+  const fallbackRuns = runs.filter((run) => String(run.responseMode ?? "").includes("fallback")).length;
+  const missingCredentialRuns = runs.filter((run) =>
+    run.checks.find((check) => check.id === "live_llm_output_contract")?.details?.missingCredentials
+  ).length;
+  return {
+    completedRuns: runs.length,
+    liveValidatedRuns,
+    contractPassRuns,
+    requiredFailureRuns: runs.length - contractPassRuns,
+    fallbackRuns,
+    missingCredentialRuns,
+    failureTaxonomy: summarizeFailureTaxonomy(runs),
+    byCheck: summarizeChecks(runs),
+    recentRequiredFailures: runs
+      .filter((run) => run.status === "required_failure")
+      .slice(-10)
+      .map((run) => ({
+        provider: run.provider,
+        requestedModel: run.requestedModel,
+        temperature: run.temperature,
+        repeatIndex: run.repeatIndex,
+        groupId: run.groupId,
+        scenarioId: run.scenarioId,
+        failedRequiredChecks: failedRequiredChecks(run)
+      }))
+  };
+}
+
+function buildProgressStartRecord(runSpec, item, repeatIndex, runNumber) {
+  return {
+    event: "run_start",
+    at: new Date().toISOString(),
+    runNumber,
+    totalPlannedRuns,
+    provider: runSpec.provider,
+    requestedModel: runSpec.model,
+    temperature: runSpec.temperature,
+    repeatIndex,
+    groupId: item.groupId,
+    scenarioSetId: item.scenarioSetId,
+    scenarioId: item.scenario.id,
+    title: item.scenario.title
+  };
+}
+
+function buildExperimentProgressRecord(event, status) {
+  return {
+    event,
+    at: new Date().toISOString(),
+    status,
+    outputPath,
+    progressSnapshotPath,
+    totalPlannedRuns,
+    providerCount: providerSpecs.length,
+    configurationCount: runSpecs.length,
+    scenarioCount: scenarios.length,
+    repeatCount,
+    temperatures
+  };
+}
+
+function buildProgressCompleteRecord(run, completedRunCount) {
+  const liveCheck = run.checks.find((check) => check.id === "live_llm_output_contract");
+  const contractErrors = liveCheck?.details?.outputContractErrors ?? run.llmOutputContractErrors ?? [];
+  return {
+    event: "run_complete",
+    at: new Date().toISOString(),
+    runNumber: completedRunCount,
+    completedRuns: completedRunCount,
+    totalPlannedRuns,
+    provider: run.provider,
+    requestedModel: run.requestedModel,
+    observedModel: run.llmModel,
+    temperature: run.temperature,
+    repeatIndex: run.repeatIndex,
+    groupId: run.groupId,
+    scenarioSetId: run.scenarioSetId,
+    scenarioId: run.scenarioId,
+    title: run.title,
+    responseMode: run.responseMode,
+    llmOutputContractStatus: run.llmOutputContractStatus,
+    liveStructuredValidated: Boolean(liveCheck?.passed),
+    fallbackRecoveryUsed: String(run.responseMode ?? "").includes("fallback") || run.llmOutputContractStatus === "fallback",
+    finalHarnessStatus: run.status,
+    failedRequiredChecks: failedRequiredChecks(run),
+    outputContractErrorCount: contractErrors.length,
+    elapsedMs: run.elapsedMs,
+    traceFile: run.traceFile
+  };
+}
+
+function buildProgressErrorRecord(runSpec, item, repeatIndex, error, runNumber) {
+  return {
+    event: "run_error",
+    at: new Date().toISOString(),
+    runNumber,
+    totalPlannedRuns,
+    provider: runSpec.provider,
+    requestedModel: runSpec.model,
+    temperature: runSpec.temperature,
+    repeatIndex,
+    groupId: item.groupId,
+    scenarioSetId: item.scenarioSetId,
+    scenarioId: item.scenario.id,
+    title: item.scenario.title,
+    error: serializeError(error)
+  };
+}
+
+function failedRequiredChecks(run) {
+  return run.checks
+    .filter((check) => check.required && !check.passed)
+    .map((check) => check.id);
+}
+
+function logProgressRun(record) {
+  const firstPass = record.liveStructuredValidated ? "pass" : "fail";
+  const finalStatus = record.finalHarnessStatus === "contract_pass" ? "pass" : "fail";
+  const fallback = record.fallbackRecoveryUsed ? "used" : "none";
+  const model = record.requestedModel ? `${record.provider}:${record.requestedModel}` : record.provider;
+  const failures = record.failedRequiredChecks.length > 0 ? ` failed=${record.failedRequiredChecks.join(",")}` : "";
+  console.log(
+    `[live-llm ${record.completedRuns}/${record.totalPlannedRuns}] ${model} T=${record.temperature} ` +
+    `${record.scenarioId} repeat=${record.repeatIndex} firstPass=${firstPass} final=${finalStatus} fallback=${fallback}${failures}`
+  );
+}
+
+function serializeError(error) {
+  return {
+    name: error instanceof Error ? error.name : "Error",
+    message: error instanceof Error ? error.message : String(error)
+  };
 }
 
 function extractSections(answer) {

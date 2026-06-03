@@ -27,6 +27,39 @@ npm run eval:live-llm
 `ADVISOR_LIVE_LLM_ALLOW_FAILURES=1` is intentional. Live model failures are
 part of the measurement object, not a reason to stop the batch.
 
+## Progress monitoring
+
+Long runs write progress artifacts next to the final result unless explicit
+paths are supplied:
+
+- `*.progress.jsonl`: append-only event stream with `run_start`,
+  `run_complete`, and `run_error` records.
+- `*.progress.json`: current snapshot with completed run count, rolling
+  summary, and recent required failures.
+
+The default paths are derived from `ADVISOR_LIVE_LLM_OUTPUT`. For the main
+run above, they are:
+
+```bash
+evals/results/live-llm-composition-boundary.full-30x3.2026-06-03.progress.jsonl
+evals/results/live-llm-composition-boundary.full-30x3.2026-06-03.progress.json
+```
+
+Watch a run without waiting for the final JSON:
+
+```bash
+tail -f evals/results/live-llm-composition-boundary.full-30x3.2026-06-03.progress.jsonl
+```
+
+Override the paths when running several experiments at once:
+
+```bash
+ADVISOR_LIVE_LLM_PROGRESS_LOG=evals/results/live-llm-custom.progress.jsonl \
+ADVISOR_LIVE_LLM_PROGRESS_SNAPSHOT=evals/results/live-llm-custom.progress.json \
+ADVISOR_LIVE_LLM_PROGRESS_EVERY=5 \
+npm run eval:live-llm
+```
+
 ## Temperature stress run
 
 Temperature is treated as a stress condition, not as a separate benchmark.
