@@ -22,3 +22,18 @@ exports/
 
 # Runtime traces that may contain local-only diagnostics
 evals/traces/*.json
+evals/results/*.progress.json
+evals/results/*.progress.jsonl
+
+# Local rerun / exploratory evaluation artifacts not cited by the paper
+evals/dashboard/advisor-latency-*-30.2026-05-24.json
+!evals/dashboard/advisor-latency-live-paired-baseline-30.2026-05-24.json
+!evals/dashboard/advisor-latency-live-paired-optimized-30.2026-05-24.json
+evals/results/*boundary-fix*.json
+evals/results/*latency-baseline-30*.json
+evals/results/*latency-optimized-30*.json
+evals/results/*paired-baseline-rerun*.json
+evals/results/*paired-optimized-rerun*.json
+evals/results/*persistent-baseline*.json
+evals/results/*persistent-optimized*.json
+evals/results/*recheck*.json
