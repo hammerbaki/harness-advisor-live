@@ -871,8 +871,28 @@ function classifyAnswerIntent(question) {
 }
 
 async function composeWithLLM(contextPackage) {
-  if (!process.env.ANTHROPIC_API_KEY) {
+  const requestedProvider = normalizeLLMProvider(process.env.ADVISOR_LIVE_LLM_PROVIDER ?? process.env.LLM_PROVIDER);
+  const provider = requestedProvider ?? firstConfiguredLLMProvider();
+  if (!provider) {
     return deterministicAnswer(contextPackage, "fixture");
+  }
+  const model = llmModelForProvider(provider);
+  const apiKey = llmApiKeyForProvider(provider);
+  if (!apiKey) {
+    const fallback = deterministicAnswer(contextPackage, "live-llm-missing-credentials-fallback");
+    return {
+      ...fallback,
+      status: "fallback",
+      provider,
+      model,
+      source: `${llmProviderLabel(provider)} + deterministic-composer`,
+      summary: `Live LLM credentials missing for ${provider}; deterministic composer used.`,
+      outputContract: {
+        version: llmOutputContractVersion,
+        status: "missing_credentials",
+        errors: [`Missing API key for provider: ${provider}`]
+      }
+    };
   }
 
   const prompt = [
@@ -880,7 +900,10 @@ async function composeWithLLM(contextPackage) {
     "The runtime will attach execution-mode, links, follow-up questions, and trace metadata in code.",
     "Lead with audience-facing investment understanding. Do not present the analysis process as the result.",
     "Return only a JSON object that follows the LLM output contract. Do not wrap it in Markdown fences.",
+    "The JSON object MUST have a top-level sections array. Each section item MUST have a title and a body.",
+    "Example shape: {\"sections\":[{\"title\":\"핵심 인사이트\",\"body\":[\"one investor-facing sentence\"]},{\"title\":\"재무 포인트\",\"body\":[\"one investor-facing sentence\"]},{\"title\":\"반증 리스크\",\"body\":[\"one investor-facing sentence\"]}],\"sourceLimitationNote\":\"optional\"}",
     "Do not invent unavailable sources, raw claim ids, trace labels, schema names, or investment recommendations.",
+    "When the selected source-backed claims come from DART or OpenDART, include the visible term OpenDART at least once in the answer body.",
     "Use a concise professional investor memo tone. Do not explain how to read basic data, and do not mention paper, demo, capture, or development workflow.",
     "",
     "LLM output contract:",
@@ -892,21 +915,7 @@ async function composeWithLLM(contextPackage) {
   ].join("\n");
 
   try {
-    const res = await fetchJson("https://api.anthropic.com/v1/messages", {
-      timeoutMs: 20000,
-      method: "POST",
-      headers: {
-        "x-api-key": process.env.ANTHROPIC_API_KEY,
-        "anthropic-version": "2023-06-01",
-        "content-type": "application/json"
-      },
-      body: JSON.stringify({
-        model: process.env.LLM_MODEL ?? "claude-sonnet-4-5",
-        max_tokens: 900,
-        messages: [{ role: "user", content: prompt }]
-      })
-    });
-    const text = res.content?.map((part) => part.text ?? "").join("\n").trim();
+    const text = await callLiveLLMProvider({ provider, model, apiKey, prompt });
     const structured = parseStructuredLLMOutput(text);
     const validation = validateStructuredAdvisorOutput(structured, contextPackage);
     if (validation.passed) {
@@ -914,7 +923,9 @@ async function composeWithLLM(contextPackage) {
         mode: "live-llm-structured",
         live: true,
         status: "live",
-        source: "Anthropic Messages API",
+        provider,
+        model,
+        source: llmProviderLabel(provider),
         summary: "LLM composed structured answer that passed the code-owned output contract.",
         outputContract: {
           version: llmOutputContractVersion,
@@ -929,7 +940,9 @@ async function composeWithLLM(contextPackage) {
     return {
       ...fallback,
       status: "fallback",
-      source: "Anthropic Messages API + deterministic-composer",
+      provider,
+      model,
+      source: `${llmProviderLabel(provider)} + deterministic-composer`,
       summary: `Live LLM output failed the output contract; deterministic composer used. ${validation.errors.slice(0, 2).join(" ")}`,
       outputContract: {
         version: llmOutputContractVersion,
@@ -942,7 +955,9 @@ async function composeWithLLM(contextPackage) {
     return {
       ...fallback,
       status: "fallback",
-      source: "Anthropic Messages API + deterministic-composer",
+      provider,
+      model,
+      source: `${llmProviderLabel(provider)} + deterministic-composer`,
       summary: `Live LLM call failed; deterministic composer used. ${error instanceof Error ? error.message : String(error)}`,
       outputContract: {
         version: llmOutputContractVersion,
@@ -953,12 +968,152 @@ async function composeWithLLM(contextPackage) {
   }
 }
 
+function normalizeLLMProvider(value) {
+  const normalized = String(value ?? "").trim().toLowerCase();
+  if (!normalized) return null;
+  if (["anthropic", "claude"].includes(normalized)) return "anthropic";
+  if (["openai", "gpt"].includes(normalized)) return "openai";
+  if (["gemini", "google"].includes(normalized)) return "gemini";
+  if (["openrouter", "router"].includes(normalized)) return "openrouter";
+  return null;
+}
+
+function firstConfiguredLLMProvider() {
+  if (process.env.ANTHROPIC_API_KEY) return "anthropic";
+  if (process.env.OPENAI_API_KEY) return "openai";
+  if (process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY) return "gemini";
+  if (process.env.OPENROUTER_API_KEY) return "openrouter";
+  return null;
+}
+
+function llmApiKeyForProvider(provider) {
+  if (provider === "anthropic") return process.env.ANTHROPIC_API_KEY;
+  if (provider === "openai") return process.env.OPENAI_API_KEY;
+  if (provider === "gemini") return process.env.GEMINI_API_KEY ?? process.env.GOOGLE_API_KEY;
+  if (provider === "openrouter") return process.env.OPENROUTER_API_KEY;
+  return "";
+}
+
+function llmModelForProvider(provider) {
+  if (process.env.ADVISOR_LIVE_LLM_MODEL) return process.env.ADVISOR_LIVE_LLM_MODEL;
+  if (provider === "anthropic") return process.env.ANTHROPIC_MODEL ?? process.env.LLM_MODEL ?? "claude-sonnet-4-5";
+  if (provider === "openai") return process.env.OPENAI_MODEL ?? process.env.LLM_MODEL ?? "gpt-4.1-mini";
+  if (provider === "gemini") return process.env.GEMINI_MODEL ?? process.env.LLM_MODEL ?? "gemini-2.5-flash";
+  if (provider === "openrouter") return process.env.OPENROUTER_MODEL ?? process.env.LLM_MODEL ?? "anthropic/claude-sonnet-4";
+  return process.env.LLM_MODEL ?? "unknown";
+}
+
+function llmTemperature() {
+  const raw = process.env.ADVISOR_LIVE_LLM_TEMPERATURE ?? process.env.LLM_TEMPERATURE ?? "0.2";
+  const parsed = Number.parseFloat(raw);
+  return Number.isFinite(parsed) ? parsed : 0.2;
+}
+
+function llmProviderLabel(provider) {
+  if (provider === "anthropic") return "Anthropic Messages API";
+  if (provider === "openai") return "OpenAI Responses API";
+  if (provider === "gemini") return "Google Gemini API";
+  if (provider === "openrouter") return "OpenRouter Chat Completions API";
+  return "Live LLM API";
+}
+
+async function callLiveLLMProvider({ provider, model, apiKey, prompt }) {
+  const temperature = llmTemperature();
+  if (provider === "anthropic") {
+    const res = await fetchJson("https://api.anthropic.com/v1/messages", {
+      timeoutMs: 30000,
+      method: "POST",
+      headers: {
+        "x-api-key": apiKey,
+        "anthropic-version": "2023-06-01",
+        "content-type": "application/json"
+      },
+      body: JSON.stringify({
+        model,
+        max_tokens: 900,
+        temperature,
+        messages: [{ role: "user", content: prompt }]
+      })
+    });
+    return res.content?.map((part) => part.text ?? "").join("\n").trim() ?? "";
+  }
+
+  if (provider === "openai") {
+    const res = await fetchJson("https://api.openai.com/v1/responses", {
+      timeoutMs: 30000,
+      method: "POST",
+      headers: {
+        authorization: `Bearer ${apiKey}`,
+        "content-type": "application/json"
+      },
+      body: JSON.stringify({
+        model,
+        input: prompt,
+        max_output_tokens: 900,
+        temperature
+      })
+    });
+    if (typeof res.output_text === "string") return res.output_text.trim();
+    return (res.output ?? [])
+      .flatMap((item) => item.content ?? [])
+      .map((part) => part.text ?? "")
+      .join("\n")
+      .trim();
+  }
+
+  if (provider === "gemini") {
+    const encodedModel = encodeURIComponent(model);
+    const res = await fetchJson(`https://generativelanguage.googleapis.com/v1beta/models/${encodedModel}:generateContent?key=${encodeURIComponent(apiKey)}`, {
+      timeoutMs: 30000,
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        contents: [{ role: "user", parts: [{ text: prompt }] }],
+        generationConfig: {
+          maxOutputTokens: 900,
+          temperature
+        }
+      })
+    });
+    return (res.candidates ?? [])
+      .flatMap((candidate) => candidate.content?.parts ?? [])
+      .map((part) => part.text ?? "")
+      .join("\n")
+      .trim();
+  }
+
+  if (provider === "openrouter") {
+    const res = await fetchJson("https://openrouter.ai/api/v1/chat/completions", {
+      timeoutMs: 30000,
+      method: "POST",
+      headers: {
+        authorization: `Bearer ${apiKey}`,
+        "content-type": "application/json",
+        "http-referer": "https://github.com/hammerbaki/enterprise-llm-agent-harness",
+        "x-title": "Enterprise LLM Agent Harness"
+      },
+      body: JSON.stringify({
+        model,
+        messages: [{ role: "user", content: prompt }],
+        response_format: { type: "json_object" },
+        max_tokens: 900,
+        temperature
+      })
+    });
+    return res.choices?.map((choice) => choice.message?.content ?? "").join("\n").trim() ?? "";
+  }
+
+  throw new Error(`Unsupported LLM provider: ${provider}`);
+}
+
 function deterministicAnswer(contextPackage, mode) {
   const answer = composeDeterministicInvestorAnswer(contextPackage);
   return {
     mode,
     live: false,
     status: "fixture",
+    provider: "deterministic",
+    model: null,
     source: "deterministic-composer",
     summary: "Investor-facing answer composed from bounded source claims.",
     outputContract: {
@@ -1467,6 +1622,8 @@ function buildAnswerAssembly({ contextPackage, traces, llm, defaultCompany, list
       summary: "사용자에게는 핵심 인사이트를 먼저 보여주고, claim ID와 trace 세부 정보는 개발/논문용 기록으로 분리했습니다.",
       inputs: [
         `composer:${llm.mode}`,
+        `provider:${llm.provider ?? "unknown"}`,
+        `model:${llm.model ?? "none"}`,
         `policy:${contextPackage.promptPolicy.version}`,
         `outputContract:${llm.outputContract?.version ?? llmOutputContractVersion}`,
         `contractStatus:${llm.outputContract?.status ?? "unknown"}`,
@@ -1534,8 +1691,12 @@ function buildTraceEnvelope({ runId, group, representativeCompany, question, pre
     promptPolicyHash: sha256(promptPolicy),
     promptPolicyVersion,
     llmMode: llm.mode,
+    llmProvider: llm.provider ?? null,
+    llmModel: llm.model ?? null,
+    llmTemperature: llm.provider ? llmTemperature() : null,
     llmOutputContractVersion,
     llmOutputContractStatus: llm.outputContract?.status ?? "unknown",
+    llmOutputContractErrors: llm.outputContract?.errors ?? [],
     statusCounts,
     elapsedMs,
     reproducibility: {
@@ -2174,8 +2335,7 @@ function matchesStrictCompanyTerm(question, value, normalized) {
   const term = String(value ?? "").trim();
   if (!term) return false;
   const escaped = term.replace(/[.*+?^${}()|[\]\\]/gu, "\\$&");
-  const particleBoundary = "[와과의은는이가을를도만](?=$|[^0-9A-Za-z가-힣])";
-  const rawPattern = new RegExp(`(^|[^0-9A-Za-z가-힣])${escaped}($|[^0-9A-Za-z가-힣]|${particleBoundary})`, "iu");
+  const rawPattern = new RegExp(`(^|[^0-9A-Za-z가-힣])${escaped}($|[^0-9A-Za-z가-힣]|[와과의은는이가을를도만])`, "iu");
   if (rawPattern.test(raw)) return true;
   return normalizeCompanyMatch(raw) === normalized;
 }

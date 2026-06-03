@@ -1,5 +1,10 @@
 # Changelog
 
+## live-llm-expanded-protocol - 2026-06-03
+
+- Added live-LLM composition-boundary evaluation support for full-scenario runs, repeated runs, temperature settings, and fallback/recovery reporting.
+- Documented the 30-scenario x 3-model x 3-repeat arXiv protocol and the smaller temperature-stress protocol.
+
 ## public-baseline-v0.1 - 2026-05-23
 
 - README rewritten as a product-centric document; academic framing moved into a single "Design background" section.

@@ -46,6 +46,7 @@ npm run eval:samsung          # Samsung reference-slice scenarios
 npm run eval:sk               # SK reference-slice scenarios
 npm run eval:hyundai          # Hyundai Motor reference-slice scenarios
 npm run eval:lg               # LG reference-slice scenarios
+npm run eval:live-llm         # live-LLM composition-boundary checks
 npm run eval:fault-injection  # 7-mutation contract sensitivity check
 npm run latency:advisor       # latency dashboard from saved measurements
 ```
@@ -53,6 +54,10 @@ npm run latency:advisor       # latency dashboard from saved measurements
 Each command writes JSON output under `evals/results/` or `evals/dashboard/`. A
 successful `validate:release` exits 0 and prints a summary table for
 claim-reference, trace, answer, and hygiene contracts.
+
+The expanded live-LLM protocol is documented in
+`docs/live-llm-expanded-evaluation.md`. It supports the full 30-scenario set,
+model repeats, temperature settings, and explicit fallback/recovery reporting.
 
 ## Design background
 
