@@ -1,5 +1,10 @@
 # Changelog
 
+## live-llm-full-run - 2026-06-03
+
+- Added the 270-run live-LLM composition-boundary result artifact at `evals/results/live-llm-composition-boundary.full-30x3.2026-06-03.json`.
+- Added `docs/live-llm-run-log-2026-06-03.md` to record the API-run configuration, provider breakdown, failure-process summary, and interpretation boundary.
+
 ## live-llm-expanded-protocol - 2026-06-03
 
 - Added live-LLM composition-boundary evaluation support for full-scenario runs, repeated runs, temperature settings, and fallback/recovery reporting.
