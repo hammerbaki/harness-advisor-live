@@ -25,13 +25,17 @@ const runSpecs = providerSpecs.flatMap((providerSpec) =>
     ablations.map((ablation) => ({ ...providerSpec, temperature, ablation }))
   )
 );
-const scenarioSpecs = [
+const defaultScenarioSpecs = [
   { groupId: "samsung", path: "evals/scenarios/samsung.reference-slice.json" },
   { groupId: "sk", path: "evals/scenarios/sk.reference-slice.json" },
   { groupId: "hyundai-motor", path: "evals/scenarios/hyundai-motor.reference-slice.json" },
   { groupId: "lg", path: "evals/scenarios/lg.reference-slice.json" },
   { groupId: "hanwha", path: "evals/scenarios/hanwha.reference-slice.json" }
 ];
+// Override the scenario set list with ADVISOR_LIVE_LLM_SCENARIO_SETS, a CSV of
+// groupId:path pairs (e.g. for the adversarial-stress run). Defaults to the
+// canonical five reference slices, so existing runs are unchanged.
+const scenarioSpecs = parseScenarioSets(process.env.ADVISOR_LIVE_LLM_SCENARIO_SETS) ?? defaultScenarioSpecs;
 
 const scenarioSets = await Promise.all(scenarioSpecs.map(async (spec) => ({
   ...spec,
@@ -185,6 +189,18 @@ function parseCsv(value) {
     .split(",")
     .map((item) => item.trim())
     .filter(Boolean);
+}
+
+// Parse ADVISOR_LIVE_LLM_SCENARIO_SETS: "groupId:path,groupId:path". Returns
+// null when unset so the default scenario specs are used.
+function parseScenarioSets(value) {
+  const entries = parseCsv(value);
+  if (entries.length === 0) return null;
+  return entries.map((entry) => {
+    const idx = entry.indexOf(":");
+    if (idx < 0) throw new Error(`Invalid scenario set '${entry}'; expected groupId:path`);
+    return { groupId: entry.slice(0, idx).trim(), path: entry.slice(idx + 1).trim() };
+  });
 }
 
 function parseNumberCsv(value) {
