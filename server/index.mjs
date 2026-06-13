@@ -256,8 +256,9 @@ async function runAdvisor(body) {
     generatedAt
   };
 
+  const ablation = resolveAblation(body);
   const llm = await traced(traces, "llm.compose", () =>
-    composeWithLLM(contextPackage)
+    composeWithLLM(contextPackage, ablation)
   );
   const answerAssembly = buildAnswerAssembly({
     contextPackage,
@@ -870,7 +871,7 @@ function classifyAnswerIntent(question) {
   return "general";
 }
 
-async function composeWithLLM(contextPackage) {
+async function composeWithLLM(contextPackage, ablation = resolveAblation()) {
   const requestedProvider = normalizeLLMProvider(process.env.ADVISOR_LIVE_LLM_PROVIDER ?? process.env.LLM_PROVIDER);
   const provider = requestedProvider ?? firstConfiguredLLMProvider();
   if (!provider) {
@@ -985,6 +986,44 @@ async function composeWithLLM(contextPackage) {
   });
 
   const validation = validateStructuredAdvisorOutput(structured, contextPackage);
+
+  if (ablation === "prompt-only") {
+    // Ablation C3: the code-owned output-contract gate and deterministic
+    // fallback are disabled, so the live model's output reaches the reader
+    // unguarded. The validation result is still recorded for reporting, but it
+    // no longer changes the answer. Downstream contract checks then run on
+    // ungated output — this is the counterfactual the ablation measures.
+    const rawAnswer = structured && typeof structured === "object" && !Array.isArray(structured)
+      ? renderStructuredAdvisorOutput(structured)
+      : String(text ?? "");
+    compositionProcess.push({
+      stage: "output_contract_validation",
+      status: validation.passed ? "pass" : "fail",
+      ablationBypassed: true,
+      errorCount: validation.errors.length,
+      errors: validation.errors.slice(0, 8)
+    });
+    compositionProcess.push({ stage: "recovery", status: "disabled_by_ablation" });
+    return {
+      mode: "prompt-only-raw",
+      live: true,
+      status: "live",
+      provider,
+      model,
+      ablation: "prompt-only",
+      source: llmProviderLabel(provider),
+      summary: "Prompt-only ablation: live output passed through without code-owned contract enforcement.",
+      outputContract: {
+        version: llmOutputContractVersion,
+        status: validation.passed ? "validated" : "ungated_failure",
+        errors: validation.errors.slice(0, 8),
+        process: compositionProcess,
+        liveOutput: summarizeLiveLLMOutput(text)
+      },
+      answer: finalizeAdvisorAnswer(rawAnswer)
+    };
+  }
+
   if (validation.passed) {
     compositionProcess.push({
       stage: "output_contract_validation",
@@ -1042,6 +1081,21 @@ async function composeWithLLM(contextPackage) {
       liveOutput: summarizeLiveLLMOutput(text)
     }
   };
+}
+
+function normalizeAblation(value) {
+  const normalized = String(value ?? "").trim().toLowerCase();
+  if (!normalized) return null;
+  if (["prompt-only", "promptonly", "c3"].includes(normalized)) return "prompt-only";
+  if (["harness", "c0", "full"].includes(normalized)) return "harness";
+  return null;
+}
+
+// Ablation condition for the composition boundary. A per-request body.ablation
+// wins over the ADVISOR_ABLATION env var; the default "harness" path is the
+// unchanged production behavior.
+function resolveAblation(body) {
+  return normalizeAblation(body?.ablation) ?? normalizeAblation(process.env.ADVISOR_ABLATION) ?? "harness";
 }
 
 function normalizeLLMProvider(value) {

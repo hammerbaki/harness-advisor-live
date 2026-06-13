@@ -77,28 +77,61 @@ blocks.
 - Report effect sizes (risk difference in failure rate, with CI), not only
   p-values — MDPI reviewers expect this.
 
-## Implementation hooks (proposed, not yet built)
+## Implementation (built)
 
-The ablation can be implemented as environment-gated branches in
-`server/index.mjs` around the existing composition path, then driven by the
-existing live-LLM evaluator with a new condition axis. No new runtime
-architecture is required.
+Implemented as an environment/request-gated branch in `server/index.mjs` plus a
+condition axis in the live-LLM evaluator. No new runtime architecture was
+required, and the default (`harness`) path is byte-identical to the prior
+production behavior (verified: the deterministic Samsung baseline still passes
+6/6 at 100/100).
 
-- `ADVISOR_ABLATION=c0|c1|c2|c3` selects the condition.
-- Intervention points:
-  - `composeWithLLM` — for C2/C3, skip `validateStructuredAdvisorOutput` and the
-    deterministic fallback; pass the raw parsed model output through.
-  - `finalizeAdvisorAnswer` — for C1/C2/C3, bypass the leakage regex
-    (`visibleAnswerDevLeakPattern`) and recommendation-language normalization.
-  - `loadSourceBackedClaims` injection — for C3, do not attach selected claims to
-    the structured context; instead render them into the prompt text only.
-  - Trace/link assembly — for C3, omit code-built `processTrace`/`links` and
-    require the model to emit them, so the trace and link checks test the model
-    rather than the harness.
-- Extend the live-LLM evaluator to loop conditions (`ADVISOR_LIVE_LLM_ABLATION=c0,c3`)
-  and write one result artifact per condition under `evals/results/`, e.g.
-  `ablation-prompt-only.c0-vs-c3.30x3.<date>.json`, so each is independently
-  citable.
+**Where the enforcement actually lives.** Inspecting the code clarified the
+ablation: the single decisive gate is `validateStructuredAdvisorOutput` followed
+by deterministic fallback inside `composeWithLLM`. That validator is what rejects
+leaking, recommending, or malformed live output and replaces it with the clean
+deterministic answer — which is why the five code-owned checks pass 270/270.
+`finalizeAdvisorAnswer` is only whitespace normalization, not an enforcement
+gate. So the meaningful comparison collapses to two conditions:
+
+- **C0 `harness`** (default): validate → use live output if it passes, else
+  deterministic fallback. Unchanged production behavior.
+- **C3 `prompt-only`**: the validate-and-fallback gate is disabled; the live
+  model's output reaches the reader unguarded (the model is still *told* every
+  rule in the prompt — it simply isn't enforced in code). The eight contract
+  checks then run on ungated output. The validation result is still recorded for
+  reporting but no longer changes the answer.
+
+**Flags.**
+- Server: `ADVISOR_ABLATION=harness|prompt-only` (env), or per-request
+  `{"ablation":"prompt-only"}` in the `/api/advisor` body (body wins over env).
+  `resolveAblation` accepts `c0`/`c3` aliases.
+- Evaluator: `ADVISOR_LIVE_LLM_ABLATIONS=harness,prompt-only` adds an ablation
+  dimension to the run matrix; each run and provider summary records its
+  `ablation`, and `design.ablations` records the axis. Default `harness`
+  reproduces the original run unchanged.
+
+**Run command (needs `OPENROUTER_API_KEY`).**
+
+```bash
+export OPENROUTER_API_KEY="<redacted>"
+ADVISOR_LIVE_LLM_SCENARIO_POLICY=all \
+ADVISOR_LIVE_LLM_REPEATS=3 \
+ADVISOR_LIVE_LLM_TEMPERATURES=0.2 \
+ADVISOR_LIVE_LLM_ABLATIONS=harness,prompt-only \
+ADVISOR_LIVE_LLM_ALLOW_FAILURES=1 \
+ADVISOR_LIVE_LLM_OUTPUT=evals/results/ablation-prompt-only.c0-vs-c3.30x3.<date>.json \
+npm run eval:live-llm
+```
+
+This is 3 models × 30 scenarios × 3 repeats × 2 conditions = 540 live runs.
+Analysis groups runs by `ablation` and compares the per-check failure
+decomposition (Table A4) and final pass rates with paired McNemar tests.
+
+**Scorer note.** Under `prompt-only`, the first check (`live_llm_output_contract`)
+reflects a bypassed gate (`responseMode: prompt-only-raw`); the load-bearing
+comparison is on the content checks — `development_leak_absence`,
+`recommendation_language_absence`, `visible_answer_structure`,
+`source_claim_references` — applied identically to both conditions.
 
 ## Cost and scope
 

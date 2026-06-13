@@ -15,8 +15,15 @@ const providerSpecs = parseRunSpecs(
 const temperatures = parseNumberCsv(process.env.ADVISOR_LIVE_LLM_TEMPERATURES ?? "0.2");
 const repeatCount = parsePositiveInt(process.env.ADVISOR_LIVE_LLM_REPEATS ?? "1", 1);
 const scenarioPolicy = normalizeScenarioPolicy(process.env.ADVISOR_LIVE_LLM_SCENARIO_POLICY ?? "representative");
+// Ablation conditions (prompt-only ablation). Default "harness" reproduces the
+// original composition-boundary run unchanged; add "prompt-only" for the C0-vs-C3
+// counterfactual, e.g. ADVISOR_LIVE_LLM_ABLATIONS=harness,prompt-only.
+const ablations = parseCsv(process.env.ADVISOR_LIVE_LLM_ABLATIONS ?? "harness")
+  .map((value) => (["prompt-only", "promptonly", "c3"].includes(value.toLowerCase()) ? "prompt-only" : "harness"));
 const runSpecs = providerSpecs.flatMap((providerSpec) =>
-  temperatures.map((temperature) => ({ ...providerSpec, temperature }))
+  temperatures.flatMap((temperature) =>
+    ablations.map((ablation) => ({ ...providerSpec, temperature, ablation }))
+  )
 );
 const scenarioSpecs = [
   { groupId: "samsung", path: "evals/scenarios/samsung.reference-slice.json" },
@@ -64,7 +71,8 @@ for (const [runIndex, runSpec] of runSpecs.entries()) {
           const response = await callAdvisor(server.baseUrl, {
             groupId: item.groupId,
             question: item.scenario.question,
-            presentationMode: item.scenarioSet.runtimeAssumptions.presentationMode ?? "text"
+            presentationMode: item.scenarioSet.runtimeAssumptions.presentationMode ?? "text",
+            ablation: runSpec.ablation
           });
           const evaluatedRun = evaluateLiveRun(runSpec, item, response, repeatIndex);
           runs.push(evaluatedRun);
@@ -99,6 +107,7 @@ const output = {
   design: {
     providerSpecs,
     temperatures,
+    ablations,
     repeatCount,
     scenarioPolicy: selectedScenarioIds.length > 0
       ? "explicit scenario id subset"
@@ -322,6 +331,7 @@ function evaluateLiveRun(runSpec, item, response, repeatIndex) {
     provider: runSpec.provider,
     requestedModel: runSpec.model,
     temperature: runSpec.temperature,
+    ablation: runSpec.ablation ?? "harness",
     repeatIndex,
     groupId: item.groupId,
     scenarioSetId: item.scenarioSetId,
@@ -523,6 +533,7 @@ function summarizeProvider(runSpec, runs) {
     provider: runSpec.provider,
     requestedModel: runSpec.model,
     temperature: runSpec.temperature,
+    ablation: runSpec.ablation ?? "harness",
     scenarioCount: scenarios.length,
     repeatCount,
     plannedRuns: runs.length,
