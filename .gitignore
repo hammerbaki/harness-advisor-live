@@ -37,3 +37,6 @@ evals/results/*paired-optimized-rerun*.json
 evals/results/*persistent-baseline*.json
 evals/results/*persistent-optimized*.json
 evals/results/*recheck*.json
+
+# Generated static demo snapshots (rebuilt by npm run demo:snapshot)
+public/demo/

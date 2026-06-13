@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Release validation (structure, template, eval scenarios)
+        run: npm run validate:release
+
+      - name: Static demo snapshot (deterministic, credential-free)
+        run: npm run demo:snapshot
+
+      - name: Build static demo bundle
+        run: VITE_STATIC_DEMO=1 npx vite build
+
+      - name: Upload demo bundle artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: static-demo-dist
+          path: dist/
+          retention-days: 14

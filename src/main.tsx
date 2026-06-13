@@ -259,7 +259,10 @@ function InvestorAdvisorApp({
         {
           id: `${runId}-assistant-error`,
           role: "assistant",
-          text: "API 호출이 실패했습니다. 로컬 환경변수와 API server 상태를 확인해 주세요."
+          text:
+            error instanceof Error && error.message === STATIC_DEMO_MISS
+              ? "정적 데모에서는 미리 준비된 질문(빠른 질문 버튼)만 답변할 수 있습니다. 자유 질문은 로컬 실행(npm run dev + npm run api)에서 확인해 주세요."
+              : "API 호출이 실패했습니다. 로컬 환경변수와 API server 상태를 확인해 주세요."
         }
       ]);
     }
@@ -1022,11 +1025,22 @@ interface ChatMessage {
   response?: AdvisorResponse;
 }
 
+const STATIC_DEMO = import.meta.env.VITE_STATIC_DEMO === "1";
+const STATIC_DEMO_MISS = "static-demo-miss";
+
 async function fetchAdvisor(
   groupId: string,
   question: string,
   presentationMode: "text" | "briefing"
 ): Promise<AdvisorResponse> {
+  if (STATIC_DEMO) {
+    const res = await fetch(`/demo/advisor.${encodeURIComponent(groupId)}.json`);
+    if (!res.ok) throw new Error(STATIC_DEMO_MISS);
+    const snapshots = (await res.json()) as Record<string, AdvisorResponse>;
+    const snapshot = snapshots[`${presentationMode}::${question}`];
+    if (!snapshot) throw new Error(STATIC_DEMO_MISS);
+    return snapshot;
+  }
   const res = await fetch("/api/advisor", {
     method: "POST",
     headers: { "content-type": "application/json" },
@@ -1040,7 +1054,10 @@ async function fetchAdvisor(
 }
 
 async function fetchHomeBriefing(groupId: string, locale: UiLocale): Promise<HomeBriefingSnapshot> {
-  const res = await fetch(`/api/briefing?groupId=${encodeURIComponent(groupId)}&locale=${locale}`);
+  const url = STATIC_DEMO
+    ? `/demo/briefing.${encodeURIComponent(groupId)}.${locale}.json`
+    : `/api/briefing?groupId=${encodeURIComponent(groupId)}&locale=${locale}`;
+  const res = await fetch(url);
   if (!res.ok) {
     const text = await res.text();
     throw new Error(`${res.status}: ${text.slice(0, 180)}`);

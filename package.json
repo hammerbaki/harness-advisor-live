@@ -88,7 +88,9 @@
     "quality:sk": "AGENT_QUALITY_RESULT=evals/results/sk-reference-slice-v0.1.autoeval-baseline.2026-05-03.json AGENT_QUALITY_OUT=evals/dashboard/agent-dog.sk-reference-slice.2026-05-03.json node scripts/build-quality-dashboard-seed.mjs",
     "quality:hyundai": "AGENT_QUALITY_RESULT=evals/results/hyundai-motor-reference-slice-v0.1.autoeval-baseline.2026-05-03.json AGENT_QUALITY_OUT=evals/dashboard/agent-dog.hyundai-motor-reference-slice.2026-05-03.json node scripts/build-quality-dashboard-seed.mjs",
     "quality:lg": "AGENT_QUALITY_RESULT=evals/results/lg-reference-slice-v0.1.autoeval-baseline.2026-05-05.json AGENT_QUALITY_OUT=evals/dashboard/agent-dog.lg-reference-slice.2026-05-05.json node scripts/build-quality-dashboard-seed.mjs",
-    "latency:advisor": "node scripts/analyze-advisor-latency.mjs"
+    "latency:advisor": "node scripts/analyze-advisor-latency.mjs",
+    "demo:snapshot": "tsx scripts/export-static-demo.mts",
+    "build:demo": "npm run demo:snapshot && VITE_STATIC_DEMO=1 vite build"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^5.0.4",
@@ -100,6 +102,10 @@
   },
   "devDependencies": {
     "@types/react": "^19.2.0",
-    "@types/react-dom": "^19.2.0"
+    "@types/react-dom": "^19.2.0",
+    "tsx": "^4.22.4"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }

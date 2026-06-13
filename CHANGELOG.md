@@ -1,5 +1,13 @@
 # Changelog
 
+## public-baseline-v0.2 - 2026-06-13
+
+- This repository is now the single source of truth for development; the mirrored local development folder is retired (`docs/repository-workflow.md`).
+- Added GitHub Actions CI: typecheck, release validation, and a credential-free static demo build on every push and pull request.
+- Added the static demo pipeline: `scripts/export-static-demo.mts` snapshots deterministic briefing and quick-question answers, and `npm run build:demo` produces a hosting-ready bundle with `VITE_STATIC_DEMO=1`.
+- Added Cloudflare Pages deployment guide (`docs/deployment-cloudflare.md`); free-text questions are disabled in the static demo and show a local-run notice.
+- Pinned Node `>=22` via `engines`.
+
 ## live-llm-full-run - 2026-06-03
 
 - Added the 270-run live-LLM composition-boundary result artifact at `evals/results/live-llm-composition-boundary.full-30x3.2026-06-03.json`.
