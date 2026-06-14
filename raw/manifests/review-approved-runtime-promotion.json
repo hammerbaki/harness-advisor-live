@@ -23,18 +23,18 @@
       "groupId": "samsung",
       "manifestPath": "raw/manifests/samsung.source-backed-claims.json",
       "promotedRecords": 5,
-      "firstId": "samsung-sbc-032",
+      "firstId": "samsung-sbc-001",
       "lastId": "samsung-sbc-036",
       "records": [
         {
-          "id": "samsung-sbc-032",
+          "id": "samsung-sbc-001",
           "companyId": "samsung-electronics",
           "koreanName": "삼성전자",
-          "claimType": "financial_metric_preliminary",
-          "claimText": "삼성전자는 2026년 1분기 연결 기준 매출액 133.9조원, 영업이익 57.2조원, 영업이익률 42.8%를 제시했다.",
-          "sourceManifestId": "samsung-local-629eb49c47b4",
+          "claimType": "financial_metric",
+          "claimText": "삼성전자는 OpenDART 2024년 연결 기준 매출액 3,008,709억원, 영업이익 327,260억원으로 확인된다.",
+          "sourceManifestId": "samsung-dart-financial-table-2022-2024:samsung-electronics:2024",
           "evidenceLocators": [
-            "raw/extracted/samsung/official/samsung-local-629eb49c47b4-삼성전자_2026_1Q_실적발표.md:66"
+            "raw/manifests/samsung.dart-financial-table.2022-2024.json"
           ]
         },
         {
