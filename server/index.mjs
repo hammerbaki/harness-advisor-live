@@ -344,6 +344,23 @@ async function buildBriefingSnapshot(group, locale = "ko") {
   let financialMetaOverride = "";
   let financialHeadlineOverride = "";
   let financialBodyOverride = "";
+  if (locale === "en") {
+    const enMetrics = summarizeFinancialClaimText(financialClaim?.claimText, "en");
+    financialBodyOverride = enMetrics
+      ? `${enMetrics}. Source-backed via DART/OpenDART; open the linked filing for the original disclosure.`
+      : `${displayCompanyName(representativeCompany, "en")} financials are source-backed via DART; open the linked filing for the original disclosure.`;
+  }
+  const newsIsFixture = news.status === "fixture";
+  const newsHeadlineText = (locale === "en" && newsIsFixture)
+    ? `${displayCompanyName(representativeCompany, "en")} — live news not connected in this demo`
+    : (newsItem.title ?? (locale === "en"
+        ? `${displayCompanyName(representativeCompany, "en")} — key news`
+        : `${displayCompanyName(representativeCompany, locale)} 주요 뉴스 확인`));
+  const newsBodyText = (locale === "en" && newsIsFixture)
+    ? "Live Naver News search connects in credentialed runs; this static demo shows a deterministic placeholder."
+    : (newsItem.description ?? (locale === "en"
+        ? `Open the latest public news for ${displayCompanyName(representativeCompany, "en")}.`
+        : `${displayCompanyName(representativeCompany, locale)} 관련 최신 공개 뉴스 원문을 확인합니다.`));
 
   const krxCode = representativeCompany?.krxCode ?? "미검증";
   const marketSourceUrl = representativeCompany?.krxCode
@@ -362,8 +379,8 @@ async function buildBriefingSnapshot(group, locale = "ko") {
       meta: locale === "en"
         ? `${formatRelativeNewsTime(newsItem.pubDate, locale)} · ${newsSourceLabel}`
         : `${formatRelativeNewsTime(newsItem.pubDate, locale)} · ${newsSourceLabel}`,
-      headline: conciseCardText(newsItem.title ?? `${displayCompanyName(representativeCompany, locale)} 주요 뉴스 확인`, 52),
-      body: conciseCardText(newsItem.description ?? `${displayCompanyName(representativeCompany, locale)} 관련 최신 공개 뉴스 원문을 확인합니다.`, 92),
+      headline: conciseCardText(newsHeadlineText, 52),
+      body: conciseCardText(newsBodyText, 92),
       source: newsSourceLabel,
       sourceUrl: newsItem.url ?? `https://search.naver.com/search.naver?where=news&query=${encodeURIComponent(buildBriefingNewsQuery(group, representativeCompany))}`,
       footerLeft: locale === "en" ? "Naver News OpenAPI basis" : "Naver 뉴스 검색 기준",
@@ -2294,7 +2311,7 @@ function formatFinancialDisclosureMeta(disclosure, locale = "ko") {
 
 function buildFinancialHeadline(company, claim, locale = "ko") {
   const companyName = displayCompanyName(company, locale);
-  const metrics = summarizeFinancialClaimText(claim?.claimText);
+  const metrics = summarizeFinancialClaimText(claim?.claimText, locale);
   if (metrics) return `${companyName} · ${metrics}`;
   return locale === "en"
     ? `${companyName} · financial source checked`
@@ -2309,16 +2326,38 @@ function buildFinancialDisclosureHeadline(company, disclosure, claim, locale = "
   return buildFinancialHeadline(company, claim, locale);
 }
 
-function summarizeFinancialClaimText(value) {
+function summarizeFinancialClaimText(value, locale = "ko") {
   const text = String(value ?? "");
-  const year = text.match(/20\d{2}년/u)?.[0] ?? "";
+  const yearKo = text.match(/20\d{2}년/u)?.[0] ?? "";
   const revenue = text.match(/매출(?:액)?(?:은|은\s*)?\s*([0-9,.]+조원|[0-9,.]+억원)/u)?.[1];
   const op = text.match(/영업이익(?:은|은\s*)?\s*([0-9,.]+조원|[0-9,.]+억원)/u)?.[1];
-  const margin = text.match(/영업이익률(?:은|은\s*)?\s*([0-9.]+%)/u)?.[1];
-  if (revenue && op && margin) return `${year} 매출 ${revenue} · 영업익 ${op} · OPM ${margin}`.trim();
-  if (revenue && op) return `${year} 매출 ${revenue} · 영업익 ${op}`.trim();
-  if (op && margin) return `${year} 영업익 ${op} · OPM ${margin}`.trim();
+  const marginKo = text.match(/영업이익률(?:은|은\s*)?\s*([0-9.]+%)/u)?.[1];
+  if (locale === "en") {
+    // Re-render the same source figures in English/KRW-trillion (not a prose
+    // translation): convert 억원/조원 to KRW T and compute OPM when not stated.
+    const year = yearKo.replace("년", "");
+    const revT = krwToTrillion(revenue);
+    const opT = krwToTrillion(op);
+    const marginPct = marginKo ? parseFloat(marginKo) : (revT && opT ? round1((100 * opT) / revT) : null);
+    const parts = [];
+    if (revT != null) parts.push(`revenue KRW ${round1(revT)}T`);
+    if (opT != null) parts.push(`operating income KRW ${round1(opT)}T`);
+    if (marginPct != null) parts.push(`OPM ${marginPct}%`);
+    return parts.length ? `${year ? `${year} ` : ""}${parts.join(" · ")}`.trim() : "";
+  }
+  if (revenue && op && marginKo) return `${yearKo} 매출 ${revenue} · 영업익 ${op} · OPM ${marginKo}`.trim();
+  if (revenue && op) return `${yearKo} 매출 ${revenue} · 영업익 ${op}`.trim();
+  if (op && marginKo) return `${yearKo} 영업익 ${op} · OPM ${marginKo}`.trim();
   return "";
+}
+
+function krwToTrillion(str) {
+  if (!str) return null;
+  const m = String(str).match(/([\d,.]+)\s*(조원|억원)/u);
+  if (!m) return null;
+  const v = parseFloat(m[1].replace(/,/gu, ""));
+  if (!Number.isFinite(v)) return null;
+  return m[2] === "조원" ? v : v / 10000; // 억원 → 조원
 }
 
 function buildBriefingNewsQuery(group, company) {
