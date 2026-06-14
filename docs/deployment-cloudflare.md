@@ -6,7 +6,24 @@ running the local advisor server in fixture mode; no DART/KRX/NAVER/LLM
 credentials are used or exposed. Free-text questions are intentionally
 disabled in the static demo and show a notice pointing to local execution.
 
-## One-time setup
+## Automated deploy (GitHub Actions) — recommended
+
+`.github/workflows/deploy-cloudflare.yml` builds the static demo and deploys it to
+Cloudflare Pages on every push to `main`. It activates once you add two repository
+secrets (GitHub → Settings → Secrets and variables → Actions):
+
+- `CLOUDFLARE_API_TOKEN` — a token with the **Cloudflare Pages: Edit** permission
+  (Cloudflare dashboard → My Profile → API Tokens → Create Token).
+- `CLOUDFLARE_ACCOUNT_ID` — your account id (Cloudflare dashboard → Workers & Pages,
+  shown in the right sidebar / URL).
+
+The first run creates the `enterprise-llm-agent-harness` Pages project and serves
+it at `https://enterprise-llm-agent-harness.pages.dev`. You can also trigger it
+manually (Actions → "Deploy demo to Cloudflare Pages" → Run workflow). Adding the
+two secrets is the only step that requires your Cloudflare account; everything
+else is in the repo.
+
+## One-time setup (alternative: dashboard Git connection)
 
 1. Cloudflare Dashboard -> Workers & Pages -> Create -> Pages ->
    Connect to Git -> select `hammerbaki/enterprise-llm-agent-harness`.

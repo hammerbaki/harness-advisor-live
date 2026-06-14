@@ -1,0 +1,44 @@
+name: Deploy demo to Cloudflare Pages
+
+# Builds the credential-free static demo and deploys it to Cloudflare Pages on
+# every push to main. Activates once these two repository secrets are set
+# (Settings -> Secrets and variables -> Actions):
+#   CLOUDFLARE_API_TOKEN   - a token with the "Cloudflare Pages: Edit" permission
+#   CLOUDFLARE_ACCOUNT_ID  - your Cloudflare account id
+# The first successful run creates the Pages project and serves it at
+# https://enterprise-llm-agent-harness.pages.dev . No DART/KRX/NAVER/LLM
+# credentials are used: the snapshot is generated in deterministic fixture mode.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # Skip cleanly on forks / before secrets are configured.
+    if: ${{ github.repository == 'hammerbaki/enterprise-llm-agent-harness' }}
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static demo (deterministic, credential-free)
+        run: npm run build:demo
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=enterprise-llm-agent-harness --branch=main
