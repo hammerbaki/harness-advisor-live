@@ -1,0 +1,17 @@
+# Cloudflare Pages deployment for the static demo (paper figure-capture target).
+#
+# The static demo is built with `npm run build:demo`, which snapshots the
+# ko/en briefing + advisor data into public/demo/ and emits a fully static SPA
+# into dist/ (no Node backend required). Cloudflare Pages serves dist/ directly.
+#
+# Deploy:  npm run deploy:pages         (builds, then uploads dist/ via wrangler)
+# Auth:    wrangler login   OR   export CLOUDFLARE_API_TOKEN=<token with Pages:Edit>
+#
+# Capture URLs once deployed (SPA reads these query params client-side):
+#   English UI:        https://<project>.pages.dev/?paper=en
+#   English + capture: https://<project>.pages.dev/?paper=en&capture=paper
+#   Korean (default):  https://<project>.pages.dev/
+
+name = "enterprise-llm-agent-harness-demo"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-06-14"

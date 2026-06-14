@@ -90,7 +90,8 @@
     "quality:lg": "AGENT_QUALITY_RESULT=evals/results/lg-reference-slice-v0.1.autoeval-baseline.2026-05-05.json AGENT_QUALITY_OUT=evals/dashboard/agent-dog.lg-reference-slice.2026-05-05.json node scripts/build-quality-dashboard-seed.mjs",
     "latency:advisor": "node scripts/analyze-advisor-latency.mjs",
     "demo:snapshot": "tsx scripts/export-static-demo.mts",
-    "build:demo": "npm run demo:snapshot && VITE_STATIC_DEMO=1 vite build"
+    "build:demo": "npm run demo:snapshot && VITE_STATIC_DEMO=1 vite build",
+    "deploy:pages": "npm run build:demo && npx wrangler@4 pages deploy dist --project-name=enterprise-llm-agent-harness-demo"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^5.0.4",
