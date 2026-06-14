@@ -788,7 +788,11 @@ async function loadSourceBackedClaims(group, question) {
   }
 
   const manifest = await readSourceBackedClaimManifest(manifestPath);
-  const records = Array.isArray(manifest.records) ? manifest.records : [];
+  const allRecords = Array.isArray(manifest.records) ? manifest.records : [];
+  // Claims whose runtimeUsePolicy is marked excluded (e.g. an implausible seed
+  // figure pending re-verification) are kept in the manifest for audit but never
+  // enter runtime context, the briefing, or the advisor answer.
+  const records = allRecords.filter((record) => !isRuntimeExcludedClaim(record));
   const selectedClaims = selectClaimsForQuestion(records, question, group).map(toRuntimeClaim);
 
   return {
@@ -802,6 +806,10 @@ async function loadSourceBackedClaims(group, question) {
     totalClaims: records.length,
     selectedClaims
   };
+}
+
+function isRuntimeExcludedClaim(record) {
+  return String(record?.runtimeUsePolicy ?? "").startsWith("excluded");
 }
 
 async function readSourceBackedClaimManifest(manifestPath) {

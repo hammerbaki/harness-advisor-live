@@ -4306,7 +4306,7 @@
         "SRC-10",
         "SRC-11"
       ],
-      "runtimeUsePolicy": "eligible_for_bounded_context_with_preliminary_result_label",
+      "runtimeUsePolicy": "excluded_pending_reverification",
       "reviewNote": "Preserves Samsung Electronics 2026Q1 preliminary earnings deck language and separates actual result from outlook.",
       "sourceDocumentDate": "2026Q1",
       "forwardLooking": false,
@@ -4379,7 +4379,8 @@
       },
       "rightsPolicy": "Public source URL may be cited; local extracted full text must not be redistributed unless rights are verified.",
       "paperUseLevel": "source-backed-narrative-seed-claim",
-      "promotedAt": "2026-05-06T04:38:15.573Z"
+      "promotedAt": "2026-05-06T04:38:15.573Z",
+      "exclusionReason": "Implausible extracted figure: Samsung Electronics 2026Q1 revenue 133.9T / operating income 57.2T implies a ~42.8% operating margin (real Samsung quarterly OI ~7-10T). Likely a table-row label-to-number mis-mapping in extraction. Excluded from runtime pending re-verification against the source IR deck; record retained for audit."
     },
     {
       "id": "samsung-sbc-021",
@@ -5269,7 +5270,7 @@
         "SRC-04",
         "SRC-05"
       ],
-      "runtimeUsePolicy": "eligible_for_bounded_context_with_preliminary_result_label",
+      "runtimeUsePolicy": "excluded_pending_reverification",
       "stalenessPolicy": "current_until_newer_quarterly_result_or_audited_filing",
       "verificationState": "source_backed_seed",
       "forwardLooking": false,
@@ -5308,7 +5309,8 @@
       "approvalDecision": "approved_for_seed_config_preparation",
       "reviewApprovalArtifact": "raw/manifests/claim-review-approval-record.json",
       "paperUseLevel": "source-backed-review-approved-claim",
-      "promotedAt": "2026-05-07T07:45:02.405Z"
+      "promotedAt": "2026-05-07T07:45:02.405Z",
+      "exclusionReason": "Implausible extracted figure: Samsung Electronics 2026Q1 revenue 133.9T / operating income 57.2T implies a ~42.8% operating margin (real Samsung quarterly OI ~7-10T). Likely a table-row label-to-number mis-mapping in extraction. Excluded from runtime pending re-verification against the source IR deck; record retained for audit."
     },
     {
       "id": "samsung-sbc-033",
