@@ -1,5 +1,7 @@
 # Korea Corporate Briefing Agent
 
+[![CI](https://github.com/hammerbaki/enterprise-llm-agent-harness/actions/workflows/ci.yml/badge.svg)](https://github.com/hammerbaki/enterprise-llm-agent-harness/actions/workflows/ci.yml)
+
 Mobile briefing tool for Korea's five largest corporate groups: Samsung, SK,
 Hyundai Motor, LG, and Hanwha. The app produces a short, source-linked briefing
 per company from public filings (DART), market data (KRX), and news: financial

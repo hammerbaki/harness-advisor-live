@@ -25,6 +25,7 @@ npm run validate:release      # structure + template + eval scenarios; CI gate; 
 npm run validate:structure    # structural integrity of manifests/configs
 npm run validate:template     # briefing template contract
 npm run validate:evals        # frozen eval scenario definitions
+npm run validate:prompt-control # audits the prompt control plane (raw/manifests/prompt-control-plane-audit.json) — prompts stay facts-free
 npm run eval:samsung          # per-group reference-slice scenarios (also :sk :hyundai :lg)
 npm run eval:advisor          # auto-eval baseline loop against rubric advisor.answer-quality.v0.2.json
 npm run eval:live-llm         # live-LLM composition-boundary check (live; see live-run knobs below)
@@ -63,7 +64,7 @@ The runtime is split into a **deterministic harness** (always present) and a **r
 
 - **`configs/groups.json`** — source of truth for group/company resolution: display order (FTC 2025 asset rank), KRX codes, Yahoo tickers, DART codes, aliases (used for entity routing), wiki namespaces, and per-group source-readiness status. Samsung is the neutral default UI target; Hanwha is the reference vertical slice that defines the manifest shape other groups copy.
 
-- **`raw/manifests/`** — the source authority layer: public-source manifests, evidence metadata, extraction reports, and **promoted source-backed claims** (`<group>.source-backed-claims.json`). Treat as immutable inputs; do not rewrite during wiki compilation. A claim is not runtime-eligible until matched to a manifest entry and a public source pointer and explicitly promoted.
+- **`raw/manifests/`** — the source authority layer: public-source manifests, evidence metadata, extraction reports, and **promoted source-backed claims** (`<group>.source-backed-claims.json`). Treat as immutable inputs; do not rewrite during wiki compilation. A claim is not runtime-eligible until matched to a manifest entry and a public source pointer and explicitly promoted. A promoted claim can still be held out of runtime via the v0.3 claim-eligibility mechanism (`isRuntimeExcludedClaim` / `runtimeUsePolicy: excluded_*` in `server/index.mjs`) — reserved for genuinely non-eligible claims; no claim is excluded in the current baseline, and do not exclude an official source-backed claim on plausibility/cutoff grounds.
 
 - **`wiki/`** — compiled context pages (per `wikiNamespace`) the composer loads. Generated from `raw/` manifests; the wiki must never replace the manifest as source of truth.
 
