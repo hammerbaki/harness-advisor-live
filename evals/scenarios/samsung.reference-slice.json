@@ -13,11 +13,7 @@
   "runtimeAssumptions": {
     "presentationMode": "text",
     "currentExpectedRuntimeMode": "mixed",
-    "allowedRuntimeModesAfterLiveApi": [
-      "mixed",
-      "fallback",
-      "live"
-    ],
+    "allowedRuntimeModesAfterLiveApi": ["mixed", "fallback", "live"],
     "expectedTraceSteps": [
       "dart.disclosures",
       "krx.market",
@@ -60,6 +56,7 @@
       "intent": "Check whether Samsung Electronics questions route to Samsung Electronics and select official IR plus DART financial claims.",
       "expectedRepresentativeCompanyId": "samsung-electronics",
       "expectedClaimIds": [
+        "samsung-sbc-020",
         "samsung-sbc-001",
         "samsung-sbc-016",
         "samsung-sbc-021"
@@ -159,6 +156,7 @@
       "intent": "Check whether a cross-affiliate Samsung comparison preserves explicit company mentions, selects source-backed financial claims, and keeps the answer investor-facing without expanding beyond promoted claims.",
       "expectedRepresentativeCompanyId": "samsung-electronics",
       "expectedClaimIds": [
+        "samsung-sbc-020",
         "samsung-sbc-001",
         "samsung-sbc-002",
         "samsung-sbc-016",
