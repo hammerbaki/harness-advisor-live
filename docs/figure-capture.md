@@ -33,14 +33,19 @@ Implication for figures:
   English figures are required. Recommend (a) for now; note it as a localization
   boundary, not a defect.
 
-**Data-integrity note (fixed):** the financial brief card now headlines the
-audited annual OpenDART figure (e.g., Samsung 2024 revenue KRW 300.9T / operating
-income KRW 32.7T / 10.9% OPM) for every group, after `selectBriefingFinancialClaim`
-was changed to prefer audited annual metrics over seed-level quarterly narrative
-claims. Earlier captures must not be reused if they show the implausible ~42.8%
-Samsung operating margin from the superseded seed claim. The news card remains an
-honest "live news not connected" placeholder in fixture mode and must not be
-replaced with a fabricated headline.
+**Data-integrity note:** the financial brief card headlines the *latest official
+quarterly* claim when present (`selectBriefingFinancialClaim` was reverted to this
+ranking in commit `962bfd2` per the maintainer's preference; the
+preliminary/unaudited status is carried by `runtimeUsePolicy`). For Samsung this
+surfaces the 2026Q1 seed figure (revenue KRW 133.9T / operating income KRW 57.2T /
+~42.8% OPM). That operating-margin figure is implausibly high for Samsung
+Electronics, but it is a **promoted, source-backed claim** and is shown faithfully
+rather than vetoed on plausibility grounds — both the audited annual figure
+(2024: KRW 300.9T / 32.7T / 10.9% OPM) and the preliminary quarterly figure appear,
+labelled, in the full advisor answer. Do not silently substitute or "correct" these
+source values in a capture. The news card remains an honest "live news not
+connected" placeholder in fixture mode and must not be replaced with a fabricated
+headline.
 
 ## Capture procedure
 

@@ -8,7 +8,7 @@ per company from public filings (DART), market data (KRX), and news: financial
 signals, risks, monitoring points, and follow-up questions. Every visible claim
 links back to a registered source.
 
-<img src="docs/ui_mobile_main_ko_callout.png" alt="Five-group mobile briefing selector" width="760">
+<img src="docs/ui_mobile_main_en.png" alt="Five-group mobile briefing selector" width="390">
 
 The same interface produces a source-linked answer for the selected company:
 
