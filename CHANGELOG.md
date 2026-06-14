@@ -1,5 +1,14 @@
 # Changelog
 
+## public-baseline-v0.3 - 2026-06-14
+
+- Added a prompt-only ablation at the composition boundary (`ADVISOR_ABLATION` / per-request `ablation`; evaluator axis `ADVISOR_LIVE_LLM_ABLATIONS`). Result artifacts: `evals/results/ablation-prompt-only.c0-vs-c3.30x3.2026-06-13.json` (540 runs over the 30 fixed scenarios) and `evals/results/ablation-adversarial.c0-vs-c3.2026-06-13.json` (180 runs over new adversarial-stress scenarios). Finding: under adversarial prompting the code-owned gate blocks 100% of recommendation-language and internal-leakage violations that the prompt-only condition admits (McNemar p<0.001).
+- Added adversarial-stress scenario sets (`evals/scenarios/*.adversarial-stress.json`) and `ADVISOR_LIVE_LLM_SCENARIO_SETS` to target alternate scenario sets.
+- Added a runtime claim-eligibility mechanism (`isRuntimeExcludedClaim` / `runtimeUsePolicy: excluded_*`) for genuinely non-eligible claims; no claim is excluded in this baseline.
+- Briefing cards now render in English under the `en` locale (financial figures re-rendered in KRW-trillion, honest English news placeholder) for international figure capture.
+- Added a Cloudflare Pages auto-deploy workflow (`.github/workflows/deploy-cloudflare.yml`; activates on `CLOUDFLARE_API_TOKEN`/`CLOUDFLARE_ACCOUNT_ID` secrets).
+- Added `CLAUDE.md`; documented the two-repository (code + manuscript) operating model.
+
 ## public-baseline-v0.2 - 2026-06-13
 
 - This repository is now the single source of truth for development; the mirrored local development folder is retired (`docs/repository-workflow.md`).
