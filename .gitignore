@@ -40,3 +40,7 @@ evals/results/*recheck*.json
 
 # Generated static demo snapshots (rebuilt by npm run demo:snapshot)
 public/demo/
+
+# Local-only source materials (copyrighted issuer PDFs) — never committed.
+# Redistribution governed by each source rights policy (raw/README.md).
+/docs/Knowledge Base/
