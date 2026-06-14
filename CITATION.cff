@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: enterprise-llm-agent-harness
+authors:
+  - family-names: Ahn
+    given-names: Joongho
+    affiliation: AI Leadership Research Center
+  - family-names: Kim
+    given-names: Moonsoo
+    affiliation: AI Leadership Research Center
+version: public-baseline-v0.3
+date-released: 2026-06-14
+doi: 10.5281/zenodo.20685423
+url: "https://github.com/hammerbaki/enterprise-llm-agent-harness"
+repository-code: "https://github.com/hammerbaki/enterprise-llm-agent-harness"
+license: CC-BY-4.0
