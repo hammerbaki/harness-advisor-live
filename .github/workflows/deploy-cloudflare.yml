@@ -1,13 +1,13 @@
 name: Deploy demo to Cloudflare Pages
 
 # Builds the credential-free static demo and deploys it to Cloudflare Pages on
-# every push to main. Activates once these two repository secrets are set
+# every push to main. Dormant until these two repository secrets are set
 # (Settings -> Secrets and variables -> Actions):
 #   CLOUDFLARE_API_TOKEN   - a token with the "Cloudflare Pages: Edit" permission
 #   CLOUDFLARE_ACCOUNT_ID  - your Cloudflare account id
-# The first successful run creates the Pages project and serves it at
-# https://enterprise-llm-agent-harness.pages.dev . No DART/KRX/NAVER/LLM
-# credentials are used: the snapshot is generated in deterministic fixture mode.
+# Without the secrets the job skips cleanly (green, no deploy) instead of failing.
+# The production URL is https://enterprise-llm-agent-harness-demo.pages.dev . No
+# DART/KRX/NAVER/LLM credentials are used: the snapshot is built in fixture mode.
 
 on:
   push:
@@ -17,28 +17,46 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    # Skip cleanly on forks / before secrets are configured.
+    # Skip on forks; the per-step gate below skips when secrets are absent.
     if: ${{ github.repository == 'hammerbaki/enterprise-llm-agent-harness' }}
     permissions:
       contents: read
       deployments: write
+    env:
+      CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
     steps:
+      - name: Check Cloudflare credentials
+        id: creds
+        run: |
+          if [ -n "$CF_API_TOKEN" ] && [ -n "$CF_ACCOUNT_ID" ]; then
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID not set; skipping Cloudflare deploy."
+          fi
+
       - uses: actions/checkout@v4
+        if: steps.creds.outputs.configured == 'true'
 
       - uses: actions/setup-node@v4
+        if: steps.creds.outputs.configured == 'true'
         with:
           node-version: 22
           cache: npm
 
       - name: Install dependencies
+        if: steps.creds.outputs.configured == 'true'
         run: npm ci
 
       - name: Build static demo (deterministic, credential-free)
+        if: steps.creds.outputs.configured == 'true'
         run: npm run build:demo
 
       - name: Deploy to Cloudflare Pages
+        if: steps.creds.outputs.configured == 'true'
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=enterprise-llm-agent-harness --branch=main
+          command: pages deploy dist --project-name=enterprise-llm-agent-harness-demo --branch=main
