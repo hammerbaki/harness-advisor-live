@@ -2272,14 +2272,10 @@ function displayCompanyName(company, locale = "ko") {
 
 function selectBriefingFinancialClaim(claims, company) {
   const companyClaims = claims.filter((claim) => !company?.id || !claim.companyId || claim.companyId === company.id);
-  // Prefer audited annual OpenDART figures for the headline financial card.
-  // The exact-match guard excludes preliminary/forward narrative variants such as
-  // financial_metric_preliminary and financial_business_pipeline, whose seed-level
-  // quarterly figures should not headline the briefing as confirmed results.
-  const isAuditedMetric = (claim) => /^financial_(metric|trend)$/u.test(String(claim.claimType ?? ""));
+  // Headline the most relevant financial claim the question selection ranked first
+  // (the latest official quarterly when present); the runtime use policy carries
+  // the preliminary/unaudited label where applicable.
   return (
-    companyClaims.find((claim) => isAuditedMetric(claim) && /OpenDART/u.test(String(claim.claimText ?? ""))) ??
-    companyClaims.find((claim) => isAuditedMetric(claim)) ??
     companyClaims.find((claim) => /financial_metric|financial_trend/u.test(String(claim.claimType ?? ""))) ??
     companyClaims.find((claim) => /매출|영업이익|순이익|부채|현금흐름/u.test(String(claim.claimText ?? ""))) ??
     companyClaims[0] ??
