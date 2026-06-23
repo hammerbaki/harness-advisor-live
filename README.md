@@ -8,7 +8,7 @@ per company from public filings (DART), market data (KRX), and news: financial
 signals, risks, monitoring points, and follow-up questions. Every visible claim
 links back to a registered source.
 
-<img src="docs/ui_mobile_main_en.png" alt="Five-group mobile briefing selector" width="390">
+<img src="docs/ui_mobile_main_ko.png" alt="Mobile briefing feed for the selected corporate group (Korean UI; Korean public-data slice)" width="390">
 
 The same interface produces a source-linked answer for the selected company:
 
@@ -111,7 +111,7 @@ If you cite this repository:
   year   = {2026},
   url    = {https://github.com/hammerbaki/enterprise-llm-agent-harness},
   doi    = {10.5281/zenodo.20685423},
-  note   = {Version public-baseline-v0.5.1}
+  note   = {Version public-baseline-v0.5.2}
 }
 ```
 
@@ -128,7 +128,7 @@ endorsement; the earlier *Applied Sciences* track is no longer being prepared.
 - [ ] Finalize the arXiv preprint and submit (cs.AI); add the arXiv ID and link
       here and in `CITATION.cff` once assigned.
 - [ ] Pin the manuscript repo (`harness-paper`, `artifacts/dev-pin.txt`) to the
-      `public-baseline-v0.5.1` tag and regenerate its tables from this repo.
+      `public-baseline-v0.5.2` tag and regenerate its tables from this repo.
 
 **Strengthen the evaluation (RQ defense)**
 - [ ] Add an external guardrail baseline (e.g. NeMo Guardrails / Guardrails AI)

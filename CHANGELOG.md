@@ -1,5 +1,25 @@
 # Changelog
 
+## public-baseline-v0.5.2 - 2026-06-23
+
+Figure frame and language cleanup (post-v0.5.1 review). No evaluation numbers
+changed; figure regeneration and capture/CSS only.
+
+- **Language policy:** both primary figures are now the Korean UI
+  (`docs/ui_mobile_main_ko.png`, `docs/ui_mobile_answer_ko.png`); the README hero
+  uses the Korean main. The answer composer is Korean-only, so a mixed
+  English-chrome / Korean-body figure was inconsistent. English-chrome capture
+  (`ui_mobile_main_en.png`) is retained as a supplementary asset; the paper
+  carries English captions. Rationale documented in `docs/figure-capture.md`.
+- **Frame no longer clipped:** the capture now screenshots the `.device-shell`
+  bounding box expanded by 36px per side, so the box-shadow frame and the side
+  buttons (at `left/right: -6px`) are fully included instead of cut at the edge.
+- **Clean background:** `paper-capture` background set to white (`#ffffff`), so no
+  pale-blue remains outside the phone's rounded corners.
+- **Filename standard:** `ui_mobile_main_ko.png` is the new Korean main; the stale
+  `ui_mobile_main_ko_callout.png` (old UI, no actual callouts) was removed.
+- Version consistency: README BibTeX note and roadmap manuscript-pin → current tag.
+
 ## public-baseline-v0.5.1 - 2026-06-23
 
 Second UI/figure polish round (post-v0.5 review). No evaluation numbers changed.

@@ -20,19 +20,21 @@ Capturing in English is only **partially** supported by the current code:
   locale-keyed (`advisor.<group>.json` is a single set). An English browser still
   shows a Korean answer.
 
-Implication for figures:
-- **Figure 1 (selector / briefing):** the group selector, stock card, and UI
-  chrome render in English under the `en` locale, but the **financial-card
-  metrics and the news card stay Korean** — the underlying source-backed claim
-  text and the news fixture are Korean (the slice is Korean public data). So an
-  `en` capture is *chrome-English, content-Korean*. Recommended: capture in `en`
-  (English chrome) and caption it as a Korean public-data slice; do not translate
-  the financial figures into the card, as that would restate source values.
-- **Figure 2 (answer):** either (a) keep Korean and add an English translation
-  caption / annotated callouts, or (b) invest in English answer composition
-  (new work: bilingual section titles + locale-keyed advisor snapshots) if fully
-  English figures are required. Recommend (a) for now; note it as a localization
-  boundary, not a defect.
+**Language policy for the figures (decided):** both primary figures use the
+**Korean UI** (`ui_mobile_main_ko.png`, `ui_mobile_answer_ko.png`), with an
+English caption/gloss in the paper. Rationale: the answer composer emits
+Korean-only section titles, so a fully-English figure set is impossible without
+new bilingual-composer work; an English-chrome / Korean-body image is internally
+inconsistent and reads as unfinished; the figure's evidential role (source links
+present, no internal IDs, insight-first structure, no recommendation language) is
+language-independent and is carried by the caption; and the slice is Korean public
+data, so Korean content is the honest presentation. An English-chrome capture
+(`ui_mobile_main_en.png`) is kept as a **supplementary** asset only (to show the
+`en` locale works); it is *chrome-English, content-Korean* and is not a primary
+figure. Do not translate financial figures into the card, as that would restate
+source values. Fully-English figures would require bilingual section titles +
+locale-keyed advisor snapshots (out of scope) — note it as a localization
+boundary, not a defect.
 
 **Data-integrity note:** the financial brief card headlines the *latest official
 quarterly* claim when present (`selectBriefingFinancialClaim` was reverted to this
@@ -54,12 +56,20 @@ Captures must be reproducible and pinned to a commit.
 
 ### Scripted capture (recommended)
 
-`scripts/capture-figures.mjs` (`npm run figures:capture`) regenerates the two
-README/manuscript figures deterministically. It spawns the static server over the
-committed `dist/` bundle on `127.0.0.1`, renders at a 900px viewport (wider than
-the 720px mobile breakpoint, so the realistic device frame is preserved), clips
-to `.device-shell`, and writes `docs/ui_mobile_main_en.png` and
-`docs/ui_mobile_answer_ko.png`.
+`scripts/capture-figures.mjs` (`npm run figures:capture`) regenerates the figures
+deterministically. It spawns the static server over the committed `dist/` bundle
+on `127.0.0.1`, renders at a 900px viewport (wider than the 720px mobile
+breakpoint, so the realistic device frame is preserved), and screenshots a region
+= the `.device-shell` bounding box **expanded by 36px on every side** so the
+box-shadow frame and the side buttons (at `left/right: -6px`, outside the shell
+box) are fully included rather than clipped. The `paper-capture` background is
+white, so the margin around the phone is clean. It writes:
+
+- `docs/ui_mobile_main_ko.png` — primary Figure 1 (Korean briefing feed)
+- `docs/ui_mobile_answer_ko.png` — primary Figure 2 (Korean answer, pinned to the
+  top so it starts at "핵심 인사이트")
+- `docs/ui_mobile_main_en.png` — supplementary (English chrome; not a primary
+  figure)
 
 ```bash
 npm ci
@@ -93,11 +103,13 @@ Use these verbatim, filling the bracketed fields. The goal is that the figure's
 mode and provenance are unambiguous, so a reviewer cannot read a fixture-mode
 demo as evidence of live performance.
 
-**Figure 1 — selector / briefing (English):**
-> Figure 1. Group selector and briefing cards of the Korea Corporate Briefing
-> Agent, rendered in English from the deterministic fixture-mode static demo
-> deployed on Cloudflare Pages (commit `[hash]`, tag `[tag]`). Briefing content is
-> assembled from promoted source-backed claims; no live DART/KRX/News/LLM calls
+**Figure 1 — selector / briefing (Korean UI):**
+> Figure 1. Group selector and briefing feed of the Korea Corporate Briefing
+> Agent (Korean UI; the slice is Korean public data). Captured from the
+> deterministic fixture-mode static demo (commit `[hash]`, tag `[tag]`). Each card
+> links to its public source and carries a "Sample data" (샘플 데이터) badge.
+> Briefing content is assembled from promoted source-backed claims; no live
+> DART/KRX/News/LLM calls
 > are made in this build.
 
 **Figure 2 — answer (Korean body, English caption):**

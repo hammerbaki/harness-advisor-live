@@ -82,12 +82,15 @@ try {
   });
   const page = await ctx.newPage();
 
-  // Clip to .device-shell so the figure is the realistic phone frame itself.
-  // scrollTopSelector (optional): pin the scroll container to the top before the
-  // shot so the answer figure is deterministic (starts at the first section),
-  // rather than wherever auto-scroll left it.
+  // Capture a region = the .device-shell bounding box expanded by PAD on every
+  // side, so the box-shadow frame and the side buttons (which sit at left/right
+  // -6px, outside the shell box) are fully included rather than clipped. The
+  // paper-capture background is white, so the margin around the phone is clean.
+  // scrollTopSelector (optional): pin the scroll container to the top first so
+  // the answer figure is deterministic (starts at the first section).
+  const PAD = 36;
   async function shotStage(file, { scrollTopSelector } = {}) {
-    const el = await page.waitForSelector(".device-shell", { timeout: 30000 });
+    await page.waitForSelector(".device-shell", { timeout: 30000 });
     await page.waitForTimeout(900); // settle fonts/logos/answer render
     if (scrollTopSelector) {
       await page.evaluate((sel) => {
@@ -96,25 +99,36 @@ try {
       }, scrollTopSelector);
       await page.waitForTimeout(250);
     }
-    await el.screenshot({ path: `${OUT_DIR}/${file}` });
+    const box = await page.evaluate(() => {
+      const r = document.querySelector(".device-shell").getBoundingClientRect();
+      return { x: r.x, y: r.y, width: r.width, height: r.height };
+    });
+    const clip = {
+      x: Math.max(0, box.x - PAD),
+      y: Math.max(0, box.y - PAD),
+      width: box.width + PAD * 2,
+      height: box.height + PAD * 2
+    };
+    await page.screenshot({ path: `${OUT_DIR}/${file}`, clip });
     console.log(`[figure] ${file}`);
   }
 
-  // Figure 1 — selector / briefing feed (English chrome, capture layout).
+  // Figure 1 (primary) — Korean briefing feed. Both README figures use Korean
+  // chrome so the chrome and the Korean-only answer body stay consistent; the
+  // paper carries an English caption/gloss.
+  await page.goto(`${base}/?capture=paper`, { waitUntil: "networkidle" });
+  await shotStage("ui_mobile_main_ko.png");
+
+  // Supplementary — English chrome briefing (shows the en locale works). Not the
+  // primary README figure; kept for the appendix if wanted.
   await page.goto(`${base}/?paper=en&capture=paper`, { waitUntil: "networkidle" });
   await shotStage("ui_mobile_main_en.png");
 
-  // Korean briefing feed (regenerates the legacy *_ko_callout asset to the
-  // current UI; manual annotation callouts, if needed, are re-added by hand).
-  await page.goto(`${base}/?capture=paper`, { waitUntil: "networkidle" });
-  await shotStage("ui_mobile_main_ko_callout.png");
-
-  // Figure 2 — a source-linked answer. English chrome; the answer body is
-  // Korean-only (composer emits Korean section titles), so this stays *_ko.
+  // Figure 2 — a source-linked answer, Korean chrome + Korean body (consistent).
   // Pin the conversation to the top so the figure starts at "핵심 인사이트".
-  await page.goto(`${base}/?paper=en&capture=paper`, { waitUntil: "networkidle" });
+  await page.goto(`${base}/?capture=paper`, { waitUntil: "networkidle" });
   await page.waitForSelector(".device-shell", { timeout: 30000 });
-  await page.getByRole("button", { name: "Group", exact: true }).click();
+  await page.locator(".quick-buttons button").nth(2).click(); // target / 종목
   await page.waitForSelector(".message.assistant", { timeout: 30000 });
   await shotStage("ui_mobile_answer_ko.png", { scrollTopSelector: ".conversation" });
 
