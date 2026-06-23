@@ -1902,7 +1902,18 @@ function buildLinks(group, dart, market, news, sourceBackedClaims) {
       source: firstClaim.sourceManifestId
     });
   }
-  if (firstNews && news.status !== "fixture") links.push({ label: firstNews.title ?? "최근 뉴스", href: firstNews.url, source: news.source });
+  if (firstNews && news.status !== "fixture") {
+    links.push({ label: firstNews.title ?? "최근 뉴스", href: firstNews.url, source: news.source });
+  } else {
+    // Fixture mode has no live news item; expose an honest news-search affordance
+    // (a real public search endpoint, not a fabricated headline) so the news
+    // source channel is still represented in the source links.
+    links.push({
+      label: `${displayGroupName(group)} 뉴스 검색`,
+      href: `https://search.naver.com/search.naver?where=news&query=${encodeURIComponent(displayGroupName(group))}`,
+      source: "news-search"
+    });
+  }
   links.push({
     label: `${displayGroupName(group)} 공식 사이트`,
     href: publicWebsiteForGroup(group.id),

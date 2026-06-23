@@ -139,10 +139,16 @@ demo as evidence of live performance.
 **Figure A1 — reader-facing evidence affordances (appendix):**
 > Figure A1. Reader-facing evidence affordances of a source-linked answer (Korean
 > UI), captured from the deterministic fixture-mode static demo (commit `[hash]`).
-> (a) Source links, each tagged with a source-state label (DART/OpenDART, KRX,
-> 공식 사이트, 시장 데이터, 뉴스) derived from the link target — internal source
-> identifiers are never shown. (b) Suggested follow-up questions. The developer
-> trace panel is hidden in this view; both panels are reader-facing only.
+> (a) and (b) are **focused detail crops from the full mobile interface** — the two
+> affordances render together in one answer-pack, so a crop per affordance is
+> shown rather than two identical full-phone views. (a) Source links spanning the
+> available source channels (DART filing, IR/disclosure cross-reference, KRX market
+> data, and a news-search link), each tagged with a source-state label
+> (DART/OpenDART, KRX, 공식 사이트, 시장 데이터, 뉴스) derived from the link
+> target — internal source identifiers are never shown. In fixture mode the news
+> entry is a public news-**search** link (no live headline is fabricated). (b)
+> Suggested follow-up questions. The developer trace panel is hidden in this view;
+> both panels are reader-facing only.
 
 **General mode-disclosure sentence** (place in the figure section or methods):
 > All UI figures are captured from the credential-free static demo

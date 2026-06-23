@@ -1,5 +1,23 @@
 # Changelog
 
+## public-baseline-v0.5.5 - 2026-06-24
+
+Figure ↔ caption consistency pass (post-v0.5.4 review). No evaluation numbers
+changed; eval scenarios re-validated after the link change.
+
+- Source links now represent the **news channel in fixture mode** too: when no
+  live news item exists, `buildLinks` adds an honest news-**search** link (a real
+  public search endpoint, not a fabricated headline; source-state label "뉴스").
+  So Appendix A1(a) spans DART filing, IR/disclosure, KRX, and news — matching the
+  manuscript caption. Re-validated with `validate:release` + `eval:samsung`.
+- `docs/figure-capture.md` A1 caption template corrected to the current artifacts:
+  "focused detail crops from the full mobile interface" (the two affordances
+  render together in one answer-pack), and the news entry is described as a
+  search link in fixture mode. NOTE for the manuscript repo (`harness-paper`): the
+  Figure A1 caption there must be updated to match — drop "full mobile context"
+  and keep the four source channels including the news-search link.
+- Version consistency: README BibTeX note and roadmap manuscript-pin → current tag.
+
 ## public-baseline-v0.5.4 - 2026-06-24
 
 Appendix Figure A1 + source-state labels (post-v0.5.3 review). No evaluation

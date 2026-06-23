@@ -4,7 +4,7 @@
   "groupId": "samsung",
   "stage": "first-transfer-template-freeze",
   "rubricId": "advisor-answer-quality-v0.2",
-  "evaluatedAt": "2026-05-10T09:01:35.201Z",
+  "evaluatedAt": "2026-06-23T15:26:56.999Z",
   "baselineDate": "2026-05-03",
   "methodology": {
     "loop": "fixed scenario -> run advisor -> score rubric -> keep/discard candidate",
@@ -46,8 +46,8 @@
       "runtimeMode": "mixed",
       "responseMode": "fixture",
       "llmOutputContractStatus": "code",
-      "elapsedMs": 1,
-      "traceFile": "evals/traces/run_1ccf5e94-9f59-4def-9843-2afd798eb393.json",
+      "elapsedMs": 432,
+      "traceFile": "evals/traces/run_c15d8606-c25d-4654-ad17-796dbaba1d15.json",
       "expectedClaimIds": [
         "samsung-sbc-020",
         "samsung-sbc-001",
@@ -135,7 +135,7 @@
               "다음 관찰 포인트"
             ],
             "missingSignals": [],
-            "answerLength": 945
+            "answerLength": 918
           }
         },
         {
@@ -179,9 +179,9 @@
           "details": {
             "limited": true,
             "statuses": [
-              "live",
-              "live",
-              "live",
+              "fixture",
+              "fallback",
+              "fixture",
               "local",
               "local",
               "fixture"
@@ -244,7 +244,7 @@
           "weight": 3,
           "score": 3,
           "details": {
-            "elapsedMs": 1,
+            "elapsedMs": 432,
             "maxPreApiLatencyMs": 1500
           }
         },
@@ -270,8 +270,8 @@
       "runtimeMode": "mixed",
       "responseMode": "fixture",
       "llmOutputContractStatus": "code",
-      "elapsedMs": 1,
-      "traceFile": "evals/traces/run_edeb5864-2204-4805-bc91-e79efc77129f.json",
+      "elapsedMs": 336,
+      "traceFile": "evals/traces/run_5aa6dfa9-79ba-4c1f-9785-eec2193d5616.json",
       "expectedClaimIds": [
         "samsung-sbc-022",
         "samsung-sbc-023",
@@ -359,7 +359,7 @@
               "다음 관찰 포인트"
             ],
             "missingSignals": [],
-            "answerLength": 1085
+            "answerLength": 1062
           }
         },
         {
@@ -403,9 +403,9 @@
           "details": {
             "limited": true,
             "statuses": [
-              "live",
-              "live",
-              "live",
+              "fixture",
+              "fallback",
+              "fixture",
               "local",
               "local",
               "fixture"
@@ -468,7 +468,7 @@
           "weight": 3,
           "score": 3,
           "details": {
-            "elapsedMs": 1,
+            "elapsedMs": 336,
             "maxPreApiLatencyMs": 1500
           }
         },
@@ -494,8 +494,8 @@
       "runtimeMode": "mixed",
       "responseMode": "fixture",
       "llmOutputContractStatus": "code",
-      "elapsedMs": 1,
-      "traceFile": "evals/traces/run_dc12eceb-d2f5-4327-94d3-ecb00c9bd03e.json",
+      "elapsedMs": 362,
+      "traceFile": "evals/traces/run_3fbf47cb-bbb3-4e0d-85bc-f140bede6229.json",
       "expectedClaimIds": [
         "samsung-sbc-024",
         "samsung-sbc-025",
@@ -584,7 +584,7 @@
               "다음 관찰 포인트"
             ],
             "missingSignals": [],
-            "answerLength": 1300
+            "answerLength": 1270
           }
         },
         {
@@ -629,9 +629,9 @@
           "details": {
             "limited": true,
             "statuses": [
-              "live",
-              "live",
-              "live",
+              "fixture",
+              "fallback",
+              "fixture",
               "local",
               "local",
               "fixture"
@@ -695,7 +695,7 @@
           "weight": 3,
           "score": 3,
           "details": {
-            "elapsedMs": 1,
+            "elapsedMs": 362,
             "maxPreApiLatencyMs": 1500
           }
         },
@@ -721,8 +721,8 @@
       "runtimeMode": "mixed",
       "responseMode": "fixture",
       "llmOutputContractStatus": "code",
-      "elapsedMs": 1,
-      "traceFile": "evals/traces/run_2dbc7708-72fe-456e-a4cb-9aaf841e988d.json",
+      "elapsedMs": 159,
+      "traceFile": "evals/traces/run_cbf2dd04-e96c-446b-b292-7ad7fefa5281.json",
       "expectedClaimIds": [
         "samsung-sbc-006",
         "samsung-sbc-019",
@@ -810,7 +810,7 @@
               "다음 관찰 포인트"
             ],
             "missingSignals": [],
-            "answerLength": 909
+            "answerLength": 882
           }
         },
         {
@@ -854,9 +854,9 @@
           "details": {
             "limited": true,
             "statuses": [
-              "live",
-              "live",
-              "live",
+              "fixture",
+              "fallback",
+              "fixture",
               "local",
               "local",
               "fixture"
@@ -919,7 +919,7 @@
           "weight": 3,
           "score": 3,
           "details": {
-            "elapsedMs": 1,
+            "elapsedMs": 159,
             "maxPreApiLatencyMs": 1500
           }
         },
@@ -945,8 +945,8 @@
       "runtimeMode": "mixed",
       "responseMode": "fixture",
       "llmOutputContractStatus": "code",
-      "elapsedMs": 2,
-      "traceFile": "evals/traces/run_5894bd38-2835-4bc2-9c7e-e95065b0f8e2.json",
+      "elapsedMs": 438,
+      "traceFile": "evals/traces/run_1686ca4f-7c2b-4049-bcd8-456cb3ea03c0.json",
       "expectedClaimIds": [
         "samsung-sbc-028",
         "samsung-sbc-029",
@@ -1034,7 +1034,7 @@
               "다음 관찰 포인트"
             ],
             "missingSignals": [],
-            "answerLength": 1134
+            "answerLength": 1108
           }
         },
         {
@@ -1078,9 +1078,9 @@
           "details": {
             "limited": true,
             "statuses": [
-              "live",
-              "live",
-              "live",
+              "fixture",
+              "fallback",
+              "fixture",
               "local",
               "local",
               "fixture"
@@ -1143,7 +1143,7 @@
           "weight": 3,
           "score": 3,
           "details": {
-            "elapsedMs": 2,
+            "elapsedMs": 438,
             "maxPreApiLatencyMs": 1500
           }
         },
@@ -1169,21 +1169,21 @@
       "runtimeMode": "mixed",
       "responseMode": "fixture",
       "llmOutputContractStatus": "code",
-      "elapsedMs": 0,
-      "traceFile": "evals/traces/run_021e0712-409b-4782-98bc-d4d98bb22efa.json",
+      "elapsedMs": 1,
+      "traceFile": "evals/traces/run_d2d40468-63d0-4fcd-9ec9-92279529acaa.json",
       "expectedClaimIds": [
         "samsung-sbc-020",
-        "samsung-sbc-032",
         "samsung-sbc-001",
         "samsung-sbc-002",
-        "samsung-sbc-016"
+        "samsung-sbc-016",
+        "samsung-sbc-017"
       ],
       "observedClaimIds": [
-        "samsung-sbc-020",
-        "samsung-sbc-032",
         "samsung-sbc-001",
         "samsung-sbc-002",
-        "samsung-sbc-016"
+        "samsung-sbc-016",
+        "samsung-sbc-017",
+        "samsung-sbc-020"
       ],
       "checks": [
         {
@@ -1258,7 +1258,7 @@
               "다음 관찰 포인트"
             ],
             "missingSignals": [],
-            "answerLength": 733
+            "answerLength": 706
           }
         },
         {
@@ -1301,9 +1301,9 @@
           "details": {
             "limited": true,
             "statuses": [
-              "live",
-              "live",
-              "live",
+              "fixture",
+              "fallback",
+              "fixture",
               "local",
               "local",
               "fixture"
@@ -1365,7 +1365,7 @@
           "weight": 3,
           "score": 3,
           "details": {
-            "elapsedMs": 0,
+            "elapsedMs": 1,
             "maxPreApiLatencyMs": 1500
           }
         },
