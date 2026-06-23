@@ -1,5 +1,30 @@
 # Changelog
 
+## public-baseline-v0.5 - 2026-06-23
+
+Mobile demo visual quality pass. The realistic device frame is preserved; only
+the screen content was reworked. No evaluation numbers changed.
+
+- Landing screen: the three briefing cards now expand to fill the viewport as an
+  even feed, removing the large empty space below them; the empty conversation
+  area collapses (`.briefing:not(.compact)`, `.conversation:empty`).
+- Status labels: customer-facing brief cards now show a single, calm "Sample
+  data" / "샘플 데이터" pill instead of raw `status: fixture` / `fallback` /
+  `failure.dart` strings (which read as errors). The honest fixture/live/fallback
+  distinction is unchanged in the developer trace panel and the run trace.
+- Typography/spacing: introduced type and spacing tokens; eased 1-line title
+  truncation to 2 lines; reworded the process panel ("근거 수집 완료 · N단계").
+- News card (briefing-only, `en` fixture): reworded the apologetic
+  "live news not connected" placeholder to an honest "sample preview"; no
+  fabricated headlines.
+- Figure capture: `scripts/capture-figures.mjs` now supports a reproducible
+  build-local capture (spawns the static server over `dist/`, renders at 900px so
+  the device frame is preserved, clips to `.device-shell`) in addition to the
+  remote-URL mode; added `npm run figures:capture`; `playwright` added as a
+  devDependency (overridable via `PLAYWRIGHT_PATH`). Regenerated
+  `docs/ui_mobile_main_en.png` and `docs/ui_mobile_answer_ko.png`; updated
+  `docs/figure-capture.md`.
+
 ## public-baseline-v0.4.1 - 2026-06-23
 
 Finalization hygiene addressing post-v0.4 review. No measured numbers changed.

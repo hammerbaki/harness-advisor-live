@@ -325,7 +325,6 @@ function InvestorAdvisorApp({
       </section>
 
       <main className="conversation" ref={chatRef}>
-        {!hasConversation && <div className="empty-space" aria-hidden="true" />}
         {messages.map((message, index) => {
           const shouldShowProcessBeforeAnswer =
             message.role === "assistant" &&
@@ -534,7 +533,7 @@ function BriefCard({
             {card.footerLeft && (
               <div className="brief-footer">
                 <span>{card.footerLeft}</span>
-                <span>{card.footerRight} ⓘ</span>
+                <StatusPill raw={card.footerRight} locale={locale} />
               </div>
             )}
           </>
@@ -542,6 +541,17 @@ function BriefCard({
       </div>
     </article>
   );
+}
+
+function StatusPill({ raw, locale }: { raw?: string; locale: UiLocale }) {
+  const value = String(raw ?? "").toLowerCase();
+  const isLive = /\blive\b|실시간/.test(value);
+  if (isLive) {
+    return <span className="brief-status live">{locale === "en" ? "Live" : "실시간"}</span>;
+  }
+  // Everything else in the demo (fixture / fallback / connecting / failure-to-live)
+  // is honestly presented as sample data, not live.
+  return <span className="brief-status sample">{locale === "en" ? "Sample data" : "샘플 데이터"}</span>;
 }
 
 function AgentProcessPanel({
@@ -571,7 +581,7 @@ function AgentProcessPanel({
     <section className={`agent-panel ${finalized ? "finalized" : "running"}`} aria-live="polite">
       <button className="agent-panel-title" type="button" onClick={() => setExpanded((value) => !value)}>
         <span><Icon name={finalized ? "check" : "sync"} /></span>
-        <strong>{finalized ? `지식이 회수됨(${steps.length})` : `자료를 수집하고 있습니다(${completedCount || 1})`}</strong>
+        <strong>{finalized ? `근거 수집 완료 · ${steps.length}단계` : `자료를 수집하고 있습니다 · ${completedCount || 1}단계`}</strong>
         {showRunningMode && (
           <em className={`trace-mode ${mode}`} title={`runtime mode: ${mode}`}>
             {runtimeModeLabel(mode)}

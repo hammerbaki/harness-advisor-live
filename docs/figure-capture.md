@@ -44,33 +44,43 @@ Electronics, but it is a **promoted, source-backed claim** and is shown faithful
 rather than vetoed on plausibility grounds — both the audited annual figure
 (2024: KRW 300.9T / 32.7T / 10.9% OPM) and the preliminary quarterly figure appear,
 labelled, in the full advisor answer. Do not silently substitute or "correct" these
-source values in a capture. The news card remains an honest "live news not
-connected" placeholder in fixture mode and must not be replaced with a fabricated
-headline.
+source values in a capture. The news card in fixture mode is an honest "sample
+preview" placeholder (paired with a "Sample data" status pill); it must not be
+replaced with a fabricated headline.
 
 ## Capture procedure
 
 Captures must be reproducible and pinned to a commit.
 
-1. Deploy the static demo to Cloudflare Pages (see `docs/deployment-cloudflare.md`).
-   Confirm the production URL serves the tagged commit.
-2. Record the exact commit hash and tag shown by the build; this goes in every
-   caption.
-3. Capture at a fixed mobile viewport for visual consistency, e.g. 390×844
-   (iPhone-class) device emulation in the browser dev tools, 2× DPR for print.
-4. For the English home screen, set the browser/OS language to English (or
-   emulate `Accept-Language: en`) before loading, so `detectUiLocale()` returns
-   `en`.
-5. Save to `docs/` with descriptive names, e.g.
-   `ui_mobile_main_en_<commit>.png`, `ui_mobile_answer_ko_<commit>.png`.
+### Scripted capture (recommended)
 
-Local equivalent (no Cloudflare account needed) for drafting:
+`scripts/capture-figures.mjs` (`npm run figures:capture`) regenerates the two
+README/manuscript figures deterministically. It spawns the static server over the
+committed `dist/` bundle on `127.0.0.1`, renders at a 900px viewport (wider than
+the 720px mobile breakpoint, so the realistic device frame is preserved), clips
+to `.device-shell`, and writes `docs/ui_mobile_main_en.png` and
+`docs/ui_mobile_answer_ko.png`.
 
 ```bash
 npm ci
-npm run build:demo
-npx vite preview            # serves the same static bundle locally
+npm run build:demo                 # produces dist/ (fixture-mode snapshots)
+npx playwright install chromium    # one-time browser download
+npm run figures:capture            # writes docs/ui_mobile_*.png
 ```
+
+Playwright is a devDependency; `PLAYWRIGHT_PATH` overrides it for environments
+without it. To capture from a deployed demo instead of a local build, set
+`FIGURE_BASE_URL=https://…pages.dev`. Record the commit hash/tag for the caption.
+
+### Manual capture (alternative)
+
+1. Deploy the static demo to Cloudflare Pages (see `docs/deployment-cloudflare.md`)
+   or serve the local bundle with `npx vite preview`; confirm the tagged commit.
+2. Record the exact commit hash and tag; this goes in every caption.
+3. Capture above the 720px breakpoint so the device frame renders, 2× DPR for print.
+4. For the English home screen, load with `?paper=en` (or an `en` browser locale)
+   so `detectUiLocale()` returns `en`.
+5. Save to `docs/` with descriptive names.
 
 The hosted demo runs in deterministic fixture mode
 (`runtimeMode: degraded`, `mode: fixture` in the trace), free-text questions are

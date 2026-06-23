@@ -12,6 +12,7 @@
     "test": "node --test tests/*.test.mjs",
     "stats:paper": "node scripts/compute-paper-stats.mjs",
     "validate:paper-stats": "node scripts/compute-paper-stats.mjs --check",
+    "figures:capture": "node scripts/capture-figures.mjs",
     "claims:hanwha": "node scripts/compile-hanwha-claim-candidates.mjs",
     "claims:hanwha:narrative": "node scripts/plan-hanwha-narrative-claim-queue.mjs",
     "claims:samsung": "node scripts/plan-samsung-claim-candidates.mjs",
@@ -107,6 +108,7 @@
   "devDependencies": {
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
+    "playwright": "^1.61.0",
     "tsx": "^4.22.4"
   },
   "engines": {

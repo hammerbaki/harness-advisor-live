@@ -355,12 +355,12 @@ async function buildBriefingSnapshot(group, locale = "ko") {
   }
   const newsIsFixture = news.status === "fixture";
   const newsHeadlineText = (locale === "en" && newsIsFixture)
-    ? `${displayCompanyName(representativeCompany, "en")} — live news not connected in this demo`
+    ? `${displayCompanyName(representativeCompany, "en")} news — sample preview`
     : (newsItem.title ?? (locale === "en"
         ? `${displayCompanyName(representativeCompany, "en")} — key news`
         : `${displayCompanyName(representativeCompany, locale)} 주요 뉴스 확인`));
   const newsBodyText = (locale === "en" && newsIsFixture)
-    ? "Live Naver News search connects in credentialed runs; this static demo shows a deterministic placeholder."
+    ? `Live Naver News attaches with credentials; this demo shows a fixed sample for ${displayCompanyName(representativeCompany, "en")}.`
     : (newsItem.description ?? (locale === "en"
         ? `Open the latest public news for ${displayCompanyName(representativeCompany, "en")}.`
         : `${displayCompanyName(representativeCompany, locale)} 관련 최신 공개 뉴스 원문을 확인합니다.`));
