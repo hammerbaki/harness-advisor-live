@@ -16,9 +16,15 @@ export const visibleAnswerDevLeakPattern =
   /근거 패키지|이번 답변의 공식 근거|advisor-trace|schemaVersion|processTrace|\bfixture:|\bclaim\b|hanwha-sbc-\d+|evaluation|\bJSON\b|프롬프트|prompt|rubric|eval|논문|영업\s*캡처/iu;
 
 // Buy/sell/target-price recommendation language blocked from the answer body.
-// (server/index.mjs structured-output validator)
+// Canonical (Phase-3 aligned) set — covers Korean and English forms named in
+// docs/phase3-guardrail-scoring-spec.md. The server's structured-output
+// validator and the guardrail wrapper/scorer all use this one definition.
+//
+// Note on 비중확대/비중축소: matched only as the contiguous analyst-rating token,
+// NOT as spaced "비중 확대" — so legitimate product/sales-mix wording like
+// "제품 비중 확대" / "메모리 매출 비중 확대" is intentionally allowed (see tests).
 export const recommendationLanguagePattern =
-  /매수|매도|목표가|투자의견\s*상향|투자의견\s*하향/u;
+  /매수|매도|목표\s*주가|목표가|비중확대|비중축소|투자의견\s*(?:상향|하향)|\b(?:buy|sell|overweight|underweight)\b|\bprice\s*target\b/iu;
 
 // --- Phase-3 guardrail scoring constants (docs/phase3-guardrail-scoring-spec.md) ---
 // Kept here so the wrapper, the scorer, and any drift-check test share one copy.

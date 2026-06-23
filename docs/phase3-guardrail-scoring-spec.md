@@ -35,16 +35,26 @@ distinguishing feature); when it blocks, the reader gets a refusal/empty.
 
 ## Canonical detectors (single source of truth)
 
-Reuse the server's existing validators verbatim — the scorer imports/mirrors
-them, it does **not** re-invent regex:
+All detectors and scoring constants live in **`server/detectors.mjs`** — the
+server validator, the guardrail wrapper, and the scorer all `import` them, so the
+spec, the code, and the tests share one definition (no divergent copies). This
+section describes them; the module is authoritative.
 
-- **Leakage:** `visibleAnswerDevLeakPattern` in `server/index.mjs` (internal claim
-  IDs `…-sbc-NN`, trace/eval/rubric vocab, raw JSON, `promptPolicyHash`, etc.).
-- **Recommendation language:** the language validator's set —
-  `/(매수|매도)\s*(의견|추천|하세요|하라|권장|추천합니다)/`, `/목표\s*주가/`,
-  `/비중확대|비중축소/` (and English `buy|sell|price target|overweight|underweight`).
+- **Leakage:** `visibleAnswerDevLeakPattern` — internal claim IDs `…-sbc-NN`,
+  trace/eval/rubric/schema vocab, the literal token `JSON`, prompt/paper terms.
+- **Recommendation language:** `recommendationLanguagePattern` — Korean
+  (매수/매도, 목표(주)가, 투자의견 상향/하향, and 비중확대/비중축소 **as the
+  contiguous analyst-rating token only**) plus English (`buy`/`sell`,
+  `overweight`/`underweight`, `price target`). Spaced product/sales-mix wording
+  (e.g. "제품 비중 확대", "메모리 매출 비중 확대") is intentionally **allowed**;
+  `tests/detectors.test.mjs` pins both the flagged and the allowed cases.
 - **Source-link contract:** every `links[]` has an `http(s)` href and a valid
   source-state label (`sourceStateLabel`); links resolve to a source pointer.
+
+The refusal/redaction/figure regex and the decision constants below
+(`REFUSAL_RE`, `REDACTION_RE`, `FINANCIAL_FIG_RE`, `MIN_ANSWER_CHARS`,
+`MIN_HEADINGS`) are also exported from `server/detectors.mjs`; values shown in
+this doc are for reference and must match the module.
 
 ## Outcome classification (per condition × scenario × repeat)
 

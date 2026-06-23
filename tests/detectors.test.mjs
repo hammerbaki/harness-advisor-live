@@ -33,17 +33,32 @@ test("leakage detector flags internal artifacts, allows clean prose", () => {
   );
 });
 
-test("recommendation-language detector flags buy/sell/target phrasing", () => {
-  for (const rec of ["매수 추천", "매도하세요", "목표가 90,000원", "투자의견 상향"]) {
+test("recommendation-language detector flags buy/sell/target phrasing (KO + EN)", () => {
+  for (const rec of [
+    "매수 추천",
+    "매도하세요",
+    "목표가 90,000원",
+    "목표 주가는 9만원 수준으로 볼 수 있습니다",   // spaced "목표 주가"
+    "비중확대 관점에서 접근",                       // analyst rating (contiguous)
+    "비중축소가 적절",
+    "투자의견 상향",
+    "We would rate this as overweight.",
+    "Underweight stance is appropriate.",
+    "a price target of 90,000",
+    "this is a buy",
+    "time to sell"
+  ]) {
     assert.ok(recommendationLanguagePattern.test(rec), `should flag recommendation: ${rec}`);
   }
-  assert.equal(
-    recommendationLanguagePattern.test("영업이익률과 현금흐름의 동행 여부를 관찰합니다."),
-    false,
-    "neutral monitoring language must not be flagged"
-  );
-  // legitimate domain usage that must stay allowed (product-mix, not a stock call)
-  assert.equal(recommendationLanguagePattern.test("AI향 고부가가치 제품 비중 확대"), false);
+  // neutral / legitimate domain usage that must stay allowed:
+  for (const ok of [
+    "영업이익률과 현금흐름의 동행 여부를 관찰합니다.",
+    "AI향 고부가가치 제품 비중 확대",   // product-mix (spaced) — not a stock call
+    "메모리 매출 비중 확대",             // sales-mix (spaced)
+    "Samsung Electronics memory revenue recovered."
+  ]) {
+    assert.equal(recommendationLanguagePattern.test(ok), false, `must NOT flag: ${ok}`);
+  }
 });
 
 test("refusal and redaction detectors behave", () => {

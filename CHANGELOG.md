@@ -1,5 +1,26 @@
 # Changelog
 
+## public-baseline-v0.5.12 - 2026-06-24
+
+Phase 3 Increment 1, step 1b — detector/spec scope alignment. **Behavior change:**
+the recommendation-language validator is now broader. Committed result artifacts
+are NOT regenerated (they remain dated snapshots produced with the prior detector).
+
+- Widened `recommendationLanguagePattern` in `server/detectors.mjs` to the scope
+  named in the scoring spec: adds 목표 주가 (spaced), 비중확대/비중축소 (contiguous
+  analyst-rating token only), and English `buy`/`sell`/`overweight`/`underweight`/
+  `price target`. Korean spaced product/sales-mix wording ("제품 비중 확대",
+  "메모리 매출 비중 확대") stays allowed by design. The server's structured-output
+  validator uses this wider set going forward; the Phase-3 wrapper/scorer will use
+  the same one.
+- Extended `tests/detectors.test.mjs` with the new flagged cases (KO + EN) and the
+  false-positive allow cases (product/sales-mix). Verified no regression: the
+  deterministic answers for all five groups stay clean against the wider detector;
+  `npm test` 13/13, `validate:release` and `validate:paper-stats` pass.
+- Aligned `docs/phase3-guardrail-scoring-spec.md` to point at
+  `server/detectors.mjs` as the authoritative source (doc == code; no doc-level
+  drift).
+
 ## public-baseline-v0.5.11 - 2026-06-24
 
 Phase 3 Increment 1, step 1 — canonical detector module (no runtime behavior
