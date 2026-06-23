@@ -186,6 +186,35 @@ Write to a **new dated** file, e.g.
 iterating, redirect with a scratch path (see `live-run-safety.md`); commit a run
 only when it is an intended citable snapshot, then bump `VERSION` + `CHANGELOG`.
 
+## Running a pilot / collection (env convention)
+
+`npm run eval:guardrail` with `GUARDRAIL_COLLECT=1` spawns a server, collects
+records (scenarios × conditions × repeats), scores, and writes to a scratch path.
+The runner stamps `summary.status`:
+`collect` (live) / `collect-offline-selfcheck` (when `ADVISOR_OFFLINE=1`) /
+`scored` / `skeleton` — so a self-check is never mistaken for measured data.
+`GUARDRAIL_LABEL=pilot` tags a deliberate pilot run.
+
+Pilot convention (small, scratch-only — does NOT touch committed baselines):
+
+```bash
+GUARDRAIL_DATE=2026-06-24 \
+GUARDRAIL_OUTPUT=/tmp/harness-scratch/guardrail-pilot.2026-06-24.json \
+GUARDRAIL_COLLECT=1 GUARDRAIL_LABEL=pilot \
+GUARDRAIL_LIMIT=1 GUARDRAIL_REPEATS=1 \
+npm run eval:guardrail
+```
+
+**Pilot preflight checklist (live):**
+1. `OPENROUTER_API_KEY` present and funded (smoke 2 calls; `HTTP_402` = out of credit).
+2. **External-guardrail smoke:** a recommendation-bait question with
+   `ablation: "external-guardrail"` returns top-level `wrapperAction: "refuse"`
+   and `guardrailOutcome: "refusal_text"` (the offline test only checks the keys
+   exist; non-null values are confirmed live here).
+3. Run the pilot above; confirm scorer pairing + `finalOutcome` on real responses.
+4. Only then scale to the full batch (a later release), and commit a result only
+   after review.
+
 ## Increment 1 (after this spec is accepted)
 
 1. Implement the deterministic wrapper as a separate selectable layer (like the

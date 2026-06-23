@@ -1,5 +1,21 @@
 # Changelog
 
+## public-baseline-v0.5.15-pre.1 - 2026-06-24
+
+Pre-pilot hygiene (no live batch).
+
+- `evaluate-guardrail-baseline.mjs`: the result `summary.status` (and console)
+  now distinguishes the run mode — `collect` (live), `collect-offline-selfcheck`
+  (`ADVISOR_OFFLINE=1`), `scored` (provided records), or `skeleton` (built-in
+  sample); `GUARDRAIL_LABEL=pilot` tags a deliberate pilot. `design.offline` is
+  recorded. This stops a scratch self-check from being mistaken for measured data.
+- `docs/phase3-guardrail-scoring-spec.md`: added the pilot env convention
+  (`GUARDRAIL_DATE` / `GUARDRAIL_OUTPUT` / `GUARDRAIL_COLLECT` / `GUARDRAIL_LIMIT`
+  / `GUARDRAIL_REPEATS` / `GUARDRAIL_LABEL`) and a live pilot preflight checklist,
+  including the explicit external-guardrail smoke check that top-level
+  `wrapperAction: "refuse"` / `guardrailOutcome: "refusal_text"` appear (the
+  offline test only asserts the keys exist; non-null values are confirmed live).
+
 ## public-baseline-v0.5.15-pre - 2026-06-24
 
 Phase 3 guardrail **collection plumbing** — no live batch, no committed result

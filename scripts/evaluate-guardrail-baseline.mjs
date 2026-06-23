@@ -109,6 +109,7 @@ async function collect() {
     const records = await collectRecords({ baseUrl, scenarios, conditions, repeats, model });
     return {
       records,
+      mode: "collect",
       source: `collect(${baseUrl}) conditions=${conditions.join("+")} repeats=${repeats} scenarios=${scenarios.length}`
     };
   } finally {
@@ -121,20 +122,36 @@ async function getRecords() {
   if (process.env.GUARDRAIL_RECORDS) {
     const records = JSON.parse(await readFile(process.env.GUARDRAIL_RECORDS, "utf8"));
     if (!Array.isArray(records)) throw new Error("GUARDRAIL_RECORDS must be a JSON array of run records");
-    return { records, source: process.env.GUARDRAIL_RECORDS };
+    return { records, mode: "records", source: process.env.GUARDRAIL_RECORDS };
   }
-  return { records: SAMPLE, source: "built-in-sample" };
+  return { records: SAMPLE, mode: "sample", source: "built-in-sample" };
 }
 
 function keyOf(r) {
   return `${r.model}::${r.scenarioSet}::${r.scenarioId}::${r.repeatIndex}`;
 }
 
+// Status/note disambiguate live collect vs offline self-check vs sample, so a
+// scratch file is never mistaken for a measured artifact.
+function runStatus(mode) {
+  const offline = process.env.ADVISOR_OFFLINE === "1";
+  const label = process.env.GUARDRAIL_LABEL; // optional explicit tag, e.g. "pilot"
+  if (mode === "collect") {
+    if (offline) {
+      return { status: label ?? "collect-offline-selfcheck", note: "Offline self-check (ADVISOR_OFFLINE=1): records collected from a fixture server — NOT live data." };
+    }
+    return { status: label ?? "collect", note: "Live collection. Confirm the external-guardrail smoke surfaced top-level wrapperAction/guardrailOutcome before trusting the numbers." };
+  }
+  if (mode === "records") return { status: "scored", note: "Scored from provided records (GUARDRAIL_RECORDS)." };
+  return { status: "skeleton", note: "Built-in sample records — illustration only, not a measurement." };
+}
+
 async function main() {
-  const { records, source } = await getRecords();
+  const { records, source, mode } = await getRecords();
   const harnessByKey = new Map(records.filter((r) => r.condition === "harness").map((r) => [keyOf(r), r]));
   const scored = records.map((r) => scoreRun(r, harnessByKey.get(keyOf(r)) ?? null));
   const summary = summarize(scored);
+  const { status, note } = runStatus(mode);
 
   const conditions = [...new Set(scored.map((s) => s.condition))].map((condition) => ({
     condition,
@@ -149,17 +166,18 @@ async function main() {
     design: {
       conditions: ["harness", "prompt-only", "external-guardrail"],
       recordSource: source,
-      note: "SKELETON: scored from provided/sample records; live 3-condition collection lands in v0.5.15."
+      offline: process.env.ADVISOR_OFFLINE === "1",
+      note
     },
-    summary: { ...summary, status: "skeleton" },
+    summary: { ...summary, status },
     conditions
   };
 
   await mkdir(dirname(outPath), { recursive: true });
   await writeFile(outPath, `${JSON.stringify(result, null, 2)}\n`);
   console.log(`[guardrail] scored ${scored.length} records from ${source}`);
-  console.log(`[guardrail] wrote ${outPath}`);
-  console.log("[guardrail] SKELETON — scratch output only; not a committed result artifact.");
+  console.log(`[guardrail] status=${status} -> ${outPath}`);
+  console.log("[guardrail] scratch output only; commit a result only after review (see docs/live-run-safety.md).");
 }
 
 main().catch((error) => {
