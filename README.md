@@ -72,6 +72,11 @@ Each command writes JSON output under `evals/results/` or `evals/dashboard/`. A
 successful `validate:release` exits 0 and prints a summary table for
 claim-reference, trace, answer, and hygiene contracts.
 
+> **Eval-output safety:** some `eval:*` / `quality:*` commands overwrite committed,
+> manuscript-cited artifacts by default. Before using one as a quick check,
+> redirect its output to a scratch path (`ADVISOR_EVAL_OUTPUT=…`, etc.). See
+> [`docs/live-run-safety.md`](docs/live-run-safety.md).
+
 The expanded live-LLM protocol is documented in
 `docs/live-llm-expanded-evaluation.md`. It supports the full 30-scenario set,
 model repeats, temperature settings, and explicit fallback/recovery reporting.
@@ -111,7 +116,7 @@ If you cite this repository:
   year   = {2026},
   url    = {https://github.com/hammerbaki/enterprise-llm-agent-harness},
   doi    = {10.5281/zenodo.20685423},
-  note   = {Version public-baseline-v0.5.7}
+  note   = {Version public-baseline-v0.5.8}
 }
 ```
 
@@ -128,12 +133,13 @@ endorsement; the earlier *Applied Sciences* track is no longer being prepared.
 - [ ] Finalize the arXiv preprint and submit (cs.AI); add the arXiv ID and link
       here and in `CITATION.cff` once assigned.
 - [ ] Pin the manuscript repo (`harness-paper`, `artifacts/dev-pin.txt`) to the
-      `public-baseline-v0.5.7` tag and regenerate its tables from this repo.
+      `public-baseline-v0.5.8` tag and regenerate its tables from this repo.
 
 **Strengthen the evaluation (RQ defense)**
 - [ ] Add an external guardrail baseline (e.g. NeMo Guardrails / Guardrails AI)
       so the harness-engineering contribution is positioned against existing
-      approaches, not only the prompt-only ablation.
+      approaches, not only the prompt-only ablation. Design fixed in
+      [`docs/phase3-guardrail-baseline-design.md`](docs/phase3-guardrail-baseline-design.md).
 - [ ] Refresh the live-LLM panel with current models (Claude Opus 4.x / Fable 5)
       and increase repeats to tighten the Wilson intervals (currently n=90/model).
 - [ ] Reduce the maturity asymmetry: expand at least one more group beyond
@@ -144,7 +150,9 @@ endorsement; the earlier *Applied Sciences* track is no longer being prepared.
       synthetic source, so the ingest→promote pipeline is externally runnable for
       at least one case (raw issuer PDFs remain non-redistributed; see
       `REPRODUCIBILITY.md`).
-- [ ] Resolve `npm audit` findings (1 high, 2 low) and pin/upgrade affected deps.
+- [ ] Resolve the remaining `npm audit` finding (1 low: esbuild, Windows dev
+      server only; fix is a breaking major bump). The v0.4.x high/moderate
+      findings were already cleared.
 - [ ] Capture latency on fixed hardware (or demote latency to a non-headline
       reference) since the budget checks are wall-clock sensitive.
 

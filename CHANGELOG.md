@@ -1,5 +1,28 @@
 # Changelog
 
+## public-baseline-v0.5.8 - 2026-06-24
+
+Phase 3 readiness patch (docs/config only; no code, figures, or eval artifacts
+changed).
+
+- Expanded `.env.example`: live LLM keys (`OPENROUTER_API_KEY`, optional
+  `ANTHROPIC_API_KEY` / `OPENAI_API_KEY` / `GEMINI_API_KEY`), provider/model knobs
+  (`ADVISOR_LIVE_LLM_PROVIDER` / `ADVISOR_LIVE_LLM_MODEL`), and commented
+  scratch-output overrides — placeholders only, no real keys.
+- Added `docs/live-run-safety.md`: classifies every npm command as read-only-safe
+  vs. overwrites-a-committed-artifact, with the scratch-output env var for each
+  (`ADVISOR_EVAL_OUTPUT`, `ADVISOR_FAULT_OUTPUT`, `ADVISOR_LIVE_LLM_OUTPUT`,
+  `AGENT_QUALITY_OUT`). Codifies the rule that prevented the v0.5.5 baseline
+  incident. Cross-referenced from README and `docs/repository-workflow.md`
+  (release checklist now includes `npm test` + `validate:paper-stats`).
+- Added `docs/phase3-guardrail-baseline-design.md`: fixes the external-guardrail
+  comparison (conditions harness / prompt-only / external-guardrail; reuse of the
+  frozen reference + adversarial + fault-injection sets; metrics incl. false
+  refusal; dated scratch output paths that never touch committed baselines; start
+  with a small deterministic policy layer before a heavyweight framework).
+- README: corrected a stale `npm audit` roadmap line (the high finding was cleared
+  in v0.4.x; one Windows-dev-only low remains).
+
 ## public-baseline-v0.5.7 - 2026-06-24
 
 Micro-consistency patch (figure/caption only; eval baselines untouched).
