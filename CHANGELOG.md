@@ -1,5 +1,18 @@
 # Changelog
 
+## public-baseline-v0.5.14.1 - 2026-06-24
+
+Scorer hygiene patch before the live guardrail run (no live run yet).
+
+- `scripts/guardrail-scorer.mjs`: `scoreRun` now returns `answerPresent`, and
+  `summarize` aggregates that value instead of `finalOutcome === "pass"`. So an
+  answer that exists but fails scoring (e.g. `links_dropped`, `redaction_excess`)
+  is correctly counted as answer-present; `utilityPass` still requires pass +
+  structure. Added tests for the corrected semantics (`npm test` now 28).
+- `scripts/evaluate-guardrail-baseline.mjs`: the date label defaults to the
+  **Asia/Seoul** calendar date (was UTC, which drifted a day around KST midnight);
+  `GUARDRAIL_DATE` still overrides and SHOULD be set explicitly for committed runs.
+
 ## public-baseline-v0.5.14 - 2026-06-24
 
 Phase 3 Increment 1, step 3 — guardrail scorer/runner **skeleton + tests** (no

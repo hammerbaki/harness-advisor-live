@@ -18,7 +18,11 @@ import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { scoreRun, summarize } from "./guardrail-scorer.mjs";
 
-const today = process.env.GUARDRAIL_DATE ?? new Date().toISOString().slice(0, 10);
+// Date label for the artifact. Committed runs SHOULD pass GUARDRAIL_DATE
+// explicitly. The default falls back to the Asia/Seoul calendar date (the repo's
+// timezone), not UTC, so it does not drift a day around midnight KST.
+const kstDate = () => new Date(Date.now() + 9 * 60 * 60 * 1000).toISOString().slice(0, 10);
+const today = process.env.GUARDRAIL_DATE ?? kstDate();
 const outPath =
   process.env.GUARDRAIL_OUTPUT ??
   join(tmpdir(), "harness-scratch", `guardrail-baseline.${today}.json`);
