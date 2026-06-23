@@ -1,7 +1,8 @@
 # Evaluation Tables (Manuscript Appendix Material)
 
 These tables are generated from artifacts committed to this repository and are
-intended for the *Applied Sciences* manuscript. All numbers are reproducible from
+intended for the arXiv (cs.AI) manuscript *Beyond Prompting: Harness Engineering
+for Enterprise LLM Agents*. All numbers are reproducible from
 the cited files at a fixed tag/commit; none require domain (investment) expert
 judgment.
 
@@ -124,9 +125,18 @@ which is the motivation for the harness rather than a counterexample to it.
 ```bash
 npm ci
 npm run validate:release          # regenerates the Table A1 maturity summary
-# Table A2–A4 are computed from the committed result artifact:
-#   evals/results/live-llm-composition-boundary.full-30x3.2026-06-03.json
+# Tables A2-A4 and the ablation McNemar test are regenerated deterministically
+# from the committed result artifacts (no npm install needed):
+node scripts/compute-paper-stats.mjs            # prints the tables, writes
+                                                # evals/results/paper-stats.generated.json
+npm run validate:paper-stats                    # CI gate: fails on any drift
 ```
+
+The numbers in Tables A2-A4 above are produced by `scripts/compute-paper-stats.mjs`
+(Wilson intervals, Pearson χ², inter-repeat consistency, per-check failure
+decomposition) and by its McNemar computation over the ablation artifacts. They
+are not hand-transcribed; `npm run validate:paper-stats` fails CI if the committed
+`paper-stats.generated.json` drifts from a fresh recomputation.
 
 Reproduction begins from the **promoted source-backed claims**; raw issuer PDFs
 are not redistributed (copyright), so the source-to-claim promotion pipeline is

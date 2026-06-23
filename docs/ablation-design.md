@@ -1,9 +1,11 @@
-# Prompt-Only Ablation: Design Draft
+# Prompt-Only Ablation: Design and Implementation
 
-Status: **design** (not yet implemented). This is the primary experiment that
-substitutes for an investment-efficacy evaluation. It establishes the
-contribution of *harness engineering* using only code-checkable metrics — no
-domain (investment) expert is required.
+Status: **implemented** (see the "Implementation (built)" section below). Result
+artifacts are committed under `evals/results/ablation-prompt-only.c0-vs-c3.30x3.2026-06-13.json`
+and `evals/results/ablation-adversarial.c0-vs-c3.2026-06-13.json`. This is the
+primary experiment that substitutes for an investment-efficacy evaluation. It
+establishes the contribution of *harness engineering* using only code-checkable
+metrics — no domain (investment) expert is required.
 
 ## Motivation and central hypothesis
 

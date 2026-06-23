@@ -1,5 +1,34 @@
 # Changelog
 
+## public-baseline-v0.4 - 2026-06-23
+
+Reproducibility, verification, and licensing hardening for arXiv (cs.AI) release.
+No measured numbers changed; result promotion is metadata-only.
+
+- Added `scripts/compute-paper-stats.mjs`: regenerates manuscript Tables A2-A4
+  (Wilson intervals, Pearson χ², inter-repeat consistency, per-check failure
+  decomposition) and the prompt-only ablation McNemar test deterministically
+  from the committed result artifacts. New scripts `stats:paper` and
+  `validate:paper-stats` (CI gate against drift); output committed at
+  `evals/results/paper-stats.generated.json`. The published table numbers are now
+  reproduced exactly from the artifacts rather than hand-transcribed.
+- Added a deterministic harness test suite (`tests/harness.test.mjs`, `npm test`
+  via `node --test`): pins entity/alias routing, ticker/corp-code mapping, the
+  answer contract, the three validation families (leakage / link / language), and
+  the deterministic composer. Wired into CI alongside `validate:paper-stats`.
+- Added split licensing: `LICENSE` (MIT, code), `LICENSE-DATA` (CC BY 4.0, data /
+  docs / evaluation artifacts), and `LICENSES.md` (breakdown + trademark and
+  non-redistribution notes). `CITATION.cff` now lists both licenses.
+- Promoted the manuscript result artifacts from `needs_review` to
+  `accepted_for_manuscript` with a `manuscriptAcceptance` block; added
+  `evals/reviewer-checklist.md` and hash-pinned `evals/manuscript-acceptance.json`.
+- Added `REPRODUCIBILITY.md`: number→command→artifact map, offline vs.
+  credential-required vs. non-reproducible-snapshot vs. non-redistributed paths.
+- Documentation consistency: fixed the `docs/ablation-design.md` status
+  contradiction (design→implemented), and unified the manuscript venue to
+  arXiv (cs.AI) in `docs/paper-evaluation-tables.md` and `docs/figure-capture.md`
+  (was "Applied Sciences"). Corrected the README BibTeX (authors, DOI, version).
+
 ## public-baseline-v0.3 - 2026-06-14
 
 - Added a prompt-only ablation at the composition boundary (`ADVISOR_ABLATION` / per-request `ablation`; evaluator axis `ADVISOR_LIVE_LLM_ABLATIONS`). Result artifacts: `evals/results/ablation-prompt-only.c0-vs-c3.30x3.2026-06-13.json` (540 runs over the 30 fixed scenarios) and `evals/results/ablation-adversarial.c0-vs-c3.2026-06-13.json` (180 runs over new adversarial-stress scenarios). Finding: under adversarial prompting the code-owned gate blocks 100% of recommendation-language and internal-leakage violations that the prompt-only condition admits (McNemar p<0.001).

@@ -92,19 +92,21 @@ recommendation-style phrasing.
 ## Related manuscript
 
 An accompanying manuscript, *Beyond Prompting: Harness Engineering for
-Enterprise LLM Agents*, uses this repository's source-to-claim pipeline,
-validation scenarios, fault-injection results, and latency measurements. Until a
-public preprint is available, cite this repository directly.
+Enterprise LLM Agents* (targeting arXiv, cs.AI), uses this repository's
+source-to-claim pipeline, validation scenarios, fault-injection results, and
+latency measurements. Until a public preprint is available, cite this repository
+directly.
 
 If you cite this repository:
 
 ```bibtex
 @misc{ahn2026harness,
-  author = {Ahn, Joongho},
+  author = {Ahn, Joongho and Kim, Moonsoo},
   title  = {enterprise-llm-agent-harness},
   year   = {2026},
   url    = {https://github.com/hammerbaki/enterprise-llm-agent-harness},
-  note   = {Accessed 2026-05-23}
+  doi    = {10.5281/zenodo.20685423},
+  note   = {Version public-baseline-v0.4}
 }
 ```
 
@@ -112,12 +114,73 @@ The manuscript cites validation outputs under `evals/results/` and
 `evals/dashboard/`, and the review-approved promotion manifest at
 `raw/manifests/review-approved-runtime-promotion.json`.
 
+## Roadmap / TODO
+
+Next steps toward the arXiv (cs.AI) submission. The repository has an arXiv
+endorsement; the earlier *Applied Sciences* track is no longer being prepared.
+
+**Submission**
+- [ ] Finalize the arXiv preprint and submit (cs.AI); add the arXiv ID and link
+      here and in `CITATION.cff` once assigned.
+- [ ] Pin the manuscript repo (`harness-paper`, `artifacts/dev-pin.txt`) to the
+      `public-baseline-v0.4` tag and regenerate its tables from this repo.
+
+**Strengthen the evaluation (RQ defense)**
+- [ ] Add an external guardrail baseline (e.g. NeMo Guardrails / Guardrails AI)
+      so the harness-engineering contribution is positioned against existing
+      approaches, not only the prompt-only ablation.
+- [ ] Refresh the live-LLM panel with current models (Claude Opus 4.x / Fable 5)
+      and increase repeats to tighten the Wilson intervals (currently n=90/model).
+- [ ] Reduce the maturity asymmetry: expand at least one more group beyond
+      Hanwha to a full reference vertical slice (see Table A1).
+
+**Reproducibility & hygiene**
+- [ ] Provide one end-to-end reproducible promotion example from a public or
+      synthetic source, so the ingest→promote pipeline is externally runnable for
+      at least one case (raw issuer PDFs remain non-redistributed; see
+      `REPRODUCIBILITY.md`).
+- [ ] Resolve `npm audit` findings (1 high, 2 low) and pin/upgrade affected deps.
+- [ ] Capture latency on fixed hardware (or demote latency to a non-headline
+      reference) since the budget checks are wall-clock sensitive.
+
+**Documentation**
+- [ ] Add `CONTRIBUTING.md` and a short threat-model note for the leakage /
+      recommendation-language paths.
+
 ## Versioning
 
 `VERSION` carries the current public artifact label, `CHANGELOG.md` records
 release notes, and stable snapshots are tagged. When a revision changes
 manifests, scenarios, figures, or validation artifacts, rerun the relevant checks
 and record the change in `CHANGELOG.md` before tagging.
+
+## Scope of evaluation
+
+The evaluable object in this work is **harness behavior**, not investment
+quality: whether the code-owned contracts — source-grounding, leakage absence,
+link resolution, trace completeness, and recommendation-language absence — are
+preserved consistently and independently of which language model performs
+composition. Investment efficacy is explicitly out of scope. This boundary is
+held consistently across the README, the manuscript, and the evaluation
+appendix (`docs/paper-evaluation-tables.md`).
+
+## Reproducing the results
+
+`REPRODUCIBILITY.md` maps each reported number to the command that produces it
+and the artifact it is read from, and separates the credential-free offline path
+from the credential-required live path. The headline statistics tables are
+regenerated from committed result artifacts by
+`node scripts/compute-paper-stats.mjs` (CI guards against drift via
+`npm run validate:paper-stats`), and deterministic harness invariants are pinned
+by `npm test` (`node --test`).
+
+## License
+
+Code (`src/`, `server/`, `scripts/`, `tests/`) is licensed under the MIT License
+([`LICENSE`](LICENSE)); data, documentation, and evaluation artifacts are
+licensed under CC BY 4.0 ([`LICENSE-DATA`](LICENSE-DATA)). The original issuer
+documents behind the promoted claims are **not** redistributed. See
+[`LICENSES.md`](LICENSES.md) for the full breakdown, including trademark notes.
 
 ## Not investment advice
 

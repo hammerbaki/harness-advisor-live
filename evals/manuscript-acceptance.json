@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "manuscript-acceptance.v1",
+  "version": "public-baseline-v0.4",
+  "acceptedAt": "2026-06-23",
+  "checklist": "evals/reviewer-checklist.md",
+  "note": "Promotion is metadata-only; measured numbers are unchanged. Statistics are reproducible via scripts/compute-paper-stats.mjs. SHA-256 hashes are of the accepted artifacts after metadata promotion.",
+  "artifacts": [
+    {
+      "path": "evals/results/live-llm-composition-boundary.full-30x3.2026-06-03.json",
+      "usedFor": "Tables A2-A4",
+      "status": "accepted_for_manuscript",
+      "sha256": "5c578c0f41254e52b71ce5008ad312f287eedc8c39b28341c76b6f285f47f0e0"
+    },
+    {
+      "path": "evals/results/ablation-prompt-only.c0-vs-c3.30x3.2026-06-13.json",
+      "usedFor": "Prompt-only ablation (30x3 reference scenarios)",
+      "status": "accepted_for_manuscript",
+      "sha256": "d04d114890ea165325abd5fcace03068533aa8cbbe8d9188897a5b5bbcada8a9"
+    },
+    {
+      "path": "evals/results/ablation-adversarial.c0-vs-c3.2026-06-13.json",
+      "usedFor": "Prompt-only ablation (adversarial-stress, McNemar)",
+      "status": "accepted_for_manuscript",
+      "sha256": "7f8c81540a5908bb7adf8633d9f0e6be8a831f29e8163f3f23277524f3874bc1"
+    },
+    {
+      "path": "evals/results/fault-injection-contract-sensitivity.2026-05-10.json",
+      "usedFor": "Fault-injection contract sensitivity (7 mutations)",
+      "status": "accepted_for_manuscript",
+      "sha256": "35ed5063c12f0a4cd45285fdf847b00bcf24700892ebc08d6de51654006ba771"
+    }
+  ]
+}

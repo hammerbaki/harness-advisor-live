@@ -144,5 +144,12 @@
         "latency_budget"
       ]
     }
-  ]
+  ],
+  "manuscriptAcceptance": {
+    "status": "accepted",
+    "version": "public-baseline-v0.4",
+    "acceptedAt": "2026-06-23",
+    "checklist": "evals/reviewer-checklist.md",
+    "note": "Result status all_faults_detected; metadata-only acceptance promotion."
+  }
 }

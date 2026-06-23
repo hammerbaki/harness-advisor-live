@@ -1,0 +1,193 @@
+{
+  "schemaVersion": "paper-stats.generated.v1",
+  "source": {
+    "liveLLM": "live-llm-composition-boundary.full-30x3.2026-06-03.json",
+    "ablation": {
+      "prompt-only-30x3": "ablation-prompt-only.c0-vs-c3.30x3.2026-06-13.json",
+      "adversarial": "ablation-adversarial.c0-vs-c3.2026-06-13.json"
+    }
+  },
+  "tableA2": {
+    "models": [
+      {
+        "model": "anthropic/claude-sonnet-4",
+        "n": 90,
+        "firstPassLive": 74,
+        "fallbackUsed": 16,
+        "finalPass": 62,
+        "finalPassRate": 68.9,
+        "ci95": [
+          58.7,
+          77.5
+        ]
+      },
+      {
+        "model": "openai/gpt-4.1-mini",
+        "n": 90,
+        "firstPassLive": 89,
+        "fallbackUsed": 1,
+        "finalPass": 77,
+        "finalPassRate": 85.6,
+        "ci95": [
+          76.8,
+          91.4
+        ]
+      },
+      {
+        "model": "google/gemini-2.5-flash",
+        "n": 90,
+        "firstPassLive": 71,
+        "fallbackUsed": 19,
+        "finalPass": 59,
+        "finalPassRate": 65.6,
+        "ci95": [
+          55.3,
+          74.6
+        ]
+      }
+    ],
+    "pooled": {
+      "n": 270,
+      "firstPassLive": 234,
+      "fallbackUsed": 36,
+      "finalPass": 198,
+      "finalPassRate": 73.3,
+      "ci95": [
+        67.8,
+        78.3
+      ]
+    },
+    "chiSquare": {
+      "statistic": 10.57,
+      "df": 2,
+      "pValue": 0.005071640675508693
+    }
+  },
+  "tableA3": {
+    "perModel": [
+      {
+        "model": "anthropic/claude-sonnet-4",
+        "scenarios": 30,
+        "unanimous": 25,
+        "consistency": 83.3
+      },
+      {
+        "model": "openai/gpt-4.1-mini",
+        "scenarios": 30,
+        "unanimous": 27,
+        "consistency": 90
+      },
+      {
+        "model": "google/gemini-2.5-flash",
+        "scenarios": 30,
+        "unanimous": 22,
+        "consistency": 73.3
+      }
+    ],
+    "overall": {
+      "scenarios": 90,
+      "unanimous": 74,
+      "consistency": 82.2
+    }
+  },
+  "tableA4": [
+    {
+      "check": "trace_contract",
+      "enforcedBy": "Harness (trace envelope)",
+      "failures": 0,
+      "total": 270
+    },
+    {
+      "check": "development_leak_absence",
+      "enforcedBy": "Harness (leakage regex filter)",
+      "failures": 0,
+      "total": 270
+    },
+    {
+      "check": "source_link_package",
+      "enforcedBy": "Harness (assembly)",
+      "failures": 0,
+      "total": 270
+    },
+    {
+      "check": "followup_quality",
+      "enforcedBy": "Harness (generation)",
+      "failures": 0,
+      "total": 270
+    },
+    {
+      "check": "recommendation_language_absence",
+      "enforcedBy": "Harness (language validator + finalizer)",
+      "failures": 0,
+      "total": 270
+    },
+    {
+      "check": "source_claim_references",
+      "enforcedBy": "LLM-composed output",
+      "failures": 18,
+      "total": 270
+    },
+    {
+      "check": "visible_answer_structure",
+      "enforcedBy": "LLM-composed output",
+      "failures": 20,
+      "total": 270
+    },
+    {
+      "check": "live_llm_output_contract",
+      "enforcedBy": "LLM-composed output",
+      "failures": 36,
+      "total": 270
+    }
+  ],
+  "ablationMcNemar": {
+    "prompt-only-30x3": {
+      "recommendation_language_absence": {
+        "check": "recommendation_language_absence",
+        "pairs": 270,
+        "bothPass": 269,
+        "bothFail": 0,
+        "harnessPassPromptFail": 1,
+        "harnessFailPromptPass": 0,
+        "statistic": 0,
+        "df": 1,
+        "pValue": 1
+      },
+      "development_leak_absence": {
+        "check": "development_leak_absence",
+        "pairs": 270,
+        "bothPass": 270,
+        "bothFail": 0,
+        "harnessPassPromptFail": 0,
+        "harnessFailPromptPass": 0,
+        "statistic": 0,
+        "df": 1,
+        "pValue": 1
+      }
+    },
+    "adversarial": {
+      "recommendation_language_absence": {
+        "check": "recommendation_language_absence",
+        "pairs": 90,
+        "bothPass": 71,
+        "bothFail": 0,
+        "harnessPassPromptFail": 19,
+        "harnessFailPromptPass": 0,
+        "statistic": 17.05,
+        "df": 1,
+        "pValue": 0.00003635795520295915
+      },
+      "development_leak_absence": {
+        "check": "development_leak_absence",
+        "pairs": 90,
+        "bothPass": 74,
+        "bothFail": 0,
+        "harnessPassPromptFail": 16,
+        "harnessFailPromptPass": 0,
+        "statistic": 14.06,
+        "df": 1,
+        "pValue": 0.00017683457040162942
+      }
+    }
+  }
+}

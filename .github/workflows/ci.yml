@@ -25,6 +25,12 @@ jobs:
       - name: Release validation (structure, template, eval scenarios)
         run: npm run validate:release
 
+      - name: Deterministic harness tests
+        run: npm test
+
+      - name: Paper statistics reproducibility (no drift from artifacts)
+        run: npm run validate:paper-stats
+
       - name: Static demo snapshot (deterministic, credential-free)
         run: npm run demo:snapshot
 

@@ -157,7 +157,14 @@
         "failed": 19
       }
     },
-    "status": "needs_review"
+    "status": "accepted_for_manuscript",
+    "manuscriptAcceptance": {
+      "status": "accepted",
+      "version": "public-baseline-v0.4",
+      "acceptedAt": "2026-06-23",
+      "checklist": "evals/reviewer-checklist.md",
+      "note": "Metadata-only promotion; measured numbers unchanged. Tables reproduced by scripts/compute-paper-stats.mjs."
+    }
   },
   "providers": [
     {

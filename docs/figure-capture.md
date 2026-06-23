@@ -1,6 +1,7 @@
 # Figure Capture Procedure and Caption Templates
 
-For the *Applied Sciences* manuscript. Replaces the current Replit screenshots
+For the arXiv (cs.AI) manuscript *Beyond Prompting: Harness Engineering for
+Enterprise LLM Agents*. Replaces the current Replit screenshots
 with Cloudflare-deployed, commit-pinned captures, and standardizes captions so
 figures are not misread as live-LLM output.
 
