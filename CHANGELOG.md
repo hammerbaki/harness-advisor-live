@@ -1,5 +1,18 @@
 # Changelog
 
+## public-baseline-v0.5.6 - 2026-06-24
+
+Hotfix on top of v0.5.5.
+
+- Restored the manuscript-cited Samsung eval baseline
+  (`evals/results/samsung-reference-slice-v0.1.autoeval-baseline.2026-05-03.json`)
+  to its pinned 2026-05-10 run. In v0.5.5 it was inadvertently overwritten by a
+  `npm run eval:samsung` validation run (the alias writes to that committed path),
+  which changed timestamps, latencies, and source statuses. The content fix from
+  v0.5.5 (news-search link in source links + A1 caption) is unchanged; only the
+  accidentally-regenerated baseline is reverted. When re-validating a runtime
+  change, point eval scripts at a scratch output, not the committed baseline.
+
 ## public-baseline-v0.5.5 - 2026-06-24
 
 Figure ↔ caption consistency pass (post-v0.5.4 review). No evaluation numbers

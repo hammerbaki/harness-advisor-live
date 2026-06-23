@@ -111,7 +111,7 @@ If you cite this repository:
   year   = {2026},
   url    = {https://github.com/hammerbaki/enterprise-llm-agent-harness},
   doi    = {10.5281/zenodo.20685423},
-  note   = {Version public-baseline-v0.5.5}
+  note   = {Version public-baseline-v0.5.6}
 }
 ```
 
@@ -128,7 +128,7 @@ endorsement; the earlier *Applied Sciences* track is no longer being prepared.
 - [ ] Finalize the arXiv preprint and submit (cs.AI); add the arXiv ID and link
       here and in `CITATION.cff` once assigned.
 - [ ] Pin the manuscript repo (`harness-paper`, `artifacts/dev-pin.txt`) to the
-      `public-baseline-v0.5.5` tag and regenerate its tables from this repo.
+      `public-baseline-v0.5.6` tag and regenerate its tables from this repo.
 
 **Strengthen the evaluation (RQ defense)**
 - [ ] Add an external guardrail baseline (e.g. NeMo Guardrails / Guardrails AI)
