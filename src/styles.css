@@ -66,12 +66,14 @@ button {
   background: #ffffff;
 }
 
+/* Paper figures favor crispness over depth: keep the hard bezel rings and the
+   inset highlights, but drop the soft outer drop-shadow (halo) so the margin
+   around the phone stays clean white instead of a grey smudge. */
 .product-page.paper-capture .device-shell {
   box-shadow:
     0 0 0 1px #cbd5e1,
     0 0 0 5px #111827,
     0 0 0 7px #6b7280,
-    0 22px 48px rgba(15, 23, 42, 0.18),
     inset 0 0 0 1px rgba(255, 255, 255, 0.62),
     inset 0 0 14px rgba(15, 23, 42, 0.2);
 }

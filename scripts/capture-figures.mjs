@@ -119,6 +119,14 @@ try {
   await page.goto(`${base}/?capture=paper`, { waitUntil: "networkidle" });
   await shotStage("ui_mobile_main_ko.png");
 
+  // Group selector (open state) — shows the five-group selection affordance;
+  // pairs with the main figure as a side-by-side subpanel in the paper.
+  await page.goto(`${base}/?capture=paper`, { waitUntil: "networkidle" });
+  await page.waitForSelector(".device-shell", { timeout: 30000 });
+  await page.click(".brand-block");
+  await page.waitForSelector(".entity-menu", { timeout: 30000 });
+  await shotStage("ui_mobile_selector_ko.png");
+
   // Supplementary — English chrome briefing (shows the en locale works). Not the
   // primary README figure; kept for the appendix if wanted.
   await page.goto(`${base}/?paper=en&capture=paper`, { waitUntil: "networkidle" });

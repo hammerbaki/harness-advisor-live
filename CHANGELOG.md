@@ -1,5 +1,24 @@
 # Changelog
 
+## public-baseline-v0.5.3 - 2026-06-23
+
+Figure frame finalization + group-selector callout (post-v0.5.2 review). No
+evaluation numbers changed.
+
+- Clean white margins: in `paper-capture` mode the device frame's soft outer
+  drop-shadow (halo) is removed — only the hard bezel rings and inset highlights
+  remain — so the area around the phone is clean white instead of a grey smudge.
+  Capture padding (36px) is kept so the side buttons are not clipped.
+- New figure `docs/ui_mobile_selector_ko.png`: the group selector in its open
+  state, showing all five groups (Samsung / SK / Hyundai Motor / LG / Hanwha).
+  The capture script clicks the brand toggle and shoots the open menu; it pairs
+  with the main figure as a side-by-side subpanel in the paper. README keeps just
+  the two primary figures (main + answer).
+- Figure filename policy: `ui_mobile_main_ko.png` (closed feed),
+  `ui_mobile_answer_ko.png` (answer), `ui_mobile_selector_ko.png` (selector open),
+  `ui_mobile_main_en.png` (supplementary only).
+- Version consistency: README BibTeX note and roadmap manuscript-pin → current tag.
+
 ## public-baseline-v0.5.2 - 2026-06-23
 
 Figure frame and language cleanup (post-v0.5.1 review). No evaluation numbers

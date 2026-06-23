@@ -62,12 +62,16 @@ on `127.0.0.1`, renders at a 900px viewport (wider than the 720px mobile
 breakpoint, so the realistic device frame is preserved), and screenshots a region
 = the `.device-shell` bounding box **expanded by 36px on every side** so the
 box-shadow frame and the side buttons (at `left/right: -6px`, outside the shell
-box) are fully included rather than clipped. The `paper-capture` background is
-white, so the margin around the phone is clean. It writes:
+box) are fully included rather than clipped. In `paper-capture` mode the
+background is white **and the soft outer drop-shadow is removed** (only the hard
+bezel rings + inset highlights remain), so the margin around the phone is clean
+white rather than a grey smudge. It writes:
 
 - `docs/ui_mobile_main_ko.png` — primary Figure 1 (Korean briefing feed)
 - `docs/ui_mobile_answer_ko.png` — primary Figure 2 (Korean answer, pinned to the
   top so it starts at "핵심 인사이트")
+- `docs/ui_mobile_selector_ko.png` — group selector (open state, all five groups);
+  pairs with the main figure as a side-by-side subpanel in the paper
 - `docs/ui_mobile_main_en.png` — supplementary (English chrome; not a primary
   figure)
 
