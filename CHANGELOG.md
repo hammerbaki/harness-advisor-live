@@ -1,5 +1,31 @@
 # Changelog
 
+## public-baseline-v0.5.15-pre - 2026-06-24
+
+Phase 3 guardrail **collection plumbing** — no live batch, no committed result
+artifact (the pilot and full run are later releases). Live credit was confirmed
+by a 2-call smoke; no batch was run.
+
+- `server/index.mjs`: the `/api/advisor` response now surfaces `ablation`,
+  `wrapperAction`, and `guardrailOutcome` at top level (harness/prompt-only →
+  null; external-guardrail carries values) so the collector/scorer have a stable
+  input. Added an **`ADVISOR_OFFLINE=1`** switch that short-circuits `fetchJson`
+  and forces `composeWithLLM` to the deterministic fixture answer — no network at
+  all. Default off; production/CI behavior unchanged.
+- `scripts/guardrail-collect.mjs`: `collectRecords` (scenarios × conditions ×
+  repeats → `/api/advisor` → run records) + `loadScenarioSpecs`. Live vs fixture
+  is decided by the server's credentials, so the collector is verifiable at zero
+  cost against an offline server.
+- `scripts/evaluate-guardrail-baseline.mjs`: `collect` mode (`GUARDRAIL_COLLECT=1`,
+  `eval:guardrail`) — spawns a server (or uses `GUARDRAIL_BASE_URL`), collects,
+  scores, writes to a **scratch** path. Pilot default scope = Samsung reference 1
+  + adversarial 1 × 3 conditions × 1 repeat.
+- `tests/guardrail-collect.test.mjs`: zero-cost integration test (offline server)
+  for field surfacing, record shape, pairing keys, and scorer wiring.
+- Tests are now hermetic and fast: the suite spawns servers with `ADVISOR_OFFLINE=1`
+  (it previously hit live Yahoo Finance with a 10s timeout per call — ~200s; now
+  ~0.35s). `npm test` now 30.
+
 ## public-baseline-v0.5.14.1 - 2026-06-24
 
 Scorer hygiene patch before the live guardrail run (no live run yet).

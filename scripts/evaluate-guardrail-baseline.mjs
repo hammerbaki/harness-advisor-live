@@ -13,10 +13,20 @@
 // Input: GUARDRAIL_RECORDS=<path to JSON array of run records>. If unset, a tiny
 // built-in self-check sample is used so the runner is demonstrable without data.
 
+import { spawn } from "node:child_process";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { scoreRun, summarize } from "./guardrail-scorer.mjs";
+import { collectRecords, loadScenarioSpecs, DEFAULT_CONDITIONS } from "./guardrail-collect.mjs";
+
+const here = dirname(fileURLToPath(import.meta.url));
+const repoRoot = join(here, "..");
+
+function parseCsv(value) {
+  return String(value ?? "").split(",").map((s) => s.trim()).filter(Boolean);
+}
 
 // Date label for the artifact. Committed runs SHOULD pass GUARDRAIL_DATE
 // explicitly. The default falls back to the Asia/Seoul calendar date (the repo's
@@ -48,12 +58,72 @@ const SAMPLE = [
   }
 ];
 
-async function loadRecords() {
-  if (!process.env.GUARDRAIL_RECORDS) return { records: SAMPLE, source: "built-in-sample" };
-  const raw = await readFile(process.env.GUARDRAIL_RECORDS, "utf8");
-  const records = JSON.parse(raw);
-  if (!Array.isArray(records)) throw new Error("GUARDRAIL_RECORDS must be a JSON array of run records");
-  return { records, source: process.env.GUARDRAIL_RECORDS };
+function scenarioSetsFromEnv() {
+  // GUARDRAIL_SCENARIO_SETS="reference:path:limit,adversarial:path:limit"
+  if (process.env.GUARDRAIL_SCENARIO_SETS) {
+    return parseCsv(process.env.GUARDRAIL_SCENARIO_SETS).map((entry) => {
+      const [scenarioSet, path, limit] = entry.split(":");
+      return { scenarioSet, path, limit: limit ? Number(limit) : undefined };
+    });
+  }
+  const limit = process.env.GUARDRAIL_LIMIT ? Number(process.env.GUARDRAIL_LIMIT) : 1; // pilot default: 1 each
+  return [
+    { scenarioSet: "reference", path: "evals/scenarios/samsung.reference-slice.json", limit },
+    { scenarioSet: "adversarial", path: "evals/scenarios/samsung.adversarial-stress.json", limit }
+  ];
+}
+
+async function waitForHealth(baseUrl, timeoutMs = 15000) {
+  const deadline = Date.now() + timeoutMs;
+  while (Date.now() < deadline) {
+    try {
+      if ((await fetch(`${baseUrl}/api/healthz`)).ok) return;
+    } catch {
+      // not up yet
+    }
+    await new Promise((r) => setTimeout(r, 200));
+  }
+  throw new Error("server did not become healthy");
+}
+
+// Live (or fixture, depending on the server's credentials) collection.
+async function collect() {
+  const conditions = process.env.GUARDRAIL_CONDITIONS ? parseCsv(process.env.GUARDRAIL_CONDITIONS) : DEFAULT_CONDITIONS;
+  const repeats = Number(process.env.GUARDRAIL_REPEATS ?? 1);
+  const model = process.env.ADVISOR_LIVE_LLM_MODEL ?? null;
+  const scenarios = await loadScenarioSpecs(scenarioSetsFromEnv());
+
+  let server = null;
+  let baseUrl = process.env.GUARDRAIL_BASE_URL;
+  if (!baseUrl) {
+    const port = Number(process.env.GUARDRAIL_PORT ?? 8971);
+    baseUrl = `http://127.0.0.1:${port}`;
+    server = spawn("node", [join(repoRoot, "server", "index.mjs")], {
+      cwd: repoRoot,
+      env: { ...process.env, PORT: String(port), HOST: "127.0.0.1", ADVISOR_PREWARM: "0", STATIC_DIR: "" },
+      stdio: ["ignore", "ignore", "inherit"]
+    });
+    await waitForHealth(baseUrl);
+  }
+  try {
+    const records = await collectRecords({ baseUrl, scenarios, conditions, repeats, model });
+    return {
+      records,
+      source: `collect(${baseUrl}) conditions=${conditions.join("+")} repeats=${repeats} scenarios=${scenarios.length}`
+    };
+  } finally {
+    if (server) server.kill();
+  }
+}
+
+async function getRecords() {
+  if (process.env.GUARDRAIL_COLLECT === "1") return collect();
+  if (process.env.GUARDRAIL_RECORDS) {
+    const records = JSON.parse(await readFile(process.env.GUARDRAIL_RECORDS, "utf8"));
+    if (!Array.isArray(records)) throw new Error("GUARDRAIL_RECORDS must be a JSON array of run records");
+    return { records, source: process.env.GUARDRAIL_RECORDS };
+  }
+  return { records: SAMPLE, source: "built-in-sample" };
 }
 
 function keyOf(r) {
@@ -61,7 +131,7 @@ function keyOf(r) {
 }
 
 async function main() {
-  const { records, source } = await loadRecords();
+  const { records, source } = await getRecords();
   const harnessByKey = new Map(records.filter((r) => r.condition === "harness").map((r) => [keyOf(r), r]));
   const scored = records.map((r) => scoreRun(r, harnessByKey.get(keyOf(r)) ?? null));
   const summary = summarize(scored);

@@ -279,6 +279,11 @@ async function runAdvisor(body) {
     representativeCompanyId: representativeCompany?.id,
     question,
     mode: llm.mode,
+    // Enforcement-condition fields surfaced for the guardrail collector/scorer.
+    // harness/prompt-only -> null; only external-guardrail carries wrapper values.
+    ablation,
+    wrapperAction: llm.wrapperAction ?? null,
+    guardrailOutcome: llm.guardrailOutcome ?? null,
     trace: buildTraceEnvelope({
       runId,
       group,
@@ -902,6 +907,12 @@ function classifyAnswerIntent(question) {
 }
 
 async function composeWithLLM(contextPackage, ablation = resolveAblation()) {
+  // Offline switch: no live composition at all -> deterministic fixture answer.
+  // Keeps hermetic tests / offline dev fully deterministic regardless of which
+  // provider keys happen to be present in the environment.
+  if (process.env.ADVISOR_OFFLINE === "1") {
+    return deterministicAnswer(contextPackage, "fixture");
+  }
   const requestedProvider = normalizeLLMProvider(process.env.ADVISOR_LIVE_LLM_PROVIDER ?? process.env.LLM_PROVIDER);
   const provider = requestedProvider ?? firstConfiguredLLMProvider();
   if (!provider) {
@@ -2630,6 +2641,12 @@ function serveStatic(pathname, res) {
 }
 
 async function fetchJson(url, opts = {}) {
+  // Offline switch for hermetic tests / offline dev: skip all network instantly.
+  // Callers degrade gracefully (tracedTask -> fixture fallback), so the answer is
+  // still built from source-backed claims without any live request.
+  if (process.env.ADVISOR_OFFLINE === "1") {
+    throw new Error("OFFLINE");
+  }
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), opts.timeoutMs ?? 10000);
   try {
