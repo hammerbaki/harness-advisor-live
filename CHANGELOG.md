@@ -1,5 +1,24 @@
 # Changelog
 
+## public-baseline-v0.5.10 - 2026-06-24
+
+Phase 3 Increment 0.5 — scoring spec + a safety-doc fix (docs only).
+
+- Added `docs/phase3-guardrail-scoring-spec.md`: freezes the external-guardrail
+  wrapper's allow/block rules, the outcome taxonomy (refusal_text /
+  answer_emptied / links_dropped / redaction_excess), the false-refusal
+  definition (refusal on a benign `reference` scenario; blocks on `adversarial`
+  count as intended mitigation), decision constants + regex, the McNemar pairing,
+  and the result JSON schema — all fixed before any wrapper code is written.
+  Detectors reuse the server's canonical `visibleAnswerDevLeakPattern` /
+  language-validator regex (single source of truth). Linked from the design note.
+- `docs/live-run-safety.md`: split the command classification so `stats:paper`
+  (and `build:demo` / `figures:capture`) are under "writes only its own
+  intended generated/derived output (safe, not read-only)" rather than
+  "read-only" — resolving the title/content conflict. Truly read-only commands
+  (typecheck, validate:release, npm test, validate:paper-stats, smoke:live-api)
+  are now a separate, accurate list.
+
 ## public-baseline-v0.5.9 - 2026-06-24
 
 AI-use disclosure and commit-trailer policy (docs only).

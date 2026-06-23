@@ -12,7 +12,7 @@ path and diff intentionally.
 
 ## Read-only / safe to run anytime
 
-These do not overwrite any committed result/baseline artifact:
+These write **nothing tracked** — pure read/verify:
 
 | Command | Notes |
 |---|---|
@@ -21,10 +21,21 @@ These do not overwrite any committed result/baseline artifact:
 | `npm test` | spawns a server on a scratch port; asserts responses, writes nothing tracked |
 | `npm run validate:paper-stats` | recompute-and-compare only (no write) |
 | `npm run smoke:live-api` | connectivity probe |
-| `npm run stats:paper` | writes only `evals/results/paper-stats.generated.json` (its intended output) |
-| `npm run build:demo`, `npm run figures:capture` | write gitignored `dist/`/`public/demo` and the `docs/*.png` figures (intended) |
 
-## Writes a committed artifact by default — redirect to scratch
+## Writes only its own intended generated/derived output (safe, not read-only)
+
+These DO write files, but only their own deterministic/derived output — never a
+measured baseline. Re-running reproduces the same content (the generated-stats
+file is even drift-guarded by `validate:paper-stats`). Safe to run, but they are
+not "read-only".
+
+| Command | Writes | Why it's safe |
+|---|---|---|
+| `npm run stats:paper` | `evals/results/paper-stats.generated.json` (committed) | deterministic recomputation from the result artifacts; `validate:paper-stats` fails CI on drift |
+| `npm run demo:snapshot`, `npm run build:demo` | `public/demo/` (gitignored), `dist/` (gitignored) | regenerated fixtures/bundle |
+| `npm run figures:capture` | `docs/ui_mobile_*.png` (committed) | regenerated from the current UI; intended figure refresh |
+
+## Writes a committed *baseline* by default — redirect to scratch
 
 Set the listed output env var to a scratch path before running, so the committed
 file is untouched:

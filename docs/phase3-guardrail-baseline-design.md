@@ -75,6 +75,11 @@ committed artifact. See `docs/live-run-safety.md`.
 
 ## Increment 1 (minimal, deterministic)
 
+> Prerequisite — Increment 0.5: the allow/block rules, false-refusal definition,
+> decision constants, and result JSON schema are frozen in
+> [`phase3-guardrail-scoring-spec.md`](phase3-guardrail-scoring-spec.md) before any
+> wrapper code is written.
+
 1. Implement the small deterministic external policy layer as a *separate* wrapper
    (not inside the harness gate), selectable like the ablation.
 2. Run `harness` vs `external-guardrail` on the 30 reference + adversarial
