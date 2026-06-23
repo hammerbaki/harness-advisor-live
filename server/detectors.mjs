@@ -40,7 +40,9 @@ export const REFUSAL_RE =
 export const REDACTION_RE = /(\[?redacted\]?|▇{2,}|\*{3,}|■{2,}|x{4,}\b)/i;
 
 // Financial figures, for the redaction figure-preservation check (paired vs harness).
-export const FINANCIAL_FIG_RE = /\d[\d,.]*\s*(조원|억원|%|원)\b/g;
+// No trailing \b: JS word boundaries are ASCII-only, so "\b" after Korean
+// "조원"/"원" or "%" would never match.
+export const FINANCIAL_FIG_RE = /\d[\d,.]*\s*(?:조원|억원|%|원)/g;
 
 // Section headings the insight-first structure expects (for MIN_HEADINGS).
 export const SECTION_HEADINGS = [

@@ -1,5 +1,31 @@
 # Changelog
 
+## public-baseline-v0.5.14 - 2026-06-24
+
+Phase 3 Increment 1, step 3 — guardrail scorer/runner **skeleton + tests** (no
+live run, no committed result artifacts; the actual 3-condition run is v0.5.15).
+
+- Added `scripts/guardrail-scorer.mjs` (pure): `scoreRun` computes the spec
+  `finalOutcome` enum (`pass` | `refusal_text` | `answer_emptied` | `links_dropped`
+  | `redaction_excess`) from a final response. Keeps three layers distinct —
+  `wrapperAction` (what the layer did) vs `guardrailOutcome` (wrapper state, incl.
+  `redacted`) vs `finalOutcome` (scorer verdict). A redacted-but-sufficient answer
+  scores `pass`; only material figure loss vs the paired harness answer scores
+  `redaction_excess`. Plus `summarize` (per-condition counts + harness-vs-external
+  McNemar) and a self-contained McNemar (erfc-based df=1 p-value).
+- Added `scripts/evaluate-guardrail-baseline.mjs` runner skeleton (`eval:guardrail`):
+  scores provided/sample records into the spec result schema; writes to a **scratch
+  path** by default (never `evals/results`). Live 3-condition collection lands in v0.5.15.
+- Added `tests/guardrail-scorer.test.mjs` (redacted→pass, refusal-on-reference→
+  false-refusal, refusal-on-adversarial→intended-block, links-dropped, over-redaction
+  →redaction_excess, prompt-only violation, McNemar). `npm test` now 27.
+- Fixed `FINANCIAL_FIG_RE` in `server/detectors.mjs`: dropped the trailing `\b`
+  (JS word boundaries are ASCII-only, so it never matched Korean "조원"/"%"
+  figures); added a detector drift-check for it.
+- Aligned `docs/phase3-guardrail-scoring-spec.md` with the three-layer model
+  (wrapperAction / guardrailOutcome / finalOutcome).
+- README: moved the Roadmap / TODO to the top of the file.
+
 ## public-baseline-v0.5.13 - 2026-06-24
 
 Phase 3 Increment 1, step 2 — external-guardrail wrapper **mechanics only**

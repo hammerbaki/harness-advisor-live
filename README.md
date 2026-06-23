@@ -2,6 +2,50 @@
 
 [![CI](https://github.com/hammerbaki/enterprise-llm-agent-harness/actions/workflows/ci.yml/badge.svg)](https://github.com/hammerbaki/enterprise-llm-agent-harness/actions/workflows/ci.yml)
 
+## Roadmap / TODO
+
+Listed in **execution order**. The repository has an arXiv (cs.AI) endorsement;
+the earlier *Applied Sciences* track is no longer prepared. **Submission is last**
+— it happens only after the evaluation/defense and hygiene items below are closed,
+so there is no remaining attack surface at submission time.
+
+**1. Phase 3 — external-guardrail baseline (in progress)**
+Positions harness engineering against the standard alternative (an external
+guardrail layer), beyond the prompt-only ablation. Design + scoring are frozen in
+[`docs/phase3-guardrail-baseline-design.md`](docs/phase3-guardrail-baseline-design.md)
+and [`docs/phase3-guardrail-scoring-spec.md`](docs/phase3-guardrail-scoring-spec.md).
+- [x] Scoring spec frozen (conditions, false-refusal, outcome taxonomy, schema).
+- [x] Canonical detector module (`server/detectors.mjs`) + widened to spec scope.
+- [x] External-guardrail wrapper mechanics + unit tests (`server/guardrail.mjs`).
+- [ ] Guardrail evaluation runner/scorer: 3 conditions (harness / prompt-only /
+      external-guardrail) × {reference, adversarial}, to a **dated scratch** result
+      (never overwrites a committed baseline — see `docs/live-run-safety.md`).
+- [ ] Results table (violations_admitted vs. false_refusals, McNemar) + manuscript
+      integration.
+
+**2. Refresh the live-LLM panel** with current models (Claude Opus 4.x / Fable 5)
+and more repeats to tighten the Wilson intervals (currently n=90/model).
+
+**3. Reduce the maturity asymmetry** — expand at least one more group beyond
+Hanwha to a full reference vertical slice (see Table A1).
+
+**4. Reproducibility & hygiene**
+- [ ] One end-to-end reproducible promotion example from a public/synthetic source
+      (raw issuer PDFs remain non-redistributed; see `REPRODUCIBILITY.md`).
+- [ ] Resolve the remaining `npm audit` low (esbuild, Windows dev server only;
+      fix is a breaking major bump). The v0.4.x high/moderate findings were cleared.
+- [ ] Capture latency on fixed hardware (or demote latency to a non-headline
+      reference), since the budget checks are wall-clock sensitive.
+
+**5. Documentation** — `CONTRIBUTING.md` + a short threat-model note for the
+leakage / recommendation-language paths.
+
+**6. Freeze & submit (last — only after 1–5)**
+- [ ] Re-pin the manuscript repo (`harness-paper`, `artifacts/dev-pin.txt`) to the
+      latest tag and regenerate its tables from this repo.
+- [ ] Finalize the arXiv (cs.AI) preprint and submit; add the arXiv ID and link
+      here and in `CITATION.cff` once assigned.
+
 Mobile briefing tool for Korea's five largest corporate groups: Samsung, SK,
 Hyundai Motor, LG, and Hanwha. The app produces a short, source-linked briefing
 per company from public filings (DART), market data (KRX), and news: financial
@@ -116,57 +160,13 @@ If you cite this repository:
   year   = {2026},
   url    = {https://github.com/hammerbaki/enterprise-llm-agent-harness},
   doi    = {10.5281/zenodo.20685423},
-  note   = {Version public-baseline-v0.5.13}
+  note   = {Version public-baseline-v0.5.14}
 }
 ```
 
 The manuscript cites validation outputs under `evals/results/` and
 `evals/dashboard/`, and the review-approved promotion manifest at
 `raw/manifests/review-approved-runtime-promotion.json`.
-
-## Roadmap / TODO
-
-Listed in **execution order**. The repository has an arXiv (cs.AI) endorsement;
-the earlier *Applied Sciences* track is no longer prepared. **Submission is last**
-— it happens only after the evaluation/defense and hygiene items below are closed,
-so there is no remaining attack surface at submission time.
-
-**1. Phase 3 — external-guardrail baseline (in progress)**
-Positions harness engineering against the standard alternative (an external
-guardrail layer), beyond the prompt-only ablation. Design + scoring are frozen in
-[`docs/phase3-guardrail-baseline-design.md`](docs/phase3-guardrail-baseline-design.md)
-and [`docs/phase3-guardrail-scoring-spec.md`](docs/phase3-guardrail-scoring-spec.md).
-- [x] Scoring spec frozen (conditions, false-refusal, outcome taxonomy, schema).
-- [x] Canonical detector module (`server/detectors.mjs`) + widened to spec scope.
-- [x] External-guardrail wrapper mechanics + unit tests (`server/guardrail.mjs`).
-- [ ] Guardrail evaluation runner/scorer: 3 conditions (harness / prompt-only /
-      external-guardrail) × {reference, adversarial}, to a **dated scratch** result
-      (never overwrites a committed baseline — see `docs/live-run-safety.md`).
-- [ ] Results table (violations_admitted vs. false_refusals, McNemar) + manuscript
-      integration.
-
-**2. Refresh the live-LLM panel** with current models (Claude Opus 4.x / Fable 5)
-and more repeats to tighten the Wilson intervals (currently n=90/model).
-
-**3. Reduce the maturity asymmetry** — expand at least one more group beyond
-Hanwha to a full reference vertical slice (see Table A1).
-
-**4. Reproducibility & hygiene**
-- [ ] One end-to-end reproducible promotion example from a public/synthetic source
-      (raw issuer PDFs remain non-redistributed; see `REPRODUCIBILITY.md`).
-- [ ] Resolve the remaining `npm audit` low (esbuild, Windows dev server only;
-      fix is a breaking major bump). The v0.4.x high/moderate findings were cleared.
-- [ ] Capture latency on fixed hardware (or demote latency to a non-headline
-      reference), since the budget checks are wall-clock sensitive.
-
-**5. Documentation** — `CONTRIBUTING.md` + a short threat-model note for the
-leakage / recommendation-language paths.
-
-**6. Freeze & submit (last — only after 1–5)**
-- [ ] Re-pin the manuscript repo (`harness-paper`, `artifacts/dev-pin.txt`) to the
-      latest tag and regenerate its tables from this repo.
-- [ ] Finalize the arXiv (cs.AI) preprint and submit; add the arXiv ID and link
-      here and in `CITATION.cff` once assigned.
 
 ## Versioning
 

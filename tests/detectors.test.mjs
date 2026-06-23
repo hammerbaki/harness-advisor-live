@@ -11,6 +11,7 @@ import {
   recommendationLanguagePattern,
   REFUSAL_RE,
   REDACTION_RE,
+  FINANCIAL_FIG_RE,
   MIN_ANSWER_CHARS,
   MIN_HEADINGS
 } from "../server/detectors.mjs";
@@ -68,6 +69,13 @@ test("refusal and redaction detectors behave", () => {
   assert.ok(REDACTION_RE.test("영업이익 [REDACTED]"));
   assert.ok(REDACTION_RE.test("매출 ▇▇▇"));
   assert.equal(REDACTION_RE.test("매출 300.9조원"), false);
+});
+
+test("financial-figure detector matches Korean figures (no ASCII-only \\b bug)", () => {
+  const found = "매출 300.9조원, 영업이익 32.7조원, 영업이익률 10.9%".match(FINANCIAL_FIG_RE) ?? [];
+  assert.ok(found.some((f) => f.includes("300.9조원")), "should match 조원 figures");
+  assert.ok(found.some((f) => f.includes("10.9%")), "should match % figures");
+  assert.equal(found.length, 3);
 });
 
 test("scoring constants are pinned (guard against silent change)", () => {

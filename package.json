@@ -86,6 +86,7 @@
     "eval:lg": "ADVISOR_EVAL_SCENARIO=evals/scenarios/lg.reference-slice.json ADVISOR_EVAL_DATE=2026-05-05 node scripts/evaluate-advisor-scenarios.mjs",
     "eval:live-llm": "node scripts/evaluate-live-llm-composition.mjs",
     "eval:fault-injection": "node scripts/evaluate-advisor-fault-injection.mjs",
+    "eval:guardrail": "node scripts/evaluate-guardrail-baseline.mjs",
     "quality:seed": "node scripts/build-quality-dashboard-seed.mjs",
     "quality:samsung": "AGENT_QUALITY_RESULT=evals/results/samsung-reference-slice-v0.1.autoeval-baseline.2026-05-03.json AGENT_QUALITY_OUT=evals/dashboard/agent-dog.samsung-paper-seed.2026-05-03.json node scripts/build-quality-dashboard-seed.mjs",
     "quality:sk:financial": "AGENT_QUALITY_RESULT=evals/results/sk-financial-seed-v0.1.autoeval-baseline.2026-05-03.json AGENT_QUALITY_OUT=evals/dashboard/agent-dog.sk-financial-seed.2026-05-03.json node scripts/build-quality-dashboard-seed.mjs",
