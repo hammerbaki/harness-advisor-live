@@ -72,8 +72,20 @@ white rather than a grey smudge. It writes:
   top so it starts at "핵심 인사이트")
 - `docs/ui_mobile_selector_ko.png` — group selector (open state, all five groups);
   pairs with the main figure as a side-by-side subpanel in the paper
+- `docs/ui_mobile_source_links_ko.png` — Appendix A1(a): the source-links block,
+  each link tagged with a reader-facing **source-state label** (DART/OpenDART,
+  KRX, 공식 사이트, 시장 데이터, 뉴스). A focused detail crop (not the full phone),
+  because source links and follow-ups render together in one sub-screen pack.
+- `docs/ui_mobile_followups_ko.png` — Appendix A1(b): the follow-up questions
+  block (focused detail crop).
 - `docs/ui_mobile_main_en.png` — supplementary (English chrome; not a primary
   figure)
+
+The dev trace panel is **hidden** in `paper-capture` mode (`DEV_UI_ENABLED` is
+gated on `!detectPaperCaptureMode()`), so appendix figures show only the
+reader-facing surface. The source-state label is derived from the link target
+(href) by `sourceStateLabel()` and never exposes the internal `link.source` id
+(e.g. `fixture:dart`, `samsung-local-…`, `group-profile`).
 
 ```bash
 npm ci
@@ -123,6 +135,14 @@ demo as evidence of live performance.
 > `[hash]`). Internal trace identifiers are filtered from the reader-facing view
 > by the harness; the answer shown is not live-model output. English glosses of
 > the section headers are added for the reader.
+
+**Figure A1 — reader-facing evidence affordances (appendix):**
+> Figure A1. Reader-facing evidence affordances of a source-linked answer (Korean
+> UI), captured from the deterministic fixture-mode static demo (commit `[hash]`).
+> (a) Source links, each tagged with a source-state label (DART/OpenDART, KRX,
+> 공식 사이트, 시장 데이터, 뉴스) derived from the link target — internal source
+> identifiers are never shown. (b) Suggested follow-up questions. The developer
+> trace panel is hidden in this view; both panels are reader-facing only.
 
 **General mode-disclosure sentence** (place in the figure section or methods):
 > All UI figures are captured from the credential-free static demo

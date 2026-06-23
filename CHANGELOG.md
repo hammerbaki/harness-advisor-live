@@ -1,5 +1,26 @@
 # Changelog
 
+## public-baseline-v0.5.4 - 2026-06-24
+
+Appendix Figure A1 + source-state labels (post-v0.5.3 review). No evaluation
+numbers changed.
+
+- Source-link cards now carry a reader-facing **source-state label** derived from
+  the link target (DART/OpenDART, KRX, 공식 사이트, 시장 데이터, 뉴스) via
+  `sourceStateLabel()`. The internal `link.source` id (`fixture:dart`,
+  `samsung-local-…`, `group-profile`) is never shown — consistent with the
+  leakage contract.
+- Dev trace panel is hidden in `paper-capture` mode (`DEV_UI_ENABLED` gated on
+  `!detectPaperCaptureMode()`), so appendix figures show only the reader-facing
+  surface.
+- New Appendix A1 figures: `docs/ui_mobile_source_links_ko.png` (A1(a), source
+  links with labels) and `docs/ui_mobile_followups_ko.png` (A1(b), follow-up
+  questions). Because both affordances render together in one sub-screen
+  answer-pack, each is a focused detail crop of its own component (the capture
+  script gained `shotRegion()` for union-bbox crops). `docs/figure-capture.md`
+  gains the A1 caption template and filename entries.
+- Version consistency: README BibTeX note and roadmap manuscript-pin → current tag.
+
 ## public-baseline-v0.5.3 - 2026-06-23
 
 Figure frame finalization + group-selector callout (post-v0.5.2 review). No

@@ -1296,6 +1296,33 @@ button {
   font-size: 10px;
 }
 
+.link-list a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.link-list .link-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.source-tag {
+  flex: 0 0 auto;
+  border: 1px solid #d3e0ea;
+  border-radius: 999px;
+  background: #eef4fa;
+  color: #3f5b78;
+  padding: 2px 8px;
+  font-size: 9.6px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
 .trace-export-link {
   display: block;
   margin-top: 7px;

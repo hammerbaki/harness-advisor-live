@@ -88,8 +88,10 @@ try {
   // paper-capture background is white, so the margin around the phone is clean.
   // scrollTopSelector (optional): pin the scroll container to the top first so
   // the answer figure is deterministic (starts at the first section).
+  // scrollHeading (optional): scroll the .conversation so the answer-pack <h3>
+  // whose text starts with this string sits near the top (for appendix shots).
   const PAD = 36;
-  async function shotStage(file, { scrollTopSelector } = {}) {
+  async function shotStage(file, { scrollTopSelector, scrollHeading } = {}) {
     await page.waitForSelector(".device-shell", { timeout: 30000 });
     await page.waitForTimeout(900); // settle fonts/logos/answer render
     if (scrollTopSelector) {
@@ -97,6 +99,19 @@ try {
         const node = document.querySelector(sel);
         if (node) node.scrollTop = 0;
       }, scrollTopSelector);
+      await page.waitForTimeout(250);
+    }
+    if (scrollHeading) {
+      await page.evaluate((text) => {
+        const conv = document.querySelector(".conversation");
+        const h = [...document.querySelectorAll(".answer-pack h3")]
+          .find((el) => (el.textContent || "").trim().startsWith(text));
+        if (conv && h) {
+          const hr = h.getBoundingClientRect();
+          const cr = conv.getBoundingClientRect();
+          conv.scrollTop += (hr.top - cr.top) - 12;
+        }
+      }, scrollHeading);
       await page.waitForTimeout(250);
     }
     const box = await page.evaluate(() => {
@@ -108,6 +123,33 @@ try {
       y: Math.max(0, box.y - PAD),
       width: box.width + PAD * 2,
       height: box.height + PAD * 2
+    };
+    await page.screenshot({ path: `${OUT_DIR}/${file}`, clip });
+    console.log(`[figure] ${file}`);
+  }
+
+  // Crop to the union bounding box of the given selectors (+pad), on the white
+  // paper-capture background. Used for the appendix detail panels (source links,
+  // follow-ups) which render together in one sub-screen answer-pack, so distinct
+  // full-phone shots would be identical. Elements must be on-screen first.
+  async function shotRegion(file, selectors, pad = 14) {
+    const box = await page.evaluate((sels) => {
+      const rects = sels
+        .flatMap((s) => [...document.querySelectorAll(s)])
+        .map((el) => el.getBoundingClientRect());
+      if (!rects.length) return null;
+      const left = Math.min(...rects.map((r) => r.left));
+      const top = Math.min(...rects.map((r) => r.top));
+      const right = Math.max(...rects.map((r) => r.right));
+      const bottom = Math.max(...rects.map((r) => r.bottom));
+      return { x: left, y: top, width: right - left, height: bottom - top };
+    }, selectors);
+    if (!box) throw new Error(`region not found for ${file}`);
+    const clip = {
+      x: Math.max(0, box.x - pad),
+      y: Math.max(0, box.y - pad),
+      width: box.width + pad * 2,
+      height: box.height + pad * 2
     };
     await page.screenshot({ path: `${OUT_DIR}/${file}`, clip });
     console.log(`[figure] ${file}`);
@@ -139,6 +181,21 @@ try {
   await page.locator(".quick-buttons button").nth(2).click(); // target / 종목
   await page.waitForSelector(".message.assistant", { timeout: 30000 });
   await shotStage("ui_mobile_answer_ko.png", { scrollTopSelector: ".conversation" });
+
+  // Appendix Figure A1 — reuse the same rendered answer. Source links and
+  // follow-ups render together in one sub-screen answer-pack, so each appendix
+  // panel is a focused detail crop of its own component (dev panel is hidden in
+  // paper-capture). Scroll the pack into view first so the regions are on-screen.
+  await page.waitForSelector(".answer-pack h3", { timeout: 30000 });
+  await page.evaluate(() => {
+    const c = document.querySelector(".conversation");
+    if (c) c.scrollTop = c.scrollHeight;
+  });
+  await page.waitForTimeout(300);
+  // A1(a) — source links, each tagged with a reader-facing source-state label.
+  await shotRegion("ui_mobile_source_links_ko.png", [".answer-pack h3:nth-of-type(1)", ".link-list"]);
+  // A1(b) — follow-up questions.
+  await shotRegion("ui_mobile_followups_ko.png", [".answer-pack h3:nth-of-type(2)", ".followups"]);
 
   await browser.close();
 } catch (error) {

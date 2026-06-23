@@ -23,7 +23,9 @@ import type {
 } from "./types";
 import "./styles.css";
 
-const DEV_UI_ENABLED = import.meta.env.VITE_ADVISOR_DEV_UI !== "0";
+// Dev trace panel is hidden in paper-capture mode so appendix figures show only
+// the reader-facing surface (detectPaperCaptureMode is hoisted).
+const DEV_UI_ENABLED = import.meta.env.VITE_ADVISOR_DEV_UI !== "0" && !detectPaperCaptureMode();
 const RUNTIME_PROCESS_INTERVAL_MS = 680;
 const UI_LOCALE: UiLocale = detectUiLocale();
 const PAPER_CAPTURE_MODE = detectPaperCaptureMode();
@@ -736,6 +738,19 @@ function runtimeTraceTitle(label: string) {
   }[label] ?? label;
 }
 
+// Reader-facing source-state label derived from the link target (href) only.
+// Never surfaces the internal link.source id (e.g. "fixture:dart",
+// "samsung-local-…", "group-profile").
+function sourceStateLabel(link: AdvisorLink): string {
+  const href = (link.href ?? "").toLowerCase();
+  if (/dart\.fss|opendart/.test(href)) return "DART/OpenDART";
+  if (/krx\.co\.kr|data\.krx/.test(href)) return "KRX";
+  if (/finance\.yahoo|yahoo\.com/.test(href)) return "시장 데이터";
+  if (/news|n\.news|press|yna\.co\.kr/.test(href)) return "뉴스";
+  if (/\/ir\b|\/ir\/|investor|samsung\.com|sk\.com|hyundai|lge?\.com|hanwha/.test(href)) return "공식 사이트";
+  return "공개 출처";
+}
+
 function AnswerSources({
   links,
   followUps,
@@ -753,7 +768,8 @@ function AnswerSources({
       <div className="link-list">
         {links.map((link) => (
           <a href={link.href} target="_blank" rel="noreferrer" key={`${link.href}-${link.label}`}>
-            {link.label} ↗
+            <span className="link-label">{link.label} ↗</span>
+            <span className="source-tag">{sourceStateLabel(link)}</span>
           </a>
         ))}
       </div>
