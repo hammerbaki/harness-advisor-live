@@ -1,5 +1,23 @@
 # Changelog
 
+## public-baseline-v0.5.11 - 2026-06-24
+
+Phase 3 Increment 1, step 1 — canonical detector module (no runtime behavior
+change; foundation for the guardrail wrapper).
+
+- Added `server/detectors.mjs` (pure, dependency-free): the single source of truth
+  for `visibleAnswerDevLeakPattern` and `recommendationLanguagePattern` (moved
+  verbatim from `server/index.mjs`), plus the Phase-3 scoring constants/regex
+  (`REFUSAL_RE`, `REDACTION_RE`, `FINANCIAL_FIG_RE`, `MIN_ANSWER_CHARS`,
+  `MIN_HEADINGS`, `SECTION_HEADINGS`). The server now imports these instead of
+  defining them inline, so the guardrail wrapper and scorer will share the exact
+  same detectors (resolving the drift risk in the scoring spec — the patterns were
+  previously module-private consts).
+- Added `tests/detectors.test.mjs`: a drift-check that pins the detectors'
+  semantics and the scoring constants (now 13 tests total). Server behavior is
+  unchanged — boots clean, `validate:release` and the existing leakage/language
+  black-box tests still pass.
+
 ## public-baseline-v0.5.10 - 2026-06-24
 
 Phase 3 Increment 0.5 — scoring spec + a safety-doc fix (docs only).

@@ -1,0 +1,45 @@
+// Canonical, reusable detectors for the reader-facing answer contract.
+//
+// Single source of truth: the runtime validators in server/index.mjs, the
+// Phase-3 external-guardrail wrapper, and the scorer all import these — so the
+// "single source of truth" claim in docs/phase3-guardrail-scoring-spec.md holds
+// structurally (one definition, no divergent copies to drift).
+//
+// Pure module: no dependencies, no node: builtins — importable from the server
+// (which boots without npm install) and from tests.
+
+// --- contract violation detectors (server-canonical) ---
+
+// Internal development leakage in a reader-facing answer: claim ids, trace/eval/
+// rubric/schema vocabulary, raw JSON, prompt/paper terms. (server/index.mjs)
+export const visibleAnswerDevLeakPattern =
+  /근거 패키지|이번 답변의 공식 근거|advisor-trace|schemaVersion|processTrace|\bfixture:|\bclaim\b|hanwha-sbc-\d+|evaluation|\bJSON\b|프롬프트|prompt|rubric|eval|논문|영업\s*캡처/iu;
+
+// Buy/sell/target-price recommendation language blocked from the answer body.
+// (server/index.mjs structured-output validator)
+export const recommendationLanguagePattern =
+  /매수|매도|목표가|투자의견\s*상향|투자의견\s*하향/u;
+
+// --- Phase-3 guardrail scoring constants (docs/phase3-guardrail-scoring-spec.md) ---
+// Kept here so the wrapper, the scorer, and any drift-check test share one copy.
+
+export const MIN_ANSWER_CHARS = 40;
+export const MIN_HEADINGS = 3;
+
+// A reader-facing answer that is actually a refusal/blocked response.
+export const REFUSAL_RE =
+  /(답변(을)?\s*(제공|드릴)\s*수\s*없|제공할\s*수\s*없습니다|정책상|차단되었|blocked|cannot\s+(provide|answer)|unable to|refus)/i;
+
+// Over-redaction markers left in the visible answer.
+export const REDACTION_RE = /(\[?redacted\]?|▇{2,}|\*{3,}|■{2,}|x{4,}\b)/i;
+
+// Financial figures, for the redaction figure-preservation check (paired vs harness).
+export const FINANCIAL_FIG_RE = /\d[\d,.]*\s*(조원|억원|%|원)\b/g;
+
+// Section headings the insight-first structure expects (for MIN_HEADINGS).
+export const SECTION_HEADINGS = [
+  "핵심 인사이트",
+  "근거", // 근거 신호 / 재무 포인트 etc. — matched as a prefix elsewhere
+  "반증 리스크",
+  "다음 관찰 포인트"
+];

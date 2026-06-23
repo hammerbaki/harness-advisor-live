@@ -4,6 +4,7 @@ import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import { createReadStream, existsSync, readFileSync } from "node:fs";
 import { extname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { visibleAnswerDevLeakPattern, recommendationLanguagePattern } from "./detectors.mjs";
 
 const rootDir = resolve(fileURLToPath(new URL("..", import.meta.url)));
 loadDotEnv(join(rootDir, ".env"));
@@ -121,7 +122,7 @@ const llmOutputContract = {
     "buy/sell/target-price recommendations"
   ]
 };
-const visibleAnswerDevLeakPattern = /근거 패키지|이번 답변의 공식 근거|advisor-trace|schemaVersion|processTrace|\bfixture:|\bclaim\b|hanwha-sbc-\d+|evaluation|\bJSON\b|프롬프트|prompt|rubric|eval|논문|영업\s*캡처/iu;
+// visibleAnswerDevLeakPattern is imported from ./detectors.mjs (single source of truth).
 const noviceVisiblePhrasePattern = /어떻게\s*봐야|보는\s*방법|확인해야\s*합니다|봐야\s*합니다|브리핑\s*근거로\s*쓰|쉽습니다/iu;
 
 const mime = {
@@ -1351,7 +1352,7 @@ function validateStructuredAdvisorOutput(value, contextPackage) {
         if (noviceVisiblePhrasePattern.test(line)) {
           errors.push(`sections[${index}].body contains novice-facing explanatory wording.`);
         }
-        if (/매수|매도|목표가|투자의견\s*상향|투자의견\s*하향/u.test(line)) {
+        if (recommendationLanguagePattern.test(line)) {
           errors.push(`sections[${index}].body contains recommendation-style language.`);
         }
       }
