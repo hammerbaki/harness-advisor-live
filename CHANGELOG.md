@@ -1,5 +1,22 @@
 # Changelog
 
+## public-baseline-v0.4.1 - 2026-06-23
+
+Finalization hygiene addressing post-v0.4 review. No measured numbers changed.
+
+- `server/index.mjs` now honors a `HOST` env var (default `0.0.0.0`); set
+  `HOST=127.0.0.1` to run in sandboxed evaluation environments that disallow
+  binding `0.0.0.0` (EPERM). `tests/harness.test.mjs` spawns the server with
+  `HOST=127.0.0.1` so the suite runs in those environments.
+- README: corrected the `tests/` description (now a real `node --test` suite),
+  updated the "Static demo and CI" paragraph and bundled-validations list to
+  include `npm test` and `validate:paper-stats` (matching the actual CI).
+- Dependencies: applied non-breaking `npm audit fix` (resolved the high-severity
+  vite advisory and `@babel/core`; vite 7.3.3 → 7.3.5). One low-severity
+  esbuild advisory remains — it affects only the Windows dev server, not the
+  pure-node runtime or the static demo output, and its only fix is a breaking
+  major bump, so it is intentionally deferred.
+
 ## public-baseline-v0.4 - 2026-06-23
 
 Reproducibility, verification, and licensing hardening for arXiv (cs.AI) release.

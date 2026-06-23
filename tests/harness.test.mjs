@@ -46,7 +46,9 @@ async function advisor(body) {
 
 before(async () => {
   child = spawn("node", [serverPath], {
-    env: { ...process.env, PORT: String(PORT), ADVISOR_PREWARM: "0" },
+    // HOST=127.0.0.1 so the suite also runs in sandboxed environments that
+    // disallow binding 0.0.0.0 (EPERM); BASE already targets 127.0.0.1.
+    env: { ...process.env, PORT: String(PORT), HOST: "127.0.0.1", ADVISOR_PREWARM: "0" },
     stdio: ["ignore", "pipe", "pipe"]
   });
   child.stderr.on("data", (d) => {

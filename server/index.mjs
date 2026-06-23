@@ -10,6 +10,9 @@ loadDotEnv(join(rootDir, ".env"));
 const config = normalizeConfig(JSON.parse(await readFile(join(rootDir, "configs/groups.json"), "utf8")));
 const promptBlocks = await loadPromptBlocks();
 const port = Number(process.env.PORT ?? 8787);
+// Bind address; defaults to 0.0.0.0 for local/CI. Set HOST=127.0.0.1 in
+// sandboxed evaluation environments that disallow binding 0.0.0.0 (EPERM).
+const host = process.env.HOST ?? "0.0.0.0";
 const staticDir = process.env.STATIC_DIR === "" ? "" : join(rootDir, "dist");
 const traceSchemaVersion = "advisor-trace.v0.1";
 const promptPolicyVersion = "prompt-policy.v0.1";
@@ -163,8 +166,8 @@ createServer(async (req, res) => {
       message: error instanceof Error ? error.message : String(error)
     });
   }
-}).listen(port, "0.0.0.0", () => {
-  console.log(`[advisor-api] listening on http://0.0.0.0:${port}`);
+}).listen(port, host, () => {
+  console.log(`[advisor-api] listening on http://${host}:${port}`);
   if (memoryCacheEnabled && process.env.ADVISOR_PREWARM !== "0") {
     prewarmRuntimeCaches().catch((error) => {
       console.warn(`[advisor-api] cache prewarm skipped: ${error instanceof Error ? error.message : String(error)}`);
