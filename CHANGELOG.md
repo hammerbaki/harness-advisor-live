@@ -1,5 +1,28 @@
 # Changelog
 
+## public-baseline-v0.5.13 - 2026-06-24
+
+Phase 3 Increment 1, step 2 — external-guardrail wrapper **mechanics only**
+(no evaluation run, no result artifacts; that is the next release).
+
+- Added `server/guardrail.mjs` (pure, dependency-free): `applyExternalGuardrail()`
+  returns `pass` / `redact` / `refuse` with no fallback. Recommendation language →
+  refuse (short deterministic refusal text); development leakage → redact spans, or
+  refuse(`answer_emptied`) if little real content survives (measured with redaction
+  markers removed); otherwise pass. Detectors imported from `server/detectors.mjs`.
+- `normalizeAblation` accepts `external-guardrail` / `external` / `guardrail` / `c4`
+  (harness, prompt-only unchanged). `composeWithLLM` gains an `external-guardrail`
+  branch that — like prompt-only — bypasses the code-owned gate, then applies the
+  wrapper to the live answer and records `ablation`, `wrapperAction`,
+  `guardrailOutcome`. Links are intentionally left to the scorer (final response).
+  Only the live path is affected; fixture/CI behavior is unchanged.
+- Added `tests/guardrail.test.mjs` (pass / redact / refuse / answer_emptied /
+  product-mix-allowed); `npm test` now 18. `validate:release` + `validate:paper-stats`
+  pass.
+- README roadmap rewritten in **execution order** with submission moved **last**
+  (after the Phase-3, evaluation, and hygiene items — no attack surface left at
+  submission time).
+
 ## public-baseline-v0.5.12 - 2026-06-24
 
 Phase 3 Increment 1, step 1b — detector/spec scope alignment. **Behavior change:**

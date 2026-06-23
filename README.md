@@ -116,7 +116,7 @@ If you cite this repository:
   year   = {2026},
   url    = {https://github.com/hammerbaki/enterprise-llm-agent-harness},
   doi    = {10.5281/zenodo.20685423},
-  note   = {Version public-baseline-v0.5.12}
+  note   = {Version public-baseline-v0.5.13}
 }
 ```
 
@@ -126,39 +126,47 @@ The manuscript cites validation outputs under `evals/results/` and
 
 ## Roadmap / TODO
 
-Next steps toward the arXiv (cs.AI) submission. The repository has an arXiv
-endorsement; the earlier *Applied Sciences* track is no longer being prepared.
+Listed in **execution order**. The repository has an arXiv (cs.AI) endorsement;
+the earlier *Applied Sciences* track is no longer prepared. **Submission is last**
+— it happens only after the evaluation/defense and hygiene items below are closed,
+so there is no remaining attack surface at submission time.
 
-**Submission**
-- [ ] Finalize the arXiv preprint and submit (cs.AI); add the arXiv ID and link
-      here and in `CITATION.cff` once assigned.
-- [ ] Pin the manuscript repo (`harness-paper`, `artifacts/dev-pin.txt`) to the
-      `public-baseline-v0.5.12` tag and regenerate its tables from this repo.
+**1. Phase 3 — external-guardrail baseline (in progress)**
+Positions harness engineering against the standard alternative (an external
+guardrail layer), beyond the prompt-only ablation. Design + scoring are frozen in
+[`docs/phase3-guardrail-baseline-design.md`](docs/phase3-guardrail-baseline-design.md)
+and [`docs/phase3-guardrail-scoring-spec.md`](docs/phase3-guardrail-scoring-spec.md).
+- [x] Scoring spec frozen (conditions, false-refusal, outcome taxonomy, schema).
+- [x] Canonical detector module (`server/detectors.mjs`) + widened to spec scope.
+- [x] External-guardrail wrapper mechanics + unit tests (`server/guardrail.mjs`).
+- [ ] Guardrail evaluation runner/scorer: 3 conditions (harness / prompt-only /
+      external-guardrail) × {reference, adversarial}, to a **dated scratch** result
+      (never overwrites a committed baseline — see `docs/live-run-safety.md`).
+- [ ] Results table (violations_admitted vs. false_refusals, McNemar) + manuscript
+      integration.
 
-**Strengthen the evaluation (RQ defense)**
-- [ ] Add an external guardrail baseline (e.g. NeMo Guardrails / Guardrails AI)
-      so the harness-engineering contribution is positioned against existing
-      approaches, not only the prompt-only ablation. Design fixed in
-      [`docs/phase3-guardrail-baseline-design.md`](docs/phase3-guardrail-baseline-design.md).
-- [ ] Refresh the live-LLM panel with current models (Claude Opus 4.x / Fable 5)
-      and increase repeats to tighten the Wilson intervals (currently n=90/model).
-- [ ] Reduce the maturity asymmetry: expand at least one more group beyond
-      Hanwha to a full reference vertical slice (see Table A1).
+**2. Refresh the live-LLM panel** with current models (Claude Opus 4.x / Fable 5)
+and more repeats to tighten the Wilson intervals (currently n=90/model).
 
-**Reproducibility & hygiene**
-- [ ] Provide one end-to-end reproducible promotion example from a public or
-      synthetic source, so the ingest→promote pipeline is externally runnable for
-      at least one case (raw issuer PDFs remain non-redistributed; see
-      `REPRODUCIBILITY.md`).
-- [ ] Resolve the remaining `npm audit` finding (1 low: esbuild, Windows dev
-      server only; fix is a breaking major bump). The v0.4.x high/moderate
-      findings were already cleared.
+**3. Reduce the maturity asymmetry** — expand at least one more group beyond
+Hanwha to a full reference vertical slice (see Table A1).
+
+**4. Reproducibility & hygiene**
+- [ ] One end-to-end reproducible promotion example from a public/synthetic source
+      (raw issuer PDFs remain non-redistributed; see `REPRODUCIBILITY.md`).
+- [ ] Resolve the remaining `npm audit` low (esbuild, Windows dev server only;
+      fix is a breaking major bump). The v0.4.x high/moderate findings were cleared.
 - [ ] Capture latency on fixed hardware (or demote latency to a non-headline
-      reference) since the budget checks are wall-clock sensitive.
+      reference), since the budget checks are wall-clock sensitive.
 
-**Documentation**
-- [ ] Add `CONTRIBUTING.md` and a short threat-model note for the leakage /
-      recommendation-language paths.
+**5. Documentation** — `CONTRIBUTING.md` + a short threat-model note for the
+leakage / recommendation-language paths.
+
+**6. Freeze & submit (last — only after 1–5)**
+- [ ] Re-pin the manuscript repo (`harness-paper`, `artifacts/dev-pin.txt`) to the
+      latest tag and regenerate its tables from this repo.
+- [ ] Finalize the arXiv (cs.AI) preprint and submit; add the arXiv ID and link
+      here and in `CITATION.cff` once assigned.
 
 ## Versioning
 

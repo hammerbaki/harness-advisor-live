@@ -5,6 +5,7 @@ import { createReadStream, existsSync, readFileSync } from "node:fs";
 import { extname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { visibleAnswerDevLeakPattern, recommendationLanguagePattern } from "./detectors.mjs";
+import { applyExternalGuardrail } from "./guardrail.mjs";
 
 const rootDir = resolve(fileURLToPath(new URL("..", import.meta.url)));
 loadDotEnv(join(rootDir, ".env"));
@@ -1053,6 +1054,46 @@ async function composeWithLLM(contextPackage, ablation = resolveAblation()) {
     };
   }
 
+  if (ablation === "external-guardrail") {
+    // Condition C4: the code-owned gate and deterministic fallback are disabled
+    // (as in prompt-only); instead a separate external policy layer post-processes
+    // the live answer with pass/redact/refuse and NO fallback. Links are not
+    // touched here — the scorer evaluates the final response (answer + links).
+    const rawAnswer = structured && typeof structured === "object" && !Array.isArray(structured)
+      ? renderStructuredAdvisorOutput(structured)
+      : String(text ?? "");
+    const guard = applyExternalGuardrail(rawAnswer);
+    compositionProcess.push({
+      stage: "output_contract_validation",
+      status: validation.passed ? "pass" : "fail",
+      ablationBypassed: true,
+      errorCount: validation.errors.length,
+      errors: validation.errors.slice(0, 8)
+    });
+    compositionProcess.push({ stage: "external_guardrail", status: guard.action, outcome: guard.outcome });
+    compositionProcess.push({ stage: "recovery", status: "disabled_by_ablation" });
+    return {
+      mode: "external-guardrail",
+      live: true,
+      status: "live",
+      provider,
+      model,
+      ablation: "external-guardrail",
+      wrapperAction: guard.action,
+      guardrailOutcome: guard.outcome,
+      source: `${llmProviderLabel(provider)} + external-guardrail`,
+      summary: `External-guardrail condition: deterministic policy layer applied (${guard.action}); no code-owned gate, no fallback.`,
+      outputContract: {
+        version: llmOutputContractVersion,
+        status: validation.passed ? "validated" : "ungated_failure",
+        errors: validation.errors.slice(0, 8),
+        process: compositionProcess,
+        liveOutput: summarizeLiveLLMOutput(text)
+      },
+      answer: finalizeAdvisorAnswer(guard.answer)
+    };
+  }
+
   if (validation.passed) {
     compositionProcess.push({
       stage: "output_contract_validation",
@@ -1117,6 +1158,7 @@ function normalizeAblation(value) {
   if (!normalized) return null;
   if (["prompt-only", "promptonly", "c3"].includes(normalized)) return "prompt-only";
   if (["harness", "c0", "full"].includes(normalized)) return "harness";
+  if (["external-guardrail", "external", "guardrail", "c4"].includes(normalized)) return "external-guardrail";
   return null;
 }
 
