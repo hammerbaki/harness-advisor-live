@@ -144,6 +144,18 @@ test("link family: cited links resolve to a source pointer", async () => {
   }
 });
 
+test("link family: fixture-mode source links include a representative-company news-search link", async () => {
+  // In fixture mode there is no live news item, so source links must still
+  // represent the news channel via an honest news-SEARCH link keyed to the
+  // representative company name (삼성전자), not the group name (삼성).
+  const r = await advisor({ groupId: "samsung", question: "삼성전자 메모리 실적" });
+  const news = r.links.find((link) => /뉴스/.test(link.label));
+  assert.ok(news, "expected a news-channel link in fixture-mode source links");
+  assert.equal(news.label, "삼성전자 뉴스 검색", "news link should use the representative company name");
+  assert.match(news.href, /search\.naver\.com.*where=news/, "news link should be a Naver news search endpoint");
+  assert.match(news.href, new RegExp(encodeURIComponent("삼성전자")), "news search query should be the representative company");
+});
+
 test("deterministic composer is used without LLM credentials", async () => {
   const r = await advisor({ groupId: "samsung", question: "삼성전자 메모리 실적" });
   // fixture mode == no live model; the deterministic composer must still

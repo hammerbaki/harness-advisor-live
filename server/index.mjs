@@ -289,7 +289,7 @@ async function runAdvisor(body) {
       llm
     }),
     answer: llm.answer,
-    links: buildLinks(group, dart, market, news, sourceBackedClaims),
+    links: buildLinks(group, dart, market, news, sourceBackedClaims, representativeCompany),
     followUps: buildFollowUps(group, listedCompany, question),
     sourceClaims: sourceBackedClaims.selectedClaims ?? [],
     processTrace: traces,
@@ -1886,7 +1886,7 @@ function sha256(value) {
   return createHash("sha256").update(String(value)).digest("hex");
 }
 
-function buildLinks(group, dart, market, news, sourceBackedClaims) {
+function buildLinks(group, dart, market, news, sourceBackedClaims, representativeCompany) {
   const links = [
     { label: "DART 전자공시시스템", href: "https://dart.fss.or.kr/", source: dart.source },
     { label: "KRX 정보데이터시스템", href: "https://data.krx.co.kr/", source: market.source }
@@ -1907,10 +1907,12 @@ function buildLinks(group, dart, market, news, sourceBackedClaims) {
   } else {
     // Fixture mode has no live news item; expose an honest news-search affordance
     // (a real public search endpoint, not a fabricated headline) so the news
-    // source channel is still represented in the source links.
+    // source channel is still represented in the source links. Use the
+    // representative company name (e.g. 삼성전자), not the group name (삼성).
+    const newsSubject = representativeCompany?.koreanName ?? displayGroupName(group);
     links.push({
-      label: `${displayGroupName(group)} 뉴스 검색`,
-      href: `https://search.naver.com/search.naver?where=news&query=${encodeURIComponent(displayGroupName(group))}`,
+      label: `${newsSubject} 뉴스 검색`,
+      href: `https://search.naver.com/search.naver?where=news&query=${encodeURIComponent(newsSubject)}`,
       source: "news-search"
     });
   }

@@ -1,5 +1,21 @@
 # Changelog
 
+## public-baseline-v0.5.7 - 2026-06-24
+
+Micro-consistency patch (figure/caption only; eval baselines untouched).
+
+- The fixture-mode news-search link in `buildLinks` now uses the **representative
+  company** name (e.g. 삼성전자) for both the label and the search query, instead
+  of the group name (삼성). So Appendix A1(a) reads "삼성전자 뉴스 검색". Regenerated
+  `docs/ui_mobile_source_links_ko.png`.
+- Added a regression test (`npm test`, now 9 tests): fixture-mode Samsung source
+  links must include a news-channel link labelled "삼성전자 뉴스 검색" pointing to a
+  Naver news-search endpoint for the representative company.
+- CSS lint hygiene: added the standard `line-clamp` property alongside each
+  `-webkit-line-clamp`, and replaced `min-height: auto` with `min-height: 0` in the
+  mobile media query.
+- Version consistency: README BibTeX note and roadmap manuscript-pin → current tag.
+
 ## public-baseline-v0.5.6 - 2026-06-24
 
 Hotfix on top of v0.5.5.
