@@ -418,7 +418,7 @@ async function buildBriefingSnapshot(group, locale = "ko") {
       body: conciseCardText(financialBodyOverride || (financialClaim?.claimText ?? `${displayCompanyName(representativeCompany, locale)} 최신 공시 본문을 DART에서 직접 확인합니다.`), 100),
       source: locale === "en" ? "DART filings" : "DART 전자공시",
       sourceUrl: financialDisclosure.url ?? financialClaim?.officialSourceUrl ?? financialClaim?.officialDownloadUrl ?? dartSourceUrl,
-      footerLeft: locale === "en" ? `Source: ${dart.source}` : `출처: ${dart.source}`,
+      footerLeft: locale === "en" ? "Source: DART/OpenDART" : "출처: DART/OpenDART",
       footerRight: locale === "en" ? `status: ${dart.status}` : `상태: ${dart.status}`,
       accent: "orange",
       entityCompanyId: representativeCompany?.id

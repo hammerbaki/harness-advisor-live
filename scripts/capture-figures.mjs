@@ -83,9 +83,19 @@ try {
   const page = await ctx.newPage();
 
   // Clip to .device-shell so the figure is the realistic phone frame itself.
-  async function shotStage(file) {
+  // scrollTopSelector (optional): pin the scroll container to the top before the
+  // shot so the answer figure is deterministic (starts at the first section),
+  // rather than wherever auto-scroll left it.
+  async function shotStage(file, { scrollTopSelector } = {}) {
     const el = await page.waitForSelector(".device-shell", { timeout: 30000 });
     await page.waitForTimeout(900); // settle fonts/logos/answer render
+    if (scrollTopSelector) {
+      await page.evaluate((sel) => {
+        const node = document.querySelector(sel);
+        if (node) node.scrollTop = 0;
+      }, scrollTopSelector);
+      await page.waitForTimeout(250);
+    }
     await el.screenshot({ path: `${OUT_DIR}/${file}` });
     console.log(`[figure] ${file}`);
   }
@@ -94,12 +104,19 @@ try {
   await page.goto(`${base}/?paper=en&capture=paper`, { waitUntil: "networkidle" });
   await shotStage("ui_mobile_main_en.png");
 
+  // Korean briefing feed (regenerates the legacy *_ko_callout asset to the
+  // current UI; manual annotation callouts, if needed, are re-added by hand).
+  await page.goto(`${base}/?capture=paper`, { waitUntil: "networkidle" });
+  await shotStage("ui_mobile_main_ko_callout.png");
+
   // Figure 2 — a source-linked answer. English chrome; the answer body is
   // Korean-only (composer emits Korean section titles), so this stays *_ko.
+  // Pin the conversation to the top so the figure starts at "핵심 인사이트".
   await page.goto(`${base}/?paper=en&capture=paper`, { waitUntil: "networkidle" });
   await page.waitForSelector(".device-shell", { timeout: 30000 });
   await page.getByRole("button", { name: "Group", exact: true }).click();
-  await shotStage("ui_mobile_answer_ko.png");
+  await page.waitForSelector(".message.assistant", { timeout: 30000 });
+  await shotStage("ui_mobile_answer_ko.png", { scrollTopSelector: ".conversation" });
 
   await browser.close();
 } catch (error) {

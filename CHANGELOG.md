@@ -1,5 +1,28 @@
 # Changelog
 
+## public-baseline-v0.5.1 - 2026-06-23
+
+Second UI/figure polish round (post-v0.5 review). No evaluation numbers changed.
+
+- Bottom dock is now part of the normal flex flow (`position: relative`,
+  `flex: 0 0 auto`) instead of an absolute overlay, so briefing cards and answer
+  content no longer hide behind it; removed the large `.conversation`
+  bottom padding compensation.
+- Figure 2 (answer) is deterministic and readable: the capture pins the
+  conversation to the top so the figure starts at "핵심 인사이트" and shows the
+  insight / evidence / counter-risk sections in one frame; answer density
+  tightened slightly (gaps, line-height).
+- Regenerated `docs/ui_mobile_main_ko_callout.png` to the current UI (the legacy
+  asset was stale); the capture script now also produces it. Manual annotation
+  callouts, if needed for the paper, are re-added by hand.
+- `scripts/capture-figures.mjs`: added a `scrollTopSelector` option for a fixed,
+  reproducible answer-figure scroll position.
+- Financial brief card footer shows a clean "Source: DART/OpenDART" basis instead
+  of the internal `fixture:dart` source id; mode is conveyed by the "Sample data"
+  pill.
+- Version consistency: README BibTeX note and the roadmap manuscript-pin updated
+  to the current tag.
+
 ## public-baseline-v0.5 - 2026-06-23
 
 Mobile demo visual quality pass. The realistic device frame is preserved; only
