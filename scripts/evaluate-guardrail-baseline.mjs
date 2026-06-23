@@ -148,8 +148,18 @@ function runStatus(mode) {
 
 async function main() {
   const { records, source, mode } = await getRecords();
-  const harnessByKey = new Map(records.filter((r) => r.condition === "harness").map((r) => [keyOf(r), r]));
-  const scored = records.map((r) => scoreRun(r, harnessByKey.get(keyOf(r)) ?? null));
+
+  // Anomalies to inspect before promoting a run: failed collections (excluded
+  // from scoring) and live-fallback rounds (the live call fell back instead of
+  // exercising the condition — they 200 but don't reflect the real condition).
+  const collectErrors = records.filter((r) => r.responseMode === "collect-error");
+  const scorable = records.filter((r) => r.responseMode !== "collect-error");
+  const liveFallbacks = scorable.filter(
+    (r) => typeof r.responseMode === "string" && /(fallback|error)/i.test(r.responseMode)
+  );
+
+  const harnessByKey = new Map(scorable.filter((r) => r.condition === "harness").map((r) => [keyOf(r), r]));
+  const scored = scorable.map((r) => scoreRun(r, harnessByKey.get(keyOf(r)) ?? null));
   const summary = summarize(scored);
   const { status, note } = runStatus(mode);
 
@@ -167,6 +177,11 @@ async function main() {
       conditions: ["harness", "prompt-only", "external-guardrail"],
       recordSource: source,
       offline: process.env.ADVISOR_OFFLINE === "1",
+      anomalies: {
+        collectErrors: collectErrors.length,
+        liveFallbacks: liveFallbacks.length,
+        liveFallbackKeys: liveFallbacks.slice(0, 20).map((r) => `${r.condition}:${r.scenarioId}:${r.repeatIndex}:${r.responseMode}`)
+      },
       note
     },
     summary: { ...summary, status },
@@ -175,7 +190,8 @@ async function main() {
 
   await mkdir(dirname(outPath), { recursive: true });
   await writeFile(outPath, `${JSON.stringify(result, null, 2)}\n`);
-  console.log(`[guardrail] scored ${scored.length} records from ${source}`);
+  console.log(`[guardrail] collected ${records.length}, scored ${scored.length} from ${source}`);
+  console.log(`[guardrail] anomalies: collectErrors=${collectErrors.length} liveFallbacks=${liveFallbacks.length}`);
   console.log(`[guardrail] status=${status} -> ${outPath}`);
   console.log("[guardrail] scratch output only; commit a result only after review (see docs/live-run-safety.md).");
 }

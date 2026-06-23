@@ -1,5 +1,17 @@
 # Changelog
 
+## public-baseline-v0.5.15-pre.2 - 2026-06-24
+
+Collector robustness for the upcoming full batch (no committed result artifact).
+
+- `scripts/guardrail-collect.mjs`: per-call retry (1) and per-call error tolerance —
+  a call that fails after retries is recorded as a `collect-error` record instead of
+  aborting the whole (long, paid) batch.
+- `scripts/evaluate-guardrail-baseline.mjs`: excludes `collect-error` records from
+  scoring and reports anomalies (`collectErrors`, `liveFallbacks`) in `design.anomalies`
+  and the console — so live-fallback rounds (200 but not a real condition outcome) are
+  visible at review time before any artifact is promoted.
+
 ## public-baseline-v0.5.15-pre.1 - 2026-06-24
 
 Pre-pilot hygiene (no live batch).

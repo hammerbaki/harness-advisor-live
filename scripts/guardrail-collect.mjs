@@ -27,38 +27,62 @@ export async function loadScenarioSpecs(setDescriptors) {
   return specs;
 }
 
-// Call /api/advisor once and shape a run record.
-async function callAdvisor(baseUrl, spec, condition, repeatIndex, model) {
-  const res = await fetch(`${baseUrl}/api/advisor`, {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify({ groupId: spec.groupId, question: spec.question, ablation: condition })
-  });
-  if (!res.ok) throw new Error(`advisor HTTP ${res.status} for ${spec.scenarioId}/${condition}`);
-  const resp = await res.json();
-  return {
-    condition,
-    scenarioSet: spec.scenarioSet,
-    scenarioId: spec.scenarioId,
-    model: model ?? resp.trace?.llmModel ?? "unknown",
-    repeatIndex,
-    answer: resp.answer ?? "",
-    links: resp.links ?? [],
-    wrapperAction: resp.wrapperAction ?? null,
-    guardrailOutcome: resp.guardrailOutcome ?? null,
-    responseMode: resp.mode ?? null,
-    serverAblation: resp.ablation ?? null // server-echoed; for surfacing checks
-  };
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+// Call /api/advisor once and shape a run record. Retries transient failures so a
+// single blip doesn't abort a long batch; throws only after exhausting retries.
+async function callAdvisor(baseUrl, spec, condition, repeatIndex, model, retries = 1) {
+  let lastErr;
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      const res = await fetch(`${baseUrl}/api/advisor`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ groupId: spec.groupId, question: spec.question, ablation: condition })
+      });
+      if (!res.ok) throw new Error(`advisor HTTP ${res.status}`);
+      const resp = await res.json();
+      return {
+        condition,
+        scenarioSet: spec.scenarioSet,
+        scenarioId: spec.scenarioId,
+        model: model ?? resp.trace?.llmModel ?? "unknown",
+        repeatIndex,
+        answer: resp.answer ?? "",
+        links: resp.links ?? [],
+        wrapperAction: resp.wrapperAction ?? null,
+        guardrailOutcome: resp.guardrailOutcome ?? null,
+        responseMode: resp.mode ?? null,
+        serverAblation: resp.ablation ?? null // server-echoed; for surfacing checks
+      };
+    } catch (error) {
+      lastErr = error;
+      if (attempt < retries) await sleep(600);
+    }
+  }
+  throw lastErr;
 }
 
 // Collect records for every scenario × condition × repeat (sequential — keeps
-// live cost predictable and avoids hammering a single spawned server).
+// live cost predictable and avoids hammering a single spawned server). A call
+// that fails after retries is recorded as a `collect-error` record (answer empty)
+// rather than aborting the whole batch, so a long run is recoverable/inspectable.
 export async function collectRecords({ baseUrl, scenarios, conditions = DEFAULT_CONDITIONS, repeats = 1, model = null }) {
   const records = [];
   for (const spec of scenarios) {
     for (const condition of conditions) {
       for (let r = 1; r <= repeats; r++) {
-        records.push(await callAdvisor(baseUrl, spec, condition, r, model));
+        try {
+          records.push(await callAdvisor(baseUrl, spec, condition, r, model));
+        } catch (error) {
+          records.push({
+            condition, scenarioSet: spec.scenarioSet, scenarioId: spec.scenarioId,
+            model: model ?? "unknown", repeatIndex: r,
+            answer: "", links: [], wrapperAction: null, guardrailOutcome: null,
+            responseMode: "collect-error", serverAblation: null,
+            error: error instanceof Error ? error.message : String(error)
+          });
+        }
       }
     }
   }
