@@ -116,7 +116,7 @@ If you cite this repository:
   year   = {2026},
   url    = {https://github.com/hammerbaki/enterprise-llm-agent-harness},
   doi    = {10.5281/zenodo.20685423},
-  note   = {Version public-baseline-v0.5.8}
+  note   = {Version public-baseline-v0.5.9}
 }
 ```
 
@@ -133,7 +133,7 @@ endorsement; the earlier *Applied Sciences* track is no longer being prepared.
 - [ ] Finalize the arXiv preprint and submit (cs.AI); add the arXiv ID and link
       here and in `CITATION.cff` once assigned.
 - [ ] Pin the manuscript repo (`harness-paper`, `artifacts/dev-pin.txt`) to the
-      `public-baseline-v0.5.8` tag and regenerate its tables from this repo.
+      `public-baseline-v0.5.9` tag and regenerate its tables from this repo.
 
 **Strengthen the evaluation (RQ defense)**
 - [ ] Add an external guardrail baseline (e.g. NeMo Guardrails / Guardrails AI)
@@ -186,6 +186,16 @@ regenerated from committed result artifacts by
 `node scripts/compute-paper-stats.mjs` (CI guards against drift via
 `npm run validate:paper-stats`), and deterministic harness invariants are pinned
 by `npm test` (`node --test`).
+
+## AI-assisted development
+
+Parts of this repository were developed with AI assistance (Claude Code,
+Anthropic) — for code, validators, documentation, and figure tooling. All
+research design, evaluation, and verification decisions, and all responsibility
+for the contents, rest with the human authors listed in
+[`CITATION.cff`](CITATION.cff). The AI is a development tool, not an author or a
+contributor in the academic sense; some commit messages carry a
+`Co-Authored-By` development trailer, which records tool provenance only.
 
 ## License
 

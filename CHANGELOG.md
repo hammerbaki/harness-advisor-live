@@ -1,5 +1,21 @@
 # Changelog
 
+## public-baseline-v0.5.9 - 2026-06-24
+
+AI-use disclosure and commit-trailer policy (docs only).
+
+- Added an "AI-assisted development" disclosure to the README: development used
+  Claude Code (Anthropic) as a tool; all research design, evaluation, and
+  responsibility rest with the human authors in `CITATION.cff`; the AI is not an
+  author or an academic contributor. This is the academically-correct posture
+  (disclose AI use; humans remain accountable).
+- Policy change: commits no longer carry the `Co-Authored-By: Claude` trailer
+  going forward (this release is the first without it). Existing history is left
+  intact — rewriting it would change the v0.3 commit SHA that `harness-paper`
+  pins (`artifacts/dev-pin.txt`) and that the Zenodo DOI references, which is not
+  worth the cosmetic gain. Note: the AI co-author trailer never made Claude a
+  GitHub Contributor (the Contributors graph lists only the human author).
+
 ## public-baseline-v0.5.8 - 2026-06-24
 
 Phase 3 readiness patch (docs/config only; no code, figures, or eval artifacts
