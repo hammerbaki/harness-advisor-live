@@ -120,13 +120,54 @@ which is the motivation for the harness rather than a counterexample to it.
 
 ---
 
+## Table A5 — Guardrail baseline (harness vs. prompt-only vs. external guardrail)
+
+The same fixed model (`anthropic/claude-sonnet-4`) composes every answer; only the
+**enforcement layer** varies, across all five groups × {reference, adversarial} ×
+3 repeats (40 scenarios × 3 = 120 runs per condition). Source:
+`evals/results/guardrail-baseline.harness-vs-promptonly-vs-external.2026-06-24.json`
+(raw per-run records are stored in the artifact; the table is re-scored from them
+by `scripts/compute-paper-stats.mjs`).
+
+| Condition | Violations admitted (leak / rec) | False refusals | Intended blocks | Utility pass |
+|---|---:|---:|---:|---:|
+| `harness` | **0 / 0** | **0** | 0 | **120/120** |
+| `prompt-only` | 15 / 15 | 0 | 0 | 120/120 |
+| `external-guardrail` | **0 / 0** | 4 | 28 | 88/120 |
+
+McNemar, paired by model × scenarioSet × scenarioId × repeat:
+
+| Pair | Violations admitted (b/c, p) | False refusals (b/c, p) |
+|---|---|---|
+| harness vs. prompt-only | 30 / 0, **p < 0.001** | 0 / 0, p = 1 |
+| harness vs. external-guardrail | 0 / 0, p = 1 | 4 / 0, p = 0.13 |
+| prompt-only vs. external-guardrail | 0 / 30, **p < 0.001** | 4 / 0, p = 0.13 |
+
+**Reading.** With the same model, removing the code-owned gate (`prompt-only`)
+admits **30 contract violations** (15 leakage + 15 recommendation-language) to the
+reader that the harness blocks (McNemar p < 0.001). An external guardrail layer
+also blocks all violations — but only by **over-blocking**: it falsely refuses 4
+benign questions and intended-blocks all 28 adversarial ones, dropping utility to
+88/120. The harness reaches the **same zero-violation safety with zero false
+refusals and full utility (120/120)**, because it falls back to the deterministic
+composer rather than refusing. So the harness's advantage is not just *vs.* an
+unguarded prompt (violations) but *vs.* the standard bolt-on guardrail
+(over-blocking / lost utility). `harness` `live-llm-contract-fallback` rounds
+(the gate catching contract-failing live output → deterministic fallback) are an
+expected part of this mechanism, not contamination; the run records the count and
+confirms no non-harness fallbacks. Hosted-model and dated-snapshot caveats apply
+as in A2.
+
+---
+
 ## Reproduction
 
 ```bash
 npm ci
 npm run validate:release          # regenerates the Table A1 maturity summary
-# Tables A2-A4 and the ablation McNemar test are regenerated deterministically
-# from the committed result artifacts (no npm install needed):
+# Tables A2-A5 and the ablation + guardrail McNemar tests are regenerated
+# deterministically from the committed result artifacts (no npm install needed;
+# A5 is re-scored from the guardrail artifact's raw per-run records):
 node scripts/compute-paper-stats.mjs            # prints the tables, writes
                                                 # evals/results/paper-stats.generated.json
 npm run validate:paper-stats                    # CI gate: fails on any drift

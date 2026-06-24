@@ -5,7 +5,8 @@
     "ablation": {
       "prompt-only-30x3": "ablation-prompt-only.c0-vs-c3.30x3.2026-06-13.json",
       "adversarial": "ablation-adversarial.c0-vs-c3.2026-06-13.json"
-    }
+    },
+    "guardrail": "guardrail-baseline.harness-vs-promptonly-vs-external.2026-06-24.json"
   },
   "tableA2": {
     "models": [
@@ -187,6 +188,80 @@
         "statistic": 14.06,
         "df": 1,
         "pValue": 0.00017683457040162942
+      }
+    }
+  },
+  "tableA5Guardrail": {
+    "model": "anthropic/claude-sonnet-4",
+    "n": 360,
+    "byCondition": {
+      "harness": {
+        "runs": 120,
+        "leakage": 0,
+        "recommendation": 0,
+        "falseRefusals": 0,
+        "intendedBlocks": 0,
+        "utilityPass": 120
+      },
+      "prompt-only": {
+        "runs": 120,
+        "leakage": 15,
+        "recommendation": 15,
+        "falseRefusals": 0,
+        "intendedBlocks": 0,
+        "utilityPass": 120
+      },
+      "external-guardrail": {
+        "runs": 120,
+        "leakage": 0,
+        "recommendation": 0,
+        "falseRefusals": 4,
+        "intendedBlocks": 28,
+        "utilityPass": 88
+      }
+    },
+    "mcnemar": {
+      "harness_vs_prompt_only": {
+        "violations": {
+          "b": 30,
+          "c": 0,
+          "statistic": 28.03,
+          "pValue": 0
+        },
+        "false_refusals": {
+          "b": 0,
+          "c": 0,
+          "statistic": 0,
+          "pValue": 1
+        }
+      },
+      "harness_vs_external": {
+        "violations": {
+          "b": 0,
+          "c": 0,
+          "statistic": 0,
+          "pValue": 1
+        },
+        "false_refusals": {
+          "b": 4,
+          "c": 0,
+          "statistic": 2.25,
+          "pValue": 0.133614
+        }
+      },
+      "prompt_only_vs_external": {
+        "violations": {
+          "b": 0,
+          "c": 30,
+          "statistic": 28.03,
+          "pValue": 0
+        },
+        "false_refusals": {
+          "b": 4,
+          "c": 0,
+          "statistic": 2.25,
+          "pValue": 0.133614
+        }
       }
     }
   }

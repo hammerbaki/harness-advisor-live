@@ -10,7 +10,7 @@ authors:
     given-names: Moonsoo
     affiliation: AI Leadership Research Center
     orcid: "https://orcid.org/0000-0001-8958-8549"
-version: public-baseline-v0.5.16-pre
+version: public-baseline-v0.5.16
 date-released: 2026-06-24
 doi: 10.5281/zenodo.20685423
 url: "https://github.com/hammerbaki/enterprise-llm-agent-harness"

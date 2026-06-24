@@ -17,6 +17,7 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
+import { scoreRun, summarize } from "./guardrail-scorer.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(here, "..");
@@ -27,6 +28,7 @@ const ABLATION_FILES = {
   "prompt-only-30x3": "ablation-prompt-only.c0-vs-c3.30x3.2026-06-13.json",
   adversarial: "ablation-adversarial.c0-vs-c3.2026-06-13.json"
 };
+const GUARDRAIL_FILE = "guardrail-baseline.harness-vs-promptonly-vs-external.2026-06-24.json";
 const GENERATED_FILE = join(resultsDir, "paper-stats.generated.json");
 
 // --- statistics helpers ---------------------------------------------------
@@ -280,6 +282,37 @@ function fmtP(p) {
   return String(round(p, 4));
 }
 
+// Table A5 — guardrail baseline. Re-scored from the artifact's RAW records (not
+// read from its stored summary), so the table is reproducible from raw data.
+function tableGuardrail() {
+  const data = load(GUARDRAIL_FILE);
+  const records = (data.records ?? []).filter((r) => r.responseMode !== "collect-error");
+  const key = (r) => `${r.model}::${r.scenarioSet}::${r.scenarioId}::${r.repeatIndex}`;
+  const harnessByKey = new Map(records.filter((r) => r.condition === "harness").map((r) => [key(r), r]));
+  const scored = records.map((r) => scoreRun(r, harnessByKey.get(key(r)) ?? null));
+  const summary = summarize(scored);
+
+  const byCondition = {};
+  for (const [c, v] of Object.entries(summary.byCondition)) {
+    byCondition[c] = {
+      runs: v.runs,
+      leakage: v.violationsAdmitted.leakage,
+      recommendation: v.violationsAdmitted.recommendation,
+      falseRefusals: v.falseRefusals,
+      intendedBlocks: v.intendedBlocks,
+      utilityPass: v.utilityPass
+    };
+  }
+  const mc = {};
+  for (const [pair, m] of Object.entries(summary.mcnemar)) {
+    mc[pair] = {
+      violations: { b: m.violations_admitted.b, c: m.violations_admitted.c, statistic: m.violations_admitted.statistic, pValue: round(m.violations_admitted.pValue, 6) },
+      false_refusals: { b: m.false_refusals.b, c: m.false_refusals.c, statistic: m.false_refusals.statistic, pValue: round(m.false_refusals.pValue, 6) }
+    };
+  }
+  return { model: scored[0]?.model ?? null, n: scored.length, byCondition, mcnemar: mc };
+}
+
 function buildReport() {
   const live = load(LIVE_LLM_FILE);
   const a2 = tableA2(live);
@@ -296,12 +329,14 @@ function buildReport() {
     schemaVersion: "paper-stats.generated.v1",
     source: {
       liveLLM: LIVE_LLM_FILE,
-      ablation: ABLATION_FILES
+      ablation: ABLATION_FILES,
+      guardrail: GUARDRAIL_FILE
     },
     tableA2: a2,
     tableA3: a3,
     tableA4: a4,
-    ablationMcNemar: ablation
+    ablationMcNemar: ablation,
+    tableA5Guardrail: tableGuardrail()
   };
 }
 
@@ -356,6 +391,25 @@ function renderMarkdown(r) {
     }
   }
   lines.push("");
+
+  const g = r.tableA5Guardrail;
+  if (g) {
+    lines.push(`## Table A5 — Guardrail baseline (model \`${g.model}\`, n = ${g.n / 3} per condition)\n`);
+    lines.push("Same fixed model; the enforcement layer varies. Violations admitted = leakage/recommendation reaching the reader; false refusals = blocks on benign (reference) scenarios; intended blocks = blocks on adversarial.\n");
+    lines.push("| Condition | Violations (leak / rec) | False refusals | Intended blocks | Utility pass |");
+    lines.push("|---|---:|---:|---:|---:|");
+    for (const [c, v] of Object.entries(g.byCondition)) {
+      lines.push(`| \`${c}\` | ${v.leakage} / ${v.recommendation} | ${v.falseRefusals} | ${v.intendedBlocks} | ${v.utilityPass}/${v.runs} |`);
+    }
+    lines.push("");
+    lines.push("McNemar (paired by model × scenarioSet × scenarioId × repeat):\n");
+    lines.push("| Pair | Violations b/c, p | False refusals b/c, p |");
+    lines.push("|---|---|---|");
+    for (const [pair, m] of Object.entries(g.mcnemar)) {
+      lines.push(`| ${pair} | ${m.violations.b}/${m.violations.c}, ${fmtP(m.violations.pValue)} | ${m.false_refusals.b}/${m.false_refusals.c}, ${fmtP(m.false_refusals.pValue)} |`);
+    }
+    lines.push("");
+  }
   return lines.join("\n");
 }
 

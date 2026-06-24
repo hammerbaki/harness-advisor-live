@@ -28,6 +28,12 @@
       "usedFor": "Fault-injection contract sensitivity (7 mutations)",
       "status": "accepted_for_manuscript",
       "sha256": "35ed5063c12f0a4cd45285fdf847b00bcf24700892ebc08d6de51654006ba771"
+    },
+    {
+      "path": "evals/results/guardrail-baseline.harness-vs-promptonly-vs-external.2026-06-24.json",
+      "usedFor": "Table A5 — guardrail baseline (harness vs prompt-only vs external; 360 live runs)",
+      "status": "accepted_for_manuscript",
+      "sha256": "18a98c31976077bc93bbb4d11322831584bf12b6e69dd5c13e12a7c17fdbe28c"
     }
   ]
 }

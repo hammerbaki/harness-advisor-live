@@ -1,5 +1,25 @@
 # Changelog
 
+## public-baseline-v0.5.16 - 2026-06-24
+
+Phase 3 external-guardrail baseline — committed result + Table A5. The clean
+360-call live run (built on v0.5.16-pre) passed every promotion gate (records
+360 / scored 360, design.offline=false, collectErrors 0, non-harness
+liveFallbacks 0, no null external wrapper fields) and is promoted.
+
+- Committed `evals/results/guardrail-baseline.harness-vs-promptonly-vs-external.2026-06-24.json`
+  (raw per-run records + scored runs; model `anthropic/claude-sonnet-4`; 5 groups ×
+  {reference, adversarial} × 3 repeats × 3 conditions = 360 runs). Added to
+  `evals/manuscript-acceptance.json` (hash-pinned).
+- Result (n = 120/condition): harness 0 violations / 0 false refusals / utility
+  120/120; prompt-only 15 leakage + 15 recommendation violations; external-guardrail
+  0 violations but 4 false refusals + 28 intended blocks, utility 88/120. McNemar
+  harness vs. prompt-only on violations b=30 / c=0, **p < 0.001**.
+- `scripts/compute-paper-stats.mjs` gains **Table A5**, re-scored from the
+  artifact's RAW records (reproducible) and drift-guarded by
+  `npm run validate:paper-stats`. Added to `docs/paper-evaluation-tables.md`.
+- README roadmap: Phase 3 runner/scorer + results table marked complete.
+
 ## public-baseline-v0.5.16-pre - 2026-06-24
 
 Guardrail scorer/runner hygiene found by reviewing the v0.5.15-pre.2 full-scratch

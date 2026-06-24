@@ -9,7 +9,7 @@ the earlier *Applied Sciences* track is no longer prepared. **Submission is last
 — it happens only after the evaluation/defense and hygiene items below are closed,
 so there is no remaining attack surface at submission time.
 
-**1. Phase 3 — external-guardrail baseline (in progress)**
+**1. Phase 3 — external-guardrail baseline (complete; Table A5)**
 Positions harness engineering against the standard alternative (an external
 guardrail layer), beyond the prompt-only ablation. Design + scoring are frozen in
 [`docs/phase3-guardrail-baseline-design.md`](docs/phase3-guardrail-baseline-design.md)
@@ -17,11 +17,11 @@ and [`docs/phase3-guardrail-scoring-spec.md`](docs/phase3-guardrail-scoring-spec
 - [x] Scoring spec frozen (conditions, false-refusal, outcome taxonomy, schema).
 - [x] Canonical detector module (`server/detectors.mjs`) + widened to spec scope.
 - [x] External-guardrail wrapper mechanics + unit tests (`server/guardrail.mjs`).
-- [ ] Guardrail evaluation runner/scorer: 3 conditions (harness / prompt-only /
-      external-guardrail) × {reference, adversarial}, to a **dated scratch** result
-      (never overwrites a committed baseline — see `docs/live-run-safety.md`).
-- [ ] Results table (violations_admitted vs. false_refusals, McNemar) + manuscript
-      integration.
+- [x] Guardrail evaluation runner/scorer: 3 conditions (harness / prompt-only /
+      external-guardrail) × {reference, adversarial} × 3 repeats, 360 live runs.
+- [x] Results table (Table A5: violations_admitted vs. false_refusals, McNemar) +
+      committed artifact (`evals/results/guardrail-baseline.*.2026-06-24.json`),
+      re-scored from raw records by `compute-paper-stats.mjs`.
 
 **2. Refresh the live-LLM panel** with current models (Claude Opus 4.x / Fable 5)
 and more repeats to tighten the Wilson intervals (currently n=90/model).
@@ -160,7 +160,7 @@ If you cite this repository:
   year   = {2026},
   url    = {https://github.com/hammerbaki/enterprise-llm-agent-harness},
   doi    = {10.5281/zenodo.20685423},
-  note   = {Version public-baseline-v0.5.16-pre}
+  note   = {Version public-baseline-v0.5.16}
 }
 ```
 
