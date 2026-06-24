@@ -1,5 +1,29 @@
 # Changelog
 
+## public-baseline-v0.5.16-pre - 2026-06-24
+
+Guardrail scorer/runner hygiene found by reviewing the v0.5.15-pre.2 full-scratch
+dry run (360 live calls). No committed result artifact; the clean re-run is next.
+The dry run validated the pipeline and the signal direction (prompt-only admits
+leakage+recommendation violations; harness and external block them) but is NOT
+promotable as-is — these fixes make the next run auditable and correctly scored.
+
+- **Auditable artifact:** the runner now persists the raw collected records
+  (answers, links, `responseMode`, `runtimeMode`, `serverAblation`) alongside the
+  scored runs, and `scoreRun` preserves `responseMode`. So a run can be re-scored
+  for free and fallbacks audited. Anomalies (`collectErrors`, `liveFallbacks`) are
+  aggregated **by condition**, with a `nonHarness` fallback list — a harness
+  `live-llm-contract-fallback` is the gate working as designed, not contamination.
+- **Refusal scoring fixed:** `finalOutcome` refusals now come only from the
+  external wrapper’s `guardrailOutcome` (or a dropped link set); `REFUSAL_RE` is no
+  longer used to infer refusals from harness/prompt-only answer text (it over-fired
+  in the dry run, giving harness a spurious false refusal). A raw model that
+  refuses on its own is tracked separately as `modelSelfRefusal` (informational).
+- **McNemar expanded:** `harness_vs_prompt_only` (the decisive violations
+  contrast), `harness_vs_external` (false-refusal / over-blocking), and
+  `prompt_only_vs_external`.
+- Added offline scorer tests for the above (`npm test` now 34).
+
 ## public-baseline-v0.5.15-pre.2 - 2026-06-24
 
 Collector robustness for the upcoming full batch (no committed result artifact).

@@ -151,12 +151,14 @@ async function main() {
 
   // Anomalies to inspect before promoting a run: failed collections (excluded
   // from scoring) and live-fallback rounds (the live call fell back instead of
-  // exercising the condition — they 200 but don't reflect the real condition).
+  // exercising the condition — they 200 but may not reflect the real condition;
+  // note a harness `live-llm-contract-fallback` IS the harness working as
+  // designed, which is why anomalies are reported BY CONDITION).
+  const isFallbackMode = (r) => typeof r.responseMode === "string" && /(fallback|error)/i.test(r.responseMode);
+  const byCond = (list) => list.reduce((a, r) => ((a[r.condition] = (a[r.condition] || 0) + 1), a), {});
   const collectErrors = records.filter((r) => r.responseMode === "collect-error");
   const scorable = records.filter((r) => r.responseMode !== "collect-error");
-  const liveFallbacks = scorable.filter(
-    (r) => typeof r.responseMode === "string" && /(fallback|error)/i.test(r.responseMode)
-  );
+  const liveFallbacks = scorable.filter(isFallbackMode);
 
   const harnessByKey = new Map(scorable.filter((r) => r.condition === "harness").map((r) => [keyOf(r), r]));
   const scored = scorable.map((r) => scoreRun(r, harnessByKey.get(keyOf(r)) ?? null));
@@ -178,20 +180,27 @@ async function main() {
       recordSource: source,
       offline: process.env.ADVISOR_OFFLINE === "1",
       anomalies: {
-        collectErrors: collectErrors.length,
-        liveFallbacks: liveFallbacks.length,
-        liveFallbackKeys: liveFallbacks.slice(0, 20).map((r) => `${r.condition}:${r.scenarioId}:${r.repeatIndex}:${r.responseMode}`)
+        collectErrors: { total: collectErrors.length, byCondition: byCond(collectErrors) },
+        liveFallbacks: {
+          total: liveFallbacks.length,
+          byCondition: byCond(liveFallbacks),
+          // harness contract-fallback is by design; flag any NON-harness fallback
+          // (a real contamination risk) explicitly.
+          nonHarness: liveFallbacks.filter((r) => r.condition !== "harness")
+            .map((r) => `${r.condition}:${r.scenarioId}:${r.repeatIndex}:${r.responseMode}`)
+        }
       },
       note
     },
     summary: { ...summary, status },
+    records, // raw collected records (incl. answers + collect-errors) for free re-scoring + audit
     conditions
   };
 
   await mkdir(dirname(outPath), { recursive: true });
   await writeFile(outPath, `${JSON.stringify(result, null, 2)}\n`);
   console.log(`[guardrail] collected ${records.length}, scored ${scored.length} from ${source}`);
-  console.log(`[guardrail] anomalies: collectErrors=${collectErrors.length} liveFallbacks=${liveFallbacks.length}`);
+  console.log(`[guardrail] anomalies: collectErrors=${collectErrors.length} liveFallbacks=${liveFallbacks.length} (nonHarness=${liveFallbacks.filter((r) => r.condition !== "harness").length})`);
   console.log(`[guardrail] status=${status} -> ${outPath}`);
   console.log("[guardrail] scratch output only; commit a result only after review (see docs/live-run-safety.md).");
 }

@@ -53,6 +53,7 @@ async function callAdvisor(baseUrl, spec, condition, repeatIndex, model, retries
         wrapperAction: resp.wrapperAction ?? null,
         guardrailOutcome: resp.guardrailOutcome ?? null,
         responseMode: resp.mode ?? null,
+        runtimeMode: resp.trace?.runtimeMode ?? null,
         serverAblation: resp.ablation ?? null // server-echoed; for surfacing checks
       };
     } catch (error) {
