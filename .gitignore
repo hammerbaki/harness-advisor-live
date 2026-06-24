@@ -38,6 +38,11 @@ evals/results/*persistent-baseline*.json
 evals/results/*persistent-optimized*.json
 evals/results/*recheck*.json
 
+# Nested private manuscript repo (harness-paper), if cloned here for convenience.
+# This PUBLIC repo must NEVER track the manuscript. See README "Working with the
+# manuscript repo". harness-paper stays a separate PRIVATE repo.
+/paper/
+
 # Generated static demo snapshots (rebuilt by npm run demo:snapshot)
 public/demo/
 

@@ -137,6 +137,12 @@ checks require cited sources to resolve to source packages or documented fallbac
 states; and language checks enforce the insight-first answer structure and block
 recommendation-style phrasing.
 
+The runtime flow — answer plan → traced tool fetches → source-backed claims →
+composition, with the three enforcement conditions (harness / prompt-only /
+external-guardrail) and the three validation families — is drawn (diagram-as-code)
+in [`docs/architecture-flow.md`](docs/architecture-flow.md)
+([`.mmd`](docs/architecture-flow.mmd) source); it is the structure behind Table A5.
+
 ## Related manuscript
 
 An accompanying manuscript, *Beyond Prompting: Harness Engineering for
@@ -144,6 +150,13 @@ Enterprise LLM Agents* (targeting arXiv, cs.AI), uses this repository's
 source-to-claim pipeline, validation scenarios, fault-injection results, and
 latency measurements. Until a public preprint is available, cite this repository
 directly.
+
+The manuscript lives in a **separate, private** repository (`harness-paper`) that
+pins a tag of this public repo one-way (numbers never flow paper → code). A single
+GitHub repo cannot mix public code with a private manuscript, so they stay
+separate. For local convenience you can clone `harness-paper` into `paper/` inside
+this working tree — that path is gitignored, so this public repo never tracks the
+manuscript.
 
 If you cite this repository:
 
@@ -154,7 +167,7 @@ If you cite this repository:
   year   = {2026},
   url    = {https://github.com/hammerbaki/enterprise-llm-agent-harness},
   doi    = {10.5281/zenodo.20685423},
-  note   = {Version public-baseline-v0.5.16.2}
+  note   = {Version public-baseline-v0.5.16.3}
 }
 ```
 

@@ -1,0 +1,27 @@
+%% Runtime harness flow (method figure for the manuscript).
+%% Diagram-as-code: edit this source, then render (see docs/architecture-flow.md).
+%% Faithful to server/index.mjs: runAdvisor -> answer plan -> traced tool fetches
+%% -> source-backed claims -> composeWithLLM, with the three enforcement
+%% conditions (harness / prompt-only / external-guardrail) and the three
+%% reader-facing validation families. This is the structure behind Table A5.
+flowchart TD
+  Q["User question<br/>(+ enforcement condition)"] --> R["runAdvisor()"]
+  R --> E["Entity routing<br/>group / company (aliases, ticker, corp-code)"]
+  E --> P["Answer plan<br/>buildAnswerPlan / classifyAnswerIntent"]
+  P --> T["Tool fetch (parallel, traced)<br/>DART · KRX&rarr;Yahoo fallback · Naver News<br/>each degrades to fixture on failure"]
+  T --> C["Source admission<br/>loadWikiContext + loadSourceBackedClaims<br/>(promoted, runtime-eligible claims only)"]
+  C --> PROV{"LLM provider<br/>configured?"}
+  PROV -- no --> DET["Deterministic composer<br/>(fixture)"]
+  PROV -- yes --> LIVE["composeWithLLM()<br/>live model call"]
+  LIVE --> COND{"Enforcement<br/>condition"}
+  COND -- "harness (default)" --> GATE{"Output-contract gate<br/>validateStructuredAdvisorOutput"}
+  GATE -- pass --> FIN
+  GATE -- fail --> FB["Deterministic fallback<br/>(recovery, not failure)"]
+  COND -- "prompt-only (ablation)" --> RAW["Gate bypassed<br/>raw live output"]
+  COND -- "external-guardrail" --> EG["applyExternalGuardrail()<br/>pass · redact · refuse<br/>(no deterministic fallback)"]
+  DET --> FIN
+  FB --> FIN
+  RAW --> FIN
+  EG --> FIN
+  FIN["finalizeAdvisorAnswer + buildLinks<br/>(reader-facing source-state labels)"] --> VAL["Reader-facing validation families<br/>1) leakage  2) link  3) recommendation-language"]
+  VAL --> OUT["Reader-facing answer<br/>+ process-trace envelope"]

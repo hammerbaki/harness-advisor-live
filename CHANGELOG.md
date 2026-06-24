@@ -2,6 +2,23 @@
 
 # Changelog
 
+## public-baseline-v0.5.16.3 - 2026-06-24
+
+Method figure + manuscript-repo workflow note (docs/config only; no numbers changed).
+
+- Added the runtime harness flow as **diagram-as-code**: `docs/architecture-flow.mmd`
+  (Mermaid source) + `docs/architecture-flow.md` (GitHub renders it inline) +
+  rendered `docs/architecture-flow.png`. Faithful to `server/index.mjs`; shows the
+  three enforcement conditions (harness / prompt-only / external-guardrail) and the
+  three validation families — the structure behind Table A5. A method figure the
+  manuscript can include.
+- README: pointer to the flow figure; note on the two-repo model and the
+  gitignored `paper/` nested-clone convenience.
+- `.gitignore`: ignore `/paper/` so a local clone of the PRIVATE manuscript repo is
+  never tracked by this PUBLIC repo.
+
+# Changelog
+
 ## public-baseline-v0.5.16.2 - 2026-06-24
 
 README roadmap re-prioritized to the current direction (docs only).
