@@ -4,47 +4,41 @@
 
 ## Roadmap / TODO
 
-Listed in **execution order**. The repository has an arXiv (cs.AI) endorsement;
-the earlier *Applied Sciences* track is no longer prepared. **Submission is last**
-— it happens only after the evaluation/defense and hygiene items below are closed,
-so there is no remaining attack surface at submission time.
+**Phase 3 (the main research-defense item) is complete**, so the repository is at
+an arXiv (cs.AI)-safe state. The active path is now **finalizing the submission
+package**. Paid live-model experiments are **deferred** — the current results are
+sufficient for submission, and new models add cost and model-drift risk.
 
-**1. Phase 3 — external-guardrail baseline (complete; Table A5)**
-Positions harness engineering against the standard alternative (an external
-guardrail layer), beyond the prompt-only ablation. Design + scoring are frozen in
+**1. Phase 3 — external-guardrail baseline — done (Table A5)**
+Quantifies what the code-owned harness changes *on the same model* vs. an unguarded
+prompt and a bolt-on guardrail. Design + scoring frozen in
 [`docs/phase3-guardrail-baseline-design.md`](docs/phase3-guardrail-baseline-design.md)
-and [`docs/phase3-guardrail-scoring-spec.md`](docs/phase3-guardrail-scoring-spec.md).
-- [x] Scoring spec frozen (conditions, false-refusal, outcome taxonomy, schema).
-- [x] Canonical detector module (`server/detectors.mjs`) + widened to spec scope.
-- [x] External-guardrail wrapper mechanics + unit tests (`server/guardrail.mjs`).
-- [x] Guardrail evaluation runner/scorer: 3 conditions (harness / prompt-only /
-      external-guardrail) × {reference, adversarial} × 3 repeats, 360 live runs.
-- [x] Results table (Table A5: violations_admitted vs. false_refusals, McNemar) +
-      committed artifact (`evals/results/guardrail-baseline.*.2026-06-24.json`),
-      re-scored from raw records by `compute-paper-stats.mjs`.
+/ [`docs/phase3-guardrail-scoring-spec.md`](docs/phase3-guardrail-scoring-spec.md).
+- [x] Scoring spec; canonical detector module; external-guardrail wrapper + tests.
+- [x] Runner/scorer; 360 live runs (5 groups × {reference, adversarial} × 3 repeats × 3 conditions).
+- [x] Table A5 + committed artifact (`evals/results/guardrail-baseline.*.2026-06-24.json`),
+      re-scored from raw records by `compute-paper-stats.mjs`, drift-guarded by `validate:paper-stats`.
 
-**2. Refresh the live-LLM panel** with current models (Claude Opus 4.x / Fable 5)
-and more repeats to tighten the Wilson intervals (currently n=90/model).
-
-**3. Reduce the maturity asymmetry** — expand at least one more group beyond
-Hanwha to a full reference vertical slice (see Table A1).
-
-**4. Reproducibility & hygiene**
-- [ ] One end-to-end reproducible promotion example from a public/synthetic source
-      (raw issuer PDFs remain non-redistributed; see `REPRODUCIBILITY.md`).
-- [ ] Resolve the remaining `npm audit` low (esbuild, Windows dev server only;
-      fix is a breaking major bump). The v0.4.x high/moderate findings were cleared.
-- [ ] Capture latency on fixed hardware (or demote latency to a non-headline
-      reference), since the budget checks are wall-clock sensitive.
-
-**5. Documentation** — `CONTRIBUTING.md` + a short threat-model note for the
-leakage / recommendation-language paths.
-
-**6. Freeze & submit (last — only after 1–5)**
+**2. Finalize & submit (active)**
 - [ ] Re-pin the manuscript repo (`harness-paper`, `artifacts/dev-pin.txt`) to the
-      latest tag and regenerate its tables from this repo.
-- [ ] Finalize the arXiv (cs.AI) preprint and submit; add the arXiv ID and link
-      here and in `CITATION.cff` once assigned.
+      latest tag and regenerate its tables (`build-tables.mjs`).
+- [ ] Integrate Table A5 + a Phase-3 paragraph into the manuscript — scope-limited
+      claims ("for this deterministic external-guardrail baseline…"; reader-facing
+      contract-violation reduction, not investment quality).
+- [ ] Final consistency pass: figures, captions, artifact hashes, README badge + version.
+- [ ] arXiv source-bundle dry-run → submit; add the arXiv ID here and in `CITATION.cff`.
+
+**3. Optional hygiene (low priority; before or after submission)**
+- [ ] `CONTRIBUTING.md` + a short threat-model note (leakage / recommendation paths).
+- [ ] Resolve the remaining `npm audit` low (esbuild, Windows dev server only).
+- [ ] One end-to-end reproducible promotion example from a public/synthetic source.
+- [ ] Capture latency on fixed hardware (or demote it to a non-headline reference).
+
+**4. Deferred / future work (post-submission)**
+- [ ] Refresh the live-LLM panel with current models (Claude Opus 4.x / Fable 5),
+      more repeats — **deferred**: current results are submission-safe; new paid runs
+      add cost and drift risk.
+- [ ] Reduce the maturity asymmetry — expand another group to a full reference slice.
 
 Mobile briefing tool for Korea's five largest corporate groups: Samsung, SK,
 Hyundai Motor, LG, and Hanwha. The app produces a short, source-linked briefing
@@ -160,7 +154,7 @@ If you cite this repository:
   year   = {2026},
   url    = {https://github.com/hammerbaki/enterprise-llm-agent-harness},
   doi    = {10.5281/zenodo.20685423},
-  note   = {Version public-baseline-v0.5.16.1}
+  note   = {Version public-baseline-v0.5.16.2}
 }
 ```
 

@@ -2,6 +2,20 @@
 
 # Changelog
 
+## public-baseline-v0.5.16.2 - 2026-06-24
+
+README roadmap re-prioritized to the current direction (docs only).
+
+- Phase 3 is marked the completed research-defense item; **Finalize & submit** is
+  now the active near-term path (the repository is at an arXiv-safe state).
+- **Live-LLM panel refresh with current models is deferred** to post-submission
+  future work — current results are submission-safe and new paid runs add cost and
+  model-drift risk. Maturity-slice expansion likewise deferred.
+- Optional hygiene (CONTRIBUTING / threat-model / npm audit low / latency / e2e
+  promotion example) grouped as low-priority.
+
+# Changelog
+
 ## public-baseline-v0.5.16.1 - 2026-06-24
 
 Submission-prep metadata cleanup (metadata-only; no measured numbers changed).
