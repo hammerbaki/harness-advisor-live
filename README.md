@@ -160,7 +160,7 @@ If you cite this repository:
   year   = {2026},
   url    = {https://github.com/hammerbaki/enterprise-llm-agent-harness},
   doi    = {10.5281/zenodo.20685423},
-  note   = {Version public-baseline-v0.5.16}
+  note   = {Version public-baseline-v0.5.16.1}
 }
 ```
 

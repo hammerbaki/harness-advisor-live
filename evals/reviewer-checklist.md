@@ -35,6 +35,7 @@ For each accepted artifact:
 | `evals/results/live-llm-composition-boundary.full-30x3.2026-06-03.json` | Tables A2–A4 (per-model contract outcomes, inter-repeat consistency, per-check failure decomposition) | accepted |
 | `evals/results/ablation-prompt-only.c0-vs-c3.30x3.2026-06-13.json` | Prompt-only ablation, 30×3 reference scenarios | accepted |
 | `evals/results/ablation-adversarial.c0-vs-c3.2026-06-13.json` | Prompt-only ablation, adversarial-stress scenarios (McNemar) | accepted |
+| `evals/results/guardrail-baseline.harness-vs-promptonly-vs-external.2026-06-24.json` | Table A5 — guardrail baseline (harness vs prompt-only vs external; 360 live runs). Re-scored from raw records by `compute-paper-stats.mjs`. | accepted (new measured run, v0.5.16) |
 
 Per-artifact hashes and acceptance metadata are recorded in
 [`manuscript-acceptance.json`](manuscript-acceptance.json).

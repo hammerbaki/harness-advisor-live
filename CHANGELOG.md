@@ -1,5 +1,18 @@
 # Changelog
 
+# Changelog
+
+## public-baseline-v0.5.16.1 - 2026-06-24
+
+Submission-prep metadata cleanup (metadata-only; no measured numbers changed).
+
+- `evals/manuscript-acceptance.json`: top-level metadata refreshed from the stale
+  `public-baseline-v0.4` / 2026-06-23 to **v0.5.16 / 2026-06-24**, and the note now
+  distinguishes the four as-is dated snapshots from the new measured guardrail run.
+- `evals/reviewer-checklist.md`: added the guardrail-baseline (Table A5) artifact.
+- Verified at finalization: all five accepted-artifact SHA-256 hashes match; Table A5
+  doc numbers match `compute-paper-stats.mjs`; no stale version refs; full gate green.
+
 ## public-baseline-v0.5.16 - 2026-06-24
 
 Phase 3 external-guardrail baseline — committed result + Table A5. The clean

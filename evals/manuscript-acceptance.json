@@ -1,9 +1,9 @@
 {
   "schemaVersion": "manuscript-acceptance.v1",
-  "version": "public-baseline-v0.4",
-  "acceptedAt": "2026-06-23",
+  "version": "public-baseline-v0.5.16",
+  "acceptedAt": "2026-06-24",
   "checklist": "evals/reviewer-checklist.md",
-  "note": "Promotion is metadata-only; measured numbers are unchanged. Statistics are reproducible via scripts/compute-paper-stats.mjs. SHA-256 hashes are of the accepted artifacts after metadata promotion.",
+  "note": "The first four artifacts are dated snapshots accepted as-is (numbers unchanged). The guardrail-baseline artifact (Table A5) is a new measured live run (360 calls, anthropic/claude-sonnet-4) committed at v0.5.16. All statistics are reproducible from the artifacts via scripts/compute-paper-stats.mjs (drift-guarded by validate:paper-stats); SHA-256 hashes are of the committed artifacts.",
   "artifacts": [
     {
       "path": "evals/results/live-llm-composition-boundary.full-30x3.2026-06-03.json",
