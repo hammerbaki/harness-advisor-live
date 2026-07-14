@@ -4,10 +4,43 @@
 
 ## Roadmap / TODO
 
-**Phase 3 (the main research-defense item) is complete**, so the repository is at
-an arXiv (cs.AI)-safe state. The active path is now **finalizing the submission
-package**. Paid live-model experiments are **deferred** — the current results are
-sufficient for submission, and new models add cost and model-drift risk.
+**Paper 1 (harness-engineering artifact) is submitted.** The active direction is
+now **Paper 2: an investment-*information* (not advice) agent plus a usability
+evaluation**, benchmarked against the commercial reference [Throne](https://throneinvest.ai/).
+Full analysis and rationale: [`docs/paper2-throne-benchmark-and-roadmap.md`](docs/paper2-throne-benchmark-and-roadmap.md).
+
+**Next work — Paper 2 (active)**
+Reconnaissance (public scope, 2026-07-15 KST) shows Throne is not a chatbot but a
+**research-workflow product**: question → evidence-based answer → investment notes →
+shareable research documents (Next.js front, Google OAuth, RAG/KB layer, SEO'd public
+articles). The goal is **not to clone it** but to build a *research-grade,
+verifiable* investment-information agent. Scope principle: do **not** chase Throne's
+paid-data moat; raise UX maturity only as far as a usability study needs, and never
+break the `server/index.mjs` contract checks (leakage / link / language) — keep them
+*stricter* than Throne, whose public docs drift toward strategy/buy-trigger language.
+
+*Document first (before implementation):* competitor matrix · safety-scope policy ·
+MVP screen flow · 5 usability tasks.
+
+- [ ] **A. Fix product scope** — define it as a *source-grounded investment-information
+      comprehension agent*, not personalized advice; frame Throne as a commercial
+      baseline for a trust-calibration / appropriate-reliance study.
+- [ ] **B. Workflow, not chat** — MVP flow: question → evidence panel → answer →
+      saved investment note → shareable research document. Paid feeds, US-market
+      breadth, and data-source expansion are explicitly **out of scope** for now.
+- [ ] **C. Staged data layer** — keep DART/KRX/public filings; add SEC/FMP/Polygon-type
+      data later; FnGuide/KOSCOM (paid) gated behind licensing/cost.
+- [ ] **D. UI: mobile briefing → desktop research workspace** — left chat, right
+      sources/tables/charts, separate notes/document panel.
+- [ ] **E. Study design tied to features** — the 5 tasks above; formative (n≈5–8) vs.
+      summative (n≈20–40+); IRB + competitor-ToS review; live-path latency/freshness
+      hardening so environment sensitivity doesn't contaminate scores.
+- [ ] **F. Investigate** — confirm Throne's regulatory posture (유사투자자문업
+      registration, disclaimers) directly in a browser (client-rendered legal pages).
+
+Full analysis: [`docs/paper2-throne-benchmark-and-roadmap.md`](docs/paper2-throne-benchmark-and-roadmap.md).
+
+**Paper 1 — submitted (reference; do not regress)**
 
 **1. Phase 3 — external-guardrail baseline — done (Table A5)**
 Quantifies what the code-owned harness changes *on the same model* vs. an unguarded
